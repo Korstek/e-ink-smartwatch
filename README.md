@@ -1,3 +1,3 @@
 # e-ink-smartwatch
 
-This is a smart-wath-like-thing project
+This is a smart-watch-like-thing project
