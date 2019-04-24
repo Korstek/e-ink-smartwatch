@@ -1,0 +1,1151 @@
+ARM GAS  /tmp/cc7UAO9R.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"EPD_2in9.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.EPD_Reset,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	EPD_Reset:
+  25              	.LFB123:
+  26              		.file 1 "Display/e-Paper/EPD_2in9.c"
+   1:Display/e-Paper/EPD_2in9.c **** /*****************************************************************************
+   2:Display/e-Paper/EPD_2in9.c **** * | File      	:	EPD_2in9.c
+   3:Display/e-Paper/EPD_2in9.c **** * | Author      :   Waveshare team
+   4:Display/e-Paper/EPD_2in9.c **** * | Function    :   Electronic paper driver
+   5:Display/e-Paper/EPD_2in9.c **** * | Info        :
+   6:Display/e-Paper/EPD_2in9.c **** *----------------
+   7:Display/e-Paper/EPD_2in9.c **** * |	This version:   V2.0
+   8:Display/e-Paper/EPD_2in9.c **** * | Date        :   2018-11-06
+   9:Display/e-Paper/EPD_2in9.c **** * | Info        :
+  10:Display/e-Paper/EPD_2in9.c **** * 1.Remove:ImageBuff[EPD_HEIGHT * EPD_WIDTH / 8]
+  11:Display/e-Paper/EPD_2in9.c **** * 2.Change:EPD_Display(UBYTE *Image)
+  12:Display/e-Paper/EPD_2in9.c **** *   Need to pass parameters: pointer to cached data
+  13:Display/e-Paper/EPD_2in9.c **** * 3.Change:
+  14:Display/e-Paper/EPD_2in9.c **** *   EPD_RST -> EPD_RST_PIN
+  15:Display/e-Paper/EPD_2in9.c **** *   EPD_DC -> EPD_DC_PIN
+  16:Display/e-Paper/EPD_2in9.c **** *   EPD_CS -> EPD_CS_PIN
+  17:Display/e-Paper/EPD_2in9.c **** *   EPD_BUSY -> EPD_BUSY_PIN
+  18:Display/e-Paper/EPD_2in9.c **** #
+  19:Display/e-Paper/EPD_2in9.c **** # Permission is hereby granted, free of charge, to any person obtaining a copy
+  20:Display/e-Paper/EPD_2in9.c **** # of this software and associated documnetation files (the "Software"), to deal
+  21:Display/e-Paper/EPD_2in9.c **** # in the Software without restriction, including without limitation the rights
+  22:Display/e-Paper/EPD_2in9.c **** # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  23:Display/e-Paper/EPD_2in9.c **** # copies of the Software, and to permit persons to  whom the Software is
+  24:Display/e-Paper/EPD_2in9.c **** # furished to do so, subject to the following conditions:
+  25:Display/e-Paper/EPD_2in9.c **** #
+  26:Display/e-Paper/EPD_2in9.c **** # The above copyright notice and this permission notice shall be included in
+  27:Display/e-Paper/EPD_2in9.c **** # all copies or substantial portions of the Software.
+  28:Display/e-Paper/EPD_2in9.c **** #
+  29:Display/e-Paper/EPD_2in9.c **** # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  30:Display/e-Paper/EPD_2in9.c **** # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  31:Display/e-Paper/EPD_2in9.c **** # FITNESS OR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  32:Display/e-Paper/EPD_2in9.c **** # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ARM GAS  /tmp/cc7UAO9R.s 			page 2
+
+
+  33:Display/e-Paper/EPD_2in9.c **** # LIABILITY WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  34:Display/e-Paper/EPD_2in9.c **** # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  35:Display/e-Paper/EPD_2in9.c **** # THE SOFTWARE.
+  36:Display/e-Paper/EPD_2in9.c **** #
+  37:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+  38:Display/e-Paper/EPD_2in9.c **** #include "EPD_2in9.h"
+  39:Display/e-Paper/EPD_2in9.c **** #include "Debug.h"
+  40:Display/e-Paper/EPD_2in9.c **** 
+  41:Display/e-Paper/EPD_2in9.c **** const unsigned char lut_full_update[] = {
+  42:Display/e-Paper/EPD_2in9.c ****     0x02, 0x02, 0x01, 0x11, 0x12, 0x12, 0x22, 0x22,
+  43:Display/e-Paper/EPD_2in9.c ****     0x66, 0x69, 0x69, 0x59, 0x58, 0x99, 0x99, 0x88,
+  44:Display/e-Paper/EPD_2in9.c ****     0x00, 0x00, 0x00, 0x00, 0xF8, 0xB4, 0x13, 0x51,
+  45:Display/e-Paper/EPD_2in9.c ****     0x35, 0x51, 0x51, 0x19, 0x01, 0x00
+  46:Display/e-Paper/EPD_2in9.c **** };
+  47:Display/e-Paper/EPD_2in9.c **** 
+  48:Display/e-Paper/EPD_2in9.c **** const unsigned char lut_partial_update[] = {
+  49:Display/e-Paper/EPD_2in9.c ****     0x10, 0x18, 0x18, 0x08, 0x18, 0x18, 0x08, 0x00,
+  50:Display/e-Paper/EPD_2in9.c ****     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  51:Display/e-Paper/EPD_2in9.c ****     0x00, 0x00, 0x00, 0x00, 0x13, 0x14, 0x44, 0x12,
+  52:Display/e-Paper/EPD_2in9.c ****     0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+  53:Display/e-Paper/EPD_2in9.c **** };
+  54:Display/e-Paper/EPD_2in9.c **** 
+  55:Display/e-Paper/EPD_2in9.c **** 
+  56:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+  57:Display/e-Paper/EPD_2in9.c **** function :	Software reset
+  58:Display/e-Paper/EPD_2in9.c **** parameter:
+  59:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+  60:Display/e-Paper/EPD_2in9.c **** static void EPD_Reset(void)
+  61:Display/e-Paper/EPD_2in9.c **** {
+  27              		.loc 1 61 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  62:Display/e-Paper/EPD_2in9.c ****     DEV_Digital_Write(EPD_RST_PIN, 1);
+  36              		.loc 1 62 0
+  37 0002 0122     		movs	r2, #1
+  38 0004 4FF48071 		mov	r1, #256
+  39 0008 4FF09040 		mov	r0, #1207959552
+  40 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  41              	.LVL0:
+  63:Display/e-Paper/EPD_2in9.c ****     DEV_Delay_ms(200);
+  42              		.loc 1 63 0
+  43 0010 C820     		movs	r0, #200
+  44 0012 FFF7FEFF 		bl	HAL_Delay
+  45              	.LVL1:
+  64:Display/e-Paper/EPD_2in9.c ****     DEV_Digital_Write(EPD_RST_PIN, 0);
+  46              		.loc 1 64 0
+  47 0016 0022     		movs	r2, #0
+  48 0018 4FF48071 		mov	r1, #256
+  49 001c 4FF09040 		mov	r0, #1207959552
+  50 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  51              	.LVL2:
+ARM GAS  /tmp/cc7UAO9R.s 			page 3
+
+
+  65:Display/e-Paper/EPD_2in9.c ****     DEV_Delay_ms(200);
+  52              		.loc 1 65 0
+  53 0024 C820     		movs	r0, #200
+  54 0026 FFF7FEFF 		bl	HAL_Delay
+  55              	.LVL3:
+  66:Display/e-Paper/EPD_2in9.c ****     DEV_Digital_Write(EPD_RST_PIN, 1);
+  56              		.loc 1 66 0
+  57 002a 0122     		movs	r2, #1
+  58 002c 4FF48071 		mov	r1, #256
+  59 0030 4FF09040 		mov	r0, #1207959552
+  60 0034 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  61              	.LVL4:
+  67:Display/e-Paper/EPD_2in9.c ****     DEV_Delay_ms(200);
+  62              		.loc 1 67 0
+  63 0038 C820     		movs	r0, #200
+  64 003a FFF7FEFF 		bl	HAL_Delay
+  65              	.LVL5:
+  68:Display/e-Paper/EPD_2in9.c **** }
+  66              		.loc 1 68 0
+  67 003e 08BD     		pop	{r3, pc}
+  68              		.cfi_endproc
+  69              	.LFE123:
+  71              		.section	.text.EPD_SendCommand,"ax",%progbits
+  72              		.align	1
+  73              		.syntax unified
+  74              		.thumb
+  75              		.thumb_func
+  76              		.fpu fpv4-sp-d16
+  78              	EPD_SendCommand:
+  79              	.LFB124:
+  69:Display/e-Paper/EPD_2in9.c **** 
+  70:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+  71:Display/e-Paper/EPD_2in9.c **** function :	send command
+  72:Display/e-Paper/EPD_2in9.c **** parameter:
+  73:Display/e-Paper/EPD_2in9.c ****      Reg : Command register
+  74:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+  75:Display/e-Paper/EPD_2in9.c **** static void EPD_SendCommand(UBYTE Reg)
+  76:Display/e-Paper/EPD_2in9.c **** {
+  80              		.loc 1 76 0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84              	.LVL6:
+  85 0000 38B5     		push	{r3, r4, r5, lr}
+  86              	.LCFI1:
+  87              		.cfi_def_cfa_offset 16
+  88              		.cfi_offset 3, -16
+  89              		.cfi_offset 4, -12
+  90              		.cfi_offset 5, -8
+  91              		.cfi_offset 14, -4
+  92 0002 0546     		mov	r5, r0
+  77:Display/e-Paper/EPD_2in9.c ****     DEV_Digital_Write(EPD_DC_PIN, 0);
+  93              		.loc 1 77 0
+  94 0004 0022     		movs	r2, #0
+  95 0006 4FF48061 		mov	r1, #1024
+  96 000a 4FF09040 		mov	r0, #1207959552
+  97              	.LVL7:
+ARM GAS  /tmp/cc7UAO9R.s 			page 4
+
+
+  98 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  99              	.LVL8:
+  78:Display/e-Paper/EPD_2in9.c ****     DEV_Digital_Write(EPD_CS_PIN, 0);
+ 100              		.loc 1 78 0
+ 101 0012 074C     		ldr	r4, .L5
+ 102 0014 0022     		movs	r2, #0
+ 103 0016 1021     		movs	r1, #16
+ 104 0018 2046     		mov	r0, r4
+ 105 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 106              	.LVL9:
+  79:Display/e-Paper/EPD_2in9.c ****     DEV_SPI_WriteByte(Reg);
+ 107              		.loc 1 79 0
+ 108 001e 2846     		mov	r0, r5
+ 109 0020 FFF7FEFF 		bl	DEV_SPI_WriteByte
+ 110              	.LVL10:
+  80:Display/e-Paper/EPD_2in9.c ****     DEV_Digital_Write(EPD_CS_PIN, 1);
+ 111              		.loc 1 80 0
+ 112 0024 0122     		movs	r2, #1
+ 113 0026 1021     		movs	r1, #16
+ 114 0028 2046     		mov	r0, r4
+ 115 002a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 116              	.LVL11:
+  81:Display/e-Paper/EPD_2in9.c **** }
+ 117              		.loc 1 81 0
+ 118 002e 38BD     		pop	{r3, r4, r5, pc}
+ 119              	.L6:
+ 120              		.align	2
+ 121              	.L5:
+ 122 0030 00040048 		.word	1207960576
+ 123              		.cfi_endproc
+ 124              	.LFE124:
+ 126              		.section	.text.EPD_SendData,"ax",%progbits
+ 127              		.align	1
+ 128              		.syntax unified
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.fpu fpv4-sp-d16
+ 133              	EPD_SendData:
+ 134              	.LFB125:
+  82:Display/e-Paper/EPD_2in9.c **** 
+  83:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+  84:Display/e-Paper/EPD_2in9.c **** function :	send data
+  85:Display/e-Paper/EPD_2in9.c **** parameter:
+  86:Display/e-Paper/EPD_2in9.c ****     Data : Write data
+  87:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+  88:Display/e-Paper/EPD_2in9.c **** static void EPD_SendData(UBYTE Data)
+  89:Display/e-Paper/EPD_2in9.c **** {
+ 135              		.loc 1 89 0
+ 136              		.cfi_startproc
+ 137              		@ args = 0, pretend = 0, frame = 0
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139              	.LVL12:
+ 140 0000 38B5     		push	{r3, r4, r5, lr}
+ 141              	.LCFI2:
+ 142              		.cfi_def_cfa_offset 16
+ 143              		.cfi_offset 3, -16
+ 144              		.cfi_offset 4, -12
+ARM GAS  /tmp/cc7UAO9R.s 			page 5
+
+
+ 145              		.cfi_offset 5, -8
+ 146              		.cfi_offset 14, -4
+ 147 0002 0546     		mov	r5, r0
+  90:Display/e-Paper/EPD_2in9.c ****     DEV_Digital_Write(EPD_DC_PIN, 1);
+ 148              		.loc 1 90 0
+ 149 0004 0122     		movs	r2, #1
+ 150 0006 4FF48061 		mov	r1, #1024
+ 151 000a 4FF09040 		mov	r0, #1207959552
+ 152              	.LVL13:
+ 153 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 154              	.LVL14:
+  91:Display/e-Paper/EPD_2in9.c ****     DEV_Digital_Write(EPD_CS_PIN, 0);
+ 155              		.loc 1 91 0
+ 156 0012 074C     		ldr	r4, .L9
+ 157 0014 0022     		movs	r2, #0
+ 158 0016 1021     		movs	r1, #16
+ 159 0018 2046     		mov	r0, r4
+ 160 001a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 161              	.LVL15:
+  92:Display/e-Paper/EPD_2in9.c ****     DEV_SPI_WriteByte(Data);
+ 162              		.loc 1 92 0
+ 163 001e 2846     		mov	r0, r5
+ 164 0020 FFF7FEFF 		bl	DEV_SPI_WriteByte
+ 165              	.LVL16:
+  93:Display/e-Paper/EPD_2in9.c ****     DEV_Digital_Write(EPD_CS_PIN, 1);
+ 166              		.loc 1 93 0
+ 167 0024 0122     		movs	r2, #1
+ 168 0026 1021     		movs	r1, #16
+ 169 0028 2046     		mov	r0, r4
+ 170 002a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 171              	.LVL17:
+  94:Display/e-Paper/EPD_2in9.c **** }
+ 172              		.loc 1 94 0
+ 173 002e 38BD     		pop	{r3, r4, r5, pc}
+ 174              	.L10:
+ 175              		.align	2
+ 176              	.L9:
+ 177 0030 00040048 		.word	1207960576
+ 178              		.cfi_endproc
+ 179              	.LFE125:
+ 181              		.section	.text.EPD_SetWindows,"ax",%progbits
+ 182              		.align	1
+ 183              		.syntax unified
+ 184              		.thumb
+ 185              		.thumb_func
+ 186              		.fpu fpv4-sp-d16
+ 188              	EPD_SetWindows:
+ 189              	.LFB127:
+  95:Display/e-Paper/EPD_2in9.c **** 
+  96:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+  97:Display/e-Paper/EPD_2in9.c **** function :	Wait until the busy_pin goes LOW
+  98:Display/e-Paper/EPD_2in9.c **** parameter:
+  99:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+ 100:Display/e-Paper/EPD_2in9.c **** void EPD_WaitUntilIdle(void)
+ 101:Display/e-Paper/EPD_2in9.c **** {
+ 102:Display/e-Paper/EPD_2in9.c ****     Debug("e-Paper busy\r\n");
+ 103:Display/e-Paper/EPD_2in9.c ****     while(DEV_Digital_Read(EPD_BUSY_PIN) == 1) {      //LOW: idle, HIGH: busy
+ARM GAS  /tmp/cc7UAO9R.s 			page 6
+
+
+ 104:Display/e-Paper/EPD_2in9.c ****         DEV_Delay_ms(100);
+ 105:Display/e-Paper/EPD_2in9.c ****     }
+ 106:Display/e-Paper/EPD_2in9.c ****     Debug("e-Paper busy release\r\n");
+ 107:Display/e-Paper/EPD_2in9.c **** }
+ 108:Display/e-Paper/EPD_2in9.c **** 
+ 109:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+ 110:Display/e-Paper/EPD_2in9.c **** function :	Setting the display window
+ 111:Display/e-Paper/EPD_2in9.c **** parameter:
+ 112:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+ 113:Display/e-Paper/EPD_2in9.c **** static void EPD_SetWindows(UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend)
+ 114:Display/e-Paper/EPD_2in9.c **** {
+ 190              		.loc 1 114 0
+ 191              		.cfi_startproc
+ 192              		@ args = 0, pretend = 0, frame = 0
+ 193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 194              	.LVL18:
+ 195 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 196              	.LCFI3:
+ 197              		.cfi_def_cfa_offset 24
+ 198              		.cfi_offset 3, -24
+ 199              		.cfi_offset 4, -20
+ 200              		.cfi_offset 5, -16
+ 201              		.cfi_offset 6, -12
+ 202              		.cfi_offset 7, -8
+ 203              		.cfi_offset 14, -4
+ 204 0002 0746     		mov	r7, r0
+ 205 0004 0D46     		mov	r5, r1
+ 206 0006 1646     		mov	r6, r2
+ 207 0008 1C46     		mov	r4, r3
+ 115:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(SET_RAM_X_ADDRESS_START_END_POSITION);
+ 208              		.loc 1 115 0
+ 209 000a 4420     		movs	r0, #68
+ 210              	.LVL19:
+ 211 000c FFF7FEFF 		bl	EPD_SendCommand
+ 212              	.LVL20:
+ 116:Display/e-Paper/EPD_2in9.c ****     EPD_SendData((Xstart >> 3) & 0xFF);
+ 213              		.loc 1 116 0
+ 214 0010 C7F3C700 		ubfx	r0, r7, #3, #8
+ 215 0014 FFF7FEFF 		bl	EPD_SendData
+ 216              	.LVL21:
+ 117:Display/e-Paper/EPD_2in9.c ****     EPD_SendData((Xend >> 3) & 0xFF);
+ 217              		.loc 1 117 0
+ 218 0018 C6F3C700 		ubfx	r0, r6, #3, #8
+ 219 001c FFF7FEFF 		bl	EPD_SendData
+ 220              	.LVL22:
+ 118:Display/e-Paper/EPD_2in9.c **** 
+ 119:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(SET_RAM_Y_ADDRESS_START_END_POSITION);
+ 221              		.loc 1 119 0
+ 222 0020 4520     		movs	r0, #69
+ 223 0022 FFF7FEFF 		bl	EPD_SendCommand
+ 224              	.LVL23:
+ 120:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(Ystart & 0xFF);
+ 225              		.loc 1 120 0
+ 226 0026 E8B2     		uxtb	r0, r5
+ 227 0028 FFF7FEFF 		bl	EPD_SendData
+ 228              	.LVL24:
+ 121:Display/e-Paper/EPD_2in9.c ****     EPD_SendData((Ystart >> 8) & 0xFF);
+ARM GAS  /tmp/cc7UAO9R.s 			page 7
+
+
+ 229              		.loc 1 121 0
+ 230 002c 280A     		lsrs	r0, r5, #8
+ 231 002e FFF7FEFF 		bl	EPD_SendData
+ 232              	.LVL25:
+ 122:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(Yend & 0xFF);
+ 233              		.loc 1 122 0
+ 234 0032 E0B2     		uxtb	r0, r4
+ 235 0034 FFF7FEFF 		bl	EPD_SendData
+ 236              	.LVL26:
+ 123:Display/e-Paper/EPD_2in9.c ****     EPD_SendData((Yend >> 8) & 0xFF);
+ 237              		.loc 1 123 0
+ 238 0038 200A     		lsrs	r0, r4, #8
+ 239 003a FFF7FEFF 		bl	EPD_SendData
+ 240              	.LVL27:
+ 124:Display/e-Paper/EPD_2in9.c **** }
+ 241              		.loc 1 124 0
+ 242 003e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 243              		.cfi_endproc
+ 244              	.LFE127:
+ 246              		.section	.text.EPD_SetCursor,"ax",%progbits
+ 247              		.align	1
+ 248              		.syntax unified
+ 249              		.thumb
+ 250              		.thumb_func
+ 251              		.fpu fpv4-sp-d16
+ 253              	EPD_SetCursor:
+ 254              	.LFB128:
+ 125:Display/e-Paper/EPD_2in9.c **** 
+ 126:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+ 127:Display/e-Paper/EPD_2in9.c **** function :	Set Cursor
+ 128:Display/e-Paper/EPD_2in9.c **** parameter:
+ 129:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+ 130:Display/e-Paper/EPD_2in9.c **** static void EPD_SetCursor(UWORD Xstart, UWORD Ystart)
+ 131:Display/e-Paper/EPD_2in9.c **** {
+ 255              		.loc 1 131 0
+ 256              		.cfi_startproc
+ 257              		@ args = 0, pretend = 0, frame = 0
+ 258              		@ frame_needed = 0, uses_anonymous_args = 0
+ 259              	.LVL28:
+ 260 0000 38B5     		push	{r3, r4, r5, lr}
+ 261              	.LCFI4:
+ 262              		.cfi_def_cfa_offset 16
+ 263              		.cfi_offset 3, -16
+ 264              		.cfi_offset 4, -12
+ 265              		.cfi_offset 5, -8
+ 266              		.cfi_offset 14, -4
+ 267 0002 0546     		mov	r5, r0
+ 268 0004 0C46     		mov	r4, r1
+ 132:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(SET_RAM_X_ADDRESS_COUNTER);
+ 269              		.loc 1 132 0
+ 270 0006 4E20     		movs	r0, #78
+ 271              	.LVL29:
+ 272 0008 FFF7FEFF 		bl	EPD_SendCommand
+ 273              	.LVL30:
+ 133:Display/e-Paper/EPD_2in9.c ****     EPD_SendData((Xstart >> 3) & 0xFF);
+ 274              		.loc 1 133 0
+ 275 000c C5F3C700 		ubfx	r0, r5, #3, #8
+ARM GAS  /tmp/cc7UAO9R.s 			page 8
+
+
+ 276 0010 FFF7FEFF 		bl	EPD_SendData
+ 277              	.LVL31:
+ 134:Display/e-Paper/EPD_2in9.c **** 
+ 135:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(SET_RAM_Y_ADDRESS_COUNTER);
+ 278              		.loc 1 135 0
+ 279 0014 4F20     		movs	r0, #79
+ 280 0016 FFF7FEFF 		bl	EPD_SendCommand
+ 281              	.LVL32:
+ 136:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(Ystart & 0xFF);
+ 282              		.loc 1 136 0
+ 283 001a E0B2     		uxtb	r0, r4
+ 284 001c FFF7FEFF 		bl	EPD_SendData
+ 285              	.LVL33:
+ 137:Display/e-Paper/EPD_2in9.c ****     EPD_SendData((Ystart >> 8) & 0xFF);
+ 286              		.loc 1 137 0
+ 287 0020 200A     		lsrs	r0, r4, #8
+ 288 0022 FFF7FEFF 		bl	EPD_SendData
+ 289              	.LVL34:
+ 138:Display/e-Paper/EPD_2in9.c **** 
+ 139:Display/e-Paper/EPD_2in9.c **** }
+ 290              		.loc 1 139 0
+ 291 0026 38BD     		pop	{r3, r4, r5, pc}
+ 292              		.cfi_endproc
+ 293              	.LFE128:
+ 295              		.section	.text.EPD_WaitUntilIdle,"ax",%progbits
+ 296              		.align	1
+ 297              		.global	EPD_WaitUntilIdle
+ 298              		.syntax unified
+ 299              		.thumb
+ 300              		.thumb_func
+ 301              		.fpu fpv4-sp-d16
+ 303              	EPD_WaitUntilIdle:
+ 304              	.LFB126:
+ 101:Display/e-Paper/EPD_2in9.c ****     Debug("e-Paper busy\r\n");
+ 305              		.loc 1 101 0
+ 306              		.cfi_startproc
+ 307              		@ args = 0, pretend = 0, frame = 0
+ 308              		@ frame_needed = 0, uses_anonymous_args = 0
+ 309 0000 08B5     		push	{r3, lr}
+ 310              	.LCFI5:
+ 311              		.cfi_def_cfa_offset 8
+ 312              		.cfi_offset 3, -8
+ 313              		.cfi_offset 14, -4
+ 102:Display/e-Paper/EPD_2in9.c ****     while(DEV_Digital_Read(EPD_BUSY_PIN) == 1) {      //LOW: idle, HIGH: busy
+ 314              		.loc 1 102 0
+ 315 0002 0948     		ldr	r0, .L19
+ 316 0004 FFF7FEFF 		bl	puts
+ 317              	.LVL35:
+ 103:Display/e-Paper/EPD_2in9.c ****         DEV_Delay_ms(100);
+ 318              		.loc 1 103 0
+ 319 0008 02E0     		b	.L16
+ 320              	.L17:
+ 104:Display/e-Paper/EPD_2in9.c ****     }
+ 321              		.loc 1 104 0
+ 322 000a 6420     		movs	r0, #100
+ 323 000c FFF7FEFF 		bl	HAL_Delay
+ 324              	.LVL36:
+ARM GAS  /tmp/cc7UAO9R.s 			page 9
+
+
+ 325              	.L16:
+ 103:Display/e-Paper/EPD_2in9.c ****         DEV_Delay_ms(100);
+ 326              		.loc 1 103 0
+ 327 0010 4FF48061 		mov	r1, #1024
+ 328 0014 0548     		ldr	r0, .L19+4
+ 329 0016 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 330              	.LVL37:
+ 331 001a 0128     		cmp	r0, #1
+ 332 001c F5D0     		beq	.L17
+ 106:Display/e-Paper/EPD_2in9.c **** }
+ 333              		.loc 1 106 0
+ 334 001e 0448     		ldr	r0, .L19+8
+ 335 0020 FFF7FEFF 		bl	puts
+ 336              	.LVL38:
+ 107:Display/e-Paper/EPD_2in9.c **** 
+ 337              		.loc 1 107 0
+ 338 0024 08BD     		pop	{r3, pc}
+ 339              	.L20:
+ 340 0026 00BF     		.align	2
+ 341              	.L19:
+ 342 0028 00000000 		.word	.LC0
+ 343 002c 00040048 		.word	1207960576
+ 344 0030 18000000 		.word	.LC1
+ 345              		.cfi_endproc
+ 346              	.LFE126:
+ 348              		.section	.text.EPD_TurnOnDisplay,"ax",%progbits
+ 349              		.align	1
+ 350              		.syntax unified
+ 351              		.thumb
+ 352              		.thumb_func
+ 353              		.fpu fpv4-sp-d16
+ 355              	EPD_TurnOnDisplay:
+ 356              	.LFB129:
+ 140:Display/e-Paper/EPD_2in9.c **** 
+ 141:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+ 142:Display/e-Paper/EPD_2in9.c **** function :	Turn On Display
+ 143:Display/e-Paper/EPD_2in9.c **** parameter:
+ 144:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+ 145:Display/e-Paper/EPD_2in9.c **** static void EPD_TurnOnDisplay(void)
+ 146:Display/e-Paper/EPD_2in9.c **** {
+ 357              		.loc 1 146 0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 0, uses_anonymous_args = 0
+ 361 0000 08B5     		push	{r3, lr}
+ 362              	.LCFI6:
+ 363              		.cfi_def_cfa_offset 8
+ 364              		.cfi_offset 3, -8
+ 365              		.cfi_offset 14, -4
+ 147:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(DISPLAY_UPDATE_CONTROL_2);
+ 366              		.loc 1 147 0
+ 367 0002 2220     		movs	r0, #34
+ 368 0004 FFF7FEFF 		bl	EPD_SendCommand
+ 369              	.LVL39:
+ 148:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0xC4);
+ 370              		.loc 1 148 0
+ 371 0008 C420     		movs	r0, #196
+ARM GAS  /tmp/cc7UAO9R.s 			page 10
+
+
+ 372 000a FFF7FEFF 		bl	EPD_SendData
+ 373              	.LVL40:
+ 149:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(MASTER_ACTIVATION);
+ 374              		.loc 1 149 0
+ 375 000e 2020     		movs	r0, #32
+ 376 0010 FFF7FEFF 		bl	EPD_SendCommand
+ 377              	.LVL41:
+ 150:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(TERMINATE_FRAME_READ_WRITE);
+ 378              		.loc 1 150 0
+ 379 0014 FF20     		movs	r0, #255
+ 380 0016 FFF7FEFF 		bl	EPD_SendCommand
+ 381              	.LVL42:
+ 151:Display/e-Paper/EPD_2in9.c **** 
+ 152:Display/e-Paper/EPD_2in9.c ****     EPD_WaitUntilIdle();
+ 382              		.loc 1 152 0
+ 383 001a FFF7FEFF 		bl	EPD_WaitUntilIdle
+ 384              	.LVL43:
+ 153:Display/e-Paper/EPD_2in9.c **** }
+ 385              		.loc 1 153 0
+ 386 001e 08BD     		pop	{r3, pc}
+ 387              		.cfi_endproc
+ 388              	.LFE129:
+ 390              		.section	.text.EPD_Init,"ax",%progbits
+ 391              		.align	1
+ 392              		.global	EPD_Init
+ 393              		.syntax unified
+ 394              		.thumb
+ 395              		.thumb_func
+ 396              		.fpu fpv4-sp-d16
+ 398              	EPD_Init:
+ 399              	.LFB130:
+ 154:Display/e-Paper/EPD_2in9.c **** 
+ 155:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+ 156:Display/e-Paper/EPD_2in9.c **** function :	Initialize the e-Paper register
+ 157:Display/e-Paper/EPD_2in9.c **** parameter:
+ 158:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+ 159:Display/e-Paper/EPD_2in9.c **** UBYTE EPD_Init(const unsigned char* lut)
+ 160:Display/e-Paper/EPD_2in9.c **** {
+ 400              		.loc 1 160 0
+ 401              		.cfi_startproc
+ 402              		@ args = 0, pretend = 0, frame = 0
+ 403              		@ frame_needed = 0, uses_anonymous_args = 0
+ 404              	.LVL44:
+ 405 0000 38B5     		push	{r3, r4, r5, lr}
+ 406              	.LCFI7:
+ 407              		.cfi_def_cfa_offset 16
+ 408              		.cfi_offset 3, -16
+ 409              		.cfi_offset 4, -12
+ 410              		.cfi_offset 5, -8
+ 411              		.cfi_offset 14, -4
+ 412 0002 0546     		mov	r5, r0
+ 161:Display/e-Paper/EPD_2in9.c ****     EPD_Reset();
+ 413              		.loc 1 161 0
+ 414 0004 FFF7FEFF 		bl	EPD_Reset
+ 415              	.LVL45:
+ 162:Display/e-Paper/EPD_2in9.c **** 
+ 163:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(DRIVER_OUTPUT_CONTROL);
+ARM GAS  /tmp/cc7UAO9R.s 			page 11
+
+
+ 416              		.loc 1 163 0
+ 417 0008 0120     		movs	r0, #1
+ 418 000a FFF7FEFF 		bl	EPD_SendCommand
+ 419              	.LVL46:
+ 164:Display/e-Paper/EPD_2in9.c ****     EPD_SendData((EPD_HEIGHT - 1) & 0xFF);
+ 420              		.loc 1 164 0
+ 421 000e 2720     		movs	r0, #39
+ 422 0010 FFF7FEFF 		bl	EPD_SendData
+ 423              	.LVL47:
+ 165:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(((EPD_HEIGHT - 1) >> 8) & 0xFF);
+ 424              		.loc 1 165 0
+ 425 0014 0120     		movs	r0, #1
+ 426 0016 FFF7FEFF 		bl	EPD_SendData
+ 427              	.LVL48:
+ 166:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0x00);                     // GD = 0; SM = 0; TB = 0;
+ 428              		.loc 1 166 0
+ 429 001a 0020     		movs	r0, #0
+ 430 001c FFF7FEFF 		bl	EPD_SendData
+ 431              	.LVL49:
+ 167:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(BOOSTER_SOFT_START_CONTROL);
+ 432              		.loc 1 167 0
+ 433 0020 0C20     		movs	r0, #12
+ 434 0022 FFF7FEFF 		bl	EPD_SendCommand
+ 435              	.LVL50:
+ 168:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0xD7);
+ 436              		.loc 1 168 0
+ 437 0026 D720     		movs	r0, #215
+ 438 0028 FFF7FEFF 		bl	EPD_SendData
+ 439              	.LVL51:
+ 169:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0xD6);
+ 440              		.loc 1 169 0
+ 441 002c D620     		movs	r0, #214
+ 442 002e FFF7FEFF 		bl	EPD_SendData
+ 443              	.LVL52:
+ 170:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0x9D);
+ 444              		.loc 1 170 0
+ 445 0032 9D20     		movs	r0, #157
+ 446 0034 FFF7FEFF 		bl	EPD_SendData
+ 447              	.LVL53:
+ 171:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(WRITE_VCOM_REGISTER);
+ 448              		.loc 1 171 0
+ 449 0038 2C20     		movs	r0, #44
+ 450 003a FFF7FEFF 		bl	EPD_SendCommand
+ 451              	.LVL54:
+ 172:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0xA8);                     // VCOM 7C
+ 452              		.loc 1 172 0
+ 453 003e A820     		movs	r0, #168
+ 454 0040 FFF7FEFF 		bl	EPD_SendData
+ 455              	.LVL55:
+ 173:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(SET_DUMMY_LINE_PERIOD);
+ 456              		.loc 1 173 0
+ 457 0044 3A20     		movs	r0, #58
+ 458 0046 FFF7FEFF 		bl	EPD_SendCommand
+ 459              	.LVL56:
+ 174:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0x1A);                     // 4 dummy lines per gate
+ 460              		.loc 1 174 0
+ 461 004a 1A20     		movs	r0, #26
+ARM GAS  /tmp/cc7UAO9R.s 			page 12
+
+
+ 462 004c FFF7FEFF 		bl	EPD_SendData
+ 463              	.LVL57:
+ 175:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(SET_GATE_TIME);
+ 464              		.loc 1 175 0
+ 465 0050 3B20     		movs	r0, #59
+ 466 0052 FFF7FEFF 		bl	EPD_SendCommand
+ 467              	.LVL58:
+ 176:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0x08);                     // 2us per line
+ 468              		.loc 1 176 0
+ 469 0056 0820     		movs	r0, #8
+ 470 0058 FFF7FEFF 		bl	EPD_SendData
+ 471              	.LVL59:
+ 177:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(DATA_ENTRY_MODE_SETTING);
+ 472              		.loc 1 177 0
+ 473 005c 1120     		movs	r0, #17
+ 474 005e FFF7FEFF 		bl	EPD_SendCommand
+ 475              	.LVL60:
+ 178:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0x03);
+ 476              		.loc 1 178 0
+ 477 0062 0320     		movs	r0, #3
+ 478 0064 FFF7FEFF 		bl	EPD_SendData
+ 479              	.LVL61:
+ 179:Display/e-Paper/EPD_2in9.c **** 
+ 180:Display/e-Paper/EPD_2in9.c ****     //set the look-up table register
+ 181:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(WRITE_LUT_REGISTER);
+ 480              		.loc 1 181 0
+ 481 0068 3220     		movs	r0, #50
+ 482 006a FFF7FEFF 		bl	EPD_SendCommand
+ 483              	.LVL62:
+ 484              	.LBB2:
+ 182:Display/e-Paper/EPD_2in9.c ****     for (UWORD i = 0; i < 30; i++) {
+ 485              		.loc 1 182 0
+ 486 006e 0024     		movs	r4, #0
+ 487 0070 04E0     		b	.L24
+ 488              	.LVL63:
+ 489              	.L25:
+ 183:Display/e-Paper/EPD_2in9.c ****         EPD_SendData(lut[i]);
+ 490              		.loc 1 183 0 discriminator 3
+ 491 0072 285D     		ldrb	r0, [r5, r4]	@ zero_extendqisi2
+ 492 0074 FFF7FEFF 		bl	EPD_SendData
+ 493              	.LVL64:
+ 182:Display/e-Paper/EPD_2in9.c ****     for (UWORD i = 0; i < 30; i++) {
+ 494              		.loc 1 182 0 discriminator 3
+ 495 0078 0134     		adds	r4, r4, #1
+ 496              	.LVL65:
+ 497 007a A4B2     		uxth	r4, r4
+ 498              	.LVL66:
+ 499              	.L24:
+ 182:Display/e-Paper/EPD_2in9.c ****     for (UWORD i = 0; i < 30; i++) {
+ 500              		.loc 1 182 0 is_stmt 0 discriminator 1
+ 501 007c 1D2C     		cmp	r4, #29
+ 502 007e F8D9     		bls	.L25
+ 503              	.LBE2:
+ 184:Display/e-Paper/EPD_2in9.c ****     }
+ 185:Display/e-Paper/EPD_2in9.c ****     return 0;
+ 186:Display/e-Paper/EPD_2in9.c **** }
+ 504              		.loc 1 186 0 is_stmt 1
+ARM GAS  /tmp/cc7UAO9R.s 			page 13
+
+
+ 505 0080 0020     		movs	r0, #0
+ 506 0082 38BD     		pop	{r3, r4, r5, pc}
+ 507              		.cfi_endproc
+ 508              	.LFE130:
+ 510              		.section	.text.EPD_Clear,"ax",%progbits
+ 511              		.align	1
+ 512              		.global	EPD_Clear
+ 513              		.syntax unified
+ 514              		.thumb
+ 515              		.thumb_func
+ 516              		.fpu fpv4-sp-d16
+ 518              	EPD_Clear:
+ 519              	.LFB131:
+ 187:Display/e-Paper/EPD_2in9.c **** 
+ 188:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+ 189:Display/e-Paper/EPD_2in9.c **** function :	Clear screen
+ 190:Display/e-Paper/EPD_2in9.c **** parameter:
+ 191:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+ 192:Display/e-Paper/EPD_2in9.c **** void EPD_Clear(void)
+ 193:Display/e-Paper/EPD_2in9.c **** {
+ 520              		.loc 1 193 0
+ 521              		.cfi_startproc
+ 522              		@ args = 0, pretend = 0, frame = 0
+ 523              		@ frame_needed = 0, uses_anonymous_args = 0
+ 524 0000 38B5     		push	{r3, r4, r5, lr}
+ 525              	.LCFI8:
+ 526              		.cfi_def_cfa_offset 16
+ 527              		.cfi_offset 3, -16
+ 528              		.cfi_offset 4, -12
+ 529              		.cfi_offset 5, -8
+ 530              		.cfi_offset 14, -4
+ 531              	.LVL67:
+ 194:Display/e-Paper/EPD_2in9.c ****     UWORD Width, Height;
+ 195:Display/e-Paper/EPD_2in9.c ****     Width = (EPD_WIDTH % 8 == 0)? (EPD_WIDTH / 8 ): (EPD_WIDTH / 8 + 1);
+ 196:Display/e-Paper/EPD_2in9.c ****     Height = EPD_HEIGHT;
+ 197:Display/e-Paper/EPD_2in9.c ****     EPD_SetWindows(0, 0, EPD_WIDTH, EPD_HEIGHT);
+ 532              		.loc 1 197 0
+ 533 0002 4FF49473 		mov	r3, #296
+ 534 0006 8022     		movs	r2, #128
+ 535 0008 0021     		movs	r1, #0
+ 536 000a 0846     		mov	r0, r1
+ 537 000c FFF7FEFF 		bl	EPD_SetWindows
+ 538              	.LVL68:
+ 539              	.LBB3:
+ 198:Display/e-Paper/EPD_2in9.c ****     for (UWORD j = 0; j < Height; j++) {
+ 540              		.loc 1 198 0
+ 541 0010 0025     		movs	r5, #0
+ 542 0012 08E0     		b	.L28
+ 543              	.LVL69:
+ 544              	.L30:
+ 545              	.LBB4:
+ 199:Display/e-Paper/EPD_2in9.c ****         EPD_SetCursor(0, j);
+ 200:Display/e-Paper/EPD_2in9.c ****         EPD_SendCommand(WRITE_RAM);
+ 201:Display/e-Paper/EPD_2in9.c ****         for (UWORD i = 0; i < Width; i++) {
+ 202:Display/e-Paper/EPD_2in9.c ****             EPD_SendData(0XFF);
+ 546              		.loc 1 202 0 discriminator 3
+ 547 0014 FF20     		movs	r0, #255
+ARM GAS  /tmp/cc7UAO9R.s 			page 14
+
+
+ 548 0016 FFF7FEFF 		bl	EPD_SendData
+ 549              	.LVL70:
+ 201:Display/e-Paper/EPD_2in9.c ****             EPD_SendData(0XFF);
+ 550              		.loc 1 201 0 discriminator 3
+ 551 001a 0134     		adds	r4, r4, #1
+ 552              	.LVL71:
+ 553 001c A4B2     		uxth	r4, r4
+ 554              	.LVL72:
+ 555              	.L29:
+ 201:Display/e-Paper/EPD_2in9.c ****             EPD_SendData(0XFF);
+ 556              		.loc 1 201 0 is_stmt 0 discriminator 1
+ 557 001e 0F2C     		cmp	r4, #15
+ 558 0020 F8D9     		bls	.L30
+ 559              	.LBE4:
+ 198:Display/e-Paper/EPD_2in9.c ****     for (UWORD j = 0; j < Height; j++) {
+ 560              		.loc 1 198 0 is_stmt 1 discriminator 2
+ 561 0022 0135     		adds	r5, r5, #1
+ 562              	.LVL73:
+ 563 0024 ADB2     		uxth	r5, r5
+ 564              	.LVL74:
+ 565              	.L28:
+ 198:Display/e-Paper/EPD_2in9.c ****     for (UWORD j = 0; j < Height; j++) {
+ 566              		.loc 1 198 0 is_stmt 0 discriminator 1
+ 567 0026 B5F5947F 		cmp	r5, #296
+ 568 002a 08D2     		bcs	.L33
+ 199:Display/e-Paper/EPD_2in9.c ****         EPD_SetCursor(0, j);
+ 569              		.loc 1 199 0 is_stmt 1
+ 570 002c 2946     		mov	r1, r5
+ 571 002e 0020     		movs	r0, #0
+ 572 0030 FFF7FEFF 		bl	EPD_SetCursor
+ 573              	.LVL75:
+ 200:Display/e-Paper/EPD_2in9.c ****         for (UWORD i = 0; i < Width; i++) {
+ 574              		.loc 1 200 0
+ 575 0034 2420     		movs	r0, #36
+ 576 0036 FFF7FEFF 		bl	EPD_SendCommand
+ 577              	.LVL76:
+ 578              	.LBB5:
+ 201:Display/e-Paper/EPD_2in9.c ****             EPD_SendData(0XFF);
+ 579              		.loc 1 201 0
+ 580 003a 0024     		movs	r4, #0
+ 581 003c EFE7     		b	.L29
+ 582              	.LVL77:
+ 583              	.L33:
+ 584              	.LBE5:
+ 585              	.LBE3:
+ 203:Display/e-Paper/EPD_2in9.c ****         }
+ 204:Display/e-Paper/EPD_2in9.c ****     }
+ 205:Display/e-Paper/EPD_2in9.c ****     EPD_TurnOnDisplay();
+ 586              		.loc 1 205 0
+ 587 003e FFF7FEFF 		bl	EPD_TurnOnDisplay
+ 588              	.LVL78:
+ 206:Display/e-Paper/EPD_2in9.c **** }
+ 589              		.loc 1 206 0
+ 590 0042 38BD     		pop	{r3, r4, r5, pc}
+ 591              		.cfi_endproc
+ 592              	.LFE131:
+ 594              		.section	.text.EPD_Display,"ax",%progbits
+ARM GAS  /tmp/cc7UAO9R.s 			page 15
+
+
+ 595              		.align	1
+ 596              		.global	EPD_Display
+ 597              		.syntax unified
+ 598              		.thumb
+ 599              		.thumb_func
+ 600              		.fpu fpv4-sp-d16
+ 602              	EPD_Display:
+ 603              	.LFB132:
+ 207:Display/e-Paper/EPD_2in9.c **** 
+ 208:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+ 209:Display/e-Paper/EPD_2in9.c **** function :	Sends the image buffer in RAM to e-Paper and displays
+ 210:Display/e-Paper/EPD_2in9.c **** parameter:
+ 211:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+ 212:Display/e-Paper/EPD_2in9.c **** void EPD_Display(UBYTE *Image)
+ 213:Display/e-Paper/EPD_2in9.c **** {
+ 604              		.loc 1 213 0
+ 605              		.cfi_startproc
+ 606              		@ args = 0, pretend = 0, frame = 0
+ 607              		@ frame_needed = 0, uses_anonymous_args = 0
+ 608              	.LVL79:
+ 609 0000 70B5     		push	{r4, r5, r6, lr}
+ 610              	.LCFI9:
+ 611              		.cfi_def_cfa_offset 16
+ 612              		.cfi_offset 4, -16
+ 613              		.cfi_offset 5, -12
+ 614              		.cfi_offset 6, -8
+ 615              		.cfi_offset 14, -4
+ 616 0002 0646     		mov	r6, r0
+ 617              	.LVL80:
+ 214:Display/e-Paper/EPD_2in9.c ****     UWORD Width, Height;
+ 215:Display/e-Paper/EPD_2in9.c ****     Width = (EPD_WIDTH % 8 == 0)? (EPD_WIDTH / 8 ): (EPD_WIDTH / 8 + 1);
+ 216:Display/e-Paper/EPD_2in9.c ****     Height = EPD_HEIGHT;
+ 217:Display/e-Paper/EPD_2in9.c **** 
+ 218:Display/e-Paper/EPD_2in9.c ****     UDOUBLE Addr = 0;
+ 219:Display/e-Paper/EPD_2in9.c ****     // UDOUBLE Offset = ImageName;
+ 220:Display/e-Paper/EPD_2in9.c ****     EPD_SetWindows(0, 0, EPD_WIDTH, EPD_HEIGHT);
+ 618              		.loc 1 220 0
+ 619 0004 4FF49473 		mov	r3, #296
+ 620 0008 8022     		movs	r2, #128
+ 621 000a 0021     		movs	r1, #0
+ 622 000c 0846     		mov	r0, r1
+ 623              	.LVL81:
+ 624 000e FFF7FEFF 		bl	EPD_SetWindows
+ 625              	.LVL82:
+ 626              	.LBB6:
+ 221:Display/e-Paper/EPD_2in9.c ****     for (UWORD j = 0; j < Height; j++) {
+ 627              		.loc 1 221 0
+ 628 0012 0025     		movs	r5, #0
+ 629 0014 0AE0     		b	.L35
+ 630              	.LVL83:
+ 631              	.L37:
+ 632              	.LBB7:
+ 222:Display/e-Paper/EPD_2in9.c ****         EPD_SetCursor(0, j);
+ 223:Display/e-Paper/EPD_2in9.c ****         EPD_SendCommand(WRITE_RAM);
+ 224:Display/e-Paper/EPD_2in9.c ****         for (UWORD i = 0; i < Width; i++) {
+ 225:Display/e-Paper/EPD_2in9.c ****             Addr = i + j * Width;
+ 633              		.loc 1 225 0 discriminator 3
+ARM GAS  /tmp/cc7UAO9R.s 			page 16
+
+
+ 634 0016 04EB0513 		add	r3, r4, r5, lsl #4
+ 635              	.LVL84:
+ 226:Display/e-Paper/EPD_2in9.c ****             EPD_SendData(Image[Addr]);
+ 636              		.loc 1 226 0 discriminator 3
+ 637 001a F05C     		ldrb	r0, [r6, r3]	@ zero_extendqisi2
+ 638 001c FFF7FEFF 		bl	EPD_SendData
+ 639              	.LVL85:
+ 224:Display/e-Paper/EPD_2in9.c ****             Addr = i + j * Width;
+ 640              		.loc 1 224 0 discriminator 3
+ 641 0020 0134     		adds	r4, r4, #1
+ 642              	.LVL86:
+ 643 0022 A4B2     		uxth	r4, r4
+ 644              	.LVL87:
+ 645              	.L36:
+ 224:Display/e-Paper/EPD_2in9.c ****             Addr = i + j * Width;
+ 646              		.loc 1 224 0 is_stmt 0 discriminator 1
+ 647 0024 0F2C     		cmp	r4, #15
+ 648 0026 F6D9     		bls	.L37
+ 649              	.LBE7:
+ 221:Display/e-Paper/EPD_2in9.c ****         EPD_SetCursor(0, j);
+ 650              		.loc 1 221 0 is_stmt 1 discriminator 2
+ 651 0028 0135     		adds	r5, r5, #1
+ 652              	.LVL88:
+ 653 002a ADB2     		uxth	r5, r5
+ 654              	.LVL89:
+ 655              	.L35:
+ 221:Display/e-Paper/EPD_2in9.c ****         EPD_SetCursor(0, j);
+ 656              		.loc 1 221 0 is_stmt 0 discriminator 1
+ 657 002c B5F5947F 		cmp	r5, #296
+ 658 0030 08D2     		bcs	.L40
+ 222:Display/e-Paper/EPD_2in9.c ****         EPD_SendCommand(WRITE_RAM);
+ 659              		.loc 1 222 0 is_stmt 1
+ 660 0032 2946     		mov	r1, r5
+ 661 0034 0020     		movs	r0, #0
+ 662 0036 FFF7FEFF 		bl	EPD_SetCursor
+ 663              	.LVL90:
+ 223:Display/e-Paper/EPD_2in9.c ****         for (UWORD i = 0; i < Width; i++) {
+ 664              		.loc 1 223 0
+ 665 003a 2420     		movs	r0, #36
+ 666 003c FFF7FEFF 		bl	EPD_SendCommand
+ 667              	.LVL91:
+ 668              	.LBB8:
+ 224:Display/e-Paper/EPD_2in9.c ****             Addr = i + j * Width;
+ 669              		.loc 1 224 0
+ 670 0040 0024     		movs	r4, #0
+ 671 0042 EFE7     		b	.L36
+ 672              	.LVL92:
+ 673              	.L40:
+ 674              	.LBE8:
+ 675              	.LBE6:
+ 227:Display/e-Paper/EPD_2in9.c ****         }
+ 228:Display/e-Paper/EPD_2in9.c ****     }
+ 229:Display/e-Paper/EPD_2in9.c ****     EPD_TurnOnDisplay();
+ 676              		.loc 1 229 0
+ 677 0044 FFF7FEFF 		bl	EPD_TurnOnDisplay
+ 678              	.LVL93:
+ 230:Display/e-Paper/EPD_2in9.c **** }
+ARM GAS  /tmp/cc7UAO9R.s 			page 17
+
+
+ 679              		.loc 1 230 0
+ 680 0048 70BD     		pop	{r4, r5, r6, pc}
+ 681              		.cfi_endproc
+ 682              	.LFE132:
+ 684              		.section	.text.EPD_Sleep,"ax",%progbits
+ 685              		.align	1
+ 686              		.global	EPD_Sleep
+ 687              		.syntax unified
+ 688              		.thumb
+ 689              		.thumb_func
+ 690              		.fpu fpv4-sp-d16
+ 692              	EPD_Sleep:
+ 693              	.LFB133:
+ 231:Display/e-Paper/EPD_2in9.c **** 
+ 232:Display/e-Paper/EPD_2in9.c **** /******************************************************************************
+ 233:Display/e-Paper/EPD_2in9.c **** function :	Enter sleep mode
+ 234:Display/e-Paper/EPD_2in9.c **** parameter:
+ 235:Display/e-Paper/EPD_2in9.c **** ******************************************************************************/
+ 236:Display/e-Paper/EPD_2in9.c **** void EPD_Sleep(void)
+ 237:Display/e-Paper/EPD_2in9.c **** {
+ 694              		.loc 1 237 0
+ 695              		.cfi_startproc
+ 696              		@ args = 0, pretend = 0, frame = 0
+ 697              		@ frame_needed = 0, uses_anonymous_args = 0
+ 698 0000 08B5     		push	{r3, lr}
+ 699              	.LCFI10:
+ 700              		.cfi_def_cfa_offset 8
+ 701              		.cfi_offset 3, -8
+ 702              		.cfi_offset 14, -4
+ 238:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(DEEP_SLEEP_MODE);
+ 703              		.loc 1 238 0
+ 704 0002 1020     		movs	r0, #16
+ 705 0004 FFF7FEFF 		bl	EPD_SendCommand
+ 706              	.LVL94:
+ 239:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0x01);
+ 707              		.loc 1 239 0
+ 708 0008 0120     		movs	r0, #1
+ 709 000a FFF7FEFF 		bl	EPD_SendData
+ 710              	.LVL95:
+ 240:Display/e-Paper/EPD_2in9.c ****     // EPD_WaitUntilIdle();
+ 241:Display/e-Paper/EPD_2in9.c **** }
+ 711              		.loc 1 241 0
+ 712 000e 08BD     		pop	{r3, pc}
+ 713              		.cfi_endproc
+ 714              	.LFE133:
+ 716              		.global	lut_partial_update
+ 717              		.global	lut_full_update
+ 718              		.section	.rodata.EPD_WaitUntilIdle.str1.4,"aMS",%progbits,1
+ 719              		.align	2
+ 720              	.LC0:
+ 721 0000 44656275 		.ascii	"Debug: e-Paper busy\015\000"
+ 721      673A2065 
+ 721      2D506170 
+ 721      65722062 
+ 721      7573790D 
+ 722 0015 000000   		.space	3
+ 723              	.LC1:
+ARM GAS  /tmp/cc7UAO9R.s 			page 18
+
+
+ 724 0018 44656275 		.ascii	"Debug: e-Paper busy release\015\000"
+ 724      673A2065 
+ 724      2D506170 
+ 724      65722062 
+ 724      75737920 
+ 725              		.section	.rodata.lut_full_update,"a",%progbits
+ 726              		.align	2
+ 729              	lut_full_update:
+ 730 0000 02       		.byte	2
+ 731 0001 02       		.byte	2
+ 732 0002 01       		.byte	1
+ 733 0003 11       		.byte	17
+ 734 0004 12       		.byte	18
+ 735 0005 12       		.byte	18
+ 736 0006 22       		.byte	34
+ 737 0007 22       		.byte	34
+ 738 0008 66       		.byte	102
+ 739 0009 69       		.byte	105
+ 740 000a 69       		.byte	105
+ 741 000b 59       		.byte	89
+ 742 000c 58       		.byte	88
+ 743 000d 99       		.byte	-103
+ 744 000e 99       		.byte	-103
+ 745 000f 88       		.byte	-120
+ 746 0010 00       		.byte	0
+ 747 0011 00       		.byte	0
+ 748 0012 00       		.byte	0
+ 749 0013 00       		.byte	0
+ 750 0014 F8       		.byte	-8
+ 751 0015 B4       		.byte	-76
+ 752 0016 13       		.byte	19
+ 753 0017 51       		.byte	81
+ 754 0018 35       		.byte	53
+ 755 0019 51       		.byte	81
+ 756 001a 51       		.byte	81
+ 757 001b 19       		.byte	25
+ 758 001c 01       		.byte	1
+ 759 001d 00       		.byte	0
+ 760              		.section	.rodata.lut_partial_update,"a",%progbits
+ 761              		.align	2
+ 764              	lut_partial_update:
+ 765 0000 10       		.byte	16
+ 766 0001 18       		.byte	24
+ 767 0002 18       		.byte	24
+ 768 0003 08       		.byte	8
+ 769 0004 18       		.byte	24
+ 770 0005 18       		.byte	24
+ 771 0006 08       		.byte	8
+ 772 0007 00       		.byte	0
+ 773 0008 00       		.byte	0
+ 774 0009 00       		.byte	0
+ 775 000a 00       		.byte	0
+ 776 000b 00       		.byte	0
+ 777 000c 00       		.byte	0
+ 778 000d 00       		.byte	0
+ 779 000e 00       		.byte	0
+ 780 000f 00       		.byte	0
+ARM GAS  /tmp/cc7UAO9R.s 			page 19
+
+
+ 781 0010 00       		.byte	0
+ 782 0011 00       		.byte	0
+ 783 0012 00       		.byte	0
+ 784 0013 00       		.byte	0
+ 785 0014 13       		.byte	19
+ 786 0015 14       		.byte	20
+ 787 0016 44       		.byte	68
+ 788 0017 12       		.byte	18
+ 789 0018 00       		.byte	0
+ 790 0019 00       		.byte	0
+ 791 001a 00       		.byte	0
+ 792 001b 00       		.byte	0
+ 793 001c 00       		.byte	0
+ 794 001d 00       		.byte	0
+ 795              		.text
+ 796              	.Letext0:
+ 797              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 798              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 799              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 800              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 801              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 802              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 803              		.file 8 "Display/e-Paper/EPD_2in9.h"
+ 804              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 805              		.file 10 "Display/Config/DEV_Config.h"
+ 806              		.file 11 "<built-in>"
+ARM GAS  /tmp/cc7UAO9R.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 EPD_2in9.c
+     /tmp/cc7UAO9R.s:18     .text.EPD_Reset:0000000000000000 $t
+     /tmp/cc7UAO9R.s:24     .text.EPD_Reset:0000000000000000 EPD_Reset
+     /tmp/cc7UAO9R.s:72     .text.EPD_SendCommand:0000000000000000 $t
+     /tmp/cc7UAO9R.s:78     .text.EPD_SendCommand:0000000000000000 EPD_SendCommand
+     /tmp/cc7UAO9R.s:122    .text.EPD_SendCommand:0000000000000030 $d
+     /tmp/cc7UAO9R.s:127    .text.EPD_SendData:0000000000000000 $t
+     /tmp/cc7UAO9R.s:133    .text.EPD_SendData:0000000000000000 EPD_SendData
+     /tmp/cc7UAO9R.s:177    .text.EPD_SendData:0000000000000030 $d
+     /tmp/cc7UAO9R.s:182    .text.EPD_SetWindows:0000000000000000 $t
+     /tmp/cc7UAO9R.s:188    .text.EPD_SetWindows:0000000000000000 EPD_SetWindows
+     /tmp/cc7UAO9R.s:247    .text.EPD_SetCursor:0000000000000000 $t
+     /tmp/cc7UAO9R.s:253    .text.EPD_SetCursor:0000000000000000 EPD_SetCursor
+     /tmp/cc7UAO9R.s:296    .text.EPD_WaitUntilIdle:0000000000000000 $t
+     /tmp/cc7UAO9R.s:303    .text.EPD_WaitUntilIdle:0000000000000000 EPD_WaitUntilIdle
+     /tmp/cc7UAO9R.s:342    .text.EPD_WaitUntilIdle:0000000000000028 $d
+     /tmp/cc7UAO9R.s:349    .text.EPD_TurnOnDisplay:0000000000000000 $t
+     /tmp/cc7UAO9R.s:355    .text.EPD_TurnOnDisplay:0000000000000000 EPD_TurnOnDisplay
+     /tmp/cc7UAO9R.s:391    .text.EPD_Init:0000000000000000 $t
+     /tmp/cc7UAO9R.s:398    .text.EPD_Init:0000000000000000 EPD_Init
+     /tmp/cc7UAO9R.s:511    .text.EPD_Clear:0000000000000000 $t
+     /tmp/cc7UAO9R.s:518    .text.EPD_Clear:0000000000000000 EPD_Clear
+     /tmp/cc7UAO9R.s:595    .text.EPD_Display:0000000000000000 $t
+     /tmp/cc7UAO9R.s:602    .text.EPD_Display:0000000000000000 EPD_Display
+     /tmp/cc7UAO9R.s:685    .text.EPD_Sleep:0000000000000000 $t
+     /tmp/cc7UAO9R.s:692    .text.EPD_Sleep:0000000000000000 EPD_Sleep
+     /tmp/cc7UAO9R.s:764    .rodata.lut_partial_update:0000000000000000 lut_partial_update
+     /tmp/cc7UAO9R.s:729    .rodata.lut_full_update:0000000000000000 lut_full_update
+     /tmp/cc7UAO9R.s:719    .rodata.EPD_WaitUntilIdle.str1.4:0000000000000000 $d
+     /tmp/cc7UAO9R.s:726    .rodata.lut_full_update:0000000000000000 $d
+     /tmp/cc7UAO9R.s:761    .rodata.lut_partial_update:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_Delay
+DEV_SPI_WriteByte
+puts
+HAL_GPIO_ReadPin

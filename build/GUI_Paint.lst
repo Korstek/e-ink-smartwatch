@@ -1,0 +1,3959 @@
+ARM GAS  /tmp/cceOWye5.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"GUI_Paint.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Paint_NewImage,"ax",%progbits
+  18              		.align	1
+  19              		.global	Paint_NewImage
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	Paint_NewImage:
+  26              	.LFB123:
+  27              		.file 1 "Display/GUI/GUI_Paint.c"
+   1:Display/GUI/GUI_Paint.c **** /*****************************************************************************
+   2:Display/GUI/GUI_Paint.c **** * | File      	:   GUI_Paint.c
+   3:Display/GUI/GUI_Paint.c **** * | Author      :   Waveshare team
+   4:Display/GUI/GUI_Paint.c **** * | Function    :	Achieve drawing: draw points, lines, boxes, circles and
+   5:Display/GUI/GUI_Paint.c **** *                   their size, solid dotted line, solid rectangle hollow
+   6:Display/GUI/GUI_Paint.c **** *                   rectangle, solid circle hollow circle.
+   7:Display/GUI/GUI_Paint.c **** * | Info        :
+   8:Display/GUI/GUI_Paint.c **** *   Achieve display characters: Display a single character, string, number
+   9:Display/GUI/GUI_Paint.c **** *   Achieve time display: adaptive size display time minutes and seconds
+  10:Display/GUI/GUI_Paint.c **** *----------------
+  11:Display/GUI/GUI_Paint.c **** * |	This version:   V2.0
+  12:Display/GUI/GUI_Paint.c **** * | Date        :   2018-11-15
+  13:Display/GUI/GUI_Paint.c **** * | Info        :
+  14:Display/GUI/GUI_Paint.c **** * 1.add: Paint_NewImage()
+  15:Display/GUI/GUI_Paint.c **** *    Create an image's properties
+  16:Display/GUI/GUI_Paint.c **** * 2.add: Paint_SelectImage()
+  17:Display/GUI/GUI_Paint.c **** *    Select the picture to be drawn
+  18:Display/GUI/GUI_Paint.c **** * 3.add: Paint_SetRotate()
+  19:Display/GUI/GUI_Paint.c **** *    Set the direction of the cache    
+  20:Display/GUI/GUI_Paint.c **** * 4.add: Paint_RotateImage() 
+  21:Display/GUI/GUI_Paint.c **** *    Can flip the picture, Support 0-360 degrees, 
+  22:Display/GUI/GUI_Paint.c **** *    but only 90.180.270 rotation is better
+  23:Display/GUI/GUI_Paint.c **** * 4.add: Paint_SetMirroring() 
+  24:Display/GUI/GUI_Paint.c **** *    Can Mirroring the picture, horizontal, vertical, origin
+  25:Display/GUI/GUI_Paint.c **** * 5.add: Paint_DrawString_CN() 
+  26:Display/GUI/GUI_Paint.c **** *    Can display Chinese(GB1312)    
+  27:Display/GUI/GUI_Paint.c **** *
+  28:Display/GUI/GUI_Paint.c **** * Permission is hereby granted, free of charge, to any person obtaining a copy
+  29:Display/GUI/GUI_Paint.c **** * of this software and associated documnetation files (the "Software"), to deal
+  30:Display/GUI/GUI_Paint.c **** * in the Software without restriction, including without limitation the rights
+  31:Display/GUI/GUI_Paint.c **** * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ARM GAS  /tmp/cceOWye5.s 			page 2
+
+
+  32:Display/GUI/GUI_Paint.c **** * copies of the Software, and to permit persons to  whom the Software is
+  33:Display/GUI/GUI_Paint.c **** * furished to do so, subject to the following conditions:
+  34:Display/GUI/GUI_Paint.c **** *
+  35:Display/GUI/GUI_Paint.c **** * The above copyright notice and this permission notice shall be included in
+  36:Display/GUI/GUI_Paint.c **** * all copies or substantial portions of the Software.
+  37:Display/GUI/GUI_Paint.c **** *
+  38:Display/GUI/GUI_Paint.c **** * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  39:Display/GUI/GUI_Paint.c **** * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  40:Display/GUI/GUI_Paint.c **** * FITNESS OR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  41:Display/GUI/GUI_Paint.c **** * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  42:Display/GUI/GUI_Paint.c **** * LIABILITY WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  43:Display/GUI/GUI_Paint.c **** * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  44:Display/GUI/GUI_Paint.c **** * THE SOFTWARE.
+  45:Display/GUI/GUI_Paint.c **** *
+  46:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+  47:Display/GUI/GUI_Paint.c **** #include "GUI_Paint.h"
+  48:Display/GUI/GUI_Paint.c **** #include "DEV_Config.h"
+  49:Display/GUI/GUI_Paint.c **** #include "Debug.h"
+  50:Display/GUI/GUI_Paint.c **** #include <stdint.h>
+  51:Display/GUI/GUI_Paint.c **** #include <stdlib.h>
+  52:Display/GUI/GUI_Paint.c **** #include <string.h> //memset()
+  53:Display/GUI/GUI_Paint.c **** #include <math.h>
+  54:Display/GUI/GUI_Paint.c **** 
+  55:Display/GUI/GUI_Paint.c **** PAINT Paint;
+  56:Display/GUI/GUI_Paint.c **** /******************************************************************************
+  57:Display/GUI/GUI_Paint.c **** function:	Create Image
+  58:Display/GUI/GUI_Paint.c **** parameter:
+  59:Display/GUI/GUI_Paint.c ****     image   :   Pointer to the image cache
+  60:Display/GUI/GUI_Paint.c ****     width   :   The width of the picture
+  61:Display/GUI/GUI_Paint.c ****     Height  :   The height of the picture
+  62:Display/GUI/GUI_Paint.c ****     Color   :   Whether the picture is inverted
+  63:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+  64:Display/GUI/GUI_Paint.c **** void Paint_NewImage(UBYTE *image, UWORD Width, UWORD Height, UWORD Rotate, UWORD Color)
+  65:Display/GUI/GUI_Paint.c **** {
+  28              		.loc 1 65 0
+  29              		.cfi_startproc
+  30              		@ args = 4, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 24
+  36              		.cfi_offset 3, -24
+  37              		.cfi_offset 4, -20
+  38              		.cfi_offset 5, -16
+  39              		.cfi_offset 6, -12
+  40              		.cfi_offset 7, -8
+  41              		.cfi_offset 14, -4
+  42 0002 0D46     		mov	r5, r1
+  43 0004 1646     		mov	r6, r2
+  44 0006 1F46     		mov	r7, r3
+  66:Display/GUI/GUI_Paint.c ****     Paint.Image = NULL;
+  67:Display/GUI/GUI_Paint.c ****     Paint.Image = image;
+  45              		.loc 1 67 0
+  46 0008 134B     		ldr	r3, .L8
+  47              	.LVL1:
+  48 000a 1860     		str	r0, [r3]
+ARM GAS  /tmp/cceOWye5.s 			page 3
+
+
+  68:Display/GUI/GUI_Paint.c **** 
+  69:Display/GUI/GUI_Paint.c ****     Paint.WidthMemory = Width;
+  49              		.loc 1 69 0
+  50 000c 1981     		strh	r1, [r3, #8]	@ movhi
+  70:Display/GUI/GUI_Paint.c ****     Paint.HeightMemory = Height;
+  51              		.loc 1 70 0
+  52 000e 5A81     		strh	r2, [r3, #10]	@ movhi
+  71:Display/GUI/GUI_Paint.c ****     Paint.Color = Color;    
+  53              		.loc 1 71 0
+  54 0010 BDF81820 		ldrh	r2, [sp, #24]
+  55              	.LVL2:
+  56 0014 9A81     		strh	r2, [r3, #12]	@ movhi
+  72:Display/GUI/GUI_Paint.c ****     Paint.WidthByte = (Width % 8 == 0)? (Width / 8 ): (Width / 8 + 1);
+  57              		.loc 1 72 0
+  58 0016 11F0070F 		tst	r1, #7
+  59 001a 15D1     		bne	.L2
+  60              		.loc 1 72 0 is_stmt 0 discriminator 1
+  61 001c C908     		lsrs	r1, r1, #3
+  62              	.LVL3:
+  63              	.L3:
+  64              		.loc 1 72 0 discriminator 4
+  65 001e 0E4C     		ldr	r4, .L8
+  66 0020 6182     		strh	r1, [r4, #18]	@ movhi
+  73:Display/GUI/GUI_Paint.c ****     Paint.HeightByte = Height;    
+  67              		.loc 1 73 0 is_stmt 1 discriminator 4
+  68 0022 A682     		strh	r6, [r4, #20]	@ movhi
+  74:Display/GUI/GUI_Paint.c ****     printf("WidthByte = %d, HeightByte = %d\r\n", Paint.WidthByte, Paint.HeightByte);
+  69              		.loc 1 74 0 discriminator 4
+  70 0024 3246     		mov	r2, r6
+  71 0026 0D48     		ldr	r0, .L8+4
+  72              	.LVL4:
+  73 0028 FFF7FEFF 		bl	printf
+  74              	.LVL5:
+  75:Display/GUI/GUI_Paint.c ****     printf(" EPD_WIDTH / 8 = %d\r\n",  122 / 8);
+  75              		.loc 1 75 0 discriminator 4
+  76 002c 0F21     		movs	r1, #15
+  77 002e 0C48     		ldr	r0, .L8+8
+  78 0030 FFF7FEFF 		bl	printf
+  79              	.LVL6:
+  76:Display/GUI/GUI_Paint.c ****    
+  77:Display/GUI/GUI_Paint.c ****     Paint.Rotate = Rotate;
+  80              		.loc 1 77 0 discriminator 4
+  81 0034 E781     		strh	r7, [r4, #14]	@ movhi
+  78:Display/GUI/GUI_Paint.c ****     Paint.Mirror = MIRROR_NONE;
+  82              		.loc 1 78 0 discriminator 4
+  83 0036 0023     		movs	r3, #0
+  84 0038 2382     		strh	r3, [r4, #16]	@ movhi
+  79:Display/GUI/GUI_Paint.c ****     
+  80:Display/GUI/GUI_Paint.c ****     if(Rotate == ROTATE_0 || Rotate == ROTATE_180) {
+  85              		.loc 1 80 0 discriminator 4
+  86 003a 47B1     		cbz	r7, .L4
+  87              		.loc 1 80 0 is_stmt 0 discriminator 1
+  88 003c B42F     		cmp	r7, #180
+  89 003e 06D0     		beq	.L4
+  81:Display/GUI/GUI_Paint.c ****         Paint.Width = Width;
+  82:Display/GUI/GUI_Paint.c ****         Paint.Height = Height;
+  83:Display/GUI/GUI_Paint.c ****     } else {
+ARM GAS  /tmp/cceOWye5.s 			page 4
+
+
+  84:Display/GUI/GUI_Paint.c ****         Paint.Width = Height;
+  90              		.loc 1 84 0 is_stmt 1
+  91 0040 054B     		ldr	r3, .L8
+  92 0042 9E80     		strh	r6, [r3, #4]	@ movhi
+  85:Display/GUI/GUI_Paint.c ****         Paint.Height = Width;
+  93              		.loc 1 85 0
+  94 0044 DD80     		strh	r5, [r3, #6]	@ movhi
+  86:Display/GUI/GUI_Paint.c ****     }
+  87:Display/GUI/GUI_Paint.c **** }
+  95              		.loc 1 87 0
+  96 0046 05E0     		b	.L1
+  97              	.LVL7:
+  98              	.L2:
+  72:Display/GUI/GUI_Paint.c ****     Paint.HeightByte = Height;    
+  99              		.loc 1 72 0 discriminator 2
+ 100 0048 C908     		lsrs	r1, r1, #3
+ 101              	.LVL8:
+ 102 004a 0131     		adds	r1, r1, #1
+ 103 004c E7E7     		b	.L3
+ 104              	.LVL9:
+ 105              	.L4:
+  81:Display/GUI/GUI_Paint.c ****         Paint.Height = Height;
+ 106              		.loc 1 81 0
+ 107 004e 024B     		ldr	r3, .L8
+ 108 0050 9D80     		strh	r5, [r3, #4]	@ movhi
+  82:Display/GUI/GUI_Paint.c ****     } else {
+ 109              		.loc 1 82 0
+ 110 0052 DE80     		strh	r6, [r3, #6]	@ movhi
+ 111              	.L1:
+ 112              		.loc 1 87 0
+ 113 0054 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 114              	.LVL10:
+ 115              	.L9:
+ 116 0056 00BF     		.align	2
+ 117              	.L8:
+ 118 0058 00000000 		.word	Paint
+ 119 005c 00000000 		.word	.LC1
+ 120 0060 24000000 		.word	.LC2
+ 121              		.cfi_endproc
+ 122              	.LFE123:
+ 124              		.section	.text.Paint_SelectImage,"ax",%progbits
+ 125              		.align	1
+ 126              		.global	Paint_SelectImage
+ 127              		.syntax unified
+ 128              		.thumb
+ 129              		.thumb_func
+ 130              		.fpu fpv4-sp-d16
+ 132              	Paint_SelectImage:
+ 133              	.LFB124:
+  88:Display/GUI/GUI_Paint.c **** 
+  89:Display/GUI/GUI_Paint.c **** /******************************************************************************
+  90:Display/GUI/GUI_Paint.c **** function:	Select Image
+  91:Display/GUI/GUI_Paint.c **** parameter:
+  92:Display/GUI/GUI_Paint.c ****     image   :   Pointer to the image cache
+  93:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+  94:Display/GUI/GUI_Paint.c **** void Paint_SelectImage(UBYTE *image)
+  95:Display/GUI/GUI_Paint.c **** {
+ARM GAS  /tmp/cceOWye5.s 			page 5
+
+
+ 134              		.loc 1 95 0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138              		@ link register save eliminated.
+ 139              	.LVL11:
+  96:Display/GUI/GUI_Paint.c ****     Paint.Image = image;
+ 140              		.loc 1 96 0
+ 141 0000 014B     		ldr	r3, .L11
+ 142 0002 1860     		str	r0, [r3]
+  97:Display/GUI/GUI_Paint.c **** }
+ 143              		.loc 1 97 0
+ 144 0004 7047     		bx	lr
+ 145              	.L12:
+ 146 0006 00BF     		.align	2
+ 147              	.L11:
+ 148 0008 00000000 		.word	Paint
+ 149              		.cfi_endproc
+ 150              	.LFE124:
+ 152              		.section	.text.Paint_SetRotate,"ax",%progbits
+ 153              		.align	1
+ 154              		.global	Paint_SetRotate
+ 155              		.syntax unified
+ 156              		.thumb
+ 157              		.thumb_func
+ 158              		.fpu fpv4-sp-d16
+ 160              	Paint_SetRotate:
+ 161              	.LFB125:
+  98:Display/GUI/GUI_Paint.c **** 
+  99:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 100:Display/GUI/GUI_Paint.c **** function:	Select Image Rotate
+ 101:Display/GUI/GUI_Paint.c **** parameter:
+ 102:Display/GUI/GUI_Paint.c ****     Rotate   :   0,90,180,270
+ 103:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 104:Display/GUI/GUI_Paint.c **** void Paint_SetRotate(UWORD Rotate)
+ 105:Display/GUI/GUI_Paint.c **** {
+ 162              		.loc 1 105 0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166              	.LVL12:
+ 167 0000 10B5     		push	{r4, lr}
+ 168              	.LCFI1:
+ 169              		.cfi_def_cfa_offset 8
+ 170              		.cfi_offset 4, -8
+ 171              		.cfi_offset 14, -4
+ 106:Display/GUI/GUI_Paint.c ****     if(Rotate == ROTATE_0 || Rotate == ROTATE_90 || Rotate == ROTATE_180 || Rotate == ROTATE_270) {
+ 172              		.loc 1 106 0
+ 173 0002 0446     		mov	r4, r0
+ 174 0004 50B1     		cbz	r0, .L14
+ 175              		.loc 1 106 0 is_stmt 0 discriminator 1
+ 176 0006 5A28     		cmp	r0, #90
+ 177 0008 08D0     		beq	.L14
+ 178              		.loc 1 106 0 discriminator 2
+ 179 000a B428     		cmp	r0, #180
+ 180 000c 06D0     		beq	.L14
+ 181              		.loc 1 106 0 discriminator 3
+ARM GAS  /tmp/cceOWye5.s 			page 6
+
+
+ 182 000e B0F5877F 		cmp	r0, #270
+ 183 0012 03D0     		beq	.L14
+ 184              	.LBB2:
+ 107:Display/GUI/GUI_Paint.c ****         Debug("Set image Rotate %d\r\n", Rotate);
+ 108:Display/GUI/GUI_Paint.c ****         Paint.Rotate = Rotate;
+ 109:Display/GUI/GUI_Paint.c ****     } else {
+ 110:Display/GUI/GUI_Paint.c ****         Debug("rotate = 0, 90, 180, 270\r\n");
+ 185              		.loc 1 110 0 is_stmt 1
+ 186 0014 0548     		ldr	r0, .L18
+ 187              	.LVL13:
+ 188 0016 FFF7FEFF 		bl	puts
+ 189              	.LVL14:
+ 190              	.LBE2:
+ 111:Display/GUI/GUI_Paint.c ****     }
+ 112:Display/GUI/GUI_Paint.c **** }
+ 191              		.loc 1 112 0
+ 192 001a 05E0     		b	.L13
+ 193              	.LVL15:
+ 194              	.L14:
+ 195              	.LBB3:
+ 107:Display/GUI/GUI_Paint.c ****         Debug("Set image Rotate %d\r\n", Rotate);
+ 196              		.loc 1 107 0
+ 197 001c 2146     		mov	r1, r4
+ 198 001e 0448     		ldr	r0, .L18+4
+ 199              	.LVL16:
+ 200 0020 FFF7FEFF 		bl	printf
+ 201              	.LVL17:
+ 108:Display/GUI/GUI_Paint.c ****     } else {
+ 202              		.loc 1 108 0
+ 203 0024 034B     		ldr	r3, .L18+8
+ 204 0026 DC81     		strh	r4, [r3, #14]	@ movhi
+ 205              	.L13:
+ 206              	.LBE3:
+ 207              		.loc 1 112 0
+ 208 0028 10BD     		pop	{r4, pc}
+ 209              	.L19:
+ 210 002a 00BF     		.align	2
+ 211              	.L18:
+ 212 002c 20000000 		.word	.LC4
+ 213 0030 00000000 		.word	.LC3
+ 214 0034 00000000 		.word	Paint
+ 215              		.cfi_endproc
+ 216              	.LFE125:
+ 218              		.section	.text.Paint_SetMirroring,"ax",%progbits
+ 219              		.align	1
+ 220              		.global	Paint_SetMirroring
+ 221              		.syntax unified
+ 222              		.thumb
+ 223              		.thumb_func
+ 224              		.fpu fpv4-sp-d16
+ 226              	Paint_SetMirroring:
+ 227              	.LFB126:
+ 113:Display/GUI/GUI_Paint.c **** 
+ 114:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 115:Display/GUI/GUI_Paint.c **** function:	Select Image mirror
+ 116:Display/GUI/GUI_Paint.c **** parameter:
+ 117:Display/GUI/GUI_Paint.c ****     mirror   :       Not mirror,Horizontal mirror,Vertical mirror,Origin mirror
+ARM GAS  /tmp/cceOWye5.s 			page 7
+
+
+ 118:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 119:Display/GUI/GUI_Paint.c **** void Paint_SetMirroring(UBYTE mirror)
+ 120:Display/GUI/GUI_Paint.c **** {
+ 228              		.loc 1 120 0
+ 229              		.cfi_startproc
+ 230              		@ args = 0, pretend = 0, frame = 0
+ 231              		@ frame_needed = 0, uses_anonymous_args = 0
+ 232              	.LVL18:
+ 233 0000 10B5     		push	{r4, lr}
+ 234              	.LCFI2:
+ 235              		.cfi_def_cfa_offset 8
+ 236              		.cfi_offset 4, -8
+ 237              		.cfi_offset 14, -4
+ 121:Display/GUI/GUI_Paint.c ****     if(mirror == MIRROR_NONE || mirror == MIRROR_HORIZONTAL || 
+ 238              		.loc 1 121 0
+ 239 0002 0328     		cmp	r0, #3
+ 240 0004 12D8     		bhi	.L21
+ 241 0006 0446     		mov	r4, r0
+ 242              	.LBB4:
+ 122:Display/GUI/GUI_Paint.c ****         mirror == MIRROR_VERTICAL || mirror == MIRROR_ORIGIN) {
+ 123:Display/GUI/GUI_Paint.c ****         Debug("mirror image x:%s, y:%s\r\n",(mirror & 0x01)? "mirror":"none", ((mirror >> 1) & 0x01
+ 243              		.loc 1 123 0
+ 244 0008 10F0010F 		tst	r0, #1
+ 245 000c 0AD0     		beq	.L25
+ 246 000e 0949     		ldr	r1, .L29
+ 247              	.L22:
+ 248              		.loc 1 123 0 is_stmt 0 discriminator 4
+ 249 0010 14F0020F 		tst	r4, #2
+ 250 0014 08D1     		bne	.L28
+ 251              		.loc 1 123 0
+ 252 0016 084A     		ldr	r2, .L29+4
+ 253              	.L23:
+ 254              		.loc 1 123 0 discriminator 8
+ 255 0018 0848     		ldr	r0, .L29+8
+ 256              	.LVL19:
+ 257 001a FFF7FEFF 		bl	printf
+ 258              	.LVL20:
+ 124:Display/GUI/GUI_Paint.c ****         Paint.Mirror = mirror;
+ 259              		.loc 1 124 0 is_stmt 1 discriminator 8
+ 260 001e 084B     		ldr	r3, .L29+12
+ 261 0020 1C82     		strh	r4, [r3, #16]	@ movhi
+ 262              	.L20:
+ 263              	.LBE4:
+ 125:Display/GUI/GUI_Paint.c ****     } else {
+ 126:Display/GUI/GUI_Paint.c ****         Debug("mirror should be MIRROR_NONE, MIRROR_HORIZONTAL, \
+ 127:Display/GUI/GUI_Paint.c ****         MIRROR_VERTICAL or MIRROR_ORIGIN\r\n");
+ 128:Display/GUI/GUI_Paint.c ****     }    
+ 129:Display/GUI/GUI_Paint.c **** }
+ 264              		.loc 1 129 0
+ 265 0022 10BD     		pop	{r4, pc}
+ 266              	.LVL21:
+ 267              	.L25:
+ 268              	.LBB5:
+ 123:Display/GUI/GUI_Paint.c ****         Paint.Mirror = mirror;
+ 269              		.loc 1 123 0
+ 270 0024 0449     		ldr	r1, .L29+4
+ 271 0026 F3E7     		b	.L22
+ARM GAS  /tmp/cceOWye5.s 			page 8
+
+
+ 272              	.L28:
+ 273 0028 024A     		ldr	r2, .L29
+ 274 002a F5E7     		b	.L23
+ 275              	.L21:
+ 276              	.LBE5:
+ 277              	.LBB6:
+ 126:Display/GUI/GUI_Paint.c ****         MIRROR_VERTICAL or MIRROR_ORIGIN\r\n");
+ 278              		.loc 1 126 0
+ 279 002c 0548     		ldr	r0, .L29+16
+ 280              	.LVL22:
+ 281 002e FFF7FEFF 		bl	puts
+ 282              	.LVL23:
+ 283              	.LBE6:
+ 284              		.loc 1 129 0
+ 285 0032 F6E7     		b	.L20
+ 286              	.L30:
+ 287              		.align	2
+ 288              	.L29:
+ 289 0034 00000000 		.word	.LC5
+ 290 0038 08000000 		.word	.LC6
+ 291 003c 10000000 		.word	.LC7
+ 292 0040 00000000 		.word	Paint
+ 293 0044 34000000 		.word	.LC8
+ 294              		.cfi_endproc
+ 295              	.LFE126:
+ 297              		.section	.text.Paint_SetPixel,"ax",%progbits
+ 298              		.align	1
+ 299              		.global	Paint_SetPixel
+ 300              		.syntax unified
+ 301              		.thumb
+ 302              		.thumb_func
+ 303              		.fpu fpv4-sp-d16
+ 305              	Paint_SetPixel:
+ 306              	.LFB127:
+ 130:Display/GUI/GUI_Paint.c **** 
+ 131:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 132:Display/GUI/GUI_Paint.c **** function:	Draw Pixels
+ 133:Display/GUI/GUI_Paint.c **** parameter:
+ 134:Display/GUI/GUI_Paint.c ****     Xpoint  :   At point X
+ 135:Display/GUI/GUI_Paint.c ****     Ypoint  :   At point Y
+ 136:Display/GUI/GUI_Paint.c ****     Color   :   Painted colors
+ 137:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 138:Display/GUI/GUI_Paint.c **** void Paint_SetPixel(UWORD Xpoint, UWORD Ypoint, UWORD Color)
+ 139:Display/GUI/GUI_Paint.c **** {
+ 307              		.loc 1 139 0
+ 308              		.cfi_startproc
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311              	.LVL24:
+ 312 0000 38B5     		push	{r3, r4, r5, lr}
+ 313              	.LCFI3:
+ 314              		.cfi_def_cfa_offset 16
+ 315              		.cfi_offset 3, -16
+ 316              		.cfi_offset 4, -12
+ 317              		.cfi_offset 5, -8
+ 318              		.cfi_offset 14, -4
+ 140:Display/GUI/GUI_Paint.c ****     if(Xpoint > Paint.Width || Ypoint > Paint.Height){
+ARM GAS  /tmp/cceOWye5.s 			page 9
+
+
+ 319              		.loc 1 140 0
+ 320 0002 3D4B     		ldr	r3, .L51
+ 321 0004 9B88     		ldrh	r3, [r3, #4]
+ 322 0006 8342     		cmp	r3, r0
+ 323 0008 15D3     		bcc	.L32
+ 324              		.loc 1 140 0 is_stmt 0 discriminator 1
+ 325 000a 3B4B     		ldr	r3, .L51
+ 326 000c DB88     		ldrh	r3, [r3, #6]
+ 327 000e 8B42     		cmp	r3, r1
+ 328 0010 11D3     		bcc	.L32
+ 141:Display/GUI/GUI_Paint.c ****         Debug("Exceeding display boundaries\r\n");
+ 142:Display/GUI/GUI_Paint.c ****         return;
+ 143:Display/GUI/GUI_Paint.c ****     }      
+ 144:Display/GUI/GUI_Paint.c ****     UWORD X, Y;
+ 145:Display/GUI/GUI_Paint.c **** 
+ 146:Display/GUI/GUI_Paint.c ****     switch(Paint.Rotate) {
+ 329              		.loc 1 146 0 is_stmt 1
+ 330 0012 394B     		ldr	r3, .L51
+ 331 0014 DB89     		ldrh	r3, [r3, #14]
+ 332 0016 5A2B     		cmp	r3, #90
+ 333 0018 1BD0     		beq	.L35
+ 334 001a 10D9     		bls	.L49
+ 335 001c B42B     		cmp	r3, #180
+ 336 001e 20D0     		beq	.L38
+ 337 0020 B3F5877F 		cmp	r3, #270
+ 338 0024 0AD1     		bne	.L31
+ 339              	.LVL25:
+ 147:Display/GUI/GUI_Paint.c ****     case 0:
+ 148:Display/GUI/GUI_Paint.c ****         X = Xpoint;
+ 149:Display/GUI/GUI_Paint.c ****         Y = Ypoint;  
+ 150:Display/GUI/GUI_Paint.c ****         break;
+ 151:Display/GUI/GUI_Paint.c ****     case 90:
+ 152:Display/GUI/GUI_Paint.c ****         X = Paint.WidthMemory - Ypoint - 1;
+ 153:Display/GUI/GUI_Paint.c ****         Y = Xpoint;
+ 154:Display/GUI/GUI_Paint.c ****         break;
+ 155:Display/GUI/GUI_Paint.c ****     case 180:
+ 156:Display/GUI/GUI_Paint.c ****         X = Paint.WidthMemory - Xpoint - 1;
+ 157:Display/GUI/GUI_Paint.c ****         Y = Paint.HeightMemory - Ypoint - 1;
+ 158:Display/GUI/GUI_Paint.c ****         break;
+ 159:Display/GUI/GUI_Paint.c ****     case 270:
+ 160:Display/GUI/GUI_Paint.c ****         X = Ypoint;
+ 161:Display/GUI/GUI_Paint.c ****         Y = Paint.HeightMemory - Xpoint - 1;
+ 340              		.loc 1 161 0
+ 341 0026 344B     		ldr	r3, .L51
+ 342 0028 5B89     		ldrh	r3, [r3, #10]
+ 343 002a 1B1A     		subs	r3, r3, r0
+ 344 002c 9BB2     		uxth	r3, r3
+ 345 002e 013B     		subs	r3, r3, #1
+ 346              	.LVL26:
+ 160:Display/GUI/GUI_Paint.c ****         Y = Paint.HeightMemory - Xpoint - 1;
+ 347              		.loc 1 160 0
+ 348 0030 0846     		mov	r0, r1
+ 349              	.LVL27:
+ 350              		.loc 1 161 0
+ 351 0032 99B2     		uxth	r1, r3
+ 352              	.LVL28:
+ 162:Display/GUI/GUI_Paint.c ****         break;
+ARM GAS  /tmp/cceOWye5.s 			page 10
+
+
+ 353              		.loc 1 162 0
+ 354 0034 05E0     		b	.L37
+ 355              	.LVL29:
+ 356              	.L32:
+ 357              	.LBB7:
+ 141:Display/GUI/GUI_Paint.c ****         return;
+ 358              		.loc 1 141 0
+ 359 0036 3148     		ldr	r0, .L51+4
+ 360              	.LVL30:
+ 361 0038 FFF7FEFF 		bl	puts
+ 362              	.LVL31:
+ 363              	.L31:
+ 364              	.LBE7:
+ 163:Display/GUI/GUI_Paint.c **** 		
+ 164:Display/GUI/GUI_Paint.c ****     default:
+ 165:Display/GUI/GUI_Paint.c ****         return;
+ 166:Display/GUI/GUI_Paint.c ****     }
+ 167:Display/GUI/GUI_Paint.c ****     
+ 168:Display/GUI/GUI_Paint.c ****     switch(Paint.Mirror) {
+ 169:Display/GUI/GUI_Paint.c ****     case MIRROR_NONE:
+ 170:Display/GUI/GUI_Paint.c ****         break;
+ 171:Display/GUI/GUI_Paint.c ****     case MIRROR_HORIZONTAL:
+ 172:Display/GUI/GUI_Paint.c ****         X = Paint.WidthMemory - X - 1;
+ 173:Display/GUI/GUI_Paint.c ****         break;
+ 174:Display/GUI/GUI_Paint.c ****     case MIRROR_VERTICAL:
+ 175:Display/GUI/GUI_Paint.c ****         Y = Paint.HeightMemory - Y - 1;
+ 176:Display/GUI/GUI_Paint.c ****         break;
+ 177:Display/GUI/GUI_Paint.c ****     case MIRROR_ORIGIN:
+ 178:Display/GUI/GUI_Paint.c ****         X = Paint.WidthMemory - X - 1;
+ 179:Display/GUI/GUI_Paint.c ****         Y = Paint.HeightMemory - Y - 1;
+ 180:Display/GUI/GUI_Paint.c ****         break;
+ 181:Display/GUI/GUI_Paint.c ****     default:
+ 182:Display/GUI/GUI_Paint.c ****         return;
+ 183:Display/GUI/GUI_Paint.c ****     }
+ 184:Display/GUI/GUI_Paint.c **** 
+ 185:Display/GUI/GUI_Paint.c ****     if(X > Paint.WidthMemory || Y > Paint.HeightMemory){
+ 186:Display/GUI/GUI_Paint.c ****         Debug("Exceeding display boundaries\r\n");
+ 187:Display/GUI/GUI_Paint.c ****         return;
+ 188:Display/GUI/GUI_Paint.c ****     }
+ 189:Display/GUI/GUI_Paint.c ****     
+ 190:Display/GUI/GUI_Paint.c ****     UDOUBLE Addr = X / 8 + Y * Paint.WidthByte;
+ 191:Display/GUI/GUI_Paint.c ****     UBYTE Rdata = Paint.Image[Addr];
+ 192:Display/GUI/GUI_Paint.c ****     if(Color == BLACK)
+ 193:Display/GUI/GUI_Paint.c ****         Paint.Image[Addr] = Rdata & ~(0x80 >> (X % 8));
+ 194:Display/GUI/GUI_Paint.c ****     else
+ 195:Display/GUI/GUI_Paint.c ****         Paint.Image[Addr] = Rdata | (0x80 >> (X % 8));
+ 196:Display/GUI/GUI_Paint.c **** }
+ 365              		.loc 1 196 0
+ 366 003c 38BD     		pop	{r3, r4, r5, pc}
+ 367              	.LVL32:
+ 368              	.L49:
+ 146:Display/GUI/GUI_Paint.c ****     case 0:
+ 369              		.loc 1 146 0
+ 370 003e 002B     		cmp	r3, #0
+ 371 0040 FCD1     		bne	.L31
+ 372              	.LVL33:
+ 373              	.L37:
+ARM GAS  /tmp/cceOWye5.s 			page 11
+
+
+ 168:Display/GUI/GUI_Paint.c ****     case MIRROR_NONE:
+ 374              		.loc 1 168 0
+ 375 0042 2D4B     		ldr	r3, .L51
+ 376 0044 1B8A     		ldrh	r3, [r3, #16]
+ 377 0046 032B     		cmp	r3, #3
+ 378 0048 F8D8     		bhi	.L31
+ 379 004a DFE803F0 		tbb	[pc, r3]
+ 380              	.L41:
+ 381 004e 1C       		.byte	(.L40-.L41)/2
+ 382 004f 16       		.byte	(.L42-.L41)/2
+ 383 0050 35       		.byte	(.L43-.L41)/2
+ 384 0051 3C       		.byte	(.L44-.L41)/2
+ 385              	.LVL34:
+ 386              		.p2align 1
+ 387              	.L35:
+ 152:Display/GUI/GUI_Paint.c ****         Y = Xpoint;
+ 388              		.loc 1 152 0
+ 389 0052 294B     		ldr	r3, .L51
+ 390 0054 1B89     		ldrh	r3, [r3, #8]
+ 391 0056 5B1A     		subs	r3, r3, r1
+ 392 0058 9BB2     		uxth	r3, r3
+ 393 005a 013B     		subs	r3, r3, #1
+ 394              	.LVL35:
+ 153:Display/GUI/GUI_Paint.c ****         break;
+ 395              		.loc 1 153 0
+ 396 005c 0146     		mov	r1, r0
+ 397              	.LVL36:
+ 152:Display/GUI/GUI_Paint.c ****         Y = Xpoint;
+ 398              		.loc 1 152 0
+ 399 005e 98B2     		uxth	r0, r3
+ 400              	.LVL37:
+ 154:Display/GUI/GUI_Paint.c ****     case 180:
+ 401              		.loc 1 154 0
+ 402 0060 EFE7     		b	.L37
+ 403              	.LVL38:
+ 404              	.L38:
+ 156:Display/GUI/GUI_Paint.c ****         Y = Paint.HeightMemory - Ypoint - 1;
+ 405              		.loc 1 156 0
+ 406 0062 254C     		ldr	r4, .L51
+ 407 0064 2389     		ldrh	r3, [r4, #8]
+ 408 0066 181A     		subs	r0, r3, r0
+ 409              	.LVL39:
+ 410 0068 80B2     		uxth	r0, r0
+ 411 006a 0138     		subs	r0, r0, #1
+ 412 006c 80B2     		uxth	r0, r0
+ 413              	.LVL40:
+ 157:Display/GUI/GUI_Paint.c ****         break;
+ 414              		.loc 1 157 0
+ 415 006e 6389     		ldrh	r3, [r4, #10]
+ 416 0070 591A     		subs	r1, r3, r1
+ 417              	.LVL41:
+ 418 0072 89B2     		uxth	r1, r1
+ 419 0074 0139     		subs	r1, r1, #1
+ 420 0076 89B2     		uxth	r1, r1
+ 421              	.LVL42:
+ 158:Display/GUI/GUI_Paint.c ****     case 270:
+ 422              		.loc 1 158 0
+ARM GAS  /tmp/cceOWye5.s 			page 12
+
+
+ 423 0078 E3E7     		b	.L37
+ 424              	.L42:
+ 172:Display/GUI/GUI_Paint.c ****         break;
+ 425              		.loc 1 172 0
+ 426 007a 1F4B     		ldr	r3, .L51
+ 427 007c 1B89     		ldrh	r3, [r3, #8]
+ 428 007e 181A     		subs	r0, r3, r0
+ 429              	.LVL43:
+ 430 0080 80B2     		uxth	r0, r0
+ 431 0082 0138     		subs	r0, r0, #1
+ 432 0084 80B2     		uxth	r0, r0
+ 433              	.LVL44:
+ 434              	.L40:
+ 185:Display/GUI/GUI_Paint.c ****         Debug("Exceeding display boundaries\r\n");
+ 435              		.loc 1 185 0
+ 436 0086 1C4B     		ldr	r3, .L51
+ 437 0088 1B89     		ldrh	r3, [r3, #8]
+ 438 008a 8342     		cmp	r3, r0
+ 439 008c 27D3     		bcc	.L45
+ 185:Display/GUI/GUI_Paint.c ****         Debug("Exceeding display boundaries\r\n");
+ 440              		.loc 1 185 0 is_stmt 0 discriminator 1
+ 441 008e 1A4B     		ldr	r3, .L51
+ 442 0090 5B89     		ldrh	r3, [r3, #10]
+ 443 0092 8B42     		cmp	r3, r1
+ 444 0094 23D3     		bcc	.L45
+ 190:Display/GUI/GUI_Paint.c ****     UBYTE Rdata = Paint.Image[Addr];
+ 445              		.loc 1 190 0 is_stmt 1
+ 446 0096 C0F3CF03 		ubfx	r3, r0, #3, #16
+ 447 009a 174C     		ldr	r4, .L51
+ 448 009c 658A     		ldrh	r5, [r4, #18]
+ 449 009e 05FB0131 		mla	r1, r5, r1, r3
+ 450              	.LVL45:
+ 191:Display/GUI/GUI_Paint.c ****     if(Color == BLACK)
+ 451              		.loc 1 191 0
+ 452 00a2 2468     		ldr	r4, [r4]
+ 453 00a4 655C     		ldrb	r5, [r4, r1]	@ zero_extendqisi2
+ 454              	.LVL46:
+ 192:Display/GUI/GUI_Paint.c ****         Paint.Image[Addr] = Rdata & ~(0x80 >> (X % 8));
+ 455              		.loc 1 192 0
+ 456 00a6 F2B1     		cbz	r2, .L50
+ 195:Display/GUI/GUI_Paint.c **** }
+ 457              		.loc 1 195 0
+ 458 00a8 00F00700 		and	r0, r0, #7
+ 459              	.LVL47:
+ 460 00ac 8023     		movs	r3, #128
+ 461 00ae 43FA00F0 		asr	r0, r3, r0
+ 462 00b2 2843     		orrs	r0, r0, r5
+ 463 00b4 6054     		strb	r0, [r4, r1]
+ 464 00b6 C1E7     		b	.L31
+ 465              	.LVL48:
+ 466              	.L43:
+ 175:Display/GUI/GUI_Paint.c ****         break;
+ 467              		.loc 1 175 0
+ 468 00b8 0F4B     		ldr	r3, .L51
+ 469 00ba 5B89     		ldrh	r3, [r3, #10]
+ 470 00bc 591A     		subs	r1, r3, r1
+ 471              	.LVL49:
+ARM GAS  /tmp/cceOWye5.s 			page 13
+
+
+ 472 00be 89B2     		uxth	r1, r1
+ 473 00c0 0139     		subs	r1, r1, #1
+ 474 00c2 89B2     		uxth	r1, r1
+ 475              	.LVL50:
+ 176:Display/GUI/GUI_Paint.c ****     case MIRROR_ORIGIN:
+ 476              		.loc 1 176 0
+ 477 00c4 DFE7     		b	.L40
+ 478              	.L44:
+ 178:Display/GUI/GUI_Paint.c ****         Y = Paint.HeightMemory - Y - 1;
+ 479              		.loc 1 178 0
+ 480 00c6 0C4C     		ldr	r4, .L51
+ 481 00c8 2389     		ldrh	r3, [r4, #8]
+ 482 00ca 181A     		subs	r0, r3, r0
+ 483              	.LVL51:
+ 484 00cc 80B2     		uxth	r0, r0
+ 485 00ce 0138     		subs	r0, r0, #1
+ 486 00d0 80B2     		uxth	r0, r0
+ 487              	.LVL52:
+ 179:Display/GUI/GUI_Paint.c ****         break;
+ 488              		.loc 1 179 0
+ 489 00d2 6389     		ldrh	r3, [r4, #10]
+ 490 00d4 591A     		subs	r1, r3, r1
+ 491              	.LVL53:
+ 492 00d6 89B2     		uxth	r1, r1
+ 493 00d8 0139     		subs	r1, r1, #1
+ 494 00da 89B2     		uxth	r1, r1
+ 495              	.LVL54:
+ 180:Display/GUI/GUI_Paint.c ****     default:
+ 496              		.loc 1 180 0
+ 497 00dc D3E7     		b	.L40
+ 498              	.L45:
+ 499              	.LBB8:
+ 186:Display/GUI/GUI_Paint.c ****         return;
+ 500              		.loc 1 186 0
+ 501 00de 0748     		ldr	r0, .L51+4
+ 502              	.LVL55:
+ 503 00e0 FFF7FEFF 		bl	puts
+ 504              	.LVL56:
+ 187:Display/GUI/GUI_Paint.c ****     }
+ 505              		.loc 1 187 0
+ 506 00e4 AAE7     		b	.L31
+ 507              	.LVL57:
+ 508              	.L50:
+ 509              	.LBE8:
+ 193:Display/GUI/GUI_Paint.c ****     else
+ 510              		.loc 1 193 0
+ 511 00e6 00F00703 		and	r3, r0, #7
+ 512 00ea 8020     		movs	r0, #128
+ 513              	.LVL58:
+ 514 00ec 1841     		asrs	r0, r0, r3
+ 515 00ee 25EA0000 		bic	r0, r5, r0
+ 516 00f2 6054     		strb	r0, [r4, r1]
+ 517 00f4 A2E7     		b	.L31
+ 518              	.L52:
+ 519 00f6 00BF     		.align	2
+ 520              	.L51:
+ 521 00f8 00000000 		.word	Paint
+ARM GAS  /tmp/cceOWye5.s 			page 14
+
+
+ 522 00fc 00000000 		.word	.LC9
+ 523              		.cfi_endproc
+ 524              	.LFE127:
+ 526              		.section	.text.Paint_Clear,"ax",%progbits
+ 527              		.align	1
+ 528              		.global	Paint_Clear
+ 529              		.syntax unified
+ 530              		.thumb
+ 531              		.thumb_func
+ 532              		.fpu fpv4-sp-d16
+ 534              	Paint_Clear:
+ 535              	.LFB128:
+ 197:Display/GUI/GUI_Paint.c **** 
+ 198:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 199:Display/GUI/GUI_Paint.c **** function:	Clear the color of the picture
+ 200:Display/GUI/GUI_Paint.c **** parameter:
+ 201:Display/GUI/GUI_Paint.c ****     Color   :   Painted colors
+ 202:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 203:Display/GUI/GUI_Paint.c **** void Paint_Clear(UWORD Color)
+ 204:Display/GUI/GUI_Paint.c **** {
+ 536              		.loc 1 204 0
+ 537              		.cfi_startproc
+ 538              		@ args = 0, pretend = 0, frame = 0
+ 539              		@ frame_needed = 0, uses_anonymous_args = 0
+ 540              		@ link register save eliminated.
+ 541              	.LVL59:
+ 542 0000 10B4     		push	{r4}
+ 543              	.LCFI4:
+ 544              		.cfi_def_cfa_offset 4
+ 545              		.cfi_offset 4, -4
+ 546              	.LVL60:
+ 547              	.LBB9:
+ 205:Display/GUI/GUI_Paint.c ****     for (UWORD Y = 0; Y < Paint.HeightByte; Y++) {
+ 548              		.loc 1 205 0
+ 549 0002 0024     		movs	r4, #0
+ 550 0004 0CE0     		b	.L54
+ 551              	.LVL61:
+ 552              	.L55:
+ 553              	.LBB10:
+ 554              	.LBB11:
+ 206:Display/GUI/GUI_Paint.c ****         for (UWORD X = 0; X < Paint.WidthByte; X++ ) {//8 pixel =  1 byte
+ 207:Display/GUI/GUI_Paint.c ****             UDOUBLE Addr = X + Y*Paint.WidthByte;
+ 555              		.loc 1 207 0 discriminator 3
+ 556 0006 02FB0432 		mla	r2, r2, r4, r3
+ 557              	.LVL62:
+ 208:Display/GUI/GUI_Paint.c ****             Paint.Image[Addr] = Color;
+ 558              		.loc 1 208 0 discriminator 3
+ 559 000a 0A49     		ldr	r1, .L60
+ 560 000c 0968     		ldr	r1, [r1]
+ 561 000e 8854     		strb	r0, [r1, r2]
+ 562              	.LBE11:
+ 206:Display/GUI/GUI_Paint.c ****         for (UWORD X = 0; X < Paint.WidthByte; X++ ) {//8 pixel =  1 byte
+ 563              		.loc 1 206 0 discriminator 3
+ 564 0010 0133     		adds	r3, r3, #1
+ 565              	.LVL63:
+ 566 0012 9BB2     		uxth	r3, r3
+ 567              	.LVL64:
+ARM GAS  /tmp/cceOWye5.s 			page 15
+
+
+ 568              	.L56:
+ 206:Display/GUI/GUI_Paint.c ****         for (UWORD X = 0; X < Paint.WidthByte; X++ ) {//8 pixel =  1 byte
+ 569              		.loc 1 206 0 is_stmt 0 discriminator 1
+ 570 0014 074A     		ldr	r2, .L60
+ 571 0016 528A     		ldrh	r2, [r2, #18]
+ 572 0018 9A42     		cmp	r2, r3
+ 573 001a F4D8     		bhi	.L55
+ 574              	.LBE10:
+ 205:Display/GUI/GUI_Paint.c ****     for (UWORD Y = 0; Y < Paint.HeightByte; Y++) {
+ 575              		.loc 1 205 0 is_stmt 1 discriminator 2
+ 576 001c 0134     		adds	r4, r4, #1
+ 577              	.LVL65:
+ 578 001e A4B2     		uxth	r4, r4
+ 579              	.LVL66:
+ 580              	.L54:
+ 205:Display/GUI/GUI_Paint.c ****     for (UWORD Y = 0; Y < Paint.HeightByte; Y++) {
+ 581              		.loc 1 205 0 is_stmt 0 discriminator 1
+ 582 0020 044B     		ldr	r3, .L60
+ 583 0022 9B8A     		ldrh	r3, [r3, #20]
+ 584 0024 A342     		cmp	r3, r4
+ 585 0026 01D9     		bls	.L59
+ 586              	.LBB12:
+ 206:Display/GUI/GUI_Paint.c ****         for (UWORD X = 0; X < Paint.WidthByte; X++ ) {//8 pixel =  1 byte
+ 587              		.loc 1 206 0 is_stmt 1
+ 588 0028 0023     		movs	r3, #0
+ 589 002a F3E7     		b	.L56
+ 590              	.L59:
+ 591              	.LBE12:
+ 592              	.LBE9:
+ 209:Display/GUI/GUI_Paint.c ****         }
+ 210:Display/GUI/GUI_Paint.c ****     }
+ 211:Display/GUI/GUI_Paint.c **** }
+ 593              		.loc 1 211 0
+ 594 002c 5DF8044B 		ldr	r4, [sp], #4
+ 595              	.LCFI5:
+ 596              		.cfi_restore 4
+ 597              		.cfi_def_cfa_offset 0
+ 598              	.LVL67:
+ 599 0030 7047     		bx	lr
+ 600              	.L61:
+ 601 0032 00BF     		.align	2
+ 602              	.L60:
+ 603 0034 00000000 		.word	Paint
+ 604              		.cfi_endproc
+ 605              	.LFE128:
+ 607              		.section	.text.Paint_ClearWindows,"ax",%progbits
+ 608              		.align	1
+ 609              		.global	Paint_ClearWindows
+ 610              		.syntax unified
+ 611              		.thumb
+ 612              		.thumb_func
+ 613              		.fpu fpv4-sp-d16
+ 615              	Paint_ClearWindows:
+ 616              	.LFB129:
+ 212:Display/GUI/GUI_Paint.c **** 
+ 213:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 214:Display/GUI/GUI_Paint.c **** function:	Clear the color of a window
+ARM GAS  /tmp/cceOWye5.s 			page 16
+
+
+ 215:Display/GUI/GUI_Paint.c **** parameter:
+ 216:Display/GUI/GUI_Paint.c ****     Xstart :   x starting point
+ 217:Display/GUI/GUI_Paint.c ****     Ystart :   Y starting point
+ 218:Display/GUI/GUI_Paint.c ****     Xend   :   x end point
+ 219:Display/GUI/GUI_Paint.c ****     Yend   :   y end point
+ 220:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 221:Display/GUI/GUI_Paint.c **** void Paint_ClearWindows(UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend, UWORD Color)
+ 222:Display/GUI/GUI_Paint.c **** {
+ 617              		.loc 1 222 0
+ 618              		.cfi_startproc
+ 619              		@ args = 4, pretend = 0, frame = 0
+ 620              		@ frame_needed = 0, uses_anonymous_args = 0
+ 621              	.LVL68:
+ 622 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 623              	.LCFI6:
+ 624              		.cfi_def_cfa_offset 32
+ 625              		.cfi_offset 3, -32
+ 626              		.cfi_offset 4, -28
+ 627              		.cfi_offset 5, -24
+ 628              		.cfi_offset 6, -20
+ 629              		.cfi_offset 7, -16
+ 630              		.cfi_offset 8, -12
+ 631              		.cfi_offset 9, -8
+ 632              		.cfi_offset 14, -4
+ 633 0004 8146     		mov	r9, r0
+ 634 0006 0D46     		mov	r5, r1
+ 635 0008 1646     		mov	r6, r2
+ 636 000a 9846     		mov	r8, r3
+ 637 000c BDF82070 		ldrh	r7, [sp, #32]
+ 638              	.LVL69:
+ 223:Display/GUI/GUI_Paint.c ****     UWORD X, Y;
+ 224:Display/GUI/GUI_Paint.c ****     for (Y = Ystart; Y < Yend; Y++) {
+ 639              		.loc 1 224 0
+ 640 0010 0AE0     		b	.L63
+ 641              	.LVL70:
+ 642              	.L64:
+ 225:Display/GUI/GUI_Paint.c ****         for (X = Xstart; X < Xend; X++) {//8 pixel =  1 byte
+ 226:Display/GUI/GUI_Paint.c ****             Paint_SetPixel(X, Y, Color);
+ 643              		.loc 1 226 0 discriminator 3
+ 644 0012 3A46     		mov	r2, r7
+ 645 0014 2946     		mov	r1, r5
+ 646 0016 2046     		mov	r0, r4
+ 647 0018 FFF7FEFF 		bl	Paint_SetPixel
+ 648              	.LVL71:
+ 225:Display/GUI/GUI_Paint.c ****         for (X = Xstart; X < Xend; X++) {//8 pixel =  1 byte
+ 649              		.loc 1 225 0 discriminator 3
+ 650 001c 0134     		adds	r4, r4, #1
+ 651              	.LVL72:
+ 652 001e A4B2     		uxth	r4, r4
+ 653              	.LVL73:
+ 654              	.L65:
+ 225:Display/GUI/GUI_Paint.c ****         for (X = Xstart; X < Xend; X++) {//8 pixel =  1 byte
+ 655              		.loc 1 225 0 is_stmt 0 discriminator 1
+ 656 0020 B442     		cmp	r4, r6
+ 657 0022 F6D3     		bcc	.L64
+ 224:Display/GUI/GUI_Paint.c ****         for (X = Xstart; X < Xend; X++) {//8 pixel =  1 byte
+ 658              		.loc 1 224 0 is_stmt 1 discriminator 2
+ARM GAS  /tmp/cceOWye5.s 			page 17
+
+
+ 659 0024 0135     		adds	r5, r5, #1
+ 660              	.LVL74:
+ 661 0026 ADB2     		uxth	r5, r5
+ 662              	.LVL75:
+ 663              	.L63:
+ 224:Display/GUI/GUI_Paint.c ****         for (X = Xstart; X < Xend; X++) {//8 pixel =  1 byte
+ 664              		.loc 1 224 0 is_stmt 0 discriminator 1
+ 665 0028 4545     		cmp	r5, r8
+ 666 002a 01D2     		bcs	.L68
+ 225:Display/GUI/GUI_Paint.c ****         for (X = Xstart; X < Xend; X++) {//8 pixel =  1 byte
+ 667              		.loc 1 225 0 is_stmt 1
+ 668 002c 4C46     		mov	r4, r9
+ 669 002e F7E7     		b	.L65
+ 670              	.L68:
+ 227:Display/GUI/GUI_Paint.c ****         }
+ 228:Display/GUI/GUI_Paint.c ****     }
+ 229:Display/GUI/GUI_Paint.c **** }
+ 671              		.loc 1 229 0
+ 672 0030 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 673              		.cfi_endproc
+ 674              	.LFE129:
+ 676              		.section	.text.Paint_DrawPoint,"ax",%progbits
+ 677              		.align	1
+ 678              		.global	Paint_DrawPoint
+ 679              		.syntax unified
+ 680              		.thumb
+ 681              		.thumb_func
+ 682              		.fpu fpv4-sp-d16
+ 684              	Paint_DrawPoint:
+ 685              	.LFB130:
+ 230:Display/GUI/GUI_Paint.c **** 
+ 231:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 232:Display/GUI/GUI_Paint.c **** function:	Draw Point(Xpoint, Ypoint) Fill the color
+ 233:Display/GUI/GUI_Paint.c **** parameter:
+ 234:Display/GUI/GUI_Paint.c ****     Xpoint		:   The Xpoint coordinate of the point
+ 235:Display/GUI/GUI_Paint.c ****     Ypoint		:   The Ypoint coordinate of the point
+ 236:Display/GUI/GUI_Paint.c ****     Color		:   Set color
+ 237:Display/GUI/GUI_Paint.c ****     Dot_Pixel	:	point size
+ 238:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 239:Display/GUI/GUI_Paint.c **** void Paint_DrawPoint(UWORD Xpoint, UWORD Ypoint, UWORD Color,
+ 240:Display/GUI/GUI_Paint.c ****                      DOT_PIXEL Dot_Pixel, DOT_STYLE DOT_STYLE)
+ 241:Display/GUI/GUI_Paint.c **** {
+ 686              		.loc 1 241 0
+ 687              		.cfi_startproc
+ 688              		@ args = 4, pretend = 0, frame = 8
+ 689              		@ frame_needed = 0, uses_anonymous_args = 0
+ 690              	.LVL76:
+ 691 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 692              	.LCFI7:
+ 693              		.cfi_def_cfa_offset 36
+ 694              		.cfi_offset 4, -36
+ 695              		.cfi_offset 5, -32
+ 696              		.cfi_offset 6, -28
+ 697              		.cfi_offset 7, -24
+ 698              		.cfi_offset 8, -20
+ 699              		.cfi_offset 9, -16
+ 700              		.cfi_offset 10, -12
+ARM GAS  /tmp/cceOWye5.s 			page 18
+
+
+ 701              		.cfi_offset 11, -8
+ 702              		.cfi_offset 14, -4
+ 703 0004 83B0     		sub	sp, sp, #12
+ 704              	.LCFI8:
+ 705              		.cfi_def_cfa_offset 48
+ 706 0006 0192     		str	r2, [sp, #4]
+ 707 0008 1F46     		mov	r7, r3
+ 242:Display/GUI/GUI_Paint.c ****     if (Xpoint > Paint.Width || Ypoint > Paint.Height) {
+ 708              		.loc 1 242 0
+ 709 000a 304B     		ldr	r3, .L84
+ 710              	.LVL77:
+ 711 000c 9B88     		ldrh	r3, [r3, #4]
+ 712 000e 8342     		cmp	r3, r0
+ 713 0010 0CD3     		bcc	.L70
+ 714 0012 0546     		mov	r5, r0
+ 715 0014 0E46     		mov	r6, r1
+ 716              		.loc 1 242 0 is_stmt 0 discriminator 1
+ 717 0016 2D4B     		ldr	r3, .L84
+ 718 0018 DB88     		ldrh	r3, [r3, #6]
+ 719 001a 8B42     		cmp	r3, r1
+ 720 001c 06D3     		bcc	.L70
+ 243:Display/GUI/GUI_Paint.c ****         Debug("Paint_DrawPoint Input exceeds the normal display range\r\n");
+ 244:Display/GUI/GUI_Paint.c ****         return;
+ 245:Display/GUI/GUI_Paint.c ****     }
+ 246:Display/GUI/GUI_Paint.c **** 
+ 247:Display/GUI/GUI_Paint.c ****     int16_t XDir_Num , YDir_Num;
+ 248:Display/GUI/GUI_Paint.c ****     if (DOT_STYLE == DOT_FILL_AROUND) {
+ 721              		.loc 1 248 0 is_stmt 1
+ 722 001e 9DF83030 		ldrb	r3, [sp, #48]	@ zero_extendqisi2
+ 723 0022 012B     		cmp	r3, #1
+ 724 0024 34D0     		beq	.L80
+ 249:Display/GUI/GUI_Paint.c ****         for (XDir_Num = 0; XDir_Num < 2 * Dot_Pixel - 1; XDir_Num++) {
+ 250:Display/GUI/GUI_Paint.c ****             for (YDir_Num = 0; YDir_Num < 2 * Dot_Pixel - 1; YDir_Num++) {
+ 251:Display/GUI/GUI_Paint.c ****                 if(Xpoint + XDir_Num - Dot_Pixel < 0 || Ypoint + YDir_Num - Dot_Pixel < 0)
+ 252:Display/GUI/GUI_Paint.c ****                     break;
+ 253:Display/GUI/GUI_Paint.c ****                 Paint_SetPixel(Xpoint + XDir_Num - Dot_Pixel, Ypoint + YDir_Num - Dot_Pixel, Color)
+ 254:Display/GUI/GUI_Paint.c ****             }
+ 255:Display/GUI/GUI_Paint.c ****         }
+ 256:Display/GUI/GUI_Paint.c ****     } else {
+ 257:Display/GUI/GUI_Paint.c ****         for (XDir_Num = 0; XDir_Num <  Dot_Pixel; XDir_Num++) {
+ 725              		.loc 1 257 0
+ 726 0026 4FF00008 		mov	r8, #0
+ 727 002a 49E0     		b	.L74
+ 728              	.L70:
+ 729              	.LBB13:
+ 243:Display/GUI/GUI_Paint.c ****         Debug("Paint_DrawPoint Input exceeds the normal display range\r\n");
+ 730              		.loc 1 243 0
+ 731 002c 2848     		ldr	r0, .L84+4
+ 732              	.LVL78:
+ 733 002e FFF7FEFF 		bl	puts
+ 734              	.LVL79:
+ 735              	.L69:
+ 736              	.LBE13:
+ 258:Display/GUI/GUI_Paint.c ****             for (YDir_Num = 0; YDir_Num <  Dot_Pixel; YDir_Num++) {
+ 259:Display/GUI/GUI_Paint.c ****                 Paint_SetPixel(Xpoint + XDir_Num - 1, Ypoint + YDir_Num - 1, Color);
+ 260:Display/GUI/GUI_Paint.c ****             }
+ 261:Display/GUI/GUI_Paint.c ****         }
+ARM GAS  /tmp/cceOWye5.s 			page 19
+
+
+ 262:Display/GUI/GUI_Paint.c ****     }
+ 263:Display/GUI/GUI_Paint.c **** }
+ 737              		.loc 1 263 0
+ 738 0032 03B0     		add	sp, sp, #12
+ 739              	.LCFI9:
+ 740              		.cfi_remember_state
+ 741              		.cfi_def_cfa_offset 36
+ 742              		@ sp needed
+ 743 0034 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 744              	.LVL80:
+ 745              	.L75:
+ 746              	.LCFI10:
+ 747              		.cfi_restore_state
+ 249:Display/GUI/GUI_Paint.c ****         for (XDir_Num = 0; XDir_Num < 2 * Dot_Pixel - 1; XDir_Num++) {
+ 748              		.loc 1 249 0 discriminator 2
+ 749 0038 09F10109 		add	r9, r9, #1
+ 750              	.LVL81:
+ 751 003c 0FFA89F9 		sxth	r9, r9
+ 752              	.LVL82:
+ 753              	.L73:
+ 249:Display/GUI/GUI_Paint.c ****         for (XDir_Num = 0; XDir_Num < 2 * Dot_Pixel - 1; XDir_Num++) {
+ 754              		.loc 1 249 0 is_stmt 0 discriminator 1
+ 755 0040 CB46     		mov	fp, r9
+ 756 0042 B846     		mov	r8, r7
+ 757 0044 4FEA470A 		lsl	r10, r7, #1
+ 758 0048 0AF1FF3A 		add	r10, r10, #-1
+ 759 004c D145     		cmp	r9, r10
+ 760 004e F0DA     		bge	.L69
+ 250:Display/GUI/GUI_Paint.c ****                 if(Xpoint + XDir_Num - Dot_Pixel < 0 || Ypoint + YDir_Num - Dot_Pixel < 0)
+ 761              		.loc 1 250 0 is_stmt 1
+ 762 0050 0024     		movs	r4, #0
+ 763              	.L77:
+ 764              	.LVL83:
+ 250:Display/GUI/GUI_Paint.c ****                 if(Xpoint + XDir_Num - Dot_Pixel < 0 || Ypoint + YDir_Num - Dot_Pixel < 0)
+ 765              		.loc 1 250 0 is_stmt 0 discriminator 1
+ 766 0052 2346     		mov	r3, r4
+ 767 0054 5445     		cmp	r4, r10
+ 768 0056 EFDA     		bge	.L75
+ 251:Display/GUI/GUI_Paint.c ****                     break;
+ 769              		.loc 1 251 0 is_stmt 1
+ 770 0058 05EB0B02 		add	r2, r5, fp
+ 771 005c A2EB0802 		sub	r2, r2, r8
+ 772 0060 002A     		cmp	r2, #0
+ 773 0062 E9DB     		blt	.L75
+ 251:Display/GUI/GUI_Paint.c ****                     break;
+ 774              		.loc 1 251 0 is_stmt 0 discriminator 1
+ 775 0064 3344     		add	r3, r3, r6
+ 776 0066 A3EB0803 		sub	r3, r3, r8
+ 777 006a 002B     		cmp	r3, #0
+ 778 006c E4DB     		blt	.L75
+ 253:Display/GUI/GUI_Paint.c ****             }
+ 779              		.loc 1 253 0 is_stmt 1 discriminator 2
+ 780 006e 05EB0900 		add	r0, r5, r9
+ 781 0072 80B2     		uxth	r0, r0
+ 782 0074 BBB2     		uxth	r3, r7
+ 783 0076 A4B2     		uxth	r4, r4
+ 784 0078 A119     		adds	r1, r4, r6
+ARM GAS  /tmp/cceOWye5.s 			page 20
+
+
+ 785 007a 89B2     		uxth	r1, r1
+ 786 007c C91A     		subs	r1, r1, r3
+ 787 007e C01A     		subs	r0, r0, r3
+ 788 0080 019A     		ldr	r2, [sp, #4]
+ 789 0082 89B2     		uxth	r1, r1
+ 790 0084 80B2     		uxth	r0, r0
+ 791 0086 FFF7FEFF 		bl	Paint_SetPixel
+ 792              	.LVL84:
+ 250:Display/GUI/GUI_Paint.c ****                 if(Xpoint + XDir_Num - Dot_Pixel < 0 || Ypoint + YDir_Num - Dot_Pixel < 0)
+ 793              		.loc 1 250 0 discriminator 2
+ 794 008a 0134     		adds	r4, r4, #1
+ 795              	.LVL85:
+ 796 008c 24B2     		sxth	r4, r4
+ 797              	.LVL86:
+ 798 008e E0E7     		b	.L77
+ 799              	.LVL87:
+ 800              	.L80:
+ 249:Display/GUI/GUI_Paint.c ****             for (YDir_Num = 0; YDir_Num < 2 * Dot_Pixel - 1; YDir_Num++) {
+ 801              		.loc 1 249 0
+ 802 0090 4FF00009 		mov	r9, #0
+ 803 0094 D4E7     		b	.L73
+ 804              	.LVL88:
+ 805              	.L78:
+ 259:Display/GUI/GUI_Paint.c ****             }
+ 806              		.loc 1 259 0 discriminator 3
+ 807 0096 05EB0800 		add	r0, r5, r8
+ 808 009a 80B2     		uxth	r0, r0
+ 809 009c 9CB2     		uxth	r4, r3
+ 810 009e A119     		adds	r1, r4, r6
+ 811 00a0 89B2     		uxth	r1, r1
+ 812 00a2 0139     		subs	r1, r1, #1
+ 813 00a4 0138     		subs	r0, r0, #1
+ 814 00a6 019A     		ldr	r2, [sp, #4]
+ 815 00a8 89B2     		uxth	r1, r1
+ 816 00aa 80B2     		uxth	r0, r0
+ 817 00ac FFF7FEFF 		bl	Paint_SetPixel
+ 818              	.LVL89:
+ 258:Display/GUI/GUI_Paint.c ****                 Paint_SetPixel(Xpoint + XDir_Num - 1, Ypoint + YDir_Num - 1, Color);
+ 819              		.loc 1 258 0 discriminator 3
+ 820 00b0 631C     		adds	r3, r4, #1
+ 821 00b2 1BB2     		sxth	r3, r3
+ 822              	.LVL90:
+ 823              	.L79:
+ 258:Display/GUI/GUI_Paint.c ****                 Paint_SetPixel(Xpoint + XDir_Num - 1, Ypoint + YDir_Num - 1, Color);
+ 824              		.loc 1 258 0 is_stmt 0 discriminator 1
+ 825 00b4 4B45     		cmp	r3, r9
+ 826 00b6 EEDB     		blt	.L78
+ 257:Display/GUI/GUI_Paint.c ****             for (YDir_Num = 0; YDir_Num <  Dot_Pixel; YDir_Num++) {
+ 827              		.loc 1 257 0 is_stmt 1 discriminator 2
+ 828 00b8 08F10108 		add	r8, r8, #1
+ 829              	.LVL91:
+ 830 00bc 0FFA88F8 		sxth	r8, r8
+ 831              	.LVL92:
+ 832              	.L74:
+ 257:Display/GUI/GUI_Paint.c ****             for (YDir_Num = 0; YDir_Num <  Dot_Pixel; YDir_Num++) {
+ 833              		.loc 1 257 0 is_stmt 0 discriminator 1
+ 834 00c0 B946     		mov	r9, r7
+ARM GAS  /tmp/cceOWye5.s 			page 21
+
+
+ 835 00c2 B845     		cmp	r8, r7
+ 836 00c4 B5DA     		bge	.L69
+ 258:Display/GUI/GUI_Paint.c ****                 Paint_SetPixel(Xpoint + XDir_Num - 1, Ypoint + YDir_Num - 1, Color);
+ 837              		.loc 1 258 0 is_stmt 1
+ 838 00c6 0023     		movs	r3, #0
+ 839 00c8 F4E7     		b	.L79
+ 840              	.L85:
+ 841 00ca 00BF     		.align	2
+ 842              	.L84:
+ 843 00cc 00000000 		.word	Paint
+ 844 00d0 00000000 		.word	.LC10
+ 845              		.cfi_endproc
+ 846              	.LFE130:
+ 848              		.section	.text.Paint_DrawLine,"ax",%progbits
+ 849              		.align	1
+ 850              		.global	Paint_DrawLine
+ 851              		.syntax unified
+ 852              		.thumb
+ 853              		.thumb_func
+ 854              		.fpu fpv4-sp-d16
+ 856              	Paint_DrawLine:
+ 857              	.LFB131:
+ 264:Display/GUI/GUI_Paint.c **** 
+ 265:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 266:Display/GUI/GUI_Paint.c **** function:	Draw a line of arbitrary slope
+ 267:Display/GUI/GUI_Paint.c **** parameter:
+ 268:Display/GUI/GUI_Paint.c ****     Xstart ：Starting Xpoint point coordinates
+ 269:Display/GUI/GUI_Paint.c ****     Ystart ：Starting Xpoint point coordinates
+ 270:Display/GUI/GUI_Paint.c ****     Xend   ：End point Xpoint coordinate
+ 271:Display/GUI/GUI_Paint.c ****     Yend   ：End point Ypoint coordinate
+ 272:Display/GUI/GUI_Paint.c ****     Color  ：The color of the line segment
+ 273:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 274:Display/GUI/GUI_Paint.c **** void Paint_DrawLine(UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend,
+ 275:Display/GUI/GUI_Paint.c ****                     UWORD Color, LINE_STYLE Line_Style, DOT_PIXEL Dot_Pixel)
+ 276:Display/GUI/GUI_Paint.c **** {
+ 858              		.loc 1 276 0
+ 859              		.cfi_startproc
+ 860              		@ args = 12, pretend = 0, frame = 24
+ 861              		@ frame_needed = 0, uses_anonymous_args = 0
+ 862              	.LVL93:
+ 863 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 864              	.LCFI11:
+ 865              		.cfi_def_cfa_offset 36
+ 866              		.cfi_offset 4, -36
+ 867              		.cfi_offset 5, -32
+ 868              		.cfi_offset 6, -28
+ 869              		.cfi_offset 7, -24
+ 870              		.cfi_offset 8, -20
+ 871              		.cfi_offset 9, -16
+ 872              		.cfi_offset 10, -12
+ 873              		.cfi_offset 11, -8
+ 874              		.cfi_offset 14, -4
+ 875 0004 89B0     		sub	sp, sp, #36
+ 876              	.LCFI12:
+ 877              		.cfi_def_cfa_offset 72
+ 878 0006 0E46     		mov	r6, r1
+ 879 0008 9246     		mov	r10, r2
+ARM GAS  /tmp/cceOWye5.s 			page 22
+
+
+ 880 000a 1946     		mov	r1, r3
+ 881              	.LVL94:
+ 882 000c 0493     		str	r3, [sp, #16]
+ 883 000e BDF84820 		ldrh	r2, [sp, #72]
+ 884              	.LVL95:
+ 885 0012 0392     		str	r2, [sp, #12]
+ 886 0014 9DF84C90 		ldrb	r9, [sp, #76]	@ zero_extendqisi2
+ 887 0018 9DF85020 		ldrb	r2, [sp, #80]	@ zero_extendqisi2
+ 888 001c 0292     		str	r2, [sp, #8]
+ 277:Display/GUI/GUI_Paint.c ****     if (Xstart > Paint.Width || Ystart > Paint.Height ||
+ 889              		.loc 1 277 0
+ 890 001e 364B     		ldr	r3, .L100
+ 891              	.LVL96:
+ 892 0020 9B88     		ldrh	r3, [r3, #4]
+ 893 0022 8342     		cmp	r3, r0
+ 894 0024 25D3     		bcc	.L87
+ 895 0026 0546     		mov	r5, r0
+ 896              		.loc 1 277 0 is_stmt 0 discriminator 1
+ 897 0028 334A     		ldr	r2, .L100
+ 898 002a D288     		ldrh	r2, [r2, #6]
+ 899 002c B242     		cmp	r2, r6
+ 900 002e 20D3     		bcc	.L87
+ 901              		.loc 1 277 0 discriminator 2
+ 902 0030 5345     		cmp	r3, r10
+ 903 0032 1ED3     		bcc	.L87
+ 278:Display/GUI/GUI_Paint.c ****         Xend > Paint.Width || Yend > Paint.Height) {
+ 904              		.loc 1 278 0 is_stmt 1
+ 905 0034 8A42     		cmp	r2, r1
+ 906 0036 1CD3     		bcc	.L87
+ 907              	.LVL97:
+ 279:Display/GUI/GUI_Paint.c ****         Debug("Paint_DrawLine Input exceeds the normal display range\r\n");
+ 280:Display/GUI/GUI_Paint.c ****         return;
+ 281:Display/GUI/GUI_Paint.c ****     }
+ 282:Display/GUI/GUI_Paint.c **** 
+ 283:Display/GUI/GUI_Paint.c ****     UWORD Xpoint = Xstart;
+ 284:Display/GUI/GUI_Paint.c ****     UWORD Ypoint = Ystart;
+ 285:Display/GUI/GUI_Paint.c ****     int dx = (int)Xend - (int)Xstart >= 0 ? Xend - Xstart : Xstart - Xend;
+ 908              		.loc 1 285 0
+ 909 0038 AAEB0008 		sub	r8, r10, r0
+ 910 003c B8F1000F 		cmp	r8, #0
+ 911 0040 B8BF     		it	lt
+ 912 0042 C8F10008 		rsblt	r8, r8, #0
+ 913              	.LVL98:
+ 286:Display/GUI/GUI_Paint.c ****     int dy = (int)Yend - (int)Ystart <= 0 ? Yend - Ystart : Ystart - Yend;
+ 914              		.loc 1 286 0
+ 915 0046 049B     		ldr	r3, [sp, #16]
+ 916 0048 9B1B     		subs	r3, r3, r6
+ 917 004a 002B     		cmp	r3, #0
+ 918 004c B8BF     		it	lt
+ 919 004e 5B42     		rsblt	r3, r3, #0
+ 920 0050 0593     		str	r3, [sp, #20]
+ 921 0052 C3F1000B 		rsb	fp, r3, #0
+ 922              	.LVL99:
+ 287:Display/GUI/GUI_Paint.c **** 
+ 288:Display/GUI/GUI_Paint.c ****     // Increment direction, 1 is positive, -1 is counter;
+ 289:Display/GUI/GUI_Paint.c ****     int XAddway = Xstart < Xend ? 1 : -1;
+ 923              		.loc 1 289 0
+ARM GAS  /tmp/cceOWye5.s 			page 23
+
+
+ 924 0056 5045     		cmp	r0, r10
+ 925 0058 11D2     		bcs	.L97
+ 926 005a 0123     		movs	r3, #1
+ 927 005c 0693     		str	r3, [sp, #24]
+ 928              	.L90:
+ 929              	.LVL100:
+ 290:Display/GUI/GUI_Paint.c ****     int YAddway = Ystart < Yend ? 1 : -1;
+ 930              		.loc 1 290 0 discriminator 4
+ 931 005e 049B     		ldr	r3, [sp, #16]
+ 932 0060 9E42     		cmp	r6, r3
+ 933 0062 10D2     		bcs	.L98
+ 934              		.loc 1 290 0 is_stmt 0
+ 935 0064 0123     		movs	r3, #1
+ 936 0066 0793     		str	r3, [sp, #28]
+ 937              	.L91:
+ 938              	.LVL101:
+ 939 0068 059B     		ldr	r3, [sp, #20]
+ 940 006a A8EB0307 		sub	r7, r8, r3
+ 941              	.LVL102:
+ 291:Display/GUI/GUI_Paint.c **** 
+ 292:Display/GUI/GUI_Paint.c ****     //Cumulative error
+ 293:Display/GUI/GUI_Paint.c ****     int Esp = dx + dy;
+ 294:Display/GUI/GUI_Paint.c ****     char Dotted_Len = 0;
+ 942              		.loc 1 294 0 is_stmt 1 discriminator 4
+ 943 006e 0024     		movs	r4, #0
+ 944 0070 29E0     		b	.L92
+ 945              	.LVL103:
+ 946              	.L87:
+ 947              	.LBB14:
+ 279:Display/GUI/GUI_Paint.c ****         return;
+ 948              		.loc 1 279 0
+ 949 0072 2248     		ldr	r0, .L100+4
+ 950              	.LVL104:
+ 951 0074 FFF7FEFF 		bl	puts
+ 952              	.LVL105:
+ 953              	.L86:
+ 954              	.LBE14:
+ 295:Display/GUI/GUI_Paint.c **** 
+ 296:Display/GUI/GUI_Paint.c ****     for (;;) {
+ 297:Display/GUI/GUI_Paint.c ****         Dotted_Len++;
+ 298:Display/GUI/GUI_Paint.c ****         //Painted dotted line, 2 point is really virtual
+ 299:Display/GUI/GUI_Paint.c ****         if (Line_Style == LINE_STYLE_DOTTED && Dotted_Len % 3 == 0) {
+ 300:Display/GUI/GUI_Paint.c ****             //Debug("LINE_DOTTED\r\n");
+ 301:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(Xpoint, Ypoint, IMAGE_BACKGROUND, Dot_Pixel, DOT_STYLE_DFT);
+ 302:Display/GUI/GUI_Paint.c ****             Dotted_Len = 0;
+ 303:Display/GUI/GUI_Paint.c ****         } else {
+ 304:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(Xpoint, Ypoint, Color, Dot_Pixel, DOT_STYLE_DFT);
+ 305:Display/GUI/GUI_Paint.c ****         }
+ 306:Display/GUI/GUI_Paint.c ****         if (2 * Esp >= dy) {
+ 307:Display/GUI/GUI_Paint.c ****             if (Xpoint == Xend)
+ 308:Display/GUI/GUI_Paint.c ****                 break;
+ 309:Display/GUI/GUI_Paint.c ****             Esp += dy;
+ 310:Display/GUI/GUI_Paint.c ****             Xpoint += XAddway;
+ 311:Display/GUI/GUI_Paint.c ****         }
+ 312:Display/GUI/GUI_Paint.c ****         if (2 * Esp <= dx) {
+ 313:Display/GUI/GUI_Paint.c ****             if (Ypoint == Yend)
+ 314:Display/GUI/GUI_Paint.c ****                 break;
+ARM GAS  /tmp/cceOWye5.s 			page 24
+
+
+ 315:Display/GUI/GUI_Paint.c ****             Esp += dx;
+ 316:Display/GUI/GUI_Paint.c ****             Ypoint += YAddway;
+ 317:Display/GUI/GUI_Paint.c ****         }
+ 318:Display/GUI/GUI_Paint.c ****     }
+ 319:Display/GUI/GUI_Paint.c **** }
+ 955              		.loc 1 319 0
+ 956 0078 09B0     		add	sp, sp, #36
+ 957              	.LCFI13:
+ 958              		.cfi_remember_state
+ 959              		.cfi_def_cfa_offset 36
+ 960              		@ sp needed
+ 961 007a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 962              	.LVL106:
+ 963              	.L97:
+ 964              	.LCFI14:
+ 965              		.cfi_restore_state
+ 289:Display/GUI/GUI_Paint.c ****     int YAddway = Ystart < Yend ? 1 : -1;
+ 966              		.loc 1 289 0
+ 967 007e 4FF0FF33 		mov	r3, #-1
+ 968 0082 0693     		str	r3, [sp, #24]
+ 969 0084 EBE7     		b	.L90
+ 970              	.LVL107:
+ 971              	.L98:
+ 290:Display/GUI/GUI_Paint.c **** 
+ 972              		.loc 1 290 0
+ 973 0086 4FF0FF33 		mov	r3, #-1
+ 974 008a 0793     		str	r3, [sp, #28]
+ 975 008c ECE7     		b	.L91
+ 976              	.LVL108:
+ 977              	.L93:
+ 304:Display/GUI/GUI_Paint.c ****         }
+ 978              		.loc 1 304 0
+ 979 008e 0123     		movs	r3, #1
+ 980 0090 0093     		str	r3, [sp]
+ 981 0092 029B     		ldr	r3, [sp, #8]
+ 982 0094 039A     		ldr	r2, [sp, #12]
+ 983 0096 3146     		mov	r1, r6
+ 984 0098 2846     		mov	r0, r5
+ 985 009a FFF7FEFF 		bl	Paint_DrawPoint
+ 986              	.LVL109:
+ 987              	.L94:
+ 306:Display/GUI/GUI_Paint.c ****             if (Xpoint == Xend)
+ 988              		.loc 1 306 0
+ 989 009e BBEB470F 		cmp	fp, r7, lsl #1
+ 990 00a2 06DC     		bgt	.L95
+ 307:Display/GUI/GUI_Paint.c ****                 break;
+ 991              		.loc 1 307 0
+ 992 00a4 5545     		cmp	r5, r10
+ 993 00a6 E7D0     		beq	.L86
+ 994 00a8 059B     		ldr	r3, [sp, #20]
+ 995 00aa FF1A     		subs	r7, r7, r3
+ 996              	.LVL110:
+ 310:Display/GUI/GUI_Paint.c ****         }
+ 997              		.loc 1 310 0
+ 998 00ac 069B     		ldr	r3, [sp, #24]
+ 999 00ae 1D44     		add	r5, r5, r3
+ 1000              	.LVL111:
+ARM GAS  /tmp/cceOWye5.s 			page 25
+
+
+ 1001 00b0 ADB2     		uxth	r5, r5
+ 1002              	.LVL112:
+ 1003              	.L95:
+ 312:Display/GUI/GUI_Paint.c ****             if (Ypoint == Yend)
+ 1004              		.loc 1 312 0
+ 1005 00b2 B8EB470F 		cmp	r8, r7, lsl #1
+ 1006 00b6 06DB     		blt	.L92
+ 313:Display/GUI/GUI_Paint.c ****                 break;
+ 1007              		.loc 1 313 0
+ 1008 00b8 049B     		ldr	r3, [sp, #16]
+ 1009 00ba 9E42     		cmp	r6, r3
+ 1010 00bc DCD0     		beq	.L86
+ 315:Display/GUI/GUI_Paint.c ****             Ypoint += YAddway;
+ 1011              		.loc 1 315 0
+ 1012 00be 4744     		add	r7, r7, r8
+ 1013              	.LVL113:
+ 316:Display/GUI/GUI_Paint.c ****         }
+ 1014              		.loc 1 316 0
+ 1015 00c0 079B     		ldr	r3, [sp, #28]
+ 1016 00c2 1E44     		add	r6, r6, r3
+ 1017              	.LVL114:
+ 1018 00c4 B6B2     		uxth	r6, r6
+ 1019              	.LVL115:
+ 1020              	.L92:
+ 297:Display/GUI/GUI_Paint.c ****         //Painted dotted line, 2 point is really virtual
+ 1021              		.loc 1 297 0
+ 1022 00c6 0134     		adds	r4, r4, #1
+ 1023              	.LVL116:
+ 1024 00c8 E4B2     		uxtb	r4, r4
+ 1025              	.LVL117:
+ 299:Display/GUI/GUI_Paint.c ****             //Debug("LINE_DOTTED\r\n");
+ 1026              		.loc 1 299 0
+ 1027 00ca B9F1010F 		cmp	r9, #1
+ 1028 00ce DED1     		bne	.L93
+ 299:Display/GUI/GUI_Paint.c ****             //Debug("LINE_DOTTED\r\n");
+ 1029              		.loc 1 299 0 is_stmt 0 discriminator 1
+ 1030 00d0 0B4B     		ldr	r3, .L100+8
+ 1031 00d2 A3FB0423 		umull	r2, r3, r3, r4
+ 1032 00d6 5B08     		lsrs	r3, r3, #1
+ 1033 00d8 03EB4303 		add	r3, r3, r3, lsl #1
+ 1034 00dc E31A     		subs	r3, r4, r3
+ 1035 00de 13F0FF0F 		tst	r3, #255
+ 1036 00e2 D4D1     		bne	.L93
+ 301:Display/GUI/GUI_Paint.c ****             Dotted_Len = 0;
+ 1037              		.loc 1 301 0 is_stmt 1
+ 1038 00e4 0123     		movs	r3, #1
+ 1039 00e6 0093     		str	r3, [sp]
+ 1040 00e8 029B     		ldr	r3, [sp, #8]
+ 1041 00ea FF22     		movs	r2, #255
+ 1042 00ec 3146     		mov	r1, r6
+ 1043 00ee 2846     		mov	r0, r5
+ 1044 00f0 FFF7FEFF 		bl	Paint_DrawPoint
+ 1045              	.LVL118:
+ 302:Display/GUI/GUI_Paint.c ****         } else {
+ 1046              		.loc 1 302 0
+ 1047 00f4 0024     		movs	r4, #0
+ 1048 00f6 D2E7     		b	.L94
+ARM GAS  /tmp/cceOWye5.s 			page 26
+
+
+ 1049              	.L101:
+ 1050              		.align	2
+ 1051              	.L100:
+ 1052 00f8 00000000 		.word	Paint
+ 1053 00fc 00000000 		.word	.LC11
+ 1054 0100 ABAAAAAA 		.word	-1431655765
+ 1055              		.cfi_endproc
+ 1056              	.LFE131:
+ 1058              		.section	.text.Paint_DrawRectangle,"ax",%progbits
+ 1059              		.align	1
+ 1060              		.global	Paint_DrawRectangle
+ 1061              		.syntax unified
+ 1062              		.thumb
+ 1063              		.thumb_func
+ 1064              		.fpu fpv4-sp-d16
+ 1066              	Paint_DrawRectangle:
+ 1067              	.LFB132:
+ 320:Display/GUI/GUI_Paint.c **** 
+ 321:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 322:Display/GUI/GUI_Paint.c **** function:	Draw a rectangle
+ 323:Display/GUI/GUI_Paint.c **** parameter:
+ 324:Display/GUI/GUI_Paint.c ****     Xstart ：Rectangular  Starting Xpoint point coordinates
+ 325:Display/GUI/GUI_Paint.c ****     Ystart ：Rectangular  Starting Xpoint point coordinates
+ 326:Display/GUI/GUI_Paint.c ****     Xend   ：Rectangular  End point Xpoint coordinate
+ 327:Display/GUI/GUI_Paint.c ****     Yend   ：Rectangular  End point Ypoint coordinate
+ 328:Display/GUI/GUI_Paint.c ****     Color  ：The color of the Rectangular segment
+ 329:Display/GUI/GUI_Paint.c ****     Filled : Whether it is filled--- 1 solid 0：empty
+ 330:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 331:Display/GUI/GUI_Paint.c **** void Paint_DrawRectangle(UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend,
+ 332:Display/GUI/GUI_Paint.c ****                          UWORD Color, DRAW_FILL Filled, DOT_PIXEL Dot_Pixel)
+ 333:Display/GUI/GUI_Paint.c **** {
+ 1068              		.loc 1 333 0
+ 1069              		.cfi_startproc
+ 1070              		@ args = 12, pretend = 0, frame = 0
+ 1071              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1072              	.LVL119:
+ 1073 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 1074              	.LCFI15:
+ 1075              		.cfi_def_cfa_offset 32
+ 1076              		.cfi_offset 4, -32
+ 1077              		.cfi_offset 5, -28
+ 1078              		.cfi_offset 6, -24
+ 1079              		.cfi_offset 7, -20
+ 1080              		.cfi_offset 8, -16
+ 1081              		.cfi_offset 9, -12
+ 1082              		.cfi_offset 10, -8
+ 1083              		.cfi_offset 14, -4
+ 1084 0004 84B0     		sub	sp, sp, #16
+ 1085              	.LCFI16:
+ 1086              		.cfi_def_cfa_offset 48
+ 1087 0006 0C46     		mov	r4, r1
+ 1088 0008 1F46     		mov	r7, r3
+ 1089 000a BDF83080 		ldrh	r8, [sp, #48]
+ 1090 000e 9DF83410 		ldrb	r1, [sp, #52]	@ zero_extendqisi2
+ 1091              	.LVL120:
+ 1092 0012 9DF83890 		ldrb	r9, [sp, #56]	@ zero_extendqisi2
+ 334:Display/GUI/GUI_Paint.c ****     if (Xstart > Paint.Width || Ystart > Paint.Height ||
+ARM GAS  /tmp/cceOWye5.s 			page 27
+
+
+ 1093              		.loc 1 334 0
+ 1094 0016 2C4B     		ldr	r3, .L111
+ 1095              	.LVL121:
+ 1096 0018 9B88     		ldrh	r3, [r3, #4]
+ 1097 001a 8342     		cmp	r3, r0
+ 1098 001c 3DD3     		bcc	.L103
+ 1099 001e 0546     		mov	r5, r0
+ 1100 0020 1646     		mov	r6, r2
+ 1101              		.loc 1 334 0 is_stmt 0 discriminator 1
+ 1102 0022 294A     		ldr	r2, .L111
+ 1103              	.LVL122:
+ 1104 0024 D288     		ldrh	r2, [r2, #6]
+ 1105 0026 A242     		cmp	r2, r4
+ 1106 0028 37D3     		bcc	.L103
+ 1107              		.loc 1 334 0 discriminator 2
+ 1108 002a B342     		cmp	r3, r6
+ 1109 002c 35D3     		bcc	.L103
+ 335:Display/GUI/GUI_Paint.c ****         Xend > Paint.Width || Yend > Paint.Height) {
+ 1110              		.loc 1 335 0 is_stmt 1
+ 1111 002e BA42     		cmp	r2, r7
+ 1112 0030 33D3     		bcc	.L103
+ 336:Display/GUI/GUI_Paint.c ****         Debug("Input exceeds the normal display range\r\n");
+ 337:Display/GUI/GUI_Paint.c ****         return;
+ 338:Display/GUI/GUI_Paint.c ****     }
+ 339:Display/GUI/GUI_Paint.c **** 
+ 340:Display/GUI/GUI_Paint.c ****     if (Filled ) {
+ 1113              		.loc 1 340 0
+ 1114 0032 0029     		cmp	r1, #0
+ 1115 0034 45D1     		bne	.L106
+ 341:Display/GUI/GUI_Paint.c ****         UWORD Ypoint;
+ 342:Display/GUI/GUI_Paint.c ****         for(Ypoint = Ystart; Ypoint < Yend; Ypoint++) {
+ 343:Display/GUI/GUI_Paint.c ****             Paint_DrawLine(Xstart, Ypoint, Xend, Ypoint, Color , LINE_STYLE_SOLID, Dot_Pixel);
+ 344:Display/GUI/GUI_Paint.c ****         }
+ 345:Display/GUI/GUI_Paint.c ****     } else {
+ 346:Display/GUI/GUI_Paint.c ****         Paint_DrawLine(Xstart, Ystart, Xend, Ystart, Color , LINE_STYLE_SOLID, Dot_Pixel);
+ 1116              		.loc 1 346 0
+ 1117 0036 CDF80890 		str	r9, [sp, #8]
+ 1118 003a 4FF0000A 		mov	r10, #0
+ 1119 003e CDF804A0 		str	r10, [sp, #4]
+ 1120 0042 CDF80080 		str	r8, [sp]
+ 1121 0046 2346     		mov	r3, r4
+ 1122 0048 3246     		mov	r2, r6
+ 1123 004a 2146     		mov	r1, r4
+ 1124 004c FFF7FEFF 		bl	Paint_DrawLine
+ 1125              	.LVL123:
+ 347:Display/GUI/GUI_Paint.c ****         Paint_DrawLine(Xstart, Ystart, Xstart, Yend, Color , LINE_STYLE_SOLID, Dot_Pixel);
+ 1126              		.loc 1 347 0
+ 1127 0050 CDF80890 		str	r9, [sp, #8]
+ 1128 0054 CDF804A0 		str	r10, [sp, #4]
+ 1129 0058 CDF80080 		str	r8, [sp]
+ 1130 005c 3B46     		mov	r3, r7
+ 1131 005e 2A46     		mov	r2, r5
+ 1132 0060 2146     		mov	r1, r4
+ 1133 0062 2846     		mov	r0, r5
+ 1134 0064 FFF7FEFF 		bl	Paint_DrawLine
+ 1135              	.LVL124:
+ 348:Display/GUI/GUI_Paint.c ****         Paint_DrawLine(Xend, Yend, Xend, Ystart, Color , LINE_STYLE_SOLID, Dot_Pixel);
+ARM GAS  /tmp/cceOWye5.s 			page 28
+
+
+ 1136              		.loc 1 348 0
+ 1137 0068 CDF80890 		str	r9, [sp, #8]
+ 1138 006c CDF804A0 		str	r10, [sp, #4]
+ 1139 0070 CDF80080 		str	r8, [sp]
+ 1140 0074 2346     		mov	r3, r4
+ 1141 0076 3246     		mov	r2, r6
+ 1142 0078 3946     		mov	r1, r7
+ 1143 007a 3046     		mov	r0, r6
+ 1144 007c FFF7FEFF 		bl	Paint_DrawLine
+ 1145              	.LVL125:
+ 349:Display/GUI/GUI_Paint.c ****         Paint_DrawLine(Xend, Yend, Xstart, Yend, Color , LINE_STYLE_SOLID, Dot_Pixel);
+ 1146              		.loc 1 349 0
+ 1147 0080 CDF80890 		str	r9, [sp, #8]
+ 1148 0084 CDF804A0 		str	r10, [sp, #4]
+ 1149 0088 CDF80080 		str	r8, [sp]
+ 1150 008c 3B46     		mov	r3, r7
+ 1151 008e 2A46     		mov	r2, r5
+ 1152 0090 3946     		mov	r1, r7
+ 1153 0092 3046     		mov	r0, r6
+ 1154 0094 FFF7FEFF 		bl	Paint_DrawLine
+ 1155              	.LVL126:
+ 1156 0098 02E0     		b	.L102
+ 1157              	.LVL127:
+ 1158              	.L103:
+ 1159              	.LBB15:
+ 336:Display/GUI/GUI_Paint.c ****         return;
+ 1160              		.loc 1 336 0
+ 1161 009a 0C48     		ldr	r0, .L111+4
+ 1162              	.LVL128:
+ 1163 009c FFF7FEFF 		bl	puts
+ 1164              	.LVL129:
+ 1165              	.L102:
+ 1166              	.LBE15:
+ 350:Display/GUI/GUI_Paint.c ****     }
+ 351:Display/GUI/GUI_Paint.c **** }
+ 1167              		.loc 1 351 0
+ 1168 00a0 04B0     		add	sp, sp, #16
+ 1169              	.LCFI17:
+ 1170              		.cfi_remember_state
+ 1171              		.cfi_def_cfa_offset 32
+ 1172              		@ sp needed
+ 1173 00a2 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 1174              	.LVL130:
+ 1175              	.L108:
+ 1176              	.LCFI18:
+ 1177              		.cfi_restore_state
+ 1178              	.LBB16:
+ 343:Display/GUI/GUI_Paint.c ****         }
+ 1179              		.loc 1 343 0 discriminator 3
+ 1180 00a6 CDF80890 		str	r9, [sp, #8]
+ 1181 00aa 0023     		movs	r3, #0
+ 1182 00ac 0193     		str	r3, [sp, #4]
+ 1183 00ae CDF80080 		str	r8, [sp]
+ 1184 00b2 2346     		mov	r3, r4
+ 1185 00b4 3246     		mov	r2, r6
+ 1186 00b6 2146     		mov	r1, r4
+ 1187 00b8 2846     		mov	r0, r5
+ARM GAS  /tmp/cceOWye5.s 			page 29
+
+
+ 1188 00ba FFF7FEFF 		bl	Paint_DrawLine
+ 1189              	.LVL131:
+ 342:Display/GUI/GUI_Paint.c ****             Paint_DrawLine(Xstart, Ypoint, Xend, Ypoint, Color , LINE_STYLE_SOLID, Dot_Pixel);
+ 1190              		.loc 1 342 0 discriminator 3
+ 1191 00be 0134     		adds	r4, r4, #1
+ 1192              	.LVL132:
+ 1193 00c0 A4B2     		uxth	r4, r4
+ 1194              	.LVL133:
+ 1195              	.L106:
+ 342:Display/GUI/GUI_Paint.c ****             Paint_DrawLine(Xstart, Ypoint, Xend, Ypoint, Color , LINE_STYLE_SOLID, Dot_Pixel);
+ 1196              		.loc 1 342 0 is_stmt 0 discriminator 1
+ 1197 00c2 BC42     		cmp	r4, r7
+ 1198 00c4 EFD3     		bcc	.L108
+ 1199 00c6 EBE7     		b	.L102
+ 1200              	.L112:
+ 1201              		.align	2
+ 1202              	.L111:
+ 1203 00c8 00000000 		.word	Paint
+ 1204 00cc 00000000 		.word	.LC12
+ 1205              	.LBE16:
+ 1206              		.cfi_endproc
+ 1207              	.LFE132:
+ 1209              		.section	.text.Paint_DrawCircle,"ax",%progbits
+ 1210              		.align	1
+ 1211              		.global	Paint_DrawCircle
+ 1212              		.syntax unified
+ 1213              		.thumb
+ 1214              		.thumb_func
+ 1215              		.fpu fpv4-sp-d16
+ 1217              	Paint_DrawCircle:
+ 1218              	.LFB133:
+ 352:Display/GUI/GUI_Paint.c **** 
+ 353:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 354:Display/GUI/GUI_Paint.c **** function:	Use the 8-point method to draw a circle of the
+ 355:Display/GUI/GUI_Paint.c ****             specified size at the specified position->
+ 356:Display/GUI/GUI_Paint.c **** parameter:
+ 357:Display/GUI/GUI_Paint.c ****     X_Center  ：Center X coordinate
+ 358:Display/GUI/GUI_Paint.c ****     Y_Center  ：Center Y coordinate
+ 359:Display/GUI/GUI_Paint.c ****     Radius    ：circle Radius
+ 360:Display/GUI/GUI_Paint.c ****     Color     ：The color of the ：circle segment
+ 361:Display/GUI/GUI_Paint.c ****     Filled    : Whether it is filled: 1 filling 0：Do not
+ 362:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 363:Display/GUI/GUI_Paint.c **** void Paint_DrawCircle(UWORD X_Center, UWORD Y_Center, UWORD Radius,
+ 364:Display/GUI/GUI_Paint.c ****                       UWORD Color, DRAW_FILL  Draw_Fill , DOT_PIXEL Dot_Pixel)
+ 365:Display/GUI/GUI_Paint.c **** {
+ 1219              		.loc 1 365 0 is_stmt 1
+ 1220              		.cfi_startproc
+ 1221              		@ args = 8, pretend = 0, frame = 32
+ 1222              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1223              	.LVL134:
+ 1224 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1225              	.LCFI19:
+ 1226              		.cfi_def_cfa_offset 36
+ 1227              		.cfi_offset 4, -36
+ 1228              		.cfi_offset 5, -32
+ 1229              		.cfi_offset 6, -28
+ 1230              		.cfi_offset 7, -24
+ARM GAS  /tmp/cceOWye5.s 			page 30
+
+
+ 1231              		.cfi_offset 8, -20
+ 1232              		.cfi_offset 9, -16
+ 1233              		.cfi_offset 10, -12
+ 1234              		.cfi_offset 11, -8
+ 1235              		.cfi_offset 14, -4
+ 1236 0004 8BB0     		sub	sp, sp, #44
+ 1237              	.LCFI20:
+ 1238              		.cfi_def_cfa_offset 80
+ 1239 0006 0393     		str	r3, [sp, #12]
+ 1240 0008 9DF85430 		ldrb	r3, [sp, #84]	@ zero_extendqisi2
+ 1241              	.LVL135:
+ 1242 000c 0493     		str	r3, [sp, #16]
+ 366:Display/GUI/GUI_Paint.c ****     if (X_Center > Paint.Width || Y_Center >= Paint.Height) {
+ 1243              		.loc 1 366 0
+ 1244 000e 944B     		ldr	r3, .L131
+ 1245 0010 9B88     		ldrh	r3, [r3, #4]
+ 1246 0012 8342     		cmp	r3, r0
+ 1247 0014 15D3     		bcc	.L114
+ 1248 0016 8346     		mov	fp, r0
+ 1249 0018 8946     		mov	r9, r1
+ 1250              		.loc 1 366 0 is_stmt 0 discriminator 1
+ 1251 001a 914B     		ldr	r3, .L131
+ 1252 001c DB88     		ldrh	r3, [r3, #6]
+ 1253 001e 8B42     		cmp	r3, r1
+ 1254 0020 0FD9     		bls	.L114
+ 1255              	.LVL136:
+ 367:Display/GUI/GUI_Paint.c ****         Debug("Paint_DrawCircle Input exceeds the normal display range\r\n");
+ 368:Display/GUI/GUI_Paint.c ****         return;
+ 369:Display/GUI/GUI_Paint.c ****     }
+ 370:Display/GUI/GUI_Paint.c **** 
+ 371:Display/GUI/GUI_Paint.c ****     //Draw a circle from(0, R) as a starting point
+ 372:Display/GUI/GUI_Paint.c ****     int16_t XCurrent, YCurrent;
+ 373:Display/GUI/GUI_Paint.c ****     XCurrent = 0;
+ 374:Display/GUI/GUI_Paint.c ****     YCurrent = Radius;
+ 1256              		.loc 1 374 0 is_stmt 1
+ 1257 0022 13B2     		sxth	r3, r2
+ 1258 0024 0593     		str	r3, [sp, #20]
+ 1259              	.LVL137:
+ 375:Display/GUI/GUI_Paint.c **** 
+ 376:Display/GUI/GUI_Paint.c ****     //Cumulative error,judge the next point of the logo
+ 377:Display/GUI/GUI_Paint.c ****     int16_t Esp = 3 - (Radius << 1 );
+ 1260              		.loc 1 377 0
+ 1261 0026 5200     		lsls	r2, r2, #1
+ 1262              	.LVL138:
+ 1263 0028 92B2     		uxth	r2, r2
+ 1264 002a C2F10302 		rsb	r2, r2, #3
+ 1265 002e 13B2     		sxth	r3, r2
+ 1266              	.LVL139:
+ 1267 0030 0793     		str	r3, [sp, #28]
+ 1268              	.LVL140:
+ 378:Display/GUI/GUI_Paint.c **** 
+ 379:Display/GUI/GUI_Paint.c ****     int16_t sCountY;
+ 380:Display/GUI/GUI_Paint.c ****     if (Draw_Fill == DRAW_FILL_FULL) {
+ 1269              		.loc 1 380 0
+ 1270 0032 9DF85030 		ldrb	r3, [sp, #80]	@ zero_extendqisi2
+ 1271 0036 012B     		cmp	r3, #1
+ 1272 0038 00F08E80 		beq	.L126
+ARM GAS  /tmp/cceOWye5.s 			page 31
+
+
+ 373:Display/GUI/GUI_Paint.c ****     YCurrent = Radius;
+ 1273              		.loc 1 373 0
+ 1274 003c 4FF00008 		mov	r8, #0
+ 1275 0040 9BE0     		b	.L118
+ 1276              	.LVL141:
+ 1277              	.L114:
+ 1278              	.LBB17:
+ 367:Display/GUI/GUI_Paint.c ****         return;
+ 1279              		.loc 1 367 0
+ 1280 0042 8848     		ldr	r0, .L131+4
+ 1281              	.LVL142:
+ 1282 0044 FFF7FEFF 		bl	puts
+ 1283              	.LVL143:
+ 1284              	.L113:
+ 1285              	.LBE17:
+ 381:Display/GUI/GUI_Paint.c ****         while (XCurrent <= YCurrent ) { //Realistic circles
+ 382:Display/GUI/GUI_Paint.c ****             for (sCountY = XCurrent; sCountY <= YCurrent; sCountY ++ ) {
+ 383:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + XCurrent, Y_Center + sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 384:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center - XCurrent, Y_Center + sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 385:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center - sCountY, Y_Center + XCurrent, Color, DOT_PIXEL_DFT, DOT_
+ 386:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center - sCountY, Y_Center - XCurrent, Color, DOT_PIXEL_DFT, DOT_
+ 387:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center - XCurrent, Y_Center - sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 388:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + XCurrent, Y_Center - sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 389:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + sCountY, Y_Center - XCurrent, Color, DOT_PIXEL_DFT, DOT_
+ 390:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + sCountY, Y_Center + XCurrent, Color, DOT_PIXEL_DFT, DOT_
+ 391:Display/GUI/GUI_Paint.c ****             }
+ 392:Display/GUI/GUI_Paint.c ****             if (Esp < 0 )
+ 393:Display/GUI/GUI_Paint.c ****                 Esp += 4 * XCurrent + 6;
+ 394:Display/GUI/GUI_Paint.c ****             else {
+ 395:Display/GUI/GUI_Paint.c ****                 Esp += 10 + 4 * (XCurrent - YCurrent );
+ 396:Display/GUI/GUI_Paint.c ****                 YCurrent --;
+ 397:Display/GUI/GUI_Paint.c ****             }
+ 398:Display/GUI/GUI_Paint.c ****             XCurrent ++;
+ 399:Display/GUI/GUI_Paint.c ****         }
+ 400:Display/GUI/GUI_Paint.c ****     } else { //Draw a hollow circle
+ 401:Display/GUI/GUI_Paint.c ****         while (XCurrent <= YCurrent ) {
+ 402:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center + XCurrent, Y_Center + YCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 403:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center - XCurrent, Y_Center + YCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 404:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center - YCurrent, Y_Center + XCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 405:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center - YCurrent, Y_Center - XCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 406:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center - XCurrent, Y_Center - YCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 407:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center + XCurrent, Y_Center - YCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 408:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center + YCurrent, Y_Center - XCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 409:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center + YCurrent, Y_Center + XCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 410:Display/GUI/GUI_Paint.c **** 
+ 411:Display/GUI/GUI_Paint.c ****             if (Esp < 0 )
+ 412:Display/GUI/GUI_Paint.c ****                 Esp += 4 * XCurrent + 6;
+ 413:Display/GUI/GUI_Paint.c ****             else {
+ 414:Display/GUI/GUI_Paint.c ****                 Esp += 10 + 4 * (XCurrent - YCurrent );
+ 415:Display/GUI/GUI_Paint.c ****                 YCurrent --;
+ 416:Display/GUI/GUI_Paint.c ****             }
+ 417:Display/GUI/GUI_Paint.c ****             XCurrent ++;
+ 418:Display/GUI/GUI_Paint.c ****         }
+ 419:Display/GUI/GUI_Paint.c ****     }
+ 420:Display/GUI/GUI_Paint.c **** }
+ 1286              		.loc 1 420 0
+ 1287 0048 0BB0     		add	sp, sp, #44
+ARM GAS  /tmp/cceOWye5.s 			page 32
+
+
+ 1288              	.LCFI21:
+ 1289              		.cfi_remember_state
+ 1290              		.cfi_def_cfa_offset 36
+ 1291              		@ sp needed
+ 1292 004a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1293              	.LVL144:
+ 1294              	.L119:
+ 1295              	.LCFI22:
+ 1296              		.cfi_restore_state
+ 383:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center - XCurrent, Y_Center + sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 1297              		.loc 1 383 0 discriminator 3
+ 1298 004e BDF81860 		ldrh	r6, [sp, #24]
+ 1299 0052 06EB0A03 		add	r3, r6, r10
+ 1300 0056 98B2     		uxth	r0, r3
+ 1301 0058 ADB2     		uxth	r5, r5
+ 1302 005a 05EB0907 		add	r7, r5, r9
+ 1303 005e BFB2     		uxth	r7, r7
+ 1304 0060 0124     		movs	r4, #1
+ 1305 0062 0094     		str	r4, [sp]
+ 1306 0064 2346     		mov	r3, r4
+ 1307 0066 DDF80CB0 		ldr	fp, [sp, #12]
+ 1308 006a 5A46     		mov	r2, fp
+ 1309 006c 3946     		mov	r1, r7
+ 1310 006e 0490     		str	r0, [sp, #16]
+ 1311 0070 FFF7FEFF 		bl	Paint_DrawPoint
+ 1312              	.LVL145:
+ 384:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center - sCountY, Y_Center + XCurrent, Color, DOT_PIXEL_DFT, DOT_
+ 1313              		.loc 1 384 0 discriminator 3
+ 1314 0074 AAEB0608 		sub	r8, r10, r6
+ 1315 0078 1FFA88F8 		uxth	r8, r8
+ 1316 007c 0094     		str	r4, [sp]
+ 1317 007e 2346     		mov	r3, r4
+ 1318 0080 CDF80CB0 		str	fp, [sp, #12]
+ 1319 0084 5A46     		mov	r2, fp
+ 1320 0086 3946     		mov	r1, r7
+ 1321 0088 4046     		mov	r0, r8
+ 1322 008a FFF7FEFF 		bl	Paint_DrawPoint
+ 1323              	.LVL146:
+ 385:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center - sCountY, Y_Center - XCurrent, Color, DOT_PIXEL_DFT, DOT_
+ 1324              		.loc 1 385 0 discriminator 3
+ 1325 008e AAEB050B 		sub	fp, r10, r5
+ 1326 0092 1FFA8BFB 		uxth	fp, fp
+ 1327 0096 06EB0907 		add	r7, r6, r9
+ 1328 009a BFB2     		uxth	r7, r7
+ 1329 009c 0094     		str	r4, [sp]
+ 1330 009e 2346     		mov	r3, r4
+ 1331 00a0 039A     		ldr	r2, [sp, #12]
+ 1332 00a2 3946     		mov	r1, r7
+ 1333 00a4 5846     		mov	r0, fp
+ 1334 00a6 FFF7FEFF 		bl	Paint_DrawPoint
+ 1335              	.LVL147:
+ 386:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center - XCurrent, Y_Center - sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 1336              		.loc 1 386 0 discriminator 3
+ 1337 00aa A9EB0606 		sub	r6, r9, r6
+ 1338 00ae B6B2     		uxth	r6, r6
+ 1339 00b0 0094     		str	r4, [sp]
+ 1340 00b2 2346     		mov	r3, r4
+ARM GAS  /tmp/cceOWye5.s 			page 33
+
+
+ 1341 00b4 039A     		ldr	r2, [sp, #12]
+ 1342 00b6 3146     		mov	r1, r6
+ 1343 00b8 5846     		mov	r0, fp
+ 1344 00ba FFF7FEFF 		bl	Paint_DrawPoint
+ 1345              	.LVL148:
+ 387:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + XCurrent, Y_Center - sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 1346              		.loc 1 387 0 discriminator 3
+ 1347 00be A9EB050B 		sub	fp, r9, r5
+ 1348 00c2 1FFA8BFB 		uxth	fp, fp
+ 1349 00c6 0094     		str	r4, [sp]
+ 1350 00c8 2346     		mov	r3, r4
+ 1351 00ca 039A     		ldr	r2, [sp, #12]
+ 1352 00cc 5946     		mov	r1, fp
+ 1353 00ce 4046     		mov	r0, r8
+ 1354 00d0 FFF7FEFF 		bl	Paint_DrawPoint
+ 1355              	.LVL149:
+ 388:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + sCountY, Y_Center - XCurrent, Color, DOT_PIXEL_DFT, DOT_
+ 1356              		.loc 1 388 0 discriminator 3
+ 1357 00d4 0094     		str	r4, [sp]
+ 1358 00d6 2346     		mov	r3, r4
+ 1359 00d8 039A     		ldr	r2, [sp, #12]
+ 1360 00da 5946     		mov	r1, fp
+ 1361 00dc 0498     		ldr	r0, [sp, #16]
+ 1362 00de FFF7FEFF 		bl	Paint_DrawPoint
+ 1363              	.LVL150:
+ 389:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + sCountY, Y_Center + XCurrent, Color, DOT_PIXEL_DFT, DOT_
+ 1364              		.loc 1 389 0 discriminator 3
+ 1365 00e2 05EB0A08 		add	r8, r5, r10
+ 1366 00e6 1FFA88F8 		uxth	r8, r8
+ 1367 00ea 0094     		str	r4, [sp]
+ 1368 00ec 2346     		mov	r3, r4
+ 1369 00ee DDF80CB0 		ldr	fp, [sp, #12]
+ 1370 00f2 5A46     		mov	r2, fp
+ 1371 00f4 3146     		mov	r1, r6
+ 1372 00f6 4046     		mov	r0, r8
+ 1373 00f8 FFF7FEFF 		bl	Paint_DrawPoint
+ 1374              	.LVL151:
+ 390:Display/GUI/GUI_Paint.c ****             }
+ 1375              		.loc 1 390 0 discriminator 3
+ 1376 00fc 0094     		str	r4, [sp]
+ 1377 00fe 2346     		mov	r3, r4
+ 1378 0100 5A46     		mov	r2, fp
+ 1379 0102 3946     		mov	r1, r7
+ 1380 0104 4046     		mov	r0, r8
+ 1381 0106 FFF7FEFF 		bl	Paint_DrawPoint
+ 1382              	.LVL152:
+ 382:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + XCurrent, Y_Center + sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 1383              		.loc 1 382 0 discriminator 3
+ 1384 010a 2544     		add	r5, r5, r4
+ 1385              	.LVL153:
+ 1386 010c 2DB2     		sxth	r5, r5
+ 1387              	.LVL154:
+ 1388              	.L122:
+ 382:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + XCurrent, Y_Center + sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 1389              		.loc 1 382 0 is_stmt 0 discriminator 1
+ 1390 010e 059B     		ldr	r3, [sp, #20]
+ 1391 0110 AB42     		cmp	r3, r5
+ARM GAS  /tmp/cceOWye5.s 			page 34
+
+
+ 1392 0112 9CDA     		bge	.L119
+ 392:Display/GUI/GUI_Paint.c ****                 Esp += 4 * XCurrent + 6;
+ 1393              		.loc 1 392 0 is_stmt 1
+ 1394 0114 079B     		ldr	r3, [sp, #28]
+ 1395 0116 002B     		cmp	r3, #0
+ 1396 0118 15DB     		blt	.L129
+ 395:Display/GUI/GUI_Paint.c ****                 YCurrent --;
+ 1397              		.loc 1 395 0
+ 1398 011a 069B     		ldr	r3, [sp, #24]
+ 1399 011c 059A     		ldr	r2, [sp, #20]
+ 1400 011e 9B1A     		subs	r3, r3, r2
+ 1401 0120 0799     		ldr	r1, [sp, #28]
+ 1402 0122 01EB8303 		add	r3, r1, r3, lsl #2
+ 1403 0126 0A33     		adds	r3, r3, #10
+ 1404 0128 1BB2     		sxth	r3, r3
+ 1405 012a 0793     		str	r3, [sp, #28]
+ 1406              	.LVL155:
+ 396:Display/GUI/GUI_Paint.c ****             }
+ 1407              		.loc 1 396 0
+ 1408 012c 531E     		subs	r3, r2, #1
+ 1409 012e 1BB2     		sxth	r3, r3
+ 1410 0130 0593     		str	r3, [sp, #20]
+ 1411              	.LVL156:
+ 1412              	.L121:
+ 398:Display/GUI/GUI_Paint.c ****         }
+ 1413              		.loc 1 398 0
+ 1414 0132 069B     		ldr	r3, [sp, #24]
+ 1415 0134 0133     		adds	r3, r3, #1
+ 1416 0136 1BB2     		sxth	r3, r3
+ 1417 0138 0693     		str	r3, [sp, #24]
+ 1418              	.LVL157:
+ 1419              	.L117:
+ 381:Display/GUI/GUI_Paint.c ****             for (sCountY = XCurrent; sCountY <= YCurrent; sCountY ++ ) {
+ 1420              		.loc 1 381 0
+ 1421 013a 069B     		ldr	r3, [sp, #24]
+ 1422 013c 059A     		ldr	r2, [sp, #20]
+ 1423 013e 9342     		cmp	r3, r2
+ 1424 0140 82DC     		bgt	.L113
+ 382:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + XCurrent, Y_Center + sCountY, Color, DOT_PIXEL_DFT, DOT_
+ 1425              		.loc 1 382 0
+ 1426 0142 069D     		ldr	r5, [sp, #24]
+ 1427 0144 E3E7     		b	.L122
+ 1428              	.LVL158:
+ 1429              	.L129:
+ 393:Display/GUI/GUI_Paint.c ****             else {
+ 1430              		.loc 1 393 0
+ 1431 0146 069B     		ldr	r3, [sp, #24]
+ 1432 0148 9B00     		lsls	r3, r3, #2
+ 1433 014a 9BB2     		uxth	r3, r3
+ 1434 014c 079A     		ldr	r2, [sp, #28]
+ 1435 014e 1344     		add	r3, r3, r2
+ 1436 0150 0633     		adds	r3, r3, #6
+ 1437 0152 1BB2     		sxth	r3, r3
+ 1438 0154 0793     		str	r3, [sp, #28]
+ 1439              	.LVL159:
+ 1440 0156 ECE7     		b	.L121
+ 1441              	.LVL160:
+ARM GAS  /tmp/cceOWye5.s 			page 35
+
+
+ 1442              	.L126:
+ 373:Display/GUI/GUI_Paint.c ****     YCurrent = Radius;
+ 1443              		.loc 1 373 0
+ 1444 0158 0023     		movs	r3, #0
+ 1445 015a 0693     		str	r3, [sp, #24]
+ 1446 015c 8246     		mov	r10, r0
+ 1447 015e ECE7     		b	.L117
+ 1448              	.LVL161:
+ 1449              	.L130:
+ 412:Display/GUI/GUI_Paint.c ****             else {
+ 1450              		.loc 1 412 0
+ 1451 0160 4FEA8508 		lsl	r8, r5, #2
+ 1452              	.LVL162:
+ 1453 0164 1FFA88F8 		uxth	r8, r8
+ 1454 0168 9844     		add	r8, r8, r3
+ 1455 016a 08F10608 		add	r8, r8, #6
+ 1456 016e 0FFA88F3 		sxth	r3, r8
+ 1457 0172 0793     		str	r3, [sp, #28]
+ 1458              	.LVL163:
+ 1459              	.L124:
+ 417:Display/GUI/GUI_Paint.c ****         }
+ 1460              		.loc 1 417 0
+ 1461 0174 0135     		adds	r5, r5, #1
+ 1462              	.LVL164:
+ 1463 0176 0FFA85F8 		sxth	r8, r5
+ 1464              	.LVL165:
+ 1465              	.L118:
+ 401:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center + XCurrent, Y_Center + YCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 1466              		.loc 1 401 0
+ 1467 017a 059B     		ldr	r3, [sp, #20]
+ 1468 017c 9845     		cmp	r8, r3
+ 1469 017e 3FF763AF 		bgt	.L113
+ 402:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center - XCurrent, Y_Center + YCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 1470              		.loc 1 402 0
+ 1471 0182 1FFA88F5 		uxth	r5, r8
+ 1472 0186 05EB0B03 		add	r3, r5, fp
+ 1473 018a 98B2     		uxth	r0, r3
+ 1474 018c BDF81460 		ldrh	r6, [sp, #20]
+ 1475 0190 06EB0907 		add	r7, r6, r9
+ 1476 0194 BFB2     		uxth	r7, r7
+ 1477 0196 0124     		movs	r4, #1
+ 1478 0198 0094     		str	r4, [sp]
+ 1479 019a 049B     		ldr	r3, [sp, #16]
+ 1480 019c DDF80CA0 		ldr	r10, [sp, #12]
+ 1481 01a0 5246     		mov	r2, r10
+ 1482 01a2 3946     		mov	r1, r7
+ 1483 01a4 0690     		str	r0, [sp, #24]
+ 1484 01a6 FFF7FEFF 		bl	Paint_DrawPoint
+ 1485              	.LVL166:
+ 403:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center - YCurrent, Y_Center + XCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 1486              		.loc 1 403 0
+ 1487 01aa ABEB0503 		sub	r3, fp, r5
+ 1488 01ae 9BB2     		uxth	r3, r3
+ 1489 01b0 1846     		mov	r0, r3
+ 1490 01b2 0094     		str	r4, [sp]
+ 1491 01b4 049B     		ldr	r3, [sp, #16]
+ 1492 01b6 CDF80CA0 		str	r10, [sp, #12]
+ARM GAS  /tmp/cceOWye5.s 			page 36
+
+
+ 1493 01ba 5246     		mov	r2, r10
+ 1494 01bc 3946     		mov	r1, r7
+ 1495 01be 0890     		str	r0, [sp, #32]
+ 1496 01c0 FFF7FEFF 		bl	Paint_DrawPoint
+ 1497              	.LVL167:
+ 404:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center - YCurrent, Y_Center - XCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 1498              		.loc 1 404 0
+ 1499 01c4 ABEB060A 		sub	r10, fp, r6
+ 1500 01c8 1FFA8AFA 		uxth	r10, r10
+ 1501 01cc 05EB0903 		add	r3, r5, r9
+ 1502 01d0 99B2     		uxth	r1, r3
+ 1503 01d2 0094     		str	r4, [sp]
+ 1504 01d4 049B     		ldr	r3, [sp, #16]
+ 1505 01d6 039A     		ldr	r2, [sp, #12]
+ 1506 01d8 0991     		str	r1, [sp, #36]
+ 1507 01da 5046     		mov	r0, r10
+ 1508 01dc FFF7FEFF 		bl	Paint_DrawPoint
+ 1509              	.LVL168:
+ 405:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center - XCurrent, Y_Center - YCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 1510              		.loc 1 405 0
+ 1511 01e0 A9EB0507 		sub	r7, r9, r5
+ 1512 01e4 BFB2     		uxth	r7, r7
+ 1513 01e6 0094     		str	r4, [sp]
+ 1514 01e8 049B     		ldr	r3, [sp, #16]
+ 1515 01ea 039A     		ldr	r2, [sp, #12]
+ 1516 01ec 3946     		mov	r1, r7
+ 1517 01ee 5046     		mov	r0, r10
+ 1518 01f0 FFF7FEFF 		bl	Paint_DrawPoint
+ 1519              	.LVL169:
+ 406:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center + XCurrent, Y_Center - YCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 1520              		.loc 1 406 0
+ 1521 01f4 A9EB060A 		sub	r10, r9, r6
+ 1522 01f8 1FFA8AFA 		uxth	r10, r10
+ 1523 01fc 0094     		str	r4, [sp]
+ 1524 01fe 049B     		ldr	r3, [sp, #16]
+ 1525 0200 039A     		ldr	r2, [sp, #12]
+ 1526 0202 5146     		mov	r1, r10
+ 1527 0204 0898     		ldr	r0, [sp, #32]
+ 1528 0206 FFF7FEFF 		bl	Paint_DrawPoint
+ 1529              	.LVL170:
+ 407:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center + YCurrent, Y_Center - XCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 1530              		.loc 1 407 0
+ 1531 020a 0094     		str	r4, [sp]
+ 1532 020c 049B     		ldr	r3, [sp, #16]
+ 1533 020e 039A     		ldr	r2, [sp, #12]
+ 1534 0210 5146     		mov	r1, r10
+ 1535 0212 0698     		ldr	r0, [sp, #24]
+ 1536 0214 FFF7FEFF 		bl	Paint_DrawPoint
+ 1537              	.LVL171:
+ 408:Display/GUI/GUI_Paint.c ****             Paint_DrawPoint(X_Center + YCurrent, Y_Center + XCurrent, Color, Dot_Pixel, DOT_STYLE_D
+ 1538              		.loc 1 408 0
+ 1539 0218 06EB0B0A 		add	r10, r6, fp
+ 1540 021c 1FFA8AFA 		uxth	r10, r10
+ 1541 0220 0094     		str	r4, [sp]
+ 1542 0222 049B     		ldr	r3, [sp, #16]
+ 1543 0224 039A     		ldr	r2, [sp, #12]
+ 1544 0226 3946     		mov	r1, r7
+ARM GAS  /tmp/cceOWye5.s 			page 37
+
+
+ 1545 0228 5046     		mov	r0, r10
+ 1546 022a FFF7FEFF 		bl	Paint_DrawPoint
+ 1547              	.LVL172:
+ 409:Display/GUI/GUI_Paint.c **** 
+ 1548              		.loc 1 409 0
+ 1549 022e 0094     		str	r4, [sp]
+ 1550 0230 049B     		ldr	r3, [sp, #16]
+ 1551 0232 039A     		ldr	r2, [sp, #12]
+ 1552 0234 0999     		ldr	r1, [sp, #36]
+ 1553 0236 5046     		mov	r0, r10
+ 1554 0238 FFF7FEFF 		bl	Paint_DrawPoint
+ 1555              	.LVL173:
+ 411:Display/GUI/GUI_Paint.c ****                 Esp += 4 * XCurrent + 6;
+ 1556              		.loc 1 411 0
+ 1557 023c 079B     		ldr	r3, [sp, #28]
+ 1558 023e 002B     		cmp	r3, #0
+ 1559 0240 8EDB     		blt	.L130
+ 414:Display/GUI/GUI_Paint.c ****                 YCurrent --;
+ 1560              		.loc 1 414 0
+ 1561 0242 059B     		ldr	r3, [sp, #20]
+ 1562 0244 A8EB0308 		sub	r8, r8, r3
+ 1563              	.LVL174:
+ 1564 0248 079B     		ldr	r3, [sp, #28]
+ 1565 024a 03EB8808 		add	r8, r3, r8, lsl #2
+ 1566 024e 08F10A08 		add	r8, r8, #10
+ 1567 0252 0FFA88F3 		sxth	r3, r8
+ 1568 0256 0793     		str	r3, [sp, #28]
+ 1569              	.LVL175:
+ 415:Display/GUI/GUI_Paint.c ****             }
+ 1570              		.loc 1 415 0
+ 1571 0258 013E     		subs	r6, r6, #1
+ 1572 025a 33B2     		sxth	r3, r6
+ 1573 025c 0593     		str	r3, [sp, #20]
+ 1574              	.LVL176:
+ 1575 025e 89E7     		b	.L124
+ 1576              	.L132:
+ 1577              		.align	2
+ 1578              	.L131:
+ 1579 0260 00000000 		.word	Paint
+ 1580 0264 00000000 		.word	.LC13
+ 1581              		.cfi_endproc
+ 1582              	.LFE133:
+ 1584              		.section	.text.Paint_DrawChar,"ax",%progbits
+ 1585              		.align	1
+ 1586              		.global	Paint_DrawChar
+ 1587              		.syntax unified
+ 1588              		.thumb
+ 1589              		.thumb_func
+ 1590              		.fpu fpv4-sp-d16
+ 1592              	Paint_DrawChar:
+ 1593              	.LFB134:
+ 421:Display/GUI/GUI_Paint.c **** 
+ 422:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 423:Display/GUI/GUI_Paint.c **** function:	Show English characters
+ 424:Display/GUI/GUI_Paint.c **** parameter:
+ 425:Display/GUI/GUI_Paint.c ****     Xpoint           ：X coordinate
+ 426:Display/GUI/GUI_Paint.c ****     Ypoint           ：Y coordinate
+ARM GAS  /tmp/cceOWye5.s 			page 38
+
+
+ 427:Display/GUI/GUI_Paint.c ****     Acsii_Char       ：To display the English characters
+ 428:Display/GUI/GUI_Paint.c ****     Font             ：A structure pointer that displays a character size
+ 429:Display/GUI/GUI_Paint.c ****     Color_Background : Select the background color of the English character
+ 430:Display/GUI/GUI_Paint.c ****     Color_Foreground : Select the foreground color of the English character
+ 431:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 432:Display/GUI/GUI_Paint.c **** void Paint_DrawChar(UWORD Xpoint, UWORD Ypoint, const char Acsii_Char,
+ 433:Display/GUI/GUI_Paint.c ****                     sFONT* Font, UWORD Color_Background, UWORD Color_Foreground)
+ 434:Display/GUI/GUI_Paint.c **** {
+ 1594              		.loc 1 434 0
+ 1595              		.cfi_startproc
+ 1596              		@ args = 8, pretend = 0, frame = 0
+ 1597              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1598              	.LVL177:
+ 1599 0000 2DE9F84F 		push	{r3, r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1600              	.LCFI23:
+ 1601              		.cfi_def_cfa_offset 40
+ 1602              		.cfi_offset 3, -40
+ 1603              		.cfi_offset 4, -36
+ 1604              		.cfi_offset 5, -32
+ 1605              		.cfi_offset 6, -28
+ 1606              		.cfi_offset 7, -24
+ 1607              		.cfi_offset 8, -20
+ 1608              		.cfi_offset 9, -16
+ 1609              		.cfi_offset 10, -12
+ 1610              		.cfi_offset 11, -8
+ 1611              		.cfi_offset 14, -4
+ 1612 0004 1F46     		mov	r7, r3
+ 1613 0006 BDF82880 		ldrh	r8, [sp, #40]
+ 1614 000a BDF82CB0 		ldrh	fp, [sp, #44]
+ 435:Display/GUI/GUI_Paint.c ****     UWORD Page, Column;
+ 436:Display/GUI/GUI_Paint.c **** 
+ 437:Display/GUI/GUI_Paint.c ****     if (Xpoint > Paint.Width || Ypoint > Paint.Height) {
+ 1615              		.loc 1 437 0
+ 1616 000e 314B     		ldr	r3, .L150
+ 1617              	.LVL178:
+ 1618 0010 9B88     		ldrh	r3, [r3, #4]
+ 1619 0012 8342     		cmp	r3, r0
+ 1620 0014 15D3     		bcc	.L134
+ 1621 0016 8146     		mov	r9, r0
+ 1622 0018 8A46     		mov	r10, r1
+ 1623              		.loc 1 437 0 is_stmt 0 discriminator 1
+ 1624 001a 2E4B     		ldr	r3, .L150
+ 1625 001c DB88     		ldrh	r3, [r3, #6]
+ 1626 001e 8B42     		cmp	r3, r1
+ 1627 0020 0FD3     		bcc	.L134
+ 438:Display/GUI/GUI_Paint.c ****         Debug("Paint_DrawChar Input exceeds the normal display range\r\n");
+ 439:Display/GUI/GUI_Paint.c ****         return;
+ 440:Display/GUI/GUI_Paint.c ****     }
+ 441:Display/GUI/GUI_Paint.c **** 
+ 442:Display/GUI/GUI_Paint.c ****     uint32_t Char_Offset = (Acsii_Char - ' ') * Font->Height * (Font->Width / 8 + (Font->Width % 8 
+ 1628              		.loc 1 442 0 is_stmt 1
+ 1629 0022 203A     		subs	r2, r2, #32
+ 1630              	.LVL179:
+ 1631 0024 FD88     		ldrh	r5, [r7, #6]
+ 1632 0026 05FB02F2 		mul	r2, r5, r2
+ 1633 002a BD88     		ldrh	r5, [r7, #4]
+ 1634 002c 15F00703 		ands	r3, r5, #7
+ARM GAS  /tmp/cceOWye5.s 			page 39
+
+
+ 1635 0030 18BF     		it	ne
+ 1636 0032 0123     		movne	r3, #1
+ 1637 0034 03EBD503 		add	r3, r3, r5, lsr #3
+ 1638              	.LVL180:
+ 443:Display/GUI/GUI_Paint.c ****     const unsigned char *ptr = &Font->table[Char_Offset];
+ 1639              		.loc 1 443 0
+ 1640 0038 3D68     		ldr	r5, [r7]
+ 1641 003a 03FB0255 		mla	r5, r3, r2, r5
+ 1642              	.LVL181:
+ 444:Display/GUI/GUI_Paint.c **** 
+ 445:Display/GUI/GUI_Paint.c ****     for (Page = 0; Page < Font->Height; Page ++ ) {
+ 1643              		.loc 1 445 0
+ 1644 003e 0026     		movs	r6, #0
+ 1645 0040 43E0     		b	.L137
+ 1646              	.LVL182:
+ 1647              	.L134:
+ 1648              	.LBB18:
+ 438:Display/GUI/GUI_Paint.c ****         return;
+ 1649              		.loc 1 438 0
+ 1650 0042 2548     		ldr	r0, .L150+4
+ 1651              	.LVL183:
+ 1652 0044 FFF7FEFF 		bl	puts
+ 1653              	.LVL184:
+ 1654              	.L133:
+ 1655              	.LBE18:
+ 446:Display/GUI/GUI_Paint.c ****         for (Column = 0; Column < Font->Width; Column ++ ) {
+ 447:Display/GUI/GUI_Paint.c **** 
+ 448:Display/GUI/GUI_Paint.c ****             //To determine whether the font background color and screen background color is consist
+ 449:Display/GUI/GUI_Paint.c ****             if (FONT_BACKGROUND == Color_Background) { //this process is to speed up the scan
+ 450:Display/GUI/GUI_Paint.c ****                 if (*ptr & (0x80 >> (Column % 8)))
+ 451:Display/GUI/GUI_Paint.c ****                     Paint_SetPixel(Xpoint + Column, Ypoint + Page, Color_Foreground);
+ 452:Display/GUI/GUI_Paint.c ****                     // Paint_DrawPoint(Xpoint + Column, Ypoint + Page, Color_Foreground, DOT_PIXEL_
+ 453:Display/GUI/GUI_Paint.c ****             } else {
+ 454:Display/GUI/GUI_Paint.c ****                 if (*ptr & (0x80 >> (Column % 8))) {
+ 455:Display/GUI/GUI_Paint.c ****                     Paint_SetPixel(Xpoint + Column, Ypoint + Page, Color_Foreground);
+ 456:Display/GUI/GUI_Paint.c ****                     // Paint_DrawPoint(Xpoint + Column, Ypoint + Page, Color_Foreground, DOT_PIXEL_
+ 457:Display/GUI/GUI_Paint.c ****                 } else {
+ 458:Display/GUI/GUI_Paint.c ****                     Paint_SetPixel(Xpoint + Column, Ypoint + Page, Color_Background);
+ 459:Display/GUI/GUI_Paint.c ****                     // Paint_DrawPoint(Xpoint + Column, Ypoint + Page, Color_Background, DOT_PIXEL_
+ 460:Display/GUI/GUI_Paint.c ****                 }
+ 461:Display/GUI/GUI_Paint.c ****             }
+ 462:Display/GUI/GUI_Paint.c ****             //One pixel is 8 bits
+ 463:Display/GUI/GUI_Paint.c ****             if (Column % 8 == 7)
+ 464:Display/GUI/GUI_Paint.c ****                 ptr++;
+ 465:Display/GUI/GUI_Paint.c ****         }// Write a line
+ 466:Display/GUI/GUI_Paint.c ****         if (Font->Width % 8 != 0)
+ 467:Display/GUI/GUI_Paint.c ****             ptr++;
+ 468:Display/GUI/GUI_Paint.c ****     }// Write all
+ 469:Display/GUI/GUI_Paint.c **** }
+ 1656              		.loc 1 469 0
+ 1657 0048 BDE8F88F 		pop	{r3, r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1658              	.LVL185:
+ 1659              	.L149:
+ 450:Display/GUI/GUI_Paint.c ****                     Paint_SetPixel(Xpoint + Column, Ypoint + Page, Color_Foreground);
+ 1660              		.loc 1 450 0
+ 1661 004c 2A78     		ldrb	r2, [r5]	@ zero_extendqisi2
+ 1662 004e 04F00701 		and	r1, r4, #7
+ARM GAS  /tmp/cceOWye5.s 			page 40
+
+
+ 1663 0052 8023     		movs	r3, #128
+ 1664 0054 0B41     		asrs	r3, r3, r1
+ 1665 0056 1A42     		tst	r2, r3
+ 1666 0058 12D0     		beq	.L139
+ 451:Display/GUI/GUI_Paint.c ****                     // Paint_DrawPoint(Xpoint + Column, Ypoint + Page, Color_Foreground, DOT_PIXEL_
+ 1667              		.loc 1 451 0
+ 1668 005a 06EB0A01 		add	r1, r6, r10
+ 1669 005e 04EB0900 		add	r0, r4, r9
+ 1670 0062 5A46     		mov	r2, fp
+ 1671 0064 89B2     		uxth	r1, r1
+ 1672 0066 80B2     		uxth	r0, r0
+ 1673 0068 FFF7FEFF 		bl	Paint_SetPixel
+ 1674              	.LVL186:
+ 1675 006c 08E0     		b	.L139
+ 1676              	.L140:
+ 458:Display/GUI/GUI_Paint.c ****                     // Paint_DrawPoint(Xpoint + Column, Ypoint + Page, Color_Background, DOT_PIXEL_
+ 1677              		.loc 1 458 0
+ 1678 006e 06EB0A01 		add	r1, r6, r10
+ 1679 0072 04EB0900 		add	r0, r4, r9
+ 1680 0076 4246     		mov	r2, r8
+ 1681 0078 89B2     		uxth	r1, r1
+ 1682 007a 80B2     		uxth	r0, r0
+ 1683 007c FFF7FEFF 		bl	Paint_SetPixel
+ 1684              	.LVL187:
+ 1685              	.L139:
+ 463:Display/GUI/GUI_Paint.c ****                 ptr++;
+ 1686              		.loc 1 463 0
+ 1687 0080 04F00703 		and	r3, r4, #7
+ 1688 0084 072B     		cmp	r3, #7
+ 1689 0086 18D0     		beq	.L147
+ 1690              	.L141:
+ 446:Display/GUI/GUI_Paint.c **** 
+ 1691              		.loc 1 446 0 discriminator 2
+ 1692 0088 0134     		adds	r4, r4, #1
+ 1693              	.LVL188:
+ 1694 008a A4B2     		uxth	r4, r4
+ 1695              	.LVL189:
+ 1696              	.L144:
+ 446:Display/GUI/GUI_Paint.c **** 
+ 1697              		.loc 1 446 0 is_stmt 0 discriminator 1
+ 1698 008c BB88     		ldrh	r3, [r7, #4]
+ 1699 008e A342     		cmp	r3, r4
+ 1700 0090 15D9     		bls	.L148
+ 449:Display/GUI/GUI_Paint.c ****                 if (*ptr & (0x80 >> (Column % 8)))
+ 1701              		.loc 1 449 0 is_stmt 1
+ 1702 0092 B8F1FF0F 		cmp	r8, #255
+ 1703 0096 D9D0     		beq	.L149
+ 454:Display/GUI/GUI_Paint.c ****                     Paint_SetPixel(Xpoint + Column, Ypoint + Page, Color_Foreground);
+ 1704              		.loc 1 454 0
+ 1705 0098 2A78     		ldrb	r2, [r5]	@ zero_extendqisi2
+ 1706 009a 04F00701 		and	r1, r4, #7
+ 1707 009e 8023     		movs	r3, #128
+ 1708 00a0 0B41     		asrs	r3, r3, r1
+ 1709 00a2 1A42     		tst	r2, r3
+ 1710 00a4 E3D0     		beq	.L140
+ 455:Display/GUI/GUI_Paint.c ****                     // Paint_DrawPoint(Xpoint + Column, Ypoint + Page, Color_Foreground, DOT_PIXEL_
+ 1711              		.loc 1 455 0
+ARM GAS  /tmp/cceOWye5.s 			page 41
+
+
+ 1712 00a6 06EB0A01 		add	r1, r6, r10
+ 1713 00aa 04EB0900 		add	r0, r4, r9
+ 1714 00ae 5A46     		mov	r2, fp
+ 1715 00b0 89B2     		uxth	r1, r1
+ 1716 00b2 80B2     		uxth	r0, r0
+ 1717 00b4 FFF7FEFF 		bl	Paint_SetPixel
+ 1718              	.LVL190:
+ 1719 00b8 E2E7     		b	.L139
+ 1720              	.L147:
+ 464:Display/GUI/GUI_Paint.c ****         }// Write a line
+ 1721              		.loc 1 464 0
+ 1722 00ba 0135     		adds	r5, r5, #1
+ 1723              	.LVL191:
+ 1724 00bc E4E7     		b	.L141
+ 1725              	.L148:
+ 466:Display/GUI/GUI_Paint.c ****             ptr++;
+ 1726              		.loc 1 466 0
+ 1727 00be 13F0070F 		tst	r3, #7
+ 1728 00c2 00D0     		beq	.L143
+ 467:Display/GUI/GUI_Paint.c ****     }// Write all
+ 1729              		.loc 1 467 0
+ 1730 00c4 0135     		adds	r5, r5, #1
+ 1731              	.LVL192:
+ 1732              	.L143:
+ 445:Display/GUI/GUI_Paint.c ****         for (Column = 0; Column < Font->Width; Column ++ ) {
+ 1733              		.loc 1 445 0 discriminator 2
+ 1734 00c6 0136     		adds	r6, r6, #1
+ 1735              	.LVL193:
+ 1736 00c8 B6B2     		uxth	r6, r6
+ 1737              	.LVL194:
+ 1738              	.L137:
+ 445:Display/GUI/GUI_Paint.c ****         for (Column = 0; Column < Font->Width; Column ++ ) {
+ 1739              		.loc 1 445 0 is_stmt 0 discriminator 1
+ 1740 00ca FB88     		ldrh	r3, [r7, #6]
+ 1741 00cc B342     		cmp	r3, r6
+ 1742 00ce BBD9     		bls	.L133
+ 446:Display/GUI/GUI_Paint.c **** 
+ 1743              		.loc 1 446 0 is_stmt 1
+ 1744 00d0 0024     		movs	r4, #0
+ 1745 00d2 DBE7     		b	.L144
+ 1746              	.L151:
+ 1747              		.align	2
+ 1748              	.L150:
+ 1749 00d4 00000000 		.word	Paint
+ 1750 00d8 00000000 		.word	.LC14
+ 1751              		.cfi_endproc
+ 1752              	.LFE134:
+ 1754              		.section	.text.Paint_DrawString_EN,"ax",%progbits
+ 1755              		.align	1
+ 1756              		.global	Paint_DrawString_EN
+ 1757              		.syntax unified
+ 1758              		.thumb
+ 1759              		.thumb_func
+ 1760              		.fpu fpv4-sp-d16
+ 1762              	Paint_DrawString_EN:
+ 1763              	.LFB135:
+ 470:Display/GUI/GUI_Paint.c **** 
+ARM GAS  /tmp/cceOWye5.s 			page 42
+
+
+ 471:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 472:Display/GUI/GUI_Paint.c **** function:	Display the string
+ 473:Display/GUI/GUI_Paint.c **** parameter:
+ 474:Display/GUI/GUI_Paint.c ****     Xstart           ：X coordinate
+ 475:Display/GUI/GUI_Paint.c ****     Ystart           ：Y coordinate
+ 476:Display/GUI/GUI_Paint.c ****     pString          ：The first address of the English string to be displayed
+ 477:Display/GUI/GUI_Paint.c ****     Font             ：A structure pointer that displays a character size
+ 478:Display/GUI/GUI_Paint.c ****     Color_Background : Select the background color of the English character
+ 479:Display/GUI/GUI_Paint.c ****     Color_Foreground : Select the foreground color of the English character
+ 480:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 481:Display/GUI/GUI_Paint.c **** void Paint_DrawString_EN(UWORD Xstart, UWORD Ystart, const char * pString,
+ 482:Display/GUI/GUI_Paint.c ****                          sFONT* Font, UWORD Color_Background, UWORD Color_Foreground )
+ 483:Display/GUI/GUI_Paint.c **** {
+ 1764              		.loc 1 483 0
+ 1765              		.cfi_startproc
+ 1766              		@ args = 8, pretend = 0, frame = 0
+ 1767              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1768              	.LVL195:
+ 1769 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1770              	.LCFI24:
+ 1771              		.cfi_def_cfa_offset 36
+ 1772              		.cfi_offset 4, -36
+ 1773              		.cfi_offset 5, -32
+ 1774              		.cfi_offset 6, -28
+ 1775              		.cfi_offset 7, -24
+ 1776              		.cfi_offset 8, -20
+ 1777              		.cfi_offset 9, -16
+ 1778              		.cfi_offset 10, -12
+ 1779              		.cfi_offset 11, -8
+ 1780              		.cfi_offset 14, -4
+ 1781 0004 83B0     		sub	sp, sp, #12
+ 1782              	.LCFI25:
+ 1783              		.cfi_def_cfa_offset 48
+ 1784 0006 1D46     		mov	r5, r3
+ 1785 0008 BDF830A0 		ldrh	r10, [sp, #48]
+ 1786 000c BDF834B0 		ldrh	fp, [sp, #52]
+ 1787              	.LVL196:
+ 484:Display/GUI/GUI_Paint.c ****     UWORD Xpoint = Xstart;
+ 485:Display/GUI/GUI_Paint.c ****     UWORD Ypoint = Ystart;
+ 486:Display/GUI/GUI_Paint.c **** 
+ 487:Display/GUI/GUI_Paint.c ****     if (Xstart > Paint.Width || Ystart > Paint.Height) {
+ 1788              		.loc 1 487 0
+ 1789 0010 1B4B     		ldr	r3, .L162
+ 1790              	.LVL197:
+ 1791 0012 9B88     		ldrh	r3, [r3, #4]
+ 1792 0014 8342     		cmp	r3, r0
+ 1793 0016 09D3     		bcc	.L153
+ 1794 0018 8046     		mov	r8, r0
+ 1795 001a 8946     		mov	r9, r1
+ 1796 001c 1746     		mov	r7, r2
+ 1797              		.loc 1 487 0 is_stmt 0 discriminator 1
+ 1798 001e 184B     		ldr	r3, .L162
+ 1799 0020 DB88     		ldrh	r3, [r3, #6]
+ 1800 0022 8B42     		cmp	r3, r1
+ 1801 0024 02D3     		bcc	.L153
+ 485:Display/GUI/GUI_Paint.c **** 
+ 1802              		.loc 1 485 0 is_stmt 1
+ARM GAS  /tmp/cceOWye5.s 			page 43
+
+
+ 1803 0026 0E46     		mov	r6, r1
+ 484:Display/GUI/GUI_Paint.c ****     UWORD Xpoint = Xstart;
+ 1804              		.loc 1 484 0
+ 1805 0028 0446     		mov	r4, r0
+ 1806 002a 12E0     		b	.L154
+ 1807              	.L153:
+ 1808              	.LBB19:
+ 488:Display/GUI/GUI_Paint.c ****         Debug("Paint_DrawString_EN Input exceeds the normal display range\r\n");
+ 1809              		.loc 1 488 0
+ 1810 002c 1548     		ldr	r0, .L162+4
+ 1811              	.LVL198:
+ 1812 002e FFF7FEFF 		bl	puts
+ 1813              	.LVL199:
+ 1814              	.L152:
+ 1815              	.LBE19:
+ 489:Display/GUI/GUI_Paint.c ****         return;
+ 490:Display/GUI/GUI_Paint.c ****     }
+ 491:Display/GUI/GUI_Paint.c **** 
+ 492:Display/GUI/GUI_Paint.c ****     while (* pString != '\0') {
+ 493:Display/GUI/GUI_Paint.c ****         //if X direction filled , reposition to(Xstart,Ypoint),Ypoint is Y direction plus the Heigh
+ 494:Display/GUI/GUI_Paint.c ****         if ((Xpoint + Font->Width ) > Paint.Width ) {
+ 495:Display/GUI/GUI_Paint.c ****             Xpoint = Xstart;
+ 496:Display/GUI/GUI_Paint.c ****             Ypoint += Font->Height;
+ 497:Display/GUI/GUI_Paint.c ****         }
+ 498:Display/GUI/GUI_Paint.c **** 
+ 499:Display/GUI/GUI_Paint.c ****         // If the Y direction is full, reposition to(Xstart, Ystart)
+ 500:Display/GUI/GUI_Paint.c ****         if ((Ypoint  + Font->Height ) > Paint.Height ) {
+ 501:Display/GUI/GUI_Paint.c ****             Xpoint = Xstart;
+ 502:Display/GUI/GUI_Paint.c ****             Ypoint = Ystart;
+ 503:Display/GUI/GUI_Paint.c ****         }
+ 504:Display/GUI/GUI_Paint.c ****         Paint_DrawChar(Xpoint, Ypoint, * pString, Font, Color_Background, Color_Foreground);
+ 505:Display/GUI/GUI_Paint.c **** 
+ 506:Display/GUI/GUI_Paint.c ****         //The next character of the address
+ 507:Display/GUI/GUI_Paint.c ****         pString ++;
+ 508:Display/GUI/GUI_Paint.c **** 
+ 509:Display/GUI/GUI_Paint.c ****         //The next word of the abscissa increases the font of the broadband
+ 510:Display/GUI/GUI_Paint.c ****         Xpoint += Font->Width;
+ 511:Display/GUI/GUI_Paint.c ****     }
+ 512:Display/GUI/GUI_Paint.c **** }
+ 1816              		.loc 1 512 0
+ 1817 0032 03B0     		add	sp, sp, #12
+ 1818              	.LCFI26:
+ 1819              		.cfi_remember_state
+ 1820              		.cfi_def_cfa_offset 36
+ 1821              		@ sp needed
+ 1822 0034 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1823              	.LVL200:
+ 1824              	.L157:
+ 1825              	.LCFI27:
+ 1826              		.cfi_restore_state
+ 504:Display/GUI/GUI_Paint.c **** 
+ 1827              		.loc 1 504 0
+ 1828 0038 CDF804B0 		str	fp, [sp, #4]
+ 1829 003c CDF800A0 		str	r10, [sp]
+ 1830 0040 2B46     		mov	r3, r5
+ 1831 0042 3146     		mov	r1, r6
+ 1832 0044 2046     		mov	r0, r4
+ARM GAS  /tmp/cceOWye5.s 			page 44
+
+
+ 1833 0046 FFF7FEFF 		bl	Paint_DrawChar
+ 1834              	.LVL201:
+ 507:Display/GUI/GUI_Paint.c **** 
+ 1835              		.loc 1 507 0
+ 1836 004a 0137     		adds	r7, r7, #1
+ 1837              	.LVL202:
+ 510:Display/GUI/GUI_Paint.c ****     }
+ 1838              		.loc 1 510 0
+ 1839 004c AB88     		ldrh	r3, [r5, #4]
+ 1840 004e 1C44     		add	r4, r4, r3
+ 1841              	.LVL203:
+ 1842 0050 A4B2     		uxth	r4, r4
+ 1843              	.LVL204:
+ 1844              	.L154:
+ 492:Display/GUI/GUI_Paint.c ****         //if X direction filled , reposition to(Xstart,Ypoint),Ypoint is Y direction plus the Heigh
+ 1845              		.loc 1 492 0
+ 1846 0052 3A78     		ldrb	r2, [r7]	@ zero_extendqisi2
+ 1847 0054 002A     		cmp	r2, #0
+ 1848 0056 ECD0     		beq	.L152
+ 494:Display/GUI/GUI_Paint.c ****             Xpoint = Xstart;
+ 1849              		.loc 1 494 0
+ 1850 0058 AB88     		ldrh	r3, [r5, #4]
+ 1851 005a 2344     		add	r3, r3, r4
+ 1852 005c 0849     		ldr	r1, .L162
+ 1853 005e 8988     		ldrh	r1, [r1, #4]
+ 1854 0060 8B42     		cmp	r3, r1
+ 1855 0062 03DD     		ble	.L156
+ 1856              	.LVL205:
+ 496:Display/GUI/GUI_Paint.c ****         }
+ 1857              		.loc 1 496 0
+ 1858 0064 EB88     		ldrh	r3, [r5, #6]
+ 1859 0066 1E44     		add	r6, r6, r3
+ 1860              	.LVL206:
+ 1861 0068 B6B2     		uxth	r6, r6
+ 1862              	.LVL207:
+ 495:Display/GUI/GUI_Paint.c ****             Ypoint += Font->Height;
+ 1863              		.loc 1 495 0
+ 1864 006a 4446     		mov	r4, r8
+ 1865              	.LVL208:
+ 1866              	.L156:
+ 500:Display/GUI/GUI_Paint.c ****             Xpoint = Xstart;
+ 1867              		.loc 1 500 0
+ 1868 006c EB88     		ldrh	r3, [r5, #6]
+ 1869 006e 3344     		add	r3, r3, r6
+ 1870 0070 0349     		ldr	r1, .L162
+ 1871 0072 C988     		ldrh	r1, [r1, #6]
+ 1872 0074 8B42     		cmp	r3, r1
+ 1873 0076 DFDD     		ble	.L157
+ 502:Display/GUI/GUI_Paint.c ****         }
+ 1874              		.loc 1 502 0
+ 1875 0078 4E46     		mov	r6, r9
+ 1876              	.LVL209:
+ 501:Display/GUI/GUI_Paint.c ****             Ypoint = Ystart;
+ 1877              		.loc 1 501 0
+ 1878 007a 4446     		mov	r4, r8
+ 1879              	.LVL210:
+ 1880 007c DCE7     		b	.L157
+ARM GAS  /tmp/cceOWye5.s 			page 45
+
+
+ 1881              	.L163:
+ 1882 007e 00BF     		.align	2
+ 1883              	.L162:
+ 1884 0080 00000000 		.word	Paint
+ 1885 0084 00000000 		.word	.LC15
+ 1886              		.cfi_endproc
+ 1887              	.LFE135:
+ 1889              		.section	.text.Paint_DrawString_CN,"ax",%progbits
+ 1890              		.align	1
+ 1891              		.global	Paint_DrawString_CN
+ 1892              		.syntax unified
+ 1893              		.thumb
+ 1894              		.thumb_func
+ 1895              		.fpu fpv4-sp-d16
+ 1897              	Paint_DrawString_CN:
+ 1898              	.LFB136:
+ 513:Display/GUI/GUI_Paint.c **** 
+ 514:Display/GUI/GUI_Paint.c **** 
+ 515:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 516:Display/GUI/GUI_Paint.c **** function:	Display the string
+ 517:Display/GUI/GUI_Paint.c **** parameter:
+ 518:Display/GUI/GUI_Paint.c ****     Xstart           ：X coordinate
+ 519:Display/GUI/GUI_Paint.c ****     Ystart           ：Y coordinate
+ 520:Display/GUI/GUI_Paint.c ****     pString          ：The first address of the Chinese string and English
+ 521:Display/GUI/GUI_Paint.c ****                         string to be displayed
+ 522:Display/GUI/GUI_Paint.c ****     Font             ：A structure pointer that displays a character size
+ 523:Display/GUI/GUI_Paint.c ****     Color_Background : Select the background color of the English character
+ 524:Display/GUI/GUI_Paint.c ****     Color_Foreground : Select the foreground color of the English character
+ 525:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 526:Display/GUI/GUI_Paint.c **** void Paint_DrawString_CN(UWORD Xstart, UWORD Ystart, const char * pString, cFONT* font, UWORD Color
+ 527:Display/GUI/GUI_Paint.c **** {
+ 1899              		.loc 1 527 0
+ 1900              		.cfi_startproc
+ 1901              		@ args = 8, pretend = 0, frame = 8
+ 1902              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1903              	.LVL211:
+ 1904 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 1905              	.LCFI28:
+ 1906              		.cfi_def_cfa_offset 36
+ 1907              		.cfi_offset 4, -36
+ 1908              		.cfi_offset 5, -32
+ 1909              		.cfi_offset 6, -28
+ 1910              		.cfi_offset 7, -24
+ 1911              		.cfi_offset 8, -20
+ 1912              		.cfi_offset 9, -16
+ 1913              		.cfi_offset 10, -12
+ 1914              		.cfi_offset 11, -8
+ 1915              		.cfi_offset 14, -4
+ 1916 0004 83B0     		sub	sp, sp, #12
+ 1917              	.LCFI29:
+ 1918              		.cfi_def_cfa_offset 48
+ 1919 0006 8946     		mov	r9, r1
+ 1920 0008 9246     		mov	r10, r2
+ 1921 000a 1D46     		mov	r5, r3
+ 1922 000c BDF83070 		ldrh	r7, [sp, #48]
+ 1923 0010 BDF83430 		ldrh	r3, [sp, #52]
+ 1924              	.LVL212:
+ARM GAS  /tmp/cceOWye5.s 			page 46
+
+
+ 1925 0014 0193     		str	r3, [sp, #4]
+ 1926              	.LVL213:
+ 528:Display/GUI/GUI_Paint.c ****     const char* p_text = pString;
+ 529:Display/GUI/GUI_Paint.c ****     int x = Xstart, y = Ystart;
+ 1927              		.loc 1 529 0
+ 1928 0016 8046     		mov	r8, r0
+ 1929              	.LVL214:
+ 530:Display/GUI/GUI_Paint.c ****     int i, j,Num;
+ 531:Display/GUI/GUI_Paint.c **** 
+ 532:Display/GUI/GUI_Paint.c ****     /* Send the string character by character on EPD */
+ 533:Display/GUI/GUI_Paint.c ****     while (*p_text != 0) {
+ 1930              		.loc 1 533 0
+ 1931 0018 66E0     		b	.L165
+ 1932              	.LVL215:
+ 1933              	.L200:
+ 534:Display/GUI/GUI_Paint.c ****         if(*p_text <= 0x7F) {  //ASCII < 126
+ 535:Display/GUI/GUI_Paint.c ****             for(Num = 0; Num < font->size; Num++) {
+ 536:Display/GUI/GUI_Paint.c ****                 if(*p_text== font->table[Num].index[0]) {
+ 537:Display/GUI/GUI_Paint.c ****                     const char* ptr = &font->table[Num].matrix[0];
+ 538:Display/GUI/GUI_Paint.c **** 
+ 539:Display/GUI/GUI_Paint.c ****                     for (j = 0; j < font->Height; j++) {
+ 540:Display/GUI/GUI_Paint.c ****                         for (i = 0; i < font->Width; i++) {
+ 541:Display/GUI/GUI_Paint.c ****                             if (FONT_BACKGROUND == Color_Background) { //this process is to speed u
+ 542:Display/GUI/GUI_Paint.c ****                                 if (*ptr & (0x80 >> (i % 8))) {
+ 543:Display/GUI/GUI_Paint.c ****                                     Paint_SetPixel(x + i, y + j, Color_Foreground);
+ 544:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Foreground, DOT_PIXEL_DF
+ 545:Display/GUI/GUI_Paint.c ****                                 }
+ 546:Display/GUI/GUI_Paint.c ****                             } else {
+ 547:Display/GUI/GUI_Paint.c ****                                 if (*ptr & (0x80 >> (i % 8))) {
+ 548:Display/GUI/GUI_Paint.c ****                                     Paint_SetPixel(x + i, y + j, Color_Foreground);
+ 549:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Foreground, DOT_PIXEL_DF
+ 550:Display/GUI/GUI_Paint.c ****                                 } else {
+ 551:Display/GUI/GUI_Paint.c ****                                     Paint_SetPixel(x + i, y + j, Color_Background);
+ 552:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Background, DOT_PIXEL_DF
+ 553:Display/GUI/GUI_Paint.c ****                                 }
+ 554:Display/GUI/GUI_Paint.c ****                             }
+ 555:Display/GUI/GUI_Paint.c ****                             if (i % 8 == 7) {
+ 556:Display/GUI/GUI_Paint.c ****                                 ptr++;
+ 557:Display/GUI/GUI_Paint.c ****                             }
+ 558:Display/GUI/GUI_Paint.c ****                         }
+ 559:Display/GUI/GUI_Paint.c ****                         if (font->Width % 8 != 0) {
+ 560:Display/GUI/GUI_Paint.c ****                             ptr++;
+ 561:Display/GUI/GUI_Paint.c ****                         }
+ 562:Display/GUI/GUI_Paint.c ****                     }
+ 563:Display/GUI/GUI_Paint.c ****                     break;
+ 564:Display/GUI/GUI_Paint.c ****                 }
+ 565:Display/GUI/GUI_Paint.c ****             }
+ 566:Display/GUI/GUI_Paint.c ****             /* Point on the next character */
+ 567:Display/GUI/GUI_Paint.c ****             p_text += 1;
+ 568:Display/GUI/GUI_Paint.c ****             /* Decrement the column position by 16 */
+ 569:Display/GUI/GUI_Paint.c ****             x += font->ASCII_Width;
+ 570:Display/GUI/GUI_Paint.c ****         } else {        //Chinese
+ 571:Display/GUI/GUI_Paint.c ****             for(Num = 0; Num < font->size; Num++) {
+ 1934              		.loc 1 571 0
+ 1935 001a 0022     		movs	r2, #0
+ 1936 001c BFE0     		b	.L167
+ 1937              	.LVL216:
+ARM GAS  /tmp/cceOWye5.s 			page 47
+
+
+ 1938              	.L198:
+ 1939              	.LBB20:
+ 542:Display/GUI/GUI_Paint.c ****                                     Paint_SetPixel(x + i, y + j, Color_Foreground);
+ 1940              		.loc 1 542 0
+ 1941 001e 3178     		ldrb	r1, [r6]	@ zero_extendqisi2
+ 1942 0020 6342     		rsbs	r3, r4, #0
+ 1943 0022 04F00702 		and	r2, r4, #7
+ 1944 0026 03F00703 		and	r3, r3, #7
+ 1945 002a 58BF     		it	pl
+ 1946 002c 5A42     		rsbpl	r2, r3, #0
+ 1947 002e 8023     		movs	r3, #128
+ 1948 0030 1341     		asrs	r3, r3, r2
+ 1949 0032 1942     		tst	r1, r3
+ 1950 0034 12D0     		beq	.L171
+ 543:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Foreground, DOT_PIXEL_DF
+ 1951              		.loc 1 543 0
+ 1952 0036 09EB0B01 		add	r1, r9, fp
+ 1953 003a 08EB0400 		add	r0, r8, r4
+ 1954 003e 019A     		ldr	r2, [sp, #4]
+ 1955 0040 89B2     		uxth	r1, r1
+ 1956 0042 80B2     		uxth	r0, r0
+ 1957 0044 FFF7FEFF 		bl	Paint_SetPixel
+ 1958              	.LVL217:
+ 1959 0048 08E0     		b	.L171
+ 1960              	.L172:
+ 551:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Background, DOT_PIXEL_DF
+ 1961              		.loc 1 551 0
+ 1962 004a 09EB0B01 		add	r1, r9, fp
+ 1963 004e 08EB0400 		add	r0, r8, r4
+ 1964 0052 3A46     		mov	r2, r7
+ 1965 0054 89B2     		uxth	r1, r1
+ 1966 0056 80B2     		uxth	r0, r0
+ 1967 0058 FFF7FEFF 		bl	Paint_SetPixel
+ 1968              	.LVL218:
+ 1969              	.L171:
+ 555:Display/GUI/GUI_Paint.c ****                                 ptr++;
+ 1970              		.loc 1 555 0
+ 1971 005c 6242     		rsbs	r2, r4, #0
+ 1972 005e 04F00703 		and	r3, r4, #7
+ 1973 0062 02F00702 		and	r2, r2, #7
+ 1974 0066 58BF     		it	pl
+ 1975 0068 5342     		rsbpl	r3, r2, #0
+ 1976 006a 072B     		cmp	r3, #7
+ 1977 006c 1BD0     		beq	.L196
+ 1978              	.L173:
+ 540:Display/GUI/GUI_Paint.c ****                             if (FONT_BACKGROUND == Color_Background) { //this process is to speed u
+ 1979              		.loc 1 540 0 discriminator 2
+ 1980 006e 0134     		adds	r4, r4, #1
+ 1981              	.LVL219:
+ 1982              	.L176:
+ 540:Display/GUI/GUI_Paint.c ****                             if (FONT_BACKGROUND == Color_Background) { //this process is to speed u
+ 1983              		.loc 1 540 0 is_stmt 0 discriminator 1
+ 1984 0070 2B89     		ldrh	r3, [r5, #8]
+ 1985 0072 A342     		cmp	r3, r4
+ 1986 0074 19DD     		ble	.L197
+ 541:Display/GUI/GUI_Paint.c ****                                 if (*ptr & (0x80 >> (i % 8))) {
+ 1987              		.loc 1 541 0 is_stmt 1
+ARM GAS  /tmp/cceOWye5.s 			page 48
+
+
+ 1988 0076 FF2F     		cmp	r7, #255
+ 1989 0078 D1D0     		beq	.L198
+ 547:Display/GUI/GUI_Paint.c ****                                     Paint_SetPixel(x + i, y + j, Color_Foreground);
+ 1990              		.loc 1 547 0
+ 1991 007a 3178     		ldrb	r1, [r6]	@ zero_extendqisi2
+ 1992 007c 6342     		rsbs	r3, r4, #0
+ 1993 007e 04F00702 		and	r2, r4, #7
+ 1994 0082 03F00703 		and	r3, r3, #7
+ 1995 0086 58BF     		it	pl
+ 1996 0088 5A42     		rsbpl	r2, r3, #0
+ 1997 008a 8023     		movs	r3, #128
+ 1998 008c 1341     		asrs	r3, r3, r2
+ 1999 008e 1942     		tst	r1, r3
+ 2000 0090 DBD0     		beq	.L172
+ 548:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Foreground, DOT_PIXEL_DF
+ 2001              		.loc 1 548 0
+ 2002 0092 09EB0B01 		add	r1, r9, fp
+ 2003 0096 08EB0400 		add	r0, r8, r4
+ 2004 009a 019A     		ldr	r2, [sp, #4]
+ 2005 009c 89B2     		uxth	r1, r1
+ 2006 009e 80B2     		uxth	r0, r0
+ 2007 00a0 FFF7FEFF 		bl	Paint_SetPixel
+ 2008              	.LVL220:
+ 2009 00a4 DAE7     		b	.L171
+ 2010              	.L196:
+ 556:Display/GUI/GUI_Paint.c ****                             }
+ 2011              		.loc 1 556 0
+ 2012 00a6 0136     		adds	r6, r6, #1
+ 2013              	.LVL221:
+ 2014 00a8 E1E7     		b	.L173
+ 2015              	.L197:
+ 559:Display/GUI/GUI_Paint.c ****                             ptr++;
+ 2016              		.loc 1 559 0
+ 2017 00aa 13F0070F 		tst	r3, #7
+ 2018 00ae 00D0     		beq	.L175
+ 560:Display/GUI/GUI_Paint.c ****                         }
+ 2019              		.loc 1 560 0
+ 2020 00b0 0136     		adds	r6, r6, #1
+ 2021              	.LVL222:
+ 2022              	.L175:
+ 539:Display/GUI/GUI_Paint.c ****                         for (i = 0; i < font->Width; i++) {
+ 2023              		.loc 1 539 0 discriminator 2
+ 2024 00b2 0BF1010B 		add	fp, fp, #1
+ 2025              	.LVL223:
+ 2026              	.L169:
+ 539:Display/GUI/GUI_Paint.c ****                         for (i = 0; i < font->Width; i++) {
+ 2027              		.loc 1 539 0 is_stmt 0 discriminator 1
+ 2028 00b6 6B89     		ldrh	r3, [r5, #10]
+ 2029 00b8 5B45     		cmp	r3, fp
+ 2030 00ba 11DD     		ble	.L177
+ 540:Display/GUI/GUI_Paint.c ****                             if (FONT_BACKGROUND == Color_Background) { //this process is to speed u
+ 2031              		.loc 1 540 0 is_stmt 1
+ 2032 00bc 0024     		movs	r4, #0
+ 2033 00be D7E7     		b	.L176
+ 2034              	.LVL224:
+ 2035              	.L168:
+ 2036              	.LBE20:
+ARM GAS  /tmp/cceOWye5.s 			page 49
+
+
+ 535:Display/GUI/GUI_Paint.c ****                 if(*p_text== font->table[Num].index[0]) {
+ 2037              		.loc 1 535 0 discriminator 2
+ 2038 00c0 0132     		adds	r2, r2, #1
+ 2039              	.LVL225:
+ 2040              	.L166:
+ 535:Display/GUI/GUI_Paint.c ****                 if(*p_text== font->table[Num].index[0]) {
+ 2041              		.loc 1 535 0 is_stmt 0 discriminator 1
+ 2042 00c2 AB88     		ldrh	r3, [r5, #4]
+ 2043 00c4 9342     		cmp	r3, r2
+ 2044 00c6 0BDD     		ble	.L177
+ 536:Display/GUI/GUI_Paint.c ****                     const char* ptr = &font->table[Num].matrix[0];
+ 2045              		.loc 1 536 0 is_stmt 1
+ 2046 00c8 2968     		ldr	r1, [r5]
+ 2047 00ca A623     		movs	r3, #166
+ 2048 00cc 03FB02F3 		mul	r3, r3, r2
+ 2049 00d0 CE18     		adds	r6, r1, r3
+ 2050 00d2 CB5C     		ldrb	r3, [r1, r3]	@ zero_extendqisi2
+ 2051 00d4 8342     		cmp	r3, r0
+ 2052 00d6 F3D1     		bne	.L168
+ 2053              	.LBB21:
+ 537:Display/GUI/GUI_Paint.c **** 
+ 2054              		.loc 1 537 0
+ 2055 00d8 0236     		adds	r6, r6, #2
+ 2056              	.LVL226:
+ 539:Display/GUI/GUI_Paint.c ****                         for (i = 0; i < font->Width; i++) {
+ 2057              		.loc 1 539 0
+ 2058 00da 4FF0000B 		mov	fp, #0
+ 2059 00de EAE7     		b	.L169
+ 2060              	.LVL227:
+ 2061              	.L177:
+ 2062              	.LBE21:
+ 567:Display/GUI/GUI_Paint.c ****             /* Decrement the column position by 16 */
+ 2063              		.loc 1 567 0
+ 2064 00e0 0AF1010A 		add	r10, r10, #1
+ 2065              	.LVL228:
+ 569:Display/GUI/GUI_Paint.c ****         } else {        //Chinese
+ 2066              		.loc 1 569 0
+ 2067 00e4 EB88     		ldrh	r3, [r5, #6]
+ 2068 00e6 9844     		add	r8, r8, r3
+ 2069              	.LVL229:
+ 2070              	.L165:
+ 533:Display/GUI/GUI_Paint.c ****         if(*p_text <= 0x7F) {  //ASCII < 126
+ 2071              		.loc 1 533 0
+ 2072 00e8 9AF80000 		ldrb	r0, [r10]	@ zero_extendqisi2
+ 2073 00ec 0028     		cmp	r0, #0
+ 2074 00ee 6FD0     		beq	.L199
+ 534:Display/GUI/GUI_Paint.c ****             for(Num = 0; Num < font->size; Num++) {
+ 2075              		.loc 1 534 0
+ 2076 00f0 10F0800F 		tst	r0, #128
+ 2077 00f4 91D1     		bne	.L200
+ 535:Display/GUI/GUI_Paint.c ****                 if(*p_text== font->table[Num].index[0]) {
+ 2078              		.loc 1 535 0
+ 2079 00f6 0022     		movs	r2, #0
+ 2080 00f8 E3E7     		b	.L166
+ 2081              	.LVL230:
+ 2082              	.L203:
+ 2083              	.LBB22:
+ARM GAS  /tmp/cceOWye5.s 			page 50
+
+
+ 572:Display/GUI/GUI_Paint.c ****                 if((*p_text== font->table[Num].index[0]) && (*(p_text+1) == font->table[Num].index[
+ 573:Display/GUI/GUI_Paint.c ****                     const char* ptr = &font->table[Num].matrix[0];
+ 574:Display/GUI/GUI_Paint.c **** 
+ 575:Display/GUI/GUI_Paint.c ****                     for (j = 0; j < font->Height; j++) {
+ 576:Display/GUI/GUI_Paint.c ****                         for (i = 0; i < font->Width; i++) {
+ 577:Display/GUI/GUI_Paint.c ****                             if (FONT_BACKGROUND == Color_Background) { //this process is to speed u
+ 578:Display/GUI/GUI_Paint.c ****                                 if (*ptr & (0x80 >> (i % 8))) {
+ 2084              		.loc 1 578 0
+ 2085 00fa 3178     		ldrb	r1, [r6]	@ zero_extendqisi2
+ 2086 00fc 6342     		rsbs	r3, r4, #0
+ 2087 00fe 04F00702 		and	r2, r4, #7
+ 2088 0102 03F00703 		and	r3, r3, #7
+ 2089 0106 58BF     		it	pl
+ 2090 0108 5A42     		rsbpl	r2, r3, #0
+ 2091 010a 8023     		movs	r3, #128
+ 2092 010c 1341     		asrs	r3, r3, r2
+ 2093 010e 1942     		tst	r1, r3
+ 2094 0110 12D0     		beq	.L183
+ 579:Display/GUI/GUI_Paint.c ****                                     Paint_SetPixel(x + i, y + j, Color_Foreground);
+ 2095              		.loc 1 579 0
+ 2096 0112 09EB0B01 		add	r1, r9, fp
+ 2097 0116 08EB0400 		add	r0, r8, r4
+ 2098 011a 019A     		ldr	r2, [sp, #4]
+ 2099 011c 89B2     		uxth	r1, r1
+ 2100 011e 80B2     		uxth	r0, r0
+ 2101 0120 FFF7FEFF 		bl	Paint_SetPixel
+ 2102              	.LVL231:
+ 2103 0124 08E0     		b	.L183
+ 2104              	.L184:
+ 580:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Foreground, DOT_PIXEL_DF
+ 581:Display/GUI/GUI_Paint.c ****                                 }
+ 582:Display/GUI/GUI_Paint.c ****                             } else {
+ 583:Display/GUI/GUI_Paint.c ****                                 if (*ptr & (0x80 >> (i % 8))) {
+ 584:Display/GUI/GUI_Paint.c ****                                     Paint_SetPixel(x + i, y + j, Color_Foreground);
+ 585:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Foreground, DOT_PIXEL_DF
+ 586:Display/GUI/GUI_Paint.c ****                                 } else {
+ 587:Display/GUI/GUI_Paint.c ****                                     Paint_SetPixel(x + i, y + j, Color_Background);
+ 2105              		.loc 1 587 0
+ 2106 0126 09EB0B01 		add	r1, r9, fp
+ 2107 012a 08EB0400 		add	r0, r8, r4
+ 2108 012e 3A46     		mov	r2, r7
+ 2109 0130 89B2     		uxth	r1, r1
+ 2110 0132 80B2     		uxth	r0, r0
+ 2111 0134 FFF7FEFF 		bl	Paint_SetPixel
+ 2112              	.LVL232:
+ 2113              	.L183:
+ 588:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Background, DOT_PIXEL_DF
+ 589:Display/GUI/GUI_Paint.c ****                                 }
+ 590:Display/GUI/GUI_Paint.c ****                             }
+ 591:Display/GUI/GUI_Paint.c ****                             if (i % 8 == 7) {
+ 2114              		.loc 1 591 0
+ 2115 0138 6242     		rsbs	r2, r4, #0
+ 2116 013a 04F00703 		and	r3, r4, #7
+ 2117 013e 02F00702 		and	r2, r2, #7
+ 2118 0142 58BF     		it	pl
+ 2119 0144 5342     		rsbpl	r3, r2, #0
+ 2120 0146 072B     		cmp	r3, #7
+ARM GAS  /tmp/cceOWye5.s 			page 51
+
+
+ 2121 0148 1BD0     		beq	.L201
+ 2122              	.L185:
+ 576:Display/GUI/GUI_Paint.c ****                             if (FONT_BACKGROUND == Color_Background) { //this process is to speed u
+ 2123              		.loc 1 576 0 discriminator 2
+ 2124 014a 0134     		adds	r4, r4, #1
+ 2125              	.LVL233:
+ 2126              	.L188:
+ 576:Display/GUI/GUI_Paint.c ****                             if (FONT_BACKGROUND == Color_Background) { //this process is to speed u
+ 2127              		.loc 1 576 0 is_stmt 0 discriminator 1
+ 2128 014c 2B89     		ldrh	r3, [r5, #8]
+ 2129 014e A342     		cmp	r3, r4
+ 2130 0150 19DD     		ble	.L202
+ 577:Display/GUI/GUI_Paint.c ****                                 if (*ptr & (0x80 >> (i % 8))) {
+ 2131              		.loc 1 577 0 is_stmt 1
+ 2132 0152 FF2F     		cmp	r7, #255
+ 2133 0154 D1D0     		beq	.L203
+ 583:Display/GUI/GUI_Paint.c ****                                     Paint_SetPixel(x + i, y + j, Color_Foreground);
+ 2134              		.loc 1 583 0
+ 2135 0156 3178     		ldrb	r1, [r6]	@ zero_extendqisi2
+ 2136 0158 6342     		rsbs	r3, r4, #0
+ 2137 015a 04F00702 		and	r2, r4, #7
+ 2138 015e 03F00703 		and	r3, r3, #7
+ 2139 0162 58BF     		it	pl
+ 2140 0164 5A42     		rsbpl	r2, r3, #0
+ 2141 0166 8023     		movs	r3, #128
+ 2142 0168 1341     		asrs	r3, r3, r2
+ 2143 016a 1942     		tst	r1, r3
+ 2144 016c DBD0     		beq	.L184
+ 584:Display/GUI/GUI_Paint.c ****                                     // Paint_DrawPoint(x + i, y + j, Color_Foreground, DOT_PIXEL_DF
+ 2145              		.loc 1 584 0
+ 2146 016e 09EB0B01 		add	r1, r9, fp
+ 2147 0172 08EB0400 		add	r0, r8, r4
+ 2148 0176 019A     		ldr	r2, [sp, #4]
+ 2149 0178 89B2     		uxth	r1, r1
+ 2150 017a 80B2     		uxth	r0, r0
+ 2151 017c FFF7FEFF 		bl	Paint_SetPixel
+ 2152              	.LVL234:
+ 2153 0180 DAE7     		b	.L183
+ 2154              	.L201:
+ 592:Display/GUI/GUI_Paint.c ****                                 ptr++;
+ 2155              		.loc 1 592 0
+ 2156 0182 0136     		adds	r6, r6, #1
+ 2157              	.LVL235:
+ 2158 0184 E1E7     		b	.L185
+ 2159              	.L202:
+ 593:Display/GUI/GUI_Paint.c ****                             }
+ 594:Display/GUI/GUI_Paint.c ****                         }
+ 595:Display/GUI/GUI_Paint.c ****                         if (font->Width % 8 != 0) {
+ 2160              		.loc 1 595 0
+ 2161 0186 13F0070F 		tst	r3, #7
+ 2162 018a 00D0     		beq	.L187
+ 596:Display/GUI/GUI_Paint.c ****                             ptr++;
+ 2163              		.loc 1 596 0
+ 2164 018c 0136     		adds	r6, r6, #1
+ 2165              	.LVL236:
+ 2166              	.L187:
+ 575:Display/GUI/GUI_Paint.c ****                         for (i = 0; i < font->Width; i++) {
+ARM GAS  /tmp/cceOWye5.s 			page 52
+
+
+ 2167              		.loc 1 575 0 discriminator 2
+ 2168 018e 0BF1010B 		add	fp, fp, #1
+ 2169              	.LVL237:
+ 2170              	.L181:
+ 575:Display/GUI/GUI_Paint.c ****                         for (i = 0; i < font->Width; i++) {
+ 2171              		.loc 1 575 0 is_stmt 0 discriminator 1
+ 2172 0192 6B89     		ldrh	r3, [r5, #10]
+ 2173 0194 5B45     		cmp	r3, fp
+ 2174 0196 16DD     		ble	.L189
+ 576:Display/GUI/GUI_Paint.c ****                             if (FONT_BACKGROUND == Color_Background) { //this process is to speed u
+ 2175              		.loc 1 576 0 is_stmt 1
+ 2176 0198 0024     		movs	r4, #0
+ 2177 019a D7E7     		b	.L188
+ 2178              	.LVL238:
+ 2179              	.L180:
+ 2180              	.LBE22:
+ 571:Display/GUI/GUI_Paint.c ****                 if((*p_text== font->table[Num].index[0]) && (*(p_text+1) == font->table[Num].index[
+ 2181              		.loc 1 571 0 discriminator 2
+ 2182 019c 0132     		adds	r2, r2, #1
+ 2183              	.LVL239:
+ 2184              	.L167:
+ 571:Display/GUI/GUI_Paint.c ****                 if((*p_text== font->table[Num].index[0]) && (*(p_text+1) == font->table[Num].index[
+ 2185              		.loc 1 571 0 is_stmt 0 discriminator 1
+ 2186 019e AB88     		ldrh	r3, [r5, #4]
+ 2187 01a0 9342     		cmp	r3, r2
+ 2188 01a2 10DD     		ble	.L189
+ 572:Display/GUI/GUI_Paint.c ****                     const char* ptr = &font->table[Num].matrix[0];
+ 2189              		.loc 1 572 0 is_stmt 1
+ 2190 01a4 2968     		ldr	r1, [r5]
+ 2191 01a6 A623     		movs	r3, #166
+ 2192 01a8 03FB02F3 		mul	r3, r3, r2
+ 2193 01ac CE18     		adds	r6, r1, r3
+ 2194 01ae CB5C     		ldrb	r3, [r1, r3]	@ zero_extendqisi2
+ 2195 01b0 8342     		cmp	r3, r0
+ 2196 01b2 F3D1     		bne	.L180
+ 572:Display/GUI/GUI_Paint.c ****                     const char* ptr = &font->table[Num].matrix[0];
+ 2197              		.loc 1 572 0 is_stmt 0 discriminator 1
+ 2198 01b4 9AF80110 		ldrb	r1, [r10, #1]	@ zero_extendqisi2
+ 2199 01b8 7378     		ldrb	r3, [r6, #1]	@ zero_extendqisi2
+ 2200 01ba 9942     		cmp	r1, r3
+ 2201 01bc EED1     		bne	.L180
+ 2202              	.LBB23:
+ 573:Display/GUI/GUI_Paint.c **** 
+ 2203              		.loc 1 573 0 is_stmt 1
+ 2204 01be 0236     		adds	r6, r6, #2
+ 2205              	.LVL240:
+ 575:Display/GUI/GUI_Paint.c ****                         for (i = 0; i < font->Width; i++) {
+ 2206              		.loc 1 575 0
+ 2207 01c0 4FF0000B 		mov	fp, #0
+ 2208 01c4 E5E7     		b	.L181
+ 2209              	.LVL241:
+ 2210              	.L189:
+ 2211              	.LBE23:
+ 597:Display/GUI/GUI_Paint.c ****                         }
+ 598:Display/GUI/GUI_Paint.c ****                     }
+ 599:Display/GUI/GUI_Paint.c ****                     break;
+ 600:Display/GUI/GUI_Paint.c ****                 }
+ARM GAS  /tmp/cceOWye5.s 			page 53
+
+
+ 601:Display/GUI/GUI_Paint.c ****             }
+ 602:Display/GUI/GUI_Paint.c ****             /* Point on the next character */
+ 603:Display/GUI/GUI_Paint.c ****             p_text += 2;
+ 2212              		.loc 1 603 0
+ 2213 01c6 0AF1020A 		add	r10, r10, #2
+ 2214              	.LVL242:
+ 604:Display/GUI/GUI_Paint.c ****             /* Decrement the column position by 16 */
+ 605:Display/GUI/GUI_Paint.c ****             x += font->Width;
+ 2215              		.loc 1 605 0
+ 2216 01ca 2B89     		ldrh	r3, [r5, #8]
+ 2217 01cc 9844     		add	r8, r8, r3
+ 2218              	.LVL243:
+ 2219 01ce 8BE7     		b	.L165
+ 2220              	.L199:
+ 606:Display/GUI/GUI_Paint.c ****         }
+ 607:Display/GUI/GUI_Paint.c ****     }
+ 608:Display/GUI/GUI_Paint.c **** }
+ 2221              		.loc 1 608 0
+ 2222 01d0 03B0     		add	sp, sp, #12
+ 2223              	.LCFI30:
+ 2224              		.cfi_def_cfa_offset 36
+ 2225              		@ sp needed
+ 2226 01d2 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 2227              		.cfi_endproc
+ 2228              	.LFE136:
+ 2230              		.section	.text.Paint_DrawNum,"ax",%progbits
+ 2231              		.align	1
+ 2232              		.global	Paint_DrawNum
+ 2233              		.syntax unified
+ 2234              		.thumb
+ 2235              		.thumb_func
+ 2236              		.fpu fpv4-sp-d16
+ 2238              	Paint_DrawNum:
+ 2239              	.LFB137:
+ 609:Display/GUI/GUI_Paint.c **** 
+ 610:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 611:Display/GUI/GUI_Paint.c **** function:	Display nummber
+ 612:Display/GUI/GUI_Paint.c **** parameter:
+ 613:Display/GUI/GUI_Paint.c ****     Xstart           ：X coordinate
+ 614:Display/GUI/GUI_Paint.c ****     Ystart           : Y coordinate
+ 615:Display/GUI/GUI_Paint.c ****     Nummber          : The number displayed
+ 616:Display/GUI/GUI_Paint.c ****     Font             ：A structure pointer that displays a character size
+ 617:Display/GUI/GUI_Paint.c ****     Color_Background : Select the background color of the English character
+ 618:Display/GUI/GUI_Paint.c ****     Color_Foreground : Select the foreground color of the English character
+ 619:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 620:Display/GUI/GUI_Paint.c **** #define  ARRAY_LEN 255
+ 621:Display/GUI/GUI_Paint.c **** void Paint_DrawNum(UWORD Xpoint, UWORD Ypoint, int32_t Nummber,
+ 622:Display/GUI/GUI_Paint.c ****                    sFONT* Font, UWORD Color_Background, UWORD Color_Foreground )
+ 623:Display/GUI/GUI_Paint.c **** {
+ 2240              		.loc 1 623 0
+ 2241              		.cfi_startproc
+ 2242              		@ args = 8, pretend = 0, frame = 512
+ 2243              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2244              	.LVL244:
+ 2245 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 2246              	.LCFI31:
+ 2247              		.cfi_def_cfa_offset 24
+ARM GAS  /tmp/cceOWye5.s 			page 54
+
+
+ 2248              		.cfi_offset 4, -24
+ 2249              		.cfi_offset 5, -20
+ 2250              		.cfi_offset 6, -16
+ 2251              		.cfi_offset 7, -12
+ 2252              		.cfi_offset 8, -8
+ 2253              		.cfi_offset 14, -4
+ 2254 0004 ADF5027D 		sub	sp, sp, #520
+ 2255              	.LCFI32:
+ 2256              		.cfi_def_cfa_offset 544
+ 2257 0008 0446     		mov	r4, r0
+ 2258 000a 0D46     		mov	r5, r1
+ 2259 000c 1746     		mov	r7, r2
+ 2260 000e 1E46     		mov	r6, r3
+ 2261              	.LVL245:
+ 624:Display/GUI/GUI_Paint.c **** 
+ 625:Display/GUI/GUI_Paint.c ****     int16_t Num_Bit = 0, Str_Bit = 0;
+ 626:Display/GUI/GUI_Paint.c ****     uint8_t Str_Array[ARRAY_LEN] = {0}, Num_Array[ARRAY_LEN] = {0};
+ 2262              		.loc 1 626 0
+ 2263 0010 4FF0FF08 		mov	r8, #255
+ 2264 0014 4246     		mov	r2, r8
+ 2265              	.LVL246:
+ 2266 0016 0021     		movs	r1, #0
+ 2267              	.LVL247:
+ 2268 0018 42A8     		add	r0, sp, #264
+ 2269              	.LVL248:
+ 2270 001a FFF7FEFF 		bl	memset
+ 2271              	.LVL249:
+ 2272 001e 4246     		mov	r2, r8
+ 2273 0020 0021     		movs	r1, #0
+ 2274 0022 02A8     		add	r0, sp, #8
+ 2275 0024 FFF7FEFF 		bl	memset
+ 2276              	.LVL250:
+ 627:Display/GUI/GUI_Paint.c ****     uint8_t *pStr = Str_Array;
+ 628:Display/GUI/GUI_Paint.c **** 
+ 629:Display/GUI/GUI_Paint.c ****     if (Xpoint > Paint.Width || Ypoint > Paint.Height) {
+ 2277              		.loc 1 629 0
+ 2278 0028 1E4B     		ldr	r3, .L213
+ 2279 002a 9B88     		ldrh	r3, [r3, #4]
+ 2280 002c A342     		cmp	r3, r4
+ 2281 002e 05D3     		bcc	.L205
+ 2282              		.loc 1 629 0 is_stmt 0 discriminator 1
+ 2283 0030 1C4B     		ldr	r3, .L213
+ 2284 0032 DB88     		ldrh	r3, [r3, #6]
+ 2285 0034 AB42     		cmp	r3, r5
+ 2286 0036 01D3     		bcc	.L205
+ 625:Display/GUI/GUI_Paint.c ****     uint8_t Str_Array[ARRAY_LEN] = {0}, Num_Array[ARRAY_LEN] = {0};
+ 2287              		.loc 1 625 0 is_stmt 1
+ 2288 0038 0022     		movs	r2, #0
+ 2289 003a 17E0     		b	.L206
+ 2290              	.L205:
+ 2291              	.LBB24:
+ 630:Display/GUI/GUI_Paint.c ****         Debug("Paint_DisNum Input exceeds the normal display range\r\n");
+ 2292              		.loc 1 630 0
+ 2293 003c 1A48     		ldr	r0, .L213+4
+ 2294 003e FFF7FEFF 		bl	puts
+ 2295              	.LVL251:
+ 2296              	.L204:
+ARM GAS  /tmp/cceOWye5.s 			page 55
+
+
+ 2297              	.LBE24:
+ 631:Display/GUI/GUI_Paint.c ****         return;
+ 632:Display/GUI/GUI_Paint.c ****     }
+ 633:Display/GUI/GUI_Paint.c **** 
+ 634:Display/GUI/GUI_Paint.c ****     //Converts a number to a string
+ 635:Display/GUI/GUI_Paint.c ****     while (Nummber) {
+ 636:Display/GUI/GUI_Paint.c ****         Num_Array[Num_Bit] = Nummber % 10 + '0';
+ 637:Display/GUI/GUI_Paint.c ****         Num_Bit++;
+ 638:Display/GUI/GUI_Paint.c ****         Nummber /= 10;
+ 639:Display/GUI/GUI_Paint.c ****     }
+ 640:Display/GUI/GUI_Paint.c **** 
+ 641:Display/GUI/GUI_Paint.c ****     //The string is inverted
+ 642:Display/GUI/GUI_Paint.c ****     while (Num_Bit > 0) {
+ 643:Display/GUI/GUI_Paint.c ****         Str_Array[Str_Bit] = Num_Array[Num_Bit - 1];
+ 644:Display/GUI/GUI_Paint.c ****         Str_Bit ++;
+ 645:Display/GUI/GUI_Paint.c ****         Num_Bit --;
+ 646:Display/GUI/GUI_Paint.c ****     }
+ 647:Display/GUI/GUI_Paint.c **** 
+ 648:Display/GUI/GUI_Paint.c ****     //show
+ 649:Display/GUI/GUI_Paint.c ****     Paint_DrawString_EN(Xpoint, Ypoint, (const char*)pStr, Font, Color_Background, Color_Foreground
+ 650:Display/GUI/GUI_Paint.c **** }
+ 2298              		.loc 1 650 0
+ 2299 0042 0DF5027D 		add	sp, sp, #520
+ 2300              	.LCFI33:
+ 2301              		.cfi_remember_state
+ 2302              		.cfi_def_cfa_offset 24
+ 2303              		@ sp needed
+ 2304 0046 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 2305              	.LVL252:
+ 2306              	.L208:
+ 2307              	.LCFI34:
+ 2308              		.cfi_restore_state
+ 636:Display/GUI/GUI_Paint.c ****         Num_Bit++;
+ 2309              		.loc 1 636 0
+ 2310 004a 1849     		ldr	r1, .L213+8
+ 2311 004c 81FB0731 		smull	r3, r1, r1, r7
+ 2312 0050 FB17     		asrs	r3, r7, #31
+ 2313 0052 C3EBA103 		rsb	r3, r3, r1, asr #2
+ 2314 0056 1846     		mov	r0, r3
+ 2315 0058 03EB8303 		add	r3, r3, r3, lsl #2
+ 2316 005c 5900     		lsls	r1, r3, #1
+ 2317 005e 7B1A     		subs	r3, r7, r1
+ 2318 0060 3033     		adds	r3, r3, #48
+ 2319 0062 02A9     		add	r1, sp, #8
+ 2320 0064 8B54     		strb	r3, [r1, r2]
+ 637:Display/GUI/GUI_Paint.c ****         Nummber /= 10;
+ 2321              		.loc 1 637 0
+ 2322 0066 0132     		adds	r2, r2, #1
+ 2323              	.LVL253:
+ 2324 0068 12B2     		sxth	r2, r2
+ 2325              	.LVL254:
+ 638:Display/GUI/GUI_Paint.c ****     }
+ 2326              		.loc 1 638 0
+ 2327 006a 0746     		mov	r7, r0
+ 2328              	.LVL255:
+ 2329              	.L206:
+ 635:Display/GUI/GUI_Paint.c ****         Num_Array[Num_Bit] = Nummber % 10 + '0';
+ARM GAS  /tmp/cceOWye5.s 			page 56
+
+
+ 2330              		.loc 1 635 0
+ 2331 006c 002F     		cmp	r7, #0
+ 2332 006e ECD1     		bne	.L208
+ 625:Display/GUI/GUI_Paint.c ****     uint8_t Str_Array[ARRAY_LEN] = {0}, Num_Array[ARRAY_LEN] = {0};
+ 2333              		.loc 1 625 0
+ 2334 0070 0023     		movs	r3, #0
+ 2335 0072 08E0     		b	.L209
+ 2336              	.LVL256:
+ 2337              	.L210:
+ 643:Display/GUI/GUI_Paint.c ****         Str_Bit ++;
+ 2338              		.loc 1 643 0
+ 2339 0074 511E     		subs	r1, r2, #1
+ 2340 0076 02A8     		add	r0, sp, #8
+ 2341 0078 405C     		ldrb	r0, [r0, r1]	@ zero_extendqisi2
+ 2342 007a 42A9     		add	r1, sp, #264
+ 2343              	.LVL257:
+ 2344 007c C854     		strb	r0, [r1, r3]
+ 644:Display/GUI/GUI_Paint.c ****         Num_Bit --;
+ 2345              		.loc 1 644 0
+ 2346 007e 0133     		adds	r3, r3, #1
+ 2347              	.LVL258:
+ 2348 0080 1BB2     		sxth	r3, r3
+ 2349              	.LVL259:
+ 645:Display/GUI/GUI_Paint.c ****     }
+ 2350              		.loc 1 645 0
+ 2351 0082 013A     		subs	r2, r2, #1
+ 2352              	.LVL260:
+ 2353 0084 12B2     		sxth	r2, r2
+ 2354              	.LVL261:
+ 2355              	.L209:
+ 642:Display/GUI/GUI_Paint.c ****         Str_Array[Str_Bit] = Num_Array[Num_Bit - 1];
+ 2356              		.loc 1 642 0
+ 2357 0086 002A     		cmp	r2, #0
+ 2358 0088 F4DC     		bgt	.L210
+ 649:Display/GUI/GUI_Paint.c **** }
+ 2359              		.loc 1 649 0
+ 2360 008a BDF82432 		ldrh	r3, [sp, #548]
+ 2361              	.LVL262:
+ 2362 008e 0193     		str	r3, [sp, #4]
+ 2363 0090 BDF82032 		ldrh	r3, [sp, #544]
+ 2364 0094 0093     		str	r3, [sp]
+ 2365 0096 3346     		mov	r3, r6
+ 2366 0098 42AA     		add	r2, sp, #264
+ 2367              	.LVL263:
+ 2368 009a 2946     		mov	r1, r5
+ 2369 009c 2046     		mov	r0, r4
+ 2370 009e FFF7FEFF 		bl	Paint_DrawString_EN
+ 2371              	.LVL264:
+ 2372 00a2 CEE7     		b	.L204
+ 2373              	.L214:
+ 2374              		.align	2
+ 2375              	.L213:
+ 2376 00a4 00000000 		.word	Paint
+ 2377 00a8 00000000 		.word	.LC16
+ 2378 00ac 67666666 		.word	1717986919
+ 2379              		.cfi_endproc
+ 2380              	.LFE137:
+ARM GAS  /tmp/cceOWye5.s 			page 57
+
+
+ 2382              		.section	.text.Paint_DrawTime,"ax",%progbits
+ 2383              		.align	1
+ 2384              		.global	Paint_DrawTime
+ 2385              		.syntax unified
+ 2386              		.thumb
+ 2387              		.thumb_func
+ 2388              		.fpu fpv4-sp-d16
+ 2390              	Paint_DrawTime:
+ 2391              	.LFB138:
+ 651:Display/GUI/GUI_Paint.c **** 
+ 652:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 653:Display/GUI/GUI_Paint.c **** function:	Display time
+ 654:Display/GUI/GUI_Paint.c **** parameter:
+ 655:Display/GUI/GUI_Paint.c ****     Xstart           ：X coordinate
+ 656:Display/GUI/GUI_Paint.c ****     Ystart           : Y coordinate
+ 657:Display/GUI/GUI_Paint.c ****     pTime            : Time-related structures
+ 658:Display/GUI/GUI_Paint.c ****     Font             ：A structure pointer that displays a character size
+ 659:Display/GUI/GUI_Paint.c ****     Color            : Select the background color of the English character
+ 660:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 661:Display/GUI/GUI_Paint.c **** void Paint_DrawTime(UWORD Xstart, UWORD Ystart, PAINT_TIME *pTime, sFONT* Font,
+ 662:Display/GUI/GUI_Paint.c ****                     UWORD Color_Background, UWORD Color_Foreground)
+ 663:Display/GUI/GUI_Paint.c **** {
+ 2392              		.loc 1 663 0
+ 2393              		.cfi_startproc
+ 2394              		@ args = 8, pretend = 0, frame = 32
+ 2395              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2396              	.LVL265:
+ 2397 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 2398              	.LCFI35:
+ 2399              		.cfi_def_cfa_offset 36
+ 2400              		.cfi_offset 4, -36
+ 2401              		.cfi_offset 5, -32
+ 2402              		.cfi_offset 6, -28
+ 2403              		.cfi_offset 7, -24
+ 2404              		.cfi_offset 8, -20
+ 2405              		.cfi_offset 9, -16
+ 2406              		.cfi_offset 10, -12
+ 2407              		.cfi_offset 11, -8
+ 2408              		.cfi_offset 14, -4
+ 2409 0004 8BB0     		sub	sp, sp, #44
+ 2410              	.LCFI36:
+ 2411              		.cfi_def_cfa_offset 80
+ 2412 0006 0646     		mov	r6, r0
+ 2413 0008 8B46     		mov	fp, r1
+ 2414 000a 9246     		mov	r10, r2
+ 2415 000c BDF85070 		ldrh	r7, [sp, #80]
+ 2416 0010 BDF85480 		ldrh	r8, [sp, #84]
+ 664:Display/GUI/GUI_Paint.c ****     uint8_t value[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+ 2417              		.loc 1 664 0
+ 2418 0014 5F4A     		ldr	r2, .L217
+ 2419              	.LVL266:
+ 2420 0016 07AC     		add	r4, sp, #28
+ 2421 0018 07CA     		ldm	r2, {r0, r1, r2}
+ 2422              	.LVL267:
+ 2423 001a 03C4     		stmia	r4!, {r0, r1}
+ 2424 001c 2280     		strh	r2, [r4]	@ movhi
+ 665:Display/GUI/GUI_Paint.c **** 
+ARM GAS  /tmp/cceOWye5.s 			page 58
+
+
+ 666:Display/GUI/GUI_Paint.c ****     UWORD Dx = Font->Width;
+ 2425              		.loc 1 666 0
+ 2426 001e 0393     		str	r3, [sp, #12]
+ 2427 0020 9D88     		ldrh	r5, [r3, #4]
+ 2428              	.LVL268:
+ 667:Display/GUI/GUI_Paint.c **** 
+ 668:Display/GUI/GUI_Paint.c ****     //Write data into the cache
+ 669:Display/GUI/GUI_Paint.c ****     Paint_DrawChar(Xstart                           , Ystart, value[pTime->Hour / 10], Font, Color_
+ 2429              		.loc 1 669 0
+ 2430 0022 9AF80420 		ldrb	r2, [r10, #4]	@ zero_extendqisi2
+ 2431 0026 5C4C     		ldr	r4, .L217+4
+ 2432 0028 A4FB0212 		umull	r1, r2, r4, r2
+ 2433 002c 0AA9     		add	r1, sp, #40
+ 2434 002e 01EBD202 		add	r2, r1, r2, lsr #3
+ 2435 0032 12F80C2C 		ldrb	r2, [r2, #-12]	@ zero_extendqisi2
+ 2436 0036 CDF80480 		str	r8, [sp, #4]
+ 2437 003a 0097     		str	r7, [sp]
+ 2438 003c 5946     		mov	r1, fp
+ 2439 003e 3046     		mov	r0, r6
+ 2440 0040 FFF7FEFF 		bl	Paint_DrawChar
+ 2441              	.LVL269:
+ 670:Display/GUI/GUI_Paint.c ****     Paint_DrawChar(Xstart + Dx                      , Ystart, value[pTime->Hour % 10], Font, Color_
+ 2442              		.loc 1 670 0
+ 2443 0044 05EB0609 		add	r9, r5, r6
+ 2444 0048 1FFA89F9 		uxth	r9, r9
+ 2445 004c 9AF80420 		ldrb	r2, [r10, #4]	@ zero_extendqisi2
+ 2446 0050 A4FB0213 		umull	r1, r3, r4, r2
+ 2447 0054 DB08     		lsrs	r3, r3, #3
+ 2448 0056 03EB8303 		add	r3, r3, r3, lsl #2
+ 2449 005a 5900     		lsls	r1, r3, #1
+ 2450 005c 521A     		subs	r2, r2, r1
+ 2451 005e 0AAB     		add	r3, sp, #40
+ 2452 0060 53FA82F2 		uxtab	r2, r3, r2
+ 2453 0064 12F80C2C 		ldrb	r2, [r2, #-12]	@ zero_extendqisi2
+ 2454 0068 CDF80480 		str	r8, [sp, #4]
+ 2455 006c 0097     		str	r7, [sp]
+ 2456 006e 039B     		ldr	r3, [sp, #12]
+ 2457 0070 CDF810B0 		str	fp, [sp, #16]
+ 2458 0074 5946     		mov	r1, fp
+ 2459 0076 4846     		mov	r0, r9
+ 2460 0078 FFF7FEFF 		bl	Paint_DrawChar
+ 2461              	.LVL270:
+ 671:Display/GUI/GUI_Paint.c ****     Paint_DrawChar(Xstart + Dx  + Dx / 4 + Dx / 2   , Ystart, ':'                    , Font, Color_
+ 2462              		.loc 1 671 0
+ 2463 007c AB08     		lsrs	r3, r5, #2
+ 2464 007e 0593     		str	r3, [sp, #20]
+ 2465 0080 09EB0300 		add	r0, r9, r3
+ 2466 0084 4FEA550B 		lsr	fp, r5, #1
+ 2467 0088 1BFA80F0 		uxtah	r0, fp, r0
+ 2468 008c CDF80480 		str	r8, [sp, #4]
+ 2469 0090 0097     		str	r7, [sp]
+ 2470 0092 039B     		ldr	r3, [sp, #12]
+ 2471 0094 3A22     		movs	r2, #58
+ 2472 0096 DDF81090 		ldr	r9, [sp, #16]
+ 2473 009a 4946     		mov	r1, r9
+ 2474 009c 80B2     		uxth	r0, r0
+ 2475 009e FFF7FEFF 		bl	Paint_DrawChar
+ARM GAS  /tmp/cceOWye5.s 			page 59
+
+
+ 2476              	.LVL271:
+ 672:Display/GUI/GUI_Paint.c ****     Paint_DrawChar(Xstart + Dx * 2 + Dx / 2         , Ystart, value[pTime->Min / 10] , Font, Color_
+ 2477              		.loc 1 672 0
+ 2478 00a2 06EB4500 		add	r0, r6, r5, lsl #1
+ 2479 00a6 9AF80530 		ldrb	r3, [r10, #5]	@ zero_extendqisi2
+ 2480 00aa A4FB03C3 		umull	ip, r3, r4, r3
+ 2481 00ae 0DF1280C 		add	ip, sp, #40
+ 2482 00b2 0CEBD303 		add	r3, ip, r3, lsr #3
+ 2483 00b6 13F80C2C 		ldrb	r2, [r3, #-12]	@ zero_extendqisi2
+ 2484 00ba 1BFA80F0 		uxtah	r0, fp, r0
+ 2485 00be CDF80480 		str	r8, [sp, #4]
+ 2486 00c2 0097     		str	r7, [sp]
+ 2487 00c4 039B     		ldr	r3, [sp, #12]
+ 2488 00c6 CDF81090 		str	r9, [sp, #16]
+ 2489 00ca 4946     		mov	r1, r9
+ 2490 00cc 80B2     		uxth	r0, r0
+ 2491 00ce FFF7FEFF 		bl	Paint_DrawChar
+ 2492              	.LVL272:
+ 673:Display/GUI/GUI_Paint.c ****     Paint_DrawChar(Xstart + Dx * 3 + Dx / 2         , Ystart, value[pTime->Min % 10] , Font, Color_
+ 2493              		.loc 1 673 0
+ 2494 00d2 05EB4509 		add	r9, r5, r5, lsl #1
+ 2495 00d6 06EB0900 		add	r0, r6, r9
+ 2496 00da 9AF80520 		ldrb	r2, [r10, #5]	@ zero_extendqisi2
+ 2497 00de A4FB02C3 		umull	ip, r3, r4, r2
+ 2498 00e2 DB08     		lsrs	r3, r3, #3
+ 2499 00e4 03EB8303 		add	r3, r3, r3, lsl #2
+ 2500 00e8 5900     		lsls	r1, r3, #1
+ 2501 00ea 521A     		subs	r2, r2, r1
+ 2502 00ec 0DF1280C 		add	ip, sp, #40
+ 2503 00f0 5CFA82F2 		uxtab	r2, ip, r2
+ 2504 00f4 12F80C2C 		ldrb	r2, [r2, #-12]	@ zero_extendqisi2
+ 2505 00f8 1BFA80F0 		uxtah	r0, fp, r0
+ 2506 00fc CDF80480 		str	r8, [sp, #4]
+ 2507 0100 0097     		str	r7, [sp]
+ 2508 0102 039B     		ldr	r3, [sp, #12]
+ 2509 0104 0499     		ldr	r1, [sp, #16]
+ 2510 0106 80B2     		uxth	r0, r0
+ 2511 0108 FFF7FEFF 		bl	Paint_DrawChar
+ 2512              	.LVL273:
+ 674:Display/GUI/GUI_Paint.c ****     Paint_DrawChar(Xstart + Dx * 4 + Dx / 2 - Dx / 4, Ystart, ':'                    , Font, Color_
+ 2513              		.loc 1 674 0
+ 2514 010c 06EB8500 		add	r0, r6, r5, lsl #2
+ 2515 0110 1BFA80F0 		uxtah	r0, fp, r0
+ 2516 0114 80B2     		uxth	r0, r0
+ 2517 0116 0599     		ldr	r1, [sp, #20]
+ 2518 0118 401A     		subs	r0, r0, r1
+ 2519 011a CDF80480 		str	r8, [sp, #4]
+ 2520 011e 0097     		str	r7, [sp]
+ 2521 0120 039B     		ldr	r3, [sp, #12]
+ 2522 0122 3A22     		movs	r2, #58
+ 2523 0124 DDF810B0 		ldr	fp, [sp, #16]
+ 2524 0128 5946     		mov	r1, fp
+ 2525 012a 80B2     		uxth	r0, r0
+ 2526 012c FFF7FEFF 		bl	Paint_DrawChar
+ 2527              	.LVL274:
+ 675:Display/GUI/GUI_Paint.c ****     Paint_DrawChar(Xstart + Dx * 5                  , Ystart, value[pTime->Sec / 10] , Font, Color_
+ 2528              		.loc 1 675 0
+ARM GAS  /tmp/cceOWye5.s 			page 60
+
+
+ 2529 0130 9AF80630 		ldrb	r3, [r10, #6]	@ zero_extendqisi2
+ 2530 0134 A4FB0313 		umull	r1, r3, r4, r3
+ 2531 0138 0AA9     		add	r1, sp, #40
+ 2532 013a 01EBD303 		add	r3, r1, r3, lsr #3
+ 2533 013e 13F80C2C 		ldrb	r2, [r3, #-12]	@ zero_extendqisi2
+ 2534 0142 05EB8505 		add	r5, r5, r5, lsl #2
+ 2535              	.LVL275:
+ 2536 0146 7019     		adds	r0, r6, r5
+ 2537 0148 CDF80480 		str	r8, [sp, #4]
+ 2538 014c 0097     		str	r7, [sp]
+ 2539 014e 039D     		ldr	r5, [sp, #12]
+ 2540 0150 2B46     		mov	r3, r5
+ 2541 0152 5946     		mov	r1, fp
+ 2542 0154 80B2     		uxth	r0, r0
+ 2543 0156 FFF7FEFF 		bl	Paint_DrawChar
+ 2544              	.LVL276:
+ 676:Display/GUI/GUI_Paint.c ****     Paint_DrawChar(Xstart + Dx * 6                  , Ystart, value[pTime->Sec % 10] , Font, Color_
+ 2545              		.loc 1 676 0
+ 2546 015a 9AF80630 		ldrb	r3, [r10, #6]	@ zero_extendqisi2
+ 2547 015e A4FB0324 		umull	r2, r4, r4, r3
+ 2548 0162 E408     		lsrs	r4, r4, #3
+ 2549 0164 04EB8404 		add	r4, r4, r4, lsl #2
+ 2550 0168 6200     		lsls	r2, r4, #1
+ 2551 016a 9B1A     		subs	r3, r3, r2
+ 2552 016c 0AAA     		add	r2, sp, #40
+ 2553 016e 52FA83F3 		uxtab	r3, r2, r3
+ 2554 0172 13F80C2C 		ldrb	r2, [r3, #-12]	@ zero_extendqisi2
+ 2555 0176 4FEA4900 		lsl	r0, r9, #1
+ 2556 017a 3044     		add	r0, r0, r6
+ 2557 017c CDF80480 		str	r8, [sp, #4]
+ 2558 0180 0097     		str	r7, [sp]
+ 2559 0182 2B46     		mov	r3, r5
+ 2560 0184 5946     		mov	r1, fp
+ 2561 0186 80B2     		uxth	r0, r0
+ 2562 0188 FFF7FEFF 		bl	Paint_DrawChar
+ 2563              	.LVL277:
+ 677:Display/GUI/GUI_Paint.c **** }
+ 2564              		.loc 1 677 0
+ 2565 018c 0BB0     		add	sp, sp, #44
+ 2566              	.LCFI37:
+ 2567              		.cfi_def_cfa_offset 36
+ 2568              		@ sp needed
+ 2569 018e BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 2570              	.LVL278:
+ 2571              	.L218:
+ 2572 0192 00BF     		.align	2
+ 2573              	.L217:
+ 2574 0194 00000000 		.word	.LANCHOR0
+ 2575 0198 CDCCCCCC 		.word	-858993459
+ 2576              		.cfi_endproc
+ 2577              	.LFE138:
+ 2579              		.section	.text.Paint_DrawBitMap,"ax",%progbits
+ 2580              		.align	1
+ 2581              		.global	Paint_DrawBitMap
+ 2582              		.syntax unified
+ 2583              		.thumb
+ 2584              		.thumb_func
+ARM GAS  /tmp/cceOWye5.s 			page 61
+
+
+ 2585              		.fpu fpv4-sp-d16
+ 2587              	Paint_DrawBitMap:
+ 2588              	.LFB139:
+ 678:Display/GUI/GUI_Paint.c **** 
+ 679:Display/GUI/GUI_Paint.c **** /******************************************************************************
+ 680:Display/GUI/GUI_Paint.c **** function:	Display monochrome bitmap
+ 681:Display/GUI/GUI_Paint.c **** parameter:
+ 682:Display/GUI/GUI_Paint.c ****     image_buffer ：A picture data converted to a bitmap
+ 683:Display/GUI/GUI_Paint.c **** info:
+ 684:Display/GUI/GUI_Paint.c ****     Use a computer to convert the image into a corresponding array,
+ 685:Display/GUI/GUI_Paint.c ****     and then embed the array directly into Imagedata.cpp as a .c file.
+ 686:Display/GUI/GUI_Paint.c **** ******************************************************************************/
+ 687:Display/GUI/GUI_Paint.c **** void Paint_DrawBitMap(const unsigned char* image_buffer)
+ 688:Display/GUI/GUI_Paint.c **** {
+ 2589              		.loc 1 688 0
+ 2590              		.cfi_startproc
+ 2591              		@ args = 0, pretend = 0, frame = 0
+ 2592              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2593              		@ link register save eliminated.
+ 2594              	.LVL279:
+ 2595 0000 30B4     		push	{r4, r5}
+ 2596              	.LCFI38:
+ 2597              		.cfi_def_cfa_offset 8
+ 2598              		.cfi_offset 4, -8
+ 2599              		.cfi_offset 5, -4
+ 2600              	.LVL280:
+ 689:Display/GUI/GUI_Paint.c ****     UWORD x, y;
+ 690:Display/GUI/GUI_Paint.c ****     UDOUBLE Addr = 0;
+ 691:Display/GUI/GUI_Paint.c **** 
+ 692:Display/GUI/GUI_Paint.c ****     for (y = 0; y < Paint.HeightByte; y++) {
+ 2601              		.loc 1 692 0
+ 2602 0002 0025     		movs	r5, #0
+ 2603 0004 0DE0     		b	.L220
+ 2604              	.LVL281:
+ 2605              	.L221:
+ 693:Display/GUI/GUI_Paint.c ****         for (x = 0; x < Paint.WidthByte; x++) {//8 pixel =  1 byte
+ 694:Display/GUI/GUI_Paint.c ****             Addr = x + y * Paint.WidthByte;
+ 2606              		.loc 1 694 0 discriminator 3
+ 2607 0006 02FB0532 		mla	r2, r2, r5, r3
+ 2608              	.LVL282:
+ 695:Display/GUI/GUI_Paint.c ****             Paint.Image[Addr] = (unsigned char)image_buffer[Addr];
+ 2609              		.loc 1 695 0 discriminator 3
+ 2610 000a 0A49     		ldr	r1, .L226
+ 2611 000c 0968     		ldr	r1, [r1]
+ 2612 000e 845C     		ldrb	r4, [r0, r2]	@ zero_extendqisi2
+ 2613 0010 8C54     		strb	r4, [r1, r2]
+ 693:Display/GUI/GUI_Paint.c ****         for (x = 0; x < Paint.WidthByte; x++) {//8 pixel =  1 byte
+ 2614              		.loc 1 693 0 discriminator 3
+ 2615 0012 0133     		adds	r3, r3, #1
+ 2616              	.LVL283:
+ 2617 0014 9BB2     		uxth	r3, r3
+ 2618              	.LVL284:
+ 2619              	.L222:
+ 693:Display/GUI/GUI_Paint.c ****         for (x = 0; x < Paint.WidthByte; x++) {//8 pixel =  1 byte
+ 2620              		.loc 1 693 0 is_stmt 0 discriminator 1
+ 2621 0016 074A     		ldr	r2, .L226
+ 2622 0018 528A     		ldrh	r2, [r2, #18]
+ARM GAS  /tmp/cceOWye5.s 			page 62
+
+
+ 2623 001a 9A42     		cmp	r2, r3
+ 2624 001c F3D8     		bhi	.L221
+ 692:Display/GUI/GUI_Paint.c ****         for (x = 0; x < Paint.WidthByte; x++) {//8 pixel =  1 byte
+ 2625              		.loc 1 692 0 is_stmt 1 discriminator 2
+ 2626 001e 0135     		adds	r5, r5, #1
+ 2627              	.LVL285:
+ 2628 0020 ADB2     		uxth	r5, r5
+ 2629              	.LVL286:
+ 2630              	.L220:
+ 692:Display/GUI/GUI_Paint.c ****         for (x = 0; x < Paint.WidthByte; x++) {//8 pixel =  1 byte
+ 2631              		.loc 1 692 0 is_stmt 0 discriminator 1
+ 2632 0022 044B     		ldr	r3, .L226
+ 2633 0024 9B8A     		ldrh	r3, [r3, #20]
+ 2634 0026 AB42     		cmp	r3, r5
+ 2635 0028 01D9     		bls	.L225
+ 693:Display/GUI/GUI_Paint.c ****         for (x = 0; x < Paint.WidthByte; x++) {//8 pixel =  1 byte
+ 2636              		.loc 1 693 0 is_stmt 1
+ 2637 002a 0023     		movs	r3, #0
+ 2638 002c F3E7     		b	.L222
+ 2639              	.L225:
+ 696:Display/GUI/GUI_Paint.c ****         }
+ 697:Display/GUI/GUI_Paint.c ****     }
+ 698:Display/GUI/GUI_Paint.c **** }
+ 2640              		.loc 1 698 0
+ 2641 002e 30BC     		pop	{r4, r5}
+ 2642              	.LCFI39:
+ 2643              		.cfi_restore 5
+ 2644              		.cfi_restore 4
+ 2645              		.cfi_def_cfa_offset 0
+ 2646              	.LVL287:
+ 2647 0030 7047     		bx	lr
+ 2648              	.L227:
+ 2649 0032 00BF     		.align	2
+ 2650              	.L226:
+ 2651 0034 00000000 		.word	Paint
+ 2652              		.cfi_endproc
+ 2653              	.LFE139:
+ 2655              		.comm	Paint,24,4
+ 2656              		.section	.rodata
+ 2657              		.align	2
+ 2658              		.set	.LANCHOR0,. + 0
+ 2659              	.LC0:
+ 2660 0000 30       		.byte	48
+ 2661 0001 31       		.byte	49
+ 2662 0002 32       		.byte	50
+ 2663 0003 33       		.byte	51
+ 2664 0004 34       		.byte	52
+ 2665 0005 35       		.byte	53
+ 2666 0006 36       		.byte	54
+ 2667 0007 37       		.byte	55
+ 2668 0008 38       		.byte	56
+ 2669 0009 39       		.byte	57
+ 2670              		.section	.rodata.Paint_DrawChar.str1.4,"aMS",%progbits,1
+ 2671              		.align	2
+ 2672              	.LC14:
+ 2673 0000 44656275 		.ascii	"Debug: Paint_DrawChar Input exceeds the normal disp"
+ 2673      673A2050 
+ARM GAS  /tmp/cceOWye5.s 			page 63
+
+
+ 2673      61696E74 
+ 2673      5F447261 
+ 2673      77436861 
+ 2674 0033 6C617920 		.ascii	"lay range\015\000"
+ 2674      72616E67 
+ 2674      650D00
+ 2675              		.section	.rodata.Paint_DrawCircle.str1.4,"aMS",%progbits,1
+ 2676              		.align	2
+ 2677              	.LC13:
+ 2678 0000 44656275 		.ascii	"Debug: Paint_DrawCircle Input exceeds the normal di"
+ 2678      673A2050 
+ 2678      61696E74 
+ 2678      5F447261 
+ 2678      77436972 
+ 2679 0033 73706C61 		.ascii	"splay range\015\000"
+ 2679      79207261 
+ 2679      6E67650D 
+ 2679      00
+ 2680              		.section	.rodata.Paint_DrawLine.str1.4,"aMS",%progbits,1
+ 2681              		.align	2
+ 2682              	.LC11:
+ 2683 0000 44656275 		.ascii	"Debug: Paint_DrawLine Input exceeds the normal disp"
+ 2683      673A2050 
+ 2683      61696E74 
+ 2683      5F447261 
+ 2683      774C696E 
+ 2684 0033 6C617920 		.ascii	"lay range\015\000"
+ 2684      72616E67 
+ 2684      650D00
+ 2685              		.section	.rodata.Paint_DrawNum.str1.4,"aMS",%progbits,1
+ 2686              		.align	2
+ 2687              	.LC16:
+ 2688 0000 44656275 		.ascii	"Debug: Paint_DisNum Input exceeds the normal displa"
+ 2688      673A2050 
+ 2688      61696E74 
+ 2688      5F446973 
+ 2688      4E756D20 
+ 2689 0033 79207261 		.ascii	"y range\015\000"
+ 2689      6E67650D 
+ 2689      00
+ 2690              		.section	.rodata.Paint_DrawPoint.str1.4,"aMS",%progbits,1
+ 2691              		.align	2
+ 2692              	.LC10:
+ 2693 0000 44656275 		.ascii	"Debug: Paint_DrawPoint Input exceeds the normal dis"
+ 2693      673A2050 
+ 2693      61696E74 
+ 2693      5F447261 
+ 2693      77506F69 
+ 2694 0033 706C6179 		.ascii	"play range\015\000"
+ 2694      2072616E 
+ 2694      67650D00 
+ 2695              		.section	.rodata.Paint_DrawRectangle.str1.4,"aMS",%progbits,1
+ 2696              		.align	2
+ 2697              	.LC12:
+ 2698 0000 44656275 		.ascii	"Debug: Input exceeds the normal display range\015\000"
+ 2698      673A2049 
+ 2698      6E707574 
+ARM GAS  /tmp/cceOWye5.s 			page 64
+
+
+ 2698      20657863 
+ 2698      65656473 
+ 2699              		.section	.rodata.Paint_DrawString_EN.str1.4,"aMS",%progbits,1
+ 2700              		.align	2
+ 2701              	.LC15:
+ 2702 0000 44656275 		.ascii	"Debug: Paint_DrawString_EN Input exceeds the normal"
+ 2702      673A2050 
+ 2702      61696E74 
+ 2702      5F447261 
+ 2702      77537472 
+ 2703 0033 20646973 		.ascii	" display range\015\000"
+ 2703      706C6179 
+ 2703      2072616E 
+ 2703      67650D00 
+ 2704              		.section	.rodata.Paint_NewImage.str1.4,"aMS",%progbits,1
+ 2705              		.align	2
+ 2706              	.LC1:
+ 2707 0000 57696474 		.ascii	"WidthByte = %d, HeightByte = %d\015\012\000"
+ 2707      68427974 
+ 2707      65203D20 
+ 2707      25642C20 
+ 2707      48656967 
+ 2708 0022 0000     		.space	2
+ 2709              	.LC2:
+ 2710 0024 20455044 		.ascii	" EPD_WIDTH / 8 = %d\015\012\000"
+ 2710      5F574944 
+ 2710      5448202F 
+ 2710      2038203D 
+ 2710      2025640D 
+ 2711              		.section	.rodata.Paint_SetMirroring.str1.4,"aMS",%progbits,1
+ 2712              		.align	2
+ 2713              	.LC5:
+ 2714 0000 6D697272 		.ascii	"mirror\000"
+ 2714      6F7200
+ 2715 0007 00       		.space	1
+ 2716              	.LC6:
+ 2717 0008 6E6F6E65 		.ascii	"none\000"
+ 2717      00
+ 2718 000d 000000   		.space	3
+ 2719              	.LC7:
+ 2720 0010 44656275 		.ascii	"Debug: mirror image x:%s, y:%s\015\012\000"
+ 2720      673A206D 
+ 2720      6972726F 
+ 2720      7220696D 
+ 2720      61676520 
+ 2721 0031 000000   		.space	3
+ 2722              	.LC8:
+ 2723 0034 44656275 		.ascii	"Debug: mirror should be MIRROR_NONE, MIRROR_HORIZON"
+ 2723      673A206D 
+ 2723      6972726F 
+ 2723      72207368 
+ 2723      6F756C64 
+ 2724 0067 54414C2C 		.ascii	"TAL,         MIRROR_VERTICAL or MIRROR_ORIGIN\015\000"
+ 2724      20202020 
+ 2724      20202020 
+ 2724      204D4952 
+ 2724      524F525F 
+ARM GAS  /tmp/cceOWye5.s 			page 65
+
+
+ 2725              		.section	.rodata.Paint_SetPixel.str1.4,"aMS",%progbits,1
+ 2726              		.align	2
+ 2727              	.LC9:
+ 2728 0000 44656275 		.ascii	"Debug: Exceeding display boundaries\015\000"
+ 2728      673A2045 
+ 2728      78636565 
+ 2728      64696E67 
+ 2728      20646973 
+ 2729              		.section	.rodata.Paint_SetRotate.str1.4,"aMS",%progbits,1
+ 2730              		.align	2
+ 2731              	.LC3:
+ 2732 0000 44656275 		.ascii	"Debug: Set image Rotate %d\015\012\000"
+ 2732      673A2053 
+ 2732      65742069 
+ 2732      6D616765 
+ 2732      20526F74 
+ 2733 001d 000000   		.space	3
+ 2734              	.LC4:
+ 2735 0020 44656275 		.ascii	"Debug: rotate = 0, 90, 180, 270\015\000"
+ 2735      673A2072 
+ 2735      6F746174 
+ 2735      65203D20 
+ 2735      302C2039 
+ 2736              		.text
+ 2737              	.Letext0:
+ 2738              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 2739              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 2740              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 2741              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 2742              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 2743              		.file 7 "Display/GUI/../Fonts/fonts.h"
+ 2744              		.file 8 "Display/GUI/GUI_Paint.h"
+ 2745              		.file 9 "/usr/arm-none-eabi/include/sys/lock.h"
+ 2746              		.file 10 "/usr/arm-none-eabi/include/sys/_types.h"
+ 2747              		.file 11 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 2748              		.file 12 "/usr/arm-none-eabi/include/sys/reent.h"
+ 2749              		.file 13 "/usr/arm-none-eabi/include/stdlib.h"
+ 2750              		.file 14 "/usr/arm-none-eabi/include/math.h"
+ 2751              		.file 15 "<built-in>"
+ARM GAS  /tmp/cceOWye5.s 			page 66
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 GUI_Paint.c
+     /tmp/cceOWye5.s:18     .text.Paint_NewImage:0000000000000000 $t
+     /tmp/cceOWye5.s:25     .text.Paint_NewImage:0000000000000000 Paint_NewImage
+     /tmp/cceOWye5.s:118    .text.Paint_NewImage:0000000000000058 $d
+                            *COM*:0000000000000018 Paint
+     /tmp/cceOWye5.s:125    .text.Paint_SelectImage:0000000000000000 $t
+     /tmp/cceOWye5.s:132    .text.Paint_SelectImage:0000000000000000 Paint_SelectImage
+     /tmp/cceOWye5.s:148    .text.Paint_SelectImage:0000000000000008 $d
+     /tmp/cceOWye5.s:153    .text.Paint_SetRotate:0000000000000000 $t
+     /tmp/cceOWye5.s:160    .text.Paint_SetRotate:0000000000000000 Paint_SetRotate
+     /tmp/cceOWye5.s:212    .text.Paint_SetRotate:000000000000002c $d
+     /tmp/cceOWye5.s:219    .text.Paint_SetMirroring:0000000000000000 $t
+     /tmp/cceOWye5.s:226    .text.Paint_SetMirroring:0000000000000000 Paint_SetMirroring
+     /tmp/cceOWye5.s:289    .text.Paint_SetMirroring:0000000000000034 $d
+     /tmp/cceOWye5.s:298    .text.Paint_SetPixel:0000000000000000 $t
+     /tmp/cceOWye5.s:305    .text.Paint_SetPixel:0000000000000000 Paint_SetPixel
+     /tmp/cceOWye5.s:381    .text.Paint_SetPixel:000000000000004e $d
+     /tmp/cceOWye5.s:386    .text.Paint_SetPixel:0000000000000052 $t
+     /tmp/cceOWye5.s:521    .text.Paint_SetPixel:00000000000000f8 $d
+     /tmp/cceOWye5.s:527    .text.Paint_Clear:0000000000000000 $t
+     /tmp/cceOWye5.s:534    .text.Paint_Clear:0000000000000000 Paint_Clear
+     /tmp/cceOWye5.s:603    .text.Paint_Clear:0000000000000034 $d
+     /tmp/cceOWye5.s:608    .text.Paint_ClearWindows:0000000000000000 $t
+     /tmp/cceOWye5.s:615    .text.Paint_ClearWindows:0000000000000000 Paint_ClearWindows
+     /tmp/cceOWye5.s:677    .text.Paint_DrawPoint:0000000000000000 $t
+     /tmp/cceOWye5.s:684    .text.Paint_DrawPoint:0000000000000000 Paint_DrawPoint
+     /tmp/cceOWye5.s:843    .text.Paint_DrawPoint:00000000000000cc $d
+     /tmp/cceOWye5.s:849    .text.Paint_DrawLine:0000000000000000 $t
+     /tmp/cceOWye5.s:856    .text.Paint_DrawLine:0000000000000000 Paint_DrawLine
+     /tmp/cceOWye5.s:1052   .text.Paint_DrawLine:00000000000000f8 $d
+     /tmp/cceOWye5.s:1059   .text.Paint_DrawRectangle:0000000000000000 $t
+     /tmp/cceOWye5.s:1066   .text.Paint_DrawRectangle:0000000000000000 Paint_DrawRectangle
+     /tmp/cceOWye5.s:1203   .text.Paint_DrawRectangle:00000000000000c8 $d
+     /tmp/cceOWye5.s:1210   .text.Paint_DrawCircle:0000000000000000 $t
+     /tmp/cceOWye5.s:1217   .text.Paint_DrawCircle:0000000000000000 Paint_DrawCircle
+     /tmp/cceOWye5.s:1579   .text.Paint_DrawCircle:0000000000000260 $d
+     /tmp/cceOWye5.s:1585   .text.Paint_DrawChar:0000000000000000 $t
+     /tmp/cceOWye5.s:1592   .text.Paint_DrawChar:0000000000000000 Paint_DrawChar
+     /tmp/cceOWye5.s:1749   .text.Paint_DrawChar:00000000000000d4 $d
+     /tmp/cceOWye5.s:1755   .text.Paint_DrawString_EN:0000000000000000 $t
+     /tmp/cceOWye5.s:1762   .text.Paint_DrawString_EN:0000000000000000 Paint_DrawString_EN
+     /tmp/cceOWye5.s:1884   .text.Paint_DrawString_EN:0000000000000080 $d
+     /tmp/cceOWye5.s:1890   .text.Paint_DrawString_CN:0000000000000000 $t
+     /tmp/cceOWye5.s:1897   .text.Paint_DrawString_CN:0000000000000000 Paint_DrawString_CN
+     /tmp/cceOWye5.s:2231   .text.Paint_DrawNum:0000000000000000 $t
+     /tmp/cceOWye5.s:2238   .text.Paint_DrawNum:0000000000000000 Paint_DrawNum
+     /tmp/cceOWye5.s:2376   .text.Paint_DrawNum:00000000000000a4 $d
+     /tmp/cceOWye5.s:2383   .text.Paint_DrawTime:0000000000000000 $t
+     /tmp/cceOWye5.s:2390   .text.Paint_DrawTime:0000000000000000 Paint_DrawTime
+     /tmp/cceOWye5.s:2574   .text.Paint_DrawTime:0000000000000194 $d
+     /tmp/cceOWye5.s:2580   .text.Paint_DrawBitMap:0000000000000000 $t
+     /tmp/cceOWye5.s:2587   .text.Paint_DrawBitMap:0000000000000000 Paint_DrawBitMap
+     /tmp/cceOWye5.s:2651   .text.Paint_DrawBitMap:0000000000000034 $d
+     /tmp/cceOWye5.s:2657   .rodata:0000000000000000 $d
+     /tmp/cceOWye5.s:2671   .rodata.Paint_DrawChar.str1.4:0000000000000000 $d
+     /tmp/cceOWye5.s:2676   .rodata.Paint_DrawCircle.str1.4:0000000000000000 $d
+ARM GAS  /tmp/cceOWye5.s 			page 67
+
+
+     /tmp/cceOWye5.s:2681   .rodata.Paint_DrawLine.str1.4:0000000000000000 $d
+     /tmp/cceOWye5.s:2686   .rodata.Paint_DrawNum.str1.4:0000000000000000 $d
+     /tmp/cceOWye5.s:2691   .rodata.Paint_DrawPoint.str1.4:0000000000000000 $d
+     /tmp/cceOWye5.s:2696   .rodata.Paint_DrawRectangle.str1.4:0000000000000000 $d
+     /tmp/cceOWye5.s:2700   .rodata.Paint_DrawString_EN.str1.4:0000000000000000 $d
+     /tmp/cceOWye5.s:2705   .rodata.Paint_NewImage.str1.4:0000000000000000 $d
+     /tmp/cceOWye5.s:2712   .rodata.Paint_SetMirroring.str1.4:0000000000000000 $d
+     /tmp/cceOWye5.s:2726   .rodata.Paint_SetPixel.str1.4:0000000000000000 $d
+     /tmp/cceOWye5.s:2730   .rodata.Paint_SetRotate.str1.4:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+printf
+puts
+memset

@@ -1,0 +1,126 @@
+ARM GAS  /tmp/ccQUmDeR.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"DEV_Config.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.DEV_SPI_WriteByte,"ax",%progbits
+  18              		.align	1
+  19              		.global	DEV_SPI_WriteByte
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	DEV_SPI_WriteByte:
+  26              	.LFB123:
+  27              		.file 1 "Display/Config/DEV_Config.c"
+   1:Display/Config/DEV_Config.c **** /*****************************************************************************
+   2:Display/Config/DEV_Config.c **** * | File      	:   DEV_Config.c
+   3:Display/Config/DEV_Config.c **** * | Author      :   Waveshare team
+   4:Display/Config/DEV_Config.c **** * | Function    :   Hardware underlying interface
+   5:Display/Config/DEV_Config.c **** * | Info        :
+   6:Display/Config/DEV_Config.c **** *                Used to shield the underlying layers of each master
+   7:Display/Config/DEV_Config.c **** *                and enhance portability
+   8:Display/Config/DEV_Config.c **** *----------------
+   9:Display/Config/DEV_Config.c **** * |	This version:   V2.0
+  10:Display/Config/DEV_Config.c **** * | Date        :   2018-10-30
+  11:Display/Config/DEV_Config.c **** * | Info        :
+  12:Display/Config/DEV_Config.c **** # Permission is hereby granted, free of charge, to any person obtaining a copy
+  13:Display/Config/DEV_Config.c **** # of this software and associated documnetation files (the "Software"), to deal
+  14:Display/Config/DEV_Config.c **** # in the Software without restriction, including without limitation the rights
+  15:Display/Config/DEV_Config.c **** # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  16:Display/Config/DEV_Config.c **** # copies of the Software, and to permit persons to  whom the Software is
+  17:Display/Config/DEV_Config.c **** # furished to do so, subject to the following conditions:
+  18:Display/Config/DEV_Config.c **** #
+  19:Display/Config/DEV_Config.c **** # The above copyright notice and this permission notice shall be included in
+  20:Display/Config/DEV_Config.c **** # all copies or substantial portions of the Software.
+  21:Display/Config/DEV_Config.c **** #
+  22:Display/Config/DEV_Config.c **** # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  23:Display/Config/DEV_Config.c **** # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  24:Display/Config/DEV_Config.c **** # FITNESS OR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  25:Display/Config/DEV_Config.c **** # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  26:Display/Config/DEV_Config.c **** # LIABILITY WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  27:Display/Config/DEV_Config.c **** # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  28:Display/Config/DEV_Config.c **** # THE SOFTWARE.
+  29:Display/Config/DEV_Config.c **** #
+  30:Display/Config/DEV_Config.c **** ******************************************************************************/
+  31:Display/Config/DEV_Config.c **** #include "DEV_Config.h"
+ARM GAS  /tmp/ccQUmDeR.s 			page 2
+
+
+  32:Display/Config/DEV_Config.c **** #include "stm32l4xx_hal_spi.h"
+  33:Display/Config/DEV_Config.c **** 
+  34:Display/Config/DEV_Config.c **** extern SPI_HandleTypeDef hspi1;
+  35:Display/Config/DEV_Config.c **** void DEV_SPI_WriteByte(UBYTE value)
+  36:Display/Config/DEV_Config.c **** {
+  28              		.loc 1 36 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 00B5     		push	{lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 14, -4
+  37 0002 83B0     		sub	sp, sp, #12
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 16
+  40 0004 02A9     		add	r1, sp, #8
+  41 0006 01F8010D 		strb	r0, [r1, #-1]!
+  37:Display/Config/DEV_Config.c **** 	HAL_SPI_Transmit(&hspi1, &value, 1, 1000);
+  42              		.loc 1 37 0
+  43 000a 4FF47A73 		mov	r3, #1000
+  44 000e 0122     		movs	r2, #1
+  45 0010 0248     		ldr	r0, .L3
+  46              	.LVL1:
+  47 0012 FFF7FEFF 		bl	HAL_SPI_Transmit
+  48              	.LVL2:
+  38:Display/Config/DEV_Config.c **** }
+  49              		.loc 1 38 0
+  50 0016 03B0     		add	sp, sp, #12
+  51              	.LCFI2:
+  52              		.cfi_def_cfa_offset 4
+  53              		@ sp needed
+  54 0018 5DF804FB 		ldr	pc, [sp], #4
+  55              	.L4:
+  56              		.align	2
+  57              	.L3:
+  58 001c 00000000 		.word	hspi1
+  59              		.cfi_endproc
+  60              	.LFE123:
+  62              		.text
+  63              	.Letext0:
+  64              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  65              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  66              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+  67              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+  68              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+  69              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+  70              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+  71              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
+  72              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ARM GAS  /tmp/ccQUmDeR.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 DEV_Config.c
+     /tmp/ccQUmDeR.s:18     .text.DEV_SPI_WriteByte:0000000000000000 $t
+     /tmp/ccQUmDeR.s:25     .text.DEV_SPI_WriteByte:0000000000000000 DEV_SPI_WriteByte
+     /tmp/ccQUmDeR.s:58     .text.DEV_SPI_WriteByte:000000000000001c $d
+
+UNDEFINED SYMBOLS
+HAL_SPI_Transmit
+hspi1
