@@ -23,11 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "EPD_2in9.h"
-#include "DEV_Config.h"
-#include "GUI_Paint.h"
-#include "ImageData.h"
-#include <stdlib.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -48,6 +44,8 @@
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
 
+TIM_HandleTypeDef htim1;
+
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
@@ -59,6 +57,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -98,119 +97,30 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_SPI1_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
-    if(EPD_Init(lut_full_update) != 0) {
-        printf("e-Paper init failed\r\n");
-    }
-    EPD_Clear();
-    DEV_Delay_ms(500);
-
-    //Create a new image cache
-    UBYTE *BlackImage;
-    UWORD Imagesize = ((EPD_WIDTH % 8 == 0)? (EPD_WIDTH / 8 ): (EPD_WIDTH / 8 + 1)) * EPD_HEIGHT;
-    if((BlackImage = (UBYTE *)malloc(Imagesize)) == NULL) {
-        printf("Failed to apply for black memory...\r\n");
-        return -1;
-    }
-    printf("Paint_NewImage\r\n");
-    Paint_NewImage(BlackImage, EPD_WIDTH, EPD_HEIGHT, 270, WHITE);
-    Paint_SelectImage(BlackImage);
-    Paint_Clear(WHITE);
-
-#if 1
-    /*show image for array*/
-    printf("show image for array\r\n");
-    Paint_SelectImage(BlackImage);
-    Paint_Clear(WHITE);
-    Paint_DrawBitMap(gImage_2in9);
-
-    EPD_Display(BlackImage);
-    DEV_Delay_ms(2000);
-
-    Paint_Clear(WHITE);
-    EPD_Display(BlackImage);
-#endif
-
-#if 0   // Drawing on the image
-    //1.Select Image
-    printf("SelectImage:BlackImage\r\n");
-    Paint_SelectImage(BlackImage);
-    Paint_Clear(WHITE);
-
-    // 2.Drawing on the image
-    printf("Drawing:BlackImage\r\n");
-    Paint_DrawPoint(10, 80, BLACK, DOT_PIXEL_1X1, DOT_STYLE_DFT);
-    Paint_DrawPoint(10, 90, BLACK, DOT_PIXEL_2X2, DOT_STYLE_DFT);
-    Paint_DrawPoint(10, 100, BLACK, DOT_PIXEL_3X3, DOT_STYLE_DFT);
-    Paint_DrawLine(20, 70, 70, 120, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_1X1);
-    Paint_DrawLine(70, 70, 20, 120, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_1X1);
-    Paint_DrawRectangle(20, 70, 70, 120, BLACK, DRAW_FILL_EMPTY, DOT_PIXEL_1X1);
-    Paint_DrawRectangle(80, 70, 130, 120, BLACK, DRAW_FILL_FULL, DOT_PIXEL_1X1);
-    Paint_DrawCircle(45, 95, 20, BLACK, DRAW_FILL_EMPTY, DOT_PIXEL_1X1);
-    Paint_DrawCircle(105, 95, 20, WHITE, DRAW_FILL_FULL, DOT_PIXEL_1X1);
-    Paint_DrawLine(85, 95, 125, 95, BLACK, LINE_STYLE_DOTTED, DOT_PIXEL_1X1);
-    Paint_DrawLine(105, 75, 105, 115, BLACK, LINE_STYLE_DOTTED, DOT_PIXEL_1X1);
-    Paint_DrawString_EN(10, 0, "waveshare", &Font16, BLACK, WHITE);
-    Paint_DrawString_EN(10, 20, "hello world", &Font12, WHITE, BLACK);
-    Paint_DrawNum(10, 33, 123456789, &Font12, BLACK, WHITE);
-    Paint_DrawNum(10, 50, 987654321, &Font16, WHITE, BLACK);
-
-    printf("EPD_Display\r\n");
-    EPD_Display(BlackImage);
-    DEV_Delay_ms(2000);
-#endif
-
-#if 0   //Partial refresh, example shows time
-    if(EPD_Init(lut_partial_update) != 0) {
-        printf("e-Paper init failed\r\n");
-    }
-		Paint_SelectImage(BlackImage);
-    PAINT_TIME sPaint_time;
-    sPaint_time.Hour = 12;
-    sPaint_time.Min = 34;
-    sPaint_time.Sec = 56;
-    for (;;) {
-        sPaint_time.Sec = sPaint_time.Sec + 1;
-        if (sPaint_time.Sec == 60) {
-            sPaint_time.Min = sPaint_time.Min + 1;
-            sPaint_time.Sec = 0;
-            if (sPaint_time.Min == 60) {
-                sPaint_time.Hour =  sPaint_time.Hour + 1;
-                sPaint_time.Min = 0;
-                if (sPaint_time.Hour == 24) {
-                    sPaint_time.Hour = 0;
-                    sPaint_time.Min = 0;
-                    sPaint_time.Sec = 0;
-                }
-            }
-        }
-        Paint_ClearWindows(15, 65, 15 + Font20.Width * 7, 65 + Font20.Height, WHITE);
-        Paint_DrawTime(15, 65, &sPaint_time, &Font20, WHITE, BLACK);
-
-				EPD_Display(BlackImage);
-        DEV_Delay_ms(500);//Analog clock 1s
-    }
-
-#endif
-
-#if 0
-    printf("Goto Sleep mode...\r\n");
-    EPD_Sleep();
-    free(BlackImage);
-    BlackImage = NULL;
-#endif
-
+  Display_Init();
+  Display();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    Keyboard();
+    if(action)
+      Display();
+    HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
+  #if 0
+      printf("Goto Sleep mode...\r\n");
+      EPD_Sleep();
+      free(BlackImage);
+      BlackImage = NULL;
+  #endif
   /* USER CODE END 3 */
 }
 
@@ -308,6 +218,53 @@ static void MX_SPI1_Init(void)
 }
 
 /**
+  * @brief TIM1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM1_Init(void)
+{
+
+  /* USER CODE BEGIN TIM1_Init 0 */
+
+  /* USER CODE END TIM1_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM1_Init 1 */
+
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 32000;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 10;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM1_Init 2 */
+
+  /* USER CODE END TIM1_Init 2 */
+
+}
+
+/**
   * @brief USART2 Initialization Function
   * @param None
   * @retval None
@@ -368,6 +325,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : BT_UP_Pin BT_DOWN_Pin BT_MIDDLE_Pin */
+  GPIO_InitStruct.Pin = BT_UP_Pin|BT_DOWN_Pin|BT_MIDDLE_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LD2_Pin RST_Pin DC_Pin */
   GPIO_InitStruct.Pin = LD2_Pin|RST_Pin|DC_Pin;

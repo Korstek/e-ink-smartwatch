@@ -28,9 +28,13 @@ build/EPD_2in9.o: Display/e-Paper/EPD_2in9.c Display/e-Paper/EPD_2in9.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
+ Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h \
+ Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- Display/Config/Debug.h
+ Display/display.h Display/e-Paper/EPD_2in9.h Display/GUI/GUI_Paint.h \
+ Display/GUI/../Fonts/fonts.h Display/e-Paper/ImageData.h Inc/keyboard.h \
+ Inc/keyboard.h Display/Config/Debug.h
 
 Display/e-Paper/EPD_2in9.h:
 
@@ -98,8 +102,26 @@ Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h:
 
 Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h:
 
+Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h:
+
+Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h:
+
 Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 
 Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
+
+Display/display.h:
+
+Display/e-Paper/EPD_2in9.h:
+
+Display/GUI/GUI_Paint.h:
+
+Display/GUI/../Fonts/fonts.h:
+
+Display/e-Paper/ImageData.h:
+
+Inc/keyboard.h:
+
+Inc/keyboard.h:
 
 Display/Config/Debug.h:

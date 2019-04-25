@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccUFum3j.s 			page 1
+ARM GAS  /tmp/ccPNoVEa.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,13 +58,13 @@ ARM GAS  /tmp/ccUFum3j.s 			page 1
   29:Src/stm32l4xx_it.c **** /* USER CODE BEGIN TD */
   30:Src/stm32l4xx_it.c **** 
   31:Src/stm32l4xx_it.c **** /* USER CODE END TD */
-ARM GAS  /tmp/ccUFum3j.s 			page 2
+ARM GAS  /tmp/ccPNoVEa.s 			page 2
 
 
   32:Src/stm32l4xx_it.c **** 
   33:Src/stm32l4xx_it.c **** /* Private define ------------------------------------------------------------*/
   34:Src/stm32l4xx_it.c **** /* USER CODE BEGIN PD */
-  35:Src/stm32l4xx_it.c ****  
+  35:Src/stm32l4xx_it.c **** 
   36:Src/stm32l4xx_it.c **** /* USER CODE END PD */
   37:Src/stm32l4xx_it.c **** 
   38:Src/stm32l4xx_it.c **** /* Private macro -------------------------------------------------------------*/
@@ -88,13 +88,13 @@ ARM GAS  /tmp/ccUFum3j.s 			page 1
   56:Src/stm32l4xx_it.c **** /* USER CODE END 0 */
   57:Src/stm32l4xx_it.c **** 
   58:Src/stm32l4xx_it.c **** /* External variables --------------------------------------------------------*/
-  59:Src/stm32l4xx_it.c **** 
+  59:Src/stm32l4xx_it.c **** extern TIM_HandleTypeDef htim1;
   60:Src/stm32l4xx_it.c **** /* USER CODE BEGIN EV */
   61:Src/stm32l4xx_it.c **** 
   62:Src/stm32l4xx_it.c **** /* USER CODE END EV */
   63:Src/stm32l4xx_it.c **** 
   64:Src/stm32l4xx_it.c **** /******************************************************************************/
-  65:Src/stm32l4xx_it.c **** /*           Cortex-M4 Processor Interruption and Exception Handlers          */ 
+  65:Src/stm32l4xx_it.c **** /*           Cortex-M4 Processor Interruption and Exception Handlers          */
   66:Src/stm32l4xx_it.c **** /******************************************************************************/
   67:Src/stm32l4xx_it.c **** /**
   68:Src/stm32l4xx_it.c ****   * @brief This function handles Non maskable interrupt.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccUFum3j.s 			page 1
   35              		.cfi_endproc
   36              	.LFE123:
   38              		.section	.text.HardFault_Handler,"ax",%progbits
-ARM GAS  /tmp/ccUFum3j.s 			page 3
+ARM GAS  /tmp/ccPNoVEa.s 			page 3
 
 
   39              		.align	1
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccUFum3j.s 			page 1
   75              	.L5:
   76 0000 FEE7     		b	.L5
   77              		.cfi_endproc
-ARM GAS  /tmp/ccUFum3j.s 			page 4
+ARM GAS  /tmp/ccPNoVEa.s 			page 4
 
 
   78              	.LFE125:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccUFum3j.s 			page 1
  125:Src/stm32l4xx_it.c **** /**
  126:Src/stm32l4xx_it.c ****   * @brief This function handles Undefined instruction or illegal state.
  127:Src/stm32l4xx_it.c ****   */
-ARM GAS  /tmp/ccUFum3j.s 			page 5
+ARM GAS  /tmp/ccPNoVEa.s 			page 5
 
 
  128:Src/stm32l4xx_it.c **** void UsageFault_Handler(void)
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccUFum3j.s 			page 1
  144              		.global	DebugMon_Handler
  145              		.syntax unified
  146              		.thumb
-ARM GAS  /tmp/ccUFum3j.s 			page 6
+ARM GAS  /tmp/ccPNoVEa.s 			page 6
 
 
  147              		.thumb_func
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccUFum3j.s 			page 1
  178 0000 7047     		bx	lr
  179              		.cfi_endproc
  180              	.LFE130:
-ARM GAS  /tmp/ccUFum3j.s 			page 7
+ARM GAS  /tmp/ccPNoVEa.s 			page 7
 
 
  182              		.section	.text.SysTick_Handler,"ax",%progbits
@@ -400,36 +400,123 @@ ARM GAS  /tmp/ccUFum3j.s 			page 1
  205 0006 08BD     		pop	{r3, pc}
  206              		.cfi_endproc
  207              	.LFE131:
- 209              		.text
- 210              	.Letext0:
- 211              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 212              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 213              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 214              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 215              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
-ARM GAS  /tmp/ccUFum3j.s 			page 8
+ 209              		.section	.text.TIM1_BRK_TIM15_IRQHandler,"ax",%progbits
+ 210              		.align	1
+ 211              		.global	TIM1_BRK_TIM15_IRQHandler
+ 212              		.syntax unified
+ 213              		.thumb
+ 214              		.thumb_func
+ 215              		.fpu fpv4-sp-d16
+ 217              	TIM1_BRK_TIM15_IRQHandler:
+ 218              	.LFB132:
+ 192:Src/stm32l4xx_it.c **** 
+ 193:Src/stm32l4xx_it.c **** /******************************************************************************/
+ 194:Src/stm32l4xx_it.c **** /* STM32L4xx Peripheral Interrupt Handlers                                    */
+ 195:Src/stm32l4xx_it.c **** /* Add here the Interrupt Handlers for the used peripherals.                  */
+ 196:Src/stm32l4xx_it.c **** /* For the available peripheral interrupt handler names,                      */
+ 197:Src/stm32l4xx_it.c **** /* please refer to the startup file (startup_stm32l4xx.s).                    */
+ 198:Src/stm32l4xx_it.c **** /******************************************************************************/
+ 199:Src/stm32l4xx_it.c **** 
+ 200:Src/stm32l4xx_it.c **** /**
+ARM GAS  /tmp/ccPNoVEa.s 			page 8
+
+
+ 201:Src/stm32l4xx_it.c ****   * @brief This function handles TIM1 break interrupt and TIM15 global interrupt.
+ 202:Src/stm32l4xx_it.c ****   */
+ 203:Src/stm32l4xx_it.c **** void TIM1_BRK_TIM15_IRQHandler(void)
+ 204:Src/stm32l4xx_it.c **** {
+ 219              		.loc 1 204 0
+ 220              		.cfi_startproc
+ 221              		@ args = 0, pretend = 0, frame = 0
+ 222              		@ frame_needed = 0, uses_anonymous_args = 0
+ 223 0000 08B5     		push	{r3, lr}
+ 224              	.LCFI1:
+ 225              		.cfi_def_cfa_offset 8
+ 226              		.cfi_offset 3, -8
+ 227              		.cfi_offset 14, -4
+ 205:Src/stm32l4xx_it.c ****   /* USER CODE BEGIN TIM1_BRK_TIM15_IRQn 0 */
+ 206:Src/stm32l4xx_it.c **** 
+ 207:Src/stm32l4xx_it.c ****   /* USER CODE END TIM1_BRK_TIM15_IRQn 0 */
+ 208:Src/stm32l4xx_it.c ****   HAL_TIM_IRQHandler(&htim1);
+ 228              		.loc 1 208 0
+ 229 0002 0248     		ldr	r0, .L17
+ 230 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 231              	.LVL1:
+ 209:Src/stm32l4xx_it.c ****   /* USER CODE BEGIN TIM1_BRK_TIM15_IRQn 1 */
+ 210:Src/stm32l4xx_it.c **** 
+ 211:Src/stm32l4xx_it.c ****   /* USER CODE END TIM1_BRK_TIM15_IRQn 1 */
+ 212:Src/stm32l4xx_it.c **** }
+ 232              		.loc 1 212 0
+ 233 0008 08BD     		pop	{r3, pc}
+ 234              	.L18:
+ 235 000a 00BF     		.align	2
+ 236              	.L17:
+ 237 000c 00000000 		.word	htim1
+ 238              		.cfi_endproc
+ 239              	.LFE132:
+ 241              		.comm	click,4,4
+ 242              		.comm	current_position,4,4
+ 243              		.comm	menu_text_usage,12,4
+ 244              		.comm	BlackImage,4,4
+ 245              		.comm	action,4,4
+ 246              		.text
+ 247              	.Letext0:
+ 248              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 249              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 250              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 251              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 252              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 253              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 254              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 255              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
+ 256              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 257              		.file 11 "Display/e-Paper/EPD_2in9.h"
+ 258              		.file 12 "Display/GUI/../Fonts/fonts.h"
+ 259              		.file 13 "Display/GUI/GUI_Paint.h"
+ 260              		.file 14 "Display/e-Paper/ImageData.h"
+ 261              		.file 15 "/usr/arm-none-eabi/include/sys/lock.h"
+ 262              		.file 16 "/usr/arm-none-eabi/include/sys/_types.h"
+ 263              		.file 17 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 264              		.file 18 "/usr/arm-none-eabi/include/sys/reent.h"
+ARM GAS  /tmp/ccPNoVEa.s 			page 9
+
+
+ 265              		.file 19 "/usr/arm-none-eabi/include/stdlib.h"
+ 266              		.file 20 "Inc/keyboard.h"
+ 267              		.file 21 "Display/display.h"
+ARM GAS  /tmp/ccPNoVEa.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l4xx_it.c
-     /tmp/ccUFum3j.s:18     .text.NMI_Handler:0000000000000000 $t
-     /tmp/ccUFum3j.s:25     .text.NMI_Handler:0000000000000000 NMI_Handler
-     /tmp/ccUFum3j.s:39     .text.HardFault_Handler:0000000000000000 $t
-     /tmp/ccUFum3j.s:46     .text.HardFault_Handler:0000000000000000 HardFault_Handler
-     /tmp/ccUFum3j.s:60     .text.MemManage_Handler:0000000000000000 $t
-     /tmp/ccUFum3j.s:67     .text.MemManage_Handler:0000000000000000 MemManage_Handler
-     /tmp/ccUFum3j.s:81     .text.BusFault_Handler:0000000000000000 $t
-     /tmp/ccUFum3j.s:88     .text.BusFault_Handler:0000000000000000 BusFault_Handler
-     /tmp/ccUFum3j.s:102    .text.UsageFault_Handler:0000000000000000 $t
-     /tmp/ccUFum3j.s:109    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
-     /tmp/ccUFum3j.s:123    .text.SVC_Handler:0000000000000000 $t
-     /tmp/ccUFum3j.s:130    .text.SVC_Handler:0000000000000000 SVC_Handler
-     /tmp/ccUFum3j.s:143    .text.DebugMon_Handler:0000000000000000 $t
-     /tmp/ccUFum3j.s:150    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
-     /tmp/ccUFum3j.s:163    .text.PendSV_Handler:0000000000000000 $t
-     /tmp/ccUFum3j.s:170    .text.PendSV_Handler:0000000000000000 PendSV_Handler
-     /tmp/ccUFum3j.s:183    .text.SysTick_Handler:0000000000000000 $t
-     /tmp/ccUFum3j.s:190    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+     /tmp/ccPNoVEa.s:18     .text.NMI_Handler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:25     .text.NMI_Handler:0000000000000000 NMI_Handler
+     /tmp/ccPNoVEa.s:39     .text.HardFault_Handler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:46     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+     /tmp/ccPNoVEa.s:60     .text.MemManage_Handler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:67     .text.MemManage_Handler:0000000000000000 MemManage_Handler
+     /tmp/ccPNoVEa.s:81     .text.BusFault_Handler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:88     .text.BusFault_Handler:0000000000000000 BusFault_Handler
+     /tmp/ccPNoVEa.s:102    .text.UsageFault_Handler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:109    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
+     /tmp/ccPNoVEa.s:123    .text.SVC_Handler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:130    .text.SVC_Handler:0000000000000000 SVC_Handler
+     /tmp/ccPNoVEa.s:143    .text.DebugMon_Handler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:150    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
+     /tmp/ccPNoVEa.s:163    .text.PendSV_Handler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:170    .text.PendSV_Handler:0000000000000000 PendSV_Handler
+     /tmp/ccPNoVEa.s:183    .text.SysTick_Handler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:190    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+     /tmp/ccPNoVEa.s:210    .text.TIM1_BRK_TIM15_IRQHandler:0000000000000000 $t
+     /tmp/ccPNoVEa.s:217    .text.TIM1_BRK_TIM15_IRQHandler:0000000000000000 TIM1_BRK_TIM15_IRQHandler
+     /tmp/ccPNoVEa.s:237    .text.TIM1_BRK_TIM15_IRQHandler:000000000000000c $d
+                            *COM*:0000000000000004 click
+                            *COM*:0000000000000004 current_position
+                            *COM*:000000000000000c menu_text_usage
+                            *COM*:0000000000000004 BlackImage
+                            *COM*:0000000000000004 action
 
 UNDEFINED SYMBOLS
 HAL_IncTick
+HAL_TIM_IRQHandler
+htim1

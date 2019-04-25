@@ -33,6 +33,21 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+/**
+ * data - becouse one time in DEV_Config wasn't enough
+**/
+#ifndef _U_SOMETHING_
+#define _U_SOMETHING_
+
+#define UBYTE   uint8_t
+#define UWORD   uint16_t
+#define UDOUBLE uint32_t
+
+#endif
+
+#include "display.h"
+#include "keyboard.h"
+#include "DEV_Config.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -60,10 +75,16 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
+#define BT_UP_Pin GPIO_PIN_0
+#define BT_UP_GPIO_Port GPIOA
+#define BT_DOWN_Pin GPIO_PIN_1
+#define BT_DOWN_GPIO_Port GPIOA
 #define USART_TX_Pin GPIO_PIN_2
 #define USART_TX_GPIO_Port GPIOA
 #define USART_RX_Pin GPIO_PIN_3
 #define USART_RX_GPIO_Port GPIOA
+#define BT_MIDDLE_Pin GPIO_PIN_4
+#define BT_MIDDLE_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
 #define BUSY_Pin GPIO_PIN_10

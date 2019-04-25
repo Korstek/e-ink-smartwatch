@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccjm1q4U.s 			page 1
+ARM GAS  /tmp/ccXf5trn.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
   30:Display/e-Paper/EPD_2in9.c **** # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
   31:Display/e-Paper/EPD_2in9.c **** # FITNESS OR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
   32:Display/e-Paper/EPD_2in9.c **** # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-ARM GAS  /tmp/ccjm1q4U.s 			page 2
+ARM GAS  /tmp/ccXf5trn.s 			page 2
 
 
   33:Display/e-Paper/EPD_2in9.c **** # LIABILITY WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
   49 001c 4FF09040 		mov	r0, #1207959552
   50 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
   51              	.LVL2:
-ARM GAS  /tmp/ccjm1q4U.s 			page 3
+ARM GAS  /tmp/ccXf5trn.s 			page 3
 
 
   65:Display/e-Paper/EPD_2in9.c ****     DEV_Delay_ms(200);
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
   95 0006 4FF48061 		mov	r1, #1024
   96 000a 4FF09040 		mov	r0, #1207959552
   97              	.LVL7:
-ARM GAS  /tmp/ccjm1q4U.s 			page 4
+ARM GAS  /tmp/ccXf5trn.s 			page 4
 
 
   98 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  142              		.cfi_def_cfa_offset 16
  143              		.cfi_offset 3, -16
  144              		.cfi_offset 4, -12
-ARM GAS  /tmp/ccjm1q4U.s 			page 5
+ARM GAS  /tmp/ccXf5trn.s 			page 5
 
 
  145              		.cfi_offset 5, -8
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  101:Display/e-Paper/EPD_2in9.c **** {
  102:Display/e-Paper/EPD_2in9.c ****     Debug("e-Paper busy\r\n");
  103:Display/e-Paper/EPD_2in9.c ****     while(DEV_Digital_Read(EPD_BUSY_PIN) == 1) {      //LOW: idle, HIGH: busy
-ARM GAS  /tmp/ccjm1q4U.s 			page 6
+ARM GAS  /tmp/ccXf5trn.s 			page 6
 
 
  104:Display/e-Paper/EPD_2in9.c ****         DEV_Delay_ms(100);
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  227 0028 FFF7FEFF 		bl	EPD_SendData
  228              	.LVL24:
  121:Display/e-Paper/EPD_2in9.c ****     EPD_SendData((Ystart >> 8) & 0xFF);
-ARM GAS  /tmp/ccjm1q4U.s 			page 7
+ARM GAS  /tmp/ccXf5trn.s 			page 7
 
 
  229              		.loc 1 121 0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  133:Display/e-Paper/EPD_2in9.c ****     EPD_SendData((Xstart >> 3) & 0xFF);
  274              		.loc 1 133 0
  275 000c C5F3C700 		ubfx	r0, r5, #3, #8
-ARM GAS  /tmp/ccjm1q4U.s 			page 8
+ARM GAS  /tmp/ccXf5trn.s 			page 8
 
 
  276 0010 FFF7FEFF 		bl	EPD_SendData
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  322 000a 6420     		movs	r0, #100
  323 000c FFF7FEFF 		bl	HAL_Delay
  324              	.LVL36:
-ARM GAS  /tmp/ccjm1q4U.s 			page 9
+ARM GAS  /tmp/ccXf5trn.s 			page 9
 
 
  325              	.L16:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  148:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0xC4);
  370              		.loc 1 148 0
  371 0008 C420     		movs	r0, #196
-ARM GAS  /tmp/ccjm1q4U.s 			page 10
+ARM GAS  /tmp/ccXf5trn.s 			page 10
 
 
  372 000a FFF7FEFF 		bl	EPD_SendData
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  415              	.LVL45:
  162:Display/e-Paper/EPD_2in9.c **** 
  163:Display/e-Paper/EPD_2in9.c ****     EPD_SendCommand(DRIVER_OUTPUT_CONTROL);
-ARM GAS  /tmp/ccjm1q4U.s 			page 11
+ARM GAS  /tmp/ccXf5trn.s 			page 11
 
 
  416              		.loc 1 163 0
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  174:Display/e-Paper/EPD_2in9.c ****     EPD_SendData(0x1A);                     // 4 dummy lines per gate
  460              		.loc 1 174 0
  461 004a 1A20     		movs	r0, #26
-ARM GAS  /tmp/ccjm1q4U.s 			page 12
+ARM GAS  /tmp/ccXf5trn.s 			page 12
 
 
  462 004c FFF7FEFF 		bl	EPD_SendData
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  185:Display/e-Paper/EPD_2in9.c ****     return 0;
  186:Display/e-Paper/EPD_2in9.c **** }
  504              		.loc 1 186 0 is_stmt 1
-ARM GAS  /tmp/ccjm1q4U.s 			page 13
+ARM GAS  /tmp/ccXf5trn.s 			page 13
 
 
  505 0080 0020     		movs	r0, #0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  202:Display/e-Paper/EPD_2in9.c ****             EPD_SendData(0XFF);
  546              		.loc 1 202 0 discriminator 3
  547 0014 FF20     		movs	r0, #255
-ARM GAS  /tmp/ccjm1q4U.s 			page 14
+ARM GAS  /tmp/ccXf5trn.s 			page 14
 
 
  548 0016 FFF7FEFF 		bl	EPD_SendData
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  591              		.cfi_endproc
  592              	.LFE131:
  594              		.section	.text.EPD_Display,"ax",%progbits
-ARM GAS  /tmp/ccjm1q4U.s 			page 15
+ARM GAS  /tmp/ccXf5trn.s 			page 15
 
 
  595              		.align	1
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  224:Display/e-Paper/EPD_2in9.c ****         for (UWORD i = 0; i < Width; i++) {
  225:Display/e-Paper/EPD_2in9.c ****             Addr = i + j * Width;
  633              		.loc 1 225 0 discriminator 3
-ARM GAS  /tmp/ccjm1q4U.s 			page 16
+ARM GAS  /tmp/ccXf5trn.s 			page 16
 
 
  634 0016 04EB0513 		add	r3, r4, r5, lsl #4
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  677 0044 FFF7FEFF 		bl	EPD_TurnOnDisplay
  678              	.LVL93:
  230:Display/e-Paper/EPD_2in9.c **** }
-ARM GAS  /tmp/ccjm1q4U.s 			page 17
+ARM GAS  /tmp/ccXf5trn.s 			page 17
 
 
  679              		.loc 1 230 0
@@ -1008,140 +1008,160 @@ ARM GAS  /tmp/ccjm1q4U.s 			page 1
  714              	.LFE133:
  716              		.global	lut_partial_update
  717              		.global	lut_full_update
- 718              		.section	.rodata.EPD_WaitUntilIdle.str1.4,"aMS",%progbits,1
- 719              		.align	2
- 720              	.LC0:
- 721 0000 44656275 		.ascii	"Debug: e-Paper busy\015\000"
- 721      673A2065 
- 721      2D506170 
- 721      65722062 
- 721      7573790D 
- 722 0015 000000   		.space	3
- 723              	.LC1:
-ARM GAS  /tmp/ccjm1q4U.s 			page 18
+ 718              		.comm	click,4,4
+ 719              		.comm	current_position,4,4
+ 720              		.comm	menu_text_usage,12,4
+ 721              		.comm	BlackImage,4,4
+ 722              		.comm	action,4,4
+ 723              		.section	.rodata.EPD_WaitUntilIdle.str1.4,"aMS",%progbits,1
+ 724              		.align	2
+ 725              	.LC0:
+ 726 0000 44656275 		.ascii	"Debug: e-Paper busy\015\000"
+ 726      673A2065 
+ARM GAS  /tmp/ccXf5trn.s 			page 18
 
 
- 724 0018 44656275 		.ascii	"Debug: e-Paper busy release\015\000"
- 724      673A2065 
- 724      2D506170 
- 724      65722062 
- 724      75737920 
- 725              		.section	.rodata.lut_full_update,"a",%progbits
- 726              		.align	2
- 729              	lut_full_update:
- 730 0000 02       		.byte	2
- 731 0001 02       		.byte	2
- 732 0002 01       		.byte	1
- 733 0003 11       		.byte	17
- 734 0004 12       		.byte	18
- 735 0005 12       		.byte	18
- 736 0006 22       		.byte	34
- 737 0007 22       		.byte	34
- 738 0008 66       		.byte	102
- 739 0009 69       		.byte	105
- 740 000a 69       		.byte	105
- 741 000b 59       		.byte	89
- 742 000c 58       		.byte	88
- 743 000d 99       		.byte	-103
- 744 000e 99       		.byte	-103
- 745 000f 88       		.byte	-120
- 746 0010 00       		.byte	0
- 747 0011 00       		.byte	0
- 748 0012 00       		.byte	0
- 749 0013 00       		.byte	0
- 750 0014 F8       		.byte	-8
- 751 0015 B4       		.byte	-76
- 752 0016 13       		.byte	19
- 753 0017 51       		.byte	81
- 754 0018 35       		.byte	53
- 755 0019 51       		.byte	81
- 756 001a 51       		.byte	81
- 757 001b 19       		.byte	25
- 758 001c 01       		.byte	1
- 759 001d 00       		.byte	0
- 760              		.section	.rodata.lut_partial_update,"a",%progbits
- 761              		.align	2
- 764              	lut_partial_update:
- 765 0000 10       		.byte	16
- 766 0001 18       		.byte	24
- 767 0002 18       		.byte	24
- 768 0003 08       		.byte	8
- 769 0004 18       		.byte	24
- 770 0005 18       		.byte	24
- 771 0006 08       		.byte	8
- 772 0007 00       		.byte	0
- 773 0008 00       		.byte	0
- 774 0009 00       		.byte	0
- 775 000a 00       		.byte	0
- 776 000b 00       		.byte	0
- 777 000c 00       		.byte	0
- 778 000d 00       		.byte	0
- 779 000e 00       		.byte	0
- 780 000f 00       		.byte	0
-ARM GAS  /tmp/ccjm1q4U.s 			page 19
+ 726      2D506170 
+ 726      65722062 
+ 726      7573790D 
+ 727 0015 000000   		.space	3
+ 728              	.LC1:
+ 729 0018 44656275 		.ascii	"Debug: e-Paper busy release\015\000"
+ 729      673A2065 
+ 729      2D506170 
+ 729      65722062 
+ 729      75737920 
+ 730              		.section	.rodata.lut_full_update,"a",%progbits
+ 731              		.align	2
+ 734              	lut_full_update:
+ 735 0000 02       		.byte	2
+ 736 0001 02       		.byte	2
+ 737 0002 01       		.byte	1
+ 738 0003 11       		.byte	17
+ 739 0004 12       		.byte	18
+ 740 0005 12       		.byte	18
+ 741 0006 22       		.byte	34
+ 742 0007 22       		.byte	34
+ 743 0008 66       		.byte	102
+ 744 0009 69       		.byte	105
+ 745 000a 69       		.byte	105
+ 746 000b 59       		.byte	89
+ 747 000c 58       		.byte	88
+ 748 000d 99       		.byte	-103
+ 749 000e 99       		.byte	-103
+ 750 000f 88       		.byte	-120
+ 751 0010 00       		.byte	0
+ 752 0011 00       		.byte	0
+ 753 0012 00       		.byte	0
+ 754 0013 00       		.byte	0
+ 755 0014 F8       		.byte	-8
+ 756 0015 B4       		.byte	-76
+ 757 0016 13       		.byte	19
+ 758 0017 51       		.byte	81
+ 759 0018 35       		.byte	53
+ 760 0019 51       		.byte	81
+ 761 001a 51       		.byte	81
+ 762 001b 19       		.byte	25
+ 763 001c 01       		.byte	1
+ 764 001d 00       		.byte	0
+ 765              		.section	.rodata.lut_partial_update,"a",%progbits
+ 766              		.align	2
+ 769              	lut_partial_update:
+ 770 0000 10       		.byte	16
+ 771 0001 18       		.byte	24
+ 772 0002 18       		.byte	24
+ 773 0003 08       		.byte	8
+ 774 0004 18       		.byte	24
+ 775 0005 18       		.byte	24
+ 776 0006 08       		.byte	8
+ 777 0007 00       		.byte	0
+ 778 0008 00       		.byte	0
+ 779 0009 00       		.byte	0
+ 780 000a 00       		.byte	0
+ARM GAS  /tmp/ccXf5trn.s 			page 19
 
 
- 781 0010 00       		.byte	0
- 782 0011 00       		.byte	0
- 783 0012 00       		.byte	0
- 784 0013 00       		.byte	0
- 785 0014 13       		.byte	19
- 786 0015 14       		.byte	20
- 787 0016 44       		.byte	68
- 788 0017 12       		.byte	18
- 789 0018 00       		.byte	0
- 790 0019 00       		.byte	0
- 791 001a 00       		.byte	0
- 792 001b 00       		.byte	0
- 793 001c 00       		.byte	0
- 794 001d 00       		.byte	0
- 795              		.text
- 796              	.Letext0:
- 797              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 798              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 799              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 800              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 801              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
- 802              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 803              		.file 8 "Display/e-Paper/EPD_2in9.h"
- 804              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
- 805              		.file 10 "Display/Config/DEV_Config.h"
- 806              		.file 11 "<built-in>"
-ARM GAS  /tmp/ccjm1q4U.s 			page 20
+ 781 000b 00       		.byte	0
+ 782 000c 00       		.byte	0
+ 783 000d 00       		.byte	0
+ 784 000e 00       		.byte	0
+ 785 000f 00       		.byte	0
+ 786 0010 00       		.byte	0
+ 787 0011 00       		.byte	0
+ 788 0012 00       		.byte	0
+ 789 0013 00       		.byte	0
+ 790 0014 13       		.byte	19
+ 791 0015 14       		.byte	20
+ 792 0016 44       		.byte	68
+ 793 0017 12       		.byte	18
+ 794 0018 00       		.byte	0
+ 795 0019 00       		.byte	0
+ 796 001a 00       		.byte	0
+ 797 001b 00       		.byte	0
+ 798 001c 00       		.byte	0
+ 799 001d 00       		.byte	0
+ 800              		.text
+ 801              	.Letext0:
+ 802              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 803              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 804              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 805              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 806              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 807              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 808              		.file 8 "Display/GUI/../Fonts/fonts.h"
+ 809              		.file 9 "Display/GUI/GUI_Paint.h"
+ 810              		.file 10 "Display/e-Paper/ImageData.h"
+ 811              		.file 11 "/usr/arm-none-eabi/include/sys/lock.h"
+ 812              		.file 12 "/usr/arm-none-eabi/include/sys/_types.h"
+ 813              		.file 13 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 814              		.file 14 "/usr/arm-none-eabi/include/sys/reent.h"
+ 815              		.file 15 "/usr/arm-none-eabi/include/stdlib.h"
+ 816              		.file 16 "Inc/keyboard.h"
+ 817              		.file 17 "Display/display.h"
+ 818              		.file 18 "Display/e-Paper/EPD_2in9.h"
+ 819              		.file 19 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 820              		.file 20 "Display/Config/DEV_Config.h"
+ 821              		.file 21 "<built-in>"
+ARM GAS  /tmp/ccXf5trn.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 EPD_2in9.c
-     /tmp/ccjm1q4U.s:18     .text.EPD_Reset:0000000000000000 $t
-     /tmp/ccjm1q4U.s:24     .text.EPD_Reset:0000000000000000 EPD_Reset
-     /tmp/ccjm1q4U.s:72     .text.EPD_SendCommand:0000000000000000 $t
-     /tmp/ccjm1q4U.s:78     .text.EPD_SendCommand:0000000000000000 EPD_SendCommand
-     /tmp/ccjm1q4U.s:122    .text.EPD_SendCommand:0000000000000030 $d
-     /tmp/ccjm1q4U.s:127    .text.EPD_SendData:0000000000000000 $t
-     /tmp/ccjm1q4U.s:133    .text.EPD_SendData:0000000000000000 EPD_SendData
-     /tmp/ccjm1q4U.s:177    .text.EPD_SendData:0000000000000030 $d
-     /tmp/ccjm1q4U.s:182    .text.EPD_SetWindows:0000000000000000 $t
-     /tmp/ccjm1q4U.s:188    .text.EPD_SetWindows:0000000000000000 EPD_SetWindows
-     /tmp/ccjm1q4U.s:247    .text.EPD_SetCursor:0000000000000000 $t
-     /tmp/ccjm1q4U.s:253    .text.EPD_SetCursor:0000000000000000 EPD_SetCursor
-     /tmp/ccjm1q4U.s:296    .text.EPD_WaitUntilIdle:0000000000000000 $t
-     /tmp/ccjm1q4U.s:303    .text.EPD_WaitUntilIdle:0000000000000000 EPD_WaitUntilIdle
-     /tmp/ccjm1q4U.s:342    .text.EPD_WaitUntilIdle:0000000000000028 $d
-     /tmp/ccjm1q4U.s:349    .text.EPD_TurnOnDisplay:0000000000000000 $t
-     /tmp/ccjm1q4U.s:355    .text.EPD_TurnOnDisplay:0000000000000000 EPD_TurnOnDisplay
-     /tmp/ccjm1q4U.s:391    .text.EPD_Init:0000000000000000 $t
-     /tmp/ccjm1q4U.s:398    .text.EPD_Init:0000000000000000 EPD_Init
-     /tmp/ccjm1q4U.s:511    .text.EPD_Clear:0000000000000000 $t
-     /tmp/ccjm1q4U.s:518    .text.EPD_Clear:0000000000000000 EPD_Clear
-     /tmp/ccjm1q4U.s:595    .text.EPD_Display:0000000000000000 $t
-     /tmp/ccjm1q4U.s:602    .text.EPD_Display:0000000000000000 EPD_Display
-     /tmp/ccjm1q4U.s:685    .text.EPD_Sleep:0000000000000000 $t
-     /tmp/ccjm1q4U.s:692    .text.EPD_Sleep:0000000000000000 EPD_Sleep
-     /tmp/ccjm1q4U.s:764    .rodata.lut_partial_update:0000000000000000 lut_partial_update
-     /tmp/ccjm1q4U.s:729    .rodata.lut_full_update:0000000000000000 lut_full_update
-     /tmp/ccjm1q4U.s:719    .rodata.EPD_WaitUntilIdle.str1.4:0000000000000000 $d
-     /tmp/ccjm1q4U.s:726    .rodata.lut_full_update:0000000000000000 $d
-     /tmp/ccjm1q4U.s:761    .rodata.lut_partial_update:0000000000000000 $d
+     /tmp/ccXf5trn.s:18     .text.EPD_Reset:0000000000000000 $t
+     /tmp/ccXf5trn.s:24     .text.EPD_Reset:0000000000000000 EPD_Reset
+     /tmp/ccXf5trn.s:72     .text.EPD_SendCommand:0000000000000000 $t
+     /tmp/ccXf5trn.s:78     .text.EPD_SendCommand:0000000000000000 EPD_SendCommand
+     /tmp/ccXf5trn.s:122    .text.EPD_SendCommand:0000000000000030 $d
+     /tmp/ccXf5trn.s:127    .text.EPD_SendData:0000000000000000 $t
+     /tmp/ccXf5trn.s:133    .text.EPD_SendData:0000000000000000 EPD_SendData
+     /tmp/ccXf5trn.s:177    .text.EPD_SendData:0000000000000030 $d
+     /tmp/ccXf5trn.s:182    .text.EPD_SetWindows:0000000000000000 $t
+     /tmp/ccXf5trn.s:188    .text.EPD_SetWindows:0000000000000000 EPD_SetWindows
+     /tmp/ccXf5trn.s:247    .text.EPD_SetCursor:0000000000000000 $t
+     /tmp/ccXf5trn.s:253    .text.EPD_SetCursor:0000000000000000 EPD_SetCursor
+     /tmp/ccXf5trn.s:296    .text.EPD_WaitUntilIdle:0000000000000000 $t
+     /tmp/ccXf5trn.s:303    .text.EPD_WaitUntilIdle:0000000000000000 EPD_WaitUntilIdle
+     /tmp/ccXf5trn.s:342    .text.EPD_WaitUntilIdle:0000000000000028 $d
+     /tmp/ccXf5trn.s:349    .text.EPD_TurnOnDisplay:0000000000000000 $t
+     /tmp/ccXf5trn.s:355    .text.EPD_TurnOnDisplay:0000000000000000 EPD_TurnOnDisplay
+     /tmp/ccXf5trn.s:391    .text.EPD_Init:0000000000000000 $t
+     /tmp/ccXf5trn.s:398    .text.EPD_Init:0000000000000000 EPD_Init
+     /tmp/ccXf5trn.s:511    .text.EPD_Clear:0000000000000000 $t
+     /tmp/ccXf5trn.s:518    .text.EPD_Clear:0000000000000000 EPD_Clear
+     /tmp/ccXf5trn.s:595    .text.EPD_Display:0000000000000000 $t
+     /tmp/ccXf5trn.s:602    .text.EPD_Display:0000000000000000 EPD_Display
+     /tmp/ccXf5trn.s:685    .text.EPD_Sleep:0000000000000000 $t
+     /tmp/ccXf5trn.s:692    .text.EPD_Sleep:0000000000000000 EPD_Sleep
+     /tmp/ccXf5trn.s:769    .rodata.lut_partial_update:0000000000000000 lut_partial_update
+     /tmp/ccXf5trn.s:734    .rodata.lut_full_update:0000000000000000 lut_full_update
+                            *COM*:0000000000000004 click
+                            *COM*:0000000000000004 current_position
+                            *COM*:000000000000000c menu_text_usage
+                            *COM*:0000000000000004 BlackImage
+                            *COM*:0000000000000004 action
+     /tmp/ccXf5trn.s:724    .rodata.EPD_WaitUntilIdle.str1.4:0000000000000000 $d
+     /tmp/ccXf5trn.s:731    .rodata.lut_full_update:0000000000000000 $d
+     /tmp/ccXf5trn.s:766    .rodata.lut_partial_update:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

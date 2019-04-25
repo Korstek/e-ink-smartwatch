@@ -1,0 +1,195 @@
+ARM GAS  /tmp/ccT14izE.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"keyboard.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Keyboard,"ax",%progbits
+  18              		.align	1
+  19              		.global	Keyboard
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	Keyboard:
+  26              	.LFB123:
+  27              		.file 1 "Src/keyboard.c"
+   1:Src/keyboard.c **** /**
+   2:Src/keyboard.c ****   ******************************************************************************
+   3:Src/keyboard.c ****   * @file           : keyboard.c
+   4:Src/keyboard.c ****   * @author         : Karol Gutowski
+   5:Src/keyboard.c ****   * @brief          : This file contains funcitons for keyboard.
+   6:Src/keyboard.c ****   ******************************************************************************
+   7:Src/keyboard.c ****   */
+   8:Src/keyboard.c **** 
+   9:Src/keyboard.c ****   #include "keyboard.h"
+  10:Src/keyboard.c **** 
+  11:Src/keyboard.c ****   void Keyboard()
+  12:Src/keyboard.c ****   {
+  28              		.loc 1 12 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 3, -8
+  36              		.cfi_offset 14, -4
+  13:Src/keyboard.c ****     if(HAL_GPIO_ReadPin(BT_UP_GPIO_Port,BT_UP_Pin)==0)
+  37              		.loc 1 13 0
+  38 0002 0121     		movs	r1, #1
+  39 0004 4FF09040 		mov	r0, #1207959552
+  40 0008 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  41              	.LVL0:
+  42 000c 38B9     		cbnz	r0, .L2
+  14:Src/keyboard.c ****     {
+  15:Src/keyboard.c ****       current_position--;
+  43              		.loc 1 15 0
+ARM GAS  /tmp/ccT14izE.s 			page 2
+
+
+  44 000e 134A     		ldr	r2, .L8
+  45 0010 1368     		ldr	r3, [r2]
+  46 0012 013B     		subs	r3, r3, #1
+  47 0014 1360     		str	r3, [r2]
+  16:Src/keyboard.c ****       action = 1;
+  48              		.loc 1 16 0
+  49 0016 124B     		ldr	r3, .L8+4
+  50 0018 0122     		movs	r2, #1
+  51 001a 1A60     		str	r2, [r3]
+  52              	.L1:
+  17:Src/keyboard.c ****     }
+  18:Src/keyboard.c ****     else
+  19:Src/keyboard.c ****     {
+  20:Src/keyboard.c ****         if(HAL_GPIO_ReadPin(BT_DOWN_GPIO_Port,BT_DOWN_Pin)==0)
+  21:Src/keyboard.c ****         {
+  22:Src/keyboard.c ****           current_position++;
+  23:Src/keyboard.c ****           action = 1;
+  24:Src/keyboard.c ****         }
+  25:Src/keyboard.c ****         else
+  26:Src/keyboard.c ****         {
+  27:Src/keyboard.c ****           if(HAL_GPIO_ReadPin(BT_MIDDLE_GPIO_Port,BT_MIDDLE_Pin)==0)
+  28:Src/keyboard.c ****           {
+  29:Src/keyboard.c ****             click=1;
+  30:Src/keyboard.c ****             action = 1;
+  31:Src/keyboard.c ****           }
+  32:Src/keyboard.c ****           else
+  33:Src/keyboard.c ****           {
+  34:Src/keyboard.c ****             action = 0;
+  35:Src/keyboard.c ****           }
+  36:Src/keyboard.c ****         }
+  37:Src/keyboard.c ****     }
+  38:Src/keyboard.c ****   }
+  53              		.loc 1 38 0
+  54 001c 08BD     		pop	{r3, pc}
+  55              	.L2:
+  20:Src/keyboard.c ****         {
+  56              		.loc 1 20 0
+  57 001e 0221     		movs	r1, #2
+  58 0020 4FF09040 		mov	r0, #1207959552
+  59 0024 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  60              	.LVL1:
+  61 0028 38B9     		cbnz	r0, .L4
+  22:Src/keyboard.c ****           action = 1;
+  62              		.loc 1 22 0
+  63 002a 0C4A     		ldr	r2, .L8
+  64 002c 1368     		ldr	r3, [r2]
+  65 002e 0133     		adds	r3, r3, #1
+  66 0030 1360     		str	r3, [r2]
+  23:Src/keyboard.c ****         }
+  67              		.loc 1 23 0
+  68 0032 0B4B     		ldr	r3, .L8+4
+  69 0034 0122     		movs	r2, #1
+  70 0036 1A60     		str	r2, [r3]
+  71 0038 F0E7     		b	.L1
+  72              	.L4:
+  27:Src/keyboard.c ****           {
+  73              		.loc 1 27 0
+ARM GAS  /tmp/ccT14izE.s 			page 3
+
+
+  74 003a 1021     		movs	r1, #16
+  75 003c 4FF09040 		mov	r0, #1207959552
+  76 0040 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  77              	.LVL2:
+  78 0044 18B1     		cbz	r0, .L7
+  34:Src/keyboard.c ****           }
+  79              		.loc 1 34 0
+  80 0046 064B     		ldr	r3, .L8+4
+  81 0048 0022     		movs	r2, #0
+  82 004a 1A60     		str	r2, [r3]
+  83              		.loc 1 38 0
+  84 004c E6E7     		b	.L1
+  85              	.L7:
+  29:Src/keyboard.c ****             action = 1;
+  86              		.loc 1 29 0
+  87 004e 0123     		movs	r3, #1
+  88 0050 044A     		ldr	r2, .L8+8
+  89 0052 1360     		str	r3, [r2]
+  30:Src/keyboard.c ****           }
+  90              		.loc 1 30 0
+  91 0054 024A     		ldr	r2, .L8+4
+  92 0056 1360     		str	r3, [r2]
+  93 0058 E0E7     		b	.L1
+  94              	.L9:
+  95 005a 00BF     		.align	2
+  96              	.L8:
+  97 005c 00000000 		.word	current_position
+  98 0060 00000000 		.word	action
+  99 0064 00000000 		.word	click
+ 100              		.cfi_endproc
+ 101              	.LFE123:
+ 103              		.comm	action,4,4
+ 104              		.comm	click,4,4
+ 105              		.comm	current_position,4,4
+ 106              		.comm	menu_text_usage,12,4
+ 107              		.comm	BlackImage,4,4
+ 108              		.text
+ 109              	.Letext0:
+ 110              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 111              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 112              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 113              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 114              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 115              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 116              		.file 8 "Display/e-Paper/EPD_2in9.h"
+ 117              		.file 9 "Display/GUI/../Fonts/fonts.h"
+ 118              		.file 10 "Display/GUI/GUI_Paint.h"
+ 119              		.file 11 "Display/e-Paper/ImageData.h"
+ 120              		.file 12 "/usr/arm-none-eabi/include/sys/lock.h"
+ 121              		.file 13 "/usr/arm-none-eabi/include/sys/_types.h"
+ 122              		.file 14 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 123              		.file 15 "/usr/arm-none-eabi/include/sys/reent.h"
+ 124              		.file 16 "/usr/arm-none-eabi/include/stdlib.h"
+ 125              		.file 17 "Display/display.h"
+ 126              		.file 18 "Inc/keyboard.h"
+ 127              		.file 19 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ARM GAS  /tmp/ccT14izE.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 keyboard.c
+     /tmp/ccT14izE.s:18     .text.Keyboard:0000000000000000 $t
+     /tmp/ccT14izE.s:25     .text.Keyboard:0000000000000000 Keyboard
+     /tmp/ccT14izE.s:97     .text.Keyboard:000000000000005c $d
+                            *COM*:0000000000000004 current_position
+                            *COM*:0000000000000004 action
+                            *COM*:0000000000000004 click
+                            *COM*:000000000000000c menu_text_usage
+                            *COM*:0000000000000004 BlackImage
+
+UNDEFINED SYMBOLS
+HAL_GPIO_ReadPin

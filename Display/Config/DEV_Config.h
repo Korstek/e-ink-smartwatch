@@ -56,10 +56,14 @@
 /**
  * data
 **/
+#ifndef _U_SOMETHING_
+#define _U_SOMETHING_
+
 #define UBYTE   uint8_t
 #define UWORD   uint16_t
 #define UDOUBLE uint32_t
 
+#endif
 /**
  * e-Paper GPIO
 **/
