@@ -127,9 +127,12 @@ int main(void)
 
     EPD_Display(BlackImage);
     DEV_Delay_ms(2000);
+
+    Paint_Clear(WHITE);
+    EPD_Display(BlackImage);
 #endif
 
-#if 1   // Drawing on the image
+#if 0   // Drawing on the image
     //1.Select Image
     printf("SelectImage:BlackImage\r\n");
     Paint_SelectImage(BlackImage);
@@ -158,7 +161,7 @@ int main(void)
     DEV_Delay_ms(2000);
 #endif
 
-#if 1   //Partial refresh, example shows time
+#if 0   //Partial refresh, example shows time
     if(EPD_Init(lut_partial_update) != 0) {
         printf("e-Paper init failed\r\n");
     }
@@ -191,11 +194,12 @@ int main(void)
 
 #endif
 
+#if 0
     printf("Goto Sleep mode...\r\n");
     EPD_Sleep();
     free(BlackImage);
     BlackImage = NULL;
-
+#endif
 
   /* USER CODE END 2 */
 
@@ -220,7 +224,7 @@ void SystemClock_Config(void)
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
@@ -236,7 +240,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -255,7 +259,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Configure the main internal regulator output voltage 
+  /** Configure the main internal regulator output voltage
   */
   if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
   {
@@ -412,7 +416,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(char *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */

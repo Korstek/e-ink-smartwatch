@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccypGBLc.s 			page 1
+ARM GAS  /tmp/ccRt7XoM.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
   30:Src/main.c    **** #include <stdlib.h>
   31:Src/main.c    **** /* USER CODE END Includes */
   32:Src/main.c    **** 
-ARM GAS  /tmp/ccypGBLc.s 			page 2
+ARM GAS  /tmp/ccRt7XoM.s 			page 2
 
 
   33:Src/main.c    **** /* Private typedef -----------------------------------------------------------*/
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
   87:Src/main.c    **** 
   88:Src/main.c    ****   /* USER CODE END Init */
   89:Src/main.c    **** 
-ARM GAS  /tmp/ccypGBLc.s 			page 3
+ARM GAS  /tmp/ccRt7XoM.s 			page 3
 
 
   90:Src/main.c    ****   /* Configure the system clock */
@@ -161,237 +161,241 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
  127:Src/main.c    **** 
  128:Src/main.c    ****     EPD_Display(BlackImage);
  129:Src/main.c    ****     DEV_Delay_ms(2000);
- 130:Src/main.c    **** #endif
- 131:Src/main.c    **** 
- 132:Src/main.c    **** #if 1   // Drawing on the image
- 133:Src/main.c    ****     //1.Select Image
- 134:Src/main.c    ****     printf("SelectImage:BlackImage\r\n");
- 135:Src/main.c    ****     Paint_SelectImage(BlackImage);
- 136:Src/main.c    ****     Paint_Clear(WHITE);
- 137:Src/main.c    **** 
- 138:Src/main.c    ****     // 2.Drawing on the image
- 139:Src/main.c    ****     printf("Drawing:BlackImage\r\n");
- 140:Src/main.c    ****     Paint_DrawPoint(10, 80, BLACK, DOT_PIXEL_1X1, DOT_STYLE_DFT);
- 141:Src/main.c    ****     Paint_DrawPoint(10, 90, BLACK, DOT_PIXEL_2X2, DOT_STYLE_DFT);
- 142:Src/main.c    ****     Paint_DrawPoint(10, 100, BLACK, DOT_PIXEL_3X3, DOT_STYLE_DFT);
- 143:Src/main.c    ****     Paint_DrawLine(20, 70, 70, 120, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_1X1);
- 144:Src/main.c    ****     Paint_DrawLine(70, 70, 20, 120, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_1X1);
- 145:Src/main.c    ****     Paint_DrawRectangle(20, 70, 70, 120, BLACK, DRAW_FILL_EMPTY, DOT_PIXEL_1X1);
- 146:Src/main.c    ****     Paint_DrawRectangle(80, 70, 130, 120, BLACK, DRAW_FILL_FULL, DOT_PIXEL_1X1);
-ARM GAS  /tmp/ccypGBLc.s 			page 4
+ 130:Src/main.c    **** 
+ 131:Src/main.c    ****     Paint_Clear(WHITE);
+ 132:Src/main.c    ****     EPD_Display(BlackImage);
+ 133:Src/main.c    **** #endif
+ 134:Src/main.c    **** 
+ 135:Src/main.c    **** #if 0   // Drawing on the image
+ 136:Src/main.c    ****     //1.Select Image
+ 137:Src/main.c    ****     printf("SelectImage:BlackImage\r\n");
+ 138:Src/main.c    ****     Paint_SelectImage(BlackImage);
+ 139:Src/main.c    ****     Paint_Clear(WHITE);
+ 140:Src/main.c    **** 
+ 141:Src/main.c    ****     // 2.Drawing on the image
+ 142:Src/main.c    ****     printf("Drawing:BlackImage\r\n");
+ 143:Src/main.c    ****     Paint_DrawPoint(10, 80, BLACK, DOT_PIXEL_1X1, DOT_STYLE_DFT);
+ 144:Src/main.c    ****     Paint_DrawPoint(10, 90, BLACK, DOT_PIXEL_2X2, DOT_STYLE_DFT);
+ 145:Src/main.c    ****     Paint_DrawPoint(10, 100, BLACK, DOT_PIXEL_3X3, DOT_STYLE_DFT);
+ 146:Src/main.c    ****     Paint_DrawLine(20, 70, 70, 120, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_1X1);
+ARM GAS  /tmp/ccRt7XoM.s 			page 4
 
 
- 147:Src/main.c    ****     Paint_DrawCircle(45, 95, 20, BLACK, DRAW_FILL_EMPTY, DOT_PIXEL_1X1);
- 148:Src/main.c    ****     Paint_DrawCircle(105, 95, 20, WHITE, DRAW_FILL_FULL, DOT_PIXEL_1X1);
- 149:Src/main.c    ****     Paint_DrawLine(85, 95, 125, 95, BLACK, LINE_STYLE_DOTTED, DOT_PIXEL_1X1);
- 150:Src/main.c    ****     Paint_DrawLine(105, 75, 105, 115, BLACK, LINE_STYLE_DOTTED, DOT_PIXEL_1X1);
- 151:Src/main.c    ****     Paint_DrawString_EN(10, 0, "waveshare", &Font16, BLACK, WHITE);
- 152:Src/main.c    ****     Paint_DrawString_EN(10, 20, "hello world", &Font12, WHITE, BLACK);
- 153:Src/main.c    ****     Paint_DrawNum(10, 33, 123456789, &Font12, BLACK, WHITE);
- 154:Src/main.c    ****     Paint_DrawNum(10, 50, 987654321, &Font16, WHITE, BLACK);
- 155:Src/main.c    **** 
- 156:Src/main.c    ****     printf("EPD_Display\r\n");
- 157:Src/main.c    ****     EPD_Display(BlackImage);
- 158:Src/main.c    ****     DEV_Delay_ms(2000);
- 159:Src/main.c    **** #endif
- 160:Src/main.c    **** 
- 161:Src/main.c    **** #if 1   //Partial refresh, example shows time
- 162:Src/main.c    ****     if(EPD_Init(lut_partial_update) != 0) {
- 163:Src/main.c    ****         printf("e-Paper init failed\r\n");
- 164:Src/main.c    ****     }
- 165:Src/main.c    **** 		Paint_SelectImage(BlackImage);
- 166:Src/main.c    ****     PAINT_TIME sPaint_time;
- 167:Src/main.c    ****     sPaint_time.Hour = 12;
- 168:Src/main.c    ****     sPaint_time.Min = 34;
- 169:Src/main.c    ****     sPaint_time.Sec = 56;
- 170:Src/main.c    ****     for (;;) {
- 171:Src/main.c    ****         sPaint_time.Sec = sPaint_time.Sec + 1;
- 172:Src/main.c    ****         if (sPaint_time.Sec == 60) {
- 173:Src/main.c    ****             sPaint_time.Min = sPaint_time.Min + 1;
- 174:Src/main.c    ****             sPaint_time.Sec = 0;
- 175:Src/main.c    ****             if (sPaint_time.Min == 60) {
- 176:Src/main.c    ****                 sPaint_time.Hour =  sPaint_time.Hour + 1;
- 177:Src/main.c    ****                 sPaint_time.Min = 0;
- 178:Src/main.c    ****                 if (sPaint_time.Hour == 24) {
- 179:Src/main.c    ****                     sPaint_time.Hour = 0;
- 180:Src/main.c    ****                     sPaint_time.Min = 0;
- 181:Src/main.c    ****                     sPaint_time.Sec = 0;
- 182:Src/main.c    ****                 }
- 183:Src/main.c    ****             }
- 184:Src/main.c    ****         }
- 185:Src/main.c    ****         Paint_ClearWindows(15, 65, 15 + Font20.Width * 7, 65 + Font20.Height, WHITE);
- 186:Src/main.c    ****         Paint_DrawTime(15, 65, &sPaint_time, &Font20, WHITE, BLACK);
- 187:Src/main.c    **** 
- 188:Src/main.c    **** 				EPD_Display(BlackImage);
- 189:Src/main.c    ****         DEV_Delay_ms(500);//Analog clock 1s
- 190:Src/main.c    ****     }
- 191:Src/main.c    **** 
- 192:Src/main.c    **** #endif
- 193:Src/main.c    **** 
- 194:Src/main.c    ****     printf("Goto Sleep mode...\r\n");
- 195:Src/main.c    ****     EPD_Sleep();
- 196:Src/main.c    ****     free(BlackImage);
- 197:Src/main.c    ****     BlackImage = NULL;
- 198:Src/main.c    **** 
- 199:Src/main.c    **** 
- 200:Src/main.c    ****   /* USER CODE END 2 */
- 201:Src/main.c    **** 
- 202:Src/main.c    ****   /* Infinite loop */
- 203:Src/main.c    ****   /* USER CODE BEGIN WHILE */
-ARM GAS  /tmp/ccypGBLc.s 			page 5
+ 147:Src/main.c    ****     Paint_DrawLine(70, 70, 20, 120, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_1X1);
+ 148:Src/main.c    ****     Paint_DrawRectangle(20, 70, 70, 120, BLACK, DRAW_FILL_EMPTY, DOT_PIXEL_1X1);
+ 149:Src/main.c    ****     Paint_DrawRectangle(80, 70, 130, 120, BLACK, DRAW_FILL_FULL, DOT_PIXEL_1X1);
+ 150:Src/main.c    ****     Paint_DrawCircle(45, 95, 20, BLACK, DRAW_FILL_EMPTY, DOT_PIXEL_1X1);
+ 151:Src/main.c    ****     Paint_DrawCircle(105, 95, 20, WHITE, DRAW_FILL_FULL, DOT_PIXEL_1X1);
+ 152:Src/main.c    ****     Paint_DrawLine(85, 95, 125, 95, BLACK, LINE_STYLE_DOTTED, DOT_PIXEL_1X1);
+ 153:Src/main.c    ****     Paint_DrawLine(105, 75, 105, 115, BLACK, LINE_STYLE_DOTTED, DOT_PIXEL_1X1);
+ 154:Src/main.c    ****     Paint_DrawString_EN(10, 0, "waveshare", &Font16, BLACK, WHITE);
+ 155:Src/main.c    ****     Paint_DrawString_EN(10, 20, "hello world", &Font12, WHITE, BLACK);
+ 156:Src/main.c    ****     Paint_DrawNum(10, 33, 123456789, &Font12, BLACK, WHITE);
+ 157:Src/main.c    ****     Paint_DrawNum(10, 50, 987654321, &Font16, WHITE, BLACK);
+ 158:Src/main.c    **** 
+ 159:Src/main.c    ****     printf("EPD_Display\r\n");
+ 160:Src/main.c    ****     EPD_Display(BlackImage);
+ 161:Src/main.c    ****     DEV_Delay_ms(2000);
+ 162:Src/main.c    **** #endif
+ 163:Src/main.c    **** 
+ 164:Src/main.c    **** #if 0   //Partial refresh, example shows time
+ 165:Src/main.c    ****     if(EPD_Init(lut_partial_update) != 0) {
+ 166:Src/main.c    ****         printf("e-Paper init failed\r\n");
+ 167:Src/main.c    ****     }
+ 168:Src/main.c    **** 		Paint_SelectImage(BlackImage);
+ 169:Src/main.c    ****     PAINT_TIME sPaint_time;
+ 170:Src/main.c    ****     sPaint_time.Hour = 12;
+ 171:Src/main.c    ****     sPaint_time.Min = 34;
+ 172:Src/main.c    ****     sPaint_time.Sec = 56;
+ 173:Src/main.c    ****     for (;;) {
+ 174:Src/main.c    ****         sPaint_time.Sec = sPaint_time.Sec + 1;
+ 175:Src/main.c    ****         if (sPaint_time.Sec == 60) {
+ 176:Src/main.c    ****             sPaint_time.Min = sPaint_time.Min + 1;
+ 177:Src/main.c    ****             sPaint_time.Sec = 0;
+ 178:Src/main.c    ****             if (sPaint_time.Min == 60) {
+ 179:Src/main.c    ****                 sPaint_time.Hour =  sPaint_time.Hour + 1;
+ 180:Src/main.c    ****                 sPaint_time.Min = 0;
+ 181:Src/main.c    ****                 if (sPaint_time.Hour == 24) {
+ 182:Src/main.c    ****                     sPaint_time.Hour = 0;
+ 183:Src/main.c    ****                     sPaint_time.Min = 0;
+ 184:Src/main.c    ****                     sPaint_time.Sec = 0;
+ 185:Src/main.c    ****                 }
+ 186:Src/main.c    ****             }
+ 187:Src/main.c    ****         }
+ 188:Src/main.c    ****         Paint_ClearWindows(15, 65, 15 + Font20.Width * 7, 65 + Font20.Height, WHITE);
+ 189:Src/main.c    ****         Paint_DrawTime(15, 65, &sPaint_time, &Font20, WHITE, BLACK);
+ 190:Src/main.c    **** 
+ 191:Src/main.c    **** 				EPD_Display(BlackImage);
+ 192:Src/main.c    ****         DEV_Delay_ms(500);//Analog clock 1s
+ 193:Src/main.c    ****     }
+ 194:Src/main.c    **** 
+ 195:Src/main.c    **** #endif
+ 196:Src/main.c    **** 
+ 197:Src/main.c    **** #if 0
+ 198:Src/main.c    ****     printf("Goto Sleep mode...\r\n");
+ 199:Src/main.c    ****     EPD_Sleep();
+ 200:Src/main.c    ****     free(BlackImage);
+ 201:Src/main.c    ****     BlackImage = NULL;
+ 202:Src/main.c    **** #endif
+ 203:Src/main.c    **** 
+ARM GAS  /tmp/ccRt7XoM.s 			page 5
 
 
- 204:Src/main.c    ****   while (1)
- 205:Src/main.c    ****   {
- 206:Src/main.c    ****     /* USER CODE END WHILE */
- 207:Src/main.c    **** 
- 208:Src/main.c    ****     /* USER CODE BEGIN 3 */
- 209:Src/main.c    ****   }
- 210:Src/main.c    ****   /* USER CODE END 3 */
- 211:Src/main.c    **** }
- 212:Src/main.c    **** 
- 213:Src/main.c    **** /**
- 214:Src/main.c    ****   * @brief System Clock Configuration
- 215:Src/main.c    ****   * @retval None
- 216:Src/main.c    ****   */
- 217:Src/main.c    **** void SystemClock_Config(void)
- 218:Src/main.c    **** {
- 219:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 220:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 221:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
- 222:Src/main.c    **** 
- 223:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
- 224:Src/main.c    ****   */
- 225:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
- 226:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 227:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
- 228:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 229:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
- 230:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 1;
- 231:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 10;
- 232:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
- 233:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
- 234:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
- 235:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 236:Src/main.c    ****   {
- 237:Src/main.c    ****     Error_Handler();
- 238:Src/main.c    ****   }
- 239:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
- 240:Src/main.c    ****   */
- 241:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
- 242:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 243:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
- 244:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
- 245:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 246:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 247:Src/main.c    **** 
- 248:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
- 249:Src/main.c    ****   {
- 250:Src/main.c    ****     Error_Handler();
- 251:Src/main.c    ****   }
- 252:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2;
- 253:Src/main.c    ****   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
- 254:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 255:Src/main.c    ****   {
- 256:Src/main.c    ****     Error_Handler();
- 257:Src/main.c    ****   }
- 258:Src/main.c    ****   /** Configure the main internal regulator output voltage 
- 259:Src/main.c    ****   */
- 260:Src/main.c    ****   if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
-ARM GAS  /tmp/ccypGBLc.s 			page 6
+ 204:Src/main.c    ****   /* USER CODE END 2 */
+ 205:Src/main.c    **** 
+ 206:Src/main.c    ****   /* Infinite loop */
+ 207:Src/main.c    ****   /* USER CODE BEGIN WHILE */
+ 208:Src/main.c    ****   while (1)
+ 209:Src/main.c    ****   {
+ 210:Src/main.c    ****     /* USER CODE END WHILE */
+ 211:Src/main.c    **** 
+ 212:Src/main.c    ****     /* USER CODE BEGIN 3 */
+ 213:Src/main.c    ****   }
+ 214:Src/main.c    ****   /* USER CODE END 3 */
+ 215:Src/main.c    **** }
+ 216:Src/main.c    **** 
+ 217:Src/main.c    **** /**
+ 218:Src/main.c    ****   * @brief System Clock Configuration
+ 219:Src/main.c    ****   * @retval None
+ 220:Src/main.c    ****   */
+ 221:Src/main.c    **** void SystemClock_Config(void)
+ 222:Src/main.c    **** {
+ 223:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 224:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 225:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+ 226:Src/main.c    **** 
+ 227:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks
+ 228:Src/main.c    ****   */
+ 229:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+ 230:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 231:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 232:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 233:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 234:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 1;
+ 235:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 10;
+ 236:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
+ 237:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+ 238:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+ 239:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 240:Src/main.c    ****   {
+ 241:Src/main.c    ****     Error_Handler();
+ 242:Src/main.c    ****   }
+ 243:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks
+ 244:Src/main.c    ****   */
+ 245:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 246:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 247:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 248:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 249:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 250:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 251:Src/main.c    **** 
+ 252:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
+ 253:Src/main.c    ****   {
+ 254:Src/main.c    ****     Error_Handler();
+ 255:Src/main.c    ****   }
+ 256:Src/main.c    ****   PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2;
+ 257:Src/main.c    ****   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
+ 258:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 259:Src/main.c    ****   {
+ 260:Src/main.c    ****     Error_Handler();
+ARM GAS  /tmp/ccRt7XoM.s 			page 6
 
 
- 261:Src/main.c    ****   {
- 262:Src/main.c    ****     Error_Handler();
- 263:Src/main.c    ****   }
- 264:Src/main.c    **** }
- 265:Src/main.c    **** 
- 266:Src/main.c    **** /**
- 267:Src/main.c    ****   * @brief SPI1 Initialization Function
- 268:Src/main.c    ****   * @param None
- 269:Src/main.c    ****   * @retval None
- 270:Src/main.c    ****   */
- 271:Src/main.c    **** static void MX_SPI1_Init(void)
- 272:Src/main.c    **** {
- 273:Src/main.c    **** 
- 274:Src/main.c    ****   /* USER CODE BEGIN SPI1_Init 0 */
- 275:Src/main.c    **** 
- 276:Src/main.c    ****   /* USER CODE END SPI1_Init 0 */
+ 261:Src/main.c    ****   }
+ 262:Src/main.c    ****   /** Configure the main internal regulator output voltage
+ 263:Src/main.c    ****   */
+ 264:Src/main.c    ****   if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+ 265:Src/main.c    ****   {
+ 266:Src/main.c    ****     Error_Handler();
+ 267:Src/main.c    ****   }
+ 268:Src/main.c    **** }
+ 269:Src/main.c    **** 
+ 270:Src/main.c    **** /**
+ 271:Src/main.c    ****   * @brief SPI1 Initialization Function
+ 272:Src/main.c    ****   * @param None
+ 273:Src/main.c    ****   * @retval None
+ 274:Src/main.c    ****   */
+ 275:Src/main.c    **** static void MX_SPI1_Init(void)
+ 276:Src/main.c    **** {
  277:Src/main.c    **** 
- 278:Src/main.c    ****   /* USER CODE BEGIN SPI1_Init 1 */
+ 278:Src/main.c    ****   /* USER CODE BEGIN SPI1_Init 0 */
  279:Src/main.c    **** 
- 280:Src/main.c    ****   /* USER CODE END SPI1_Init 1 */
- 281:Src/main.c    ****   /* SPI1 parameter configuration*/
- 282:Src/main.c    ****   hspi1.Instance = SPI1;
- 283:Src/main.c    ****   hspi1.Init.Mode = SPI_MODE_MASTER;
- 284:Src/main.c    ****   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
- 285:Src/main.c    ****   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
- 286:Src/main.c    ****   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
- 287:Src/main.c    ****   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
- 288:Src/main.c    ****   hspi1.Init.NSS = SPI_NSS_SOFT;
- 289:Src/main.c    ****   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
- 290:Src/main.c    ****   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
- 291:Src/main.c    ****   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
- 292:Src/main.c    ****   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
- 293:Src/main.c    ****   hspi1.Init.CRCPolynomial = 7;
- 294:Src/main.c    ****   hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
- 295:Src/main.c    ****   hspi1.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
- 296:Src/main.c    ****   if (HAL_SPI_Init(&hspi1) != HAL_OK)
- 297:Src/main.c    ****   {
- 298:Src/main.c    ****     Error_Handler();
- 299:Src/main.c    ****   }
- 300:Src/main.c    ****   /* USER CODE BEGIN SPI1_Init 2 */
- 301:Src/main.c    **** 
- 302:Src/main.c    ****   /* USER CODE END SPI1_Init 2 */
- 303:Src/main.c    **** 
- 304:Src/main.c    **** }
+ 280:Src/main.c    ****   /* USER CODE END SPI1_Init 0 */
+ 281:Src/main.c    **** 
+ 282:Src/main.c    ****   /* USER CODE BEGIN SPI1_Init 1 */
+ 283:Src/main.c    **** 
+ 284:Src/main.c    ****   /* USER CODE END SPI1_Init 1 */
+ 285:Src/main.c    ****   /* SPI1 parameter configuration*/
+ 286:Src/main.c    ****   hspi1.Instance = SPI1;
+ 287:Src/main.c    ****   hspi1.Init.Mode = SPI_MODE_MASTER;
+ 288:Src/main.c    ****   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+ 289:Src/main.c    ****   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+ 290:Src/main.c    ****   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+ 291:Src/main.c    ****   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+ 292:Src/main.c    ****   hspi1.Init.NSS = SPI_NSS_SOFT;
+ 293:Src/main.c    ****   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
+ 294:Src/main.c    ****   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+ 295:Src/main.c    ****   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+ 296:Src/main.c    ****   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+ 297:Src/main.c    ****   hspi1.Init.CRCPolynomial = 7;
+ 298:Src/main.c    ****   hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+ 299:Src/main.c    ****   hspi1.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+ 300:Src/main.c    ****   if (HAL_SPI_Init(&hspi1) != HAL_OK)
+ 301:Src/main.c    ****   {
+ 302:Src/main.c    ****     Error_Handler();
+ 303:Src/main.c    ****   }
+ 304:Src/main.c    ****   /* USER CODE BEGIN SPI1_Init 2 */
  305:Src/main.c    **** 
- 306:Src/main.c    **** /**
- 307:Src/main.c    ****   * @brief USART2 Initialization Function
- 308:Src/main.c    ****   * @param None
- 309:Src/main.c    ****   * @retval None
- 310:Src/main.c    ****   */
- 311:Src/main.c    **** static void MX_USART2_UART_Init(void)
- 312:Src/main.c    **** {
- 313:Src/main.c    **** 
- 314:Src/main.c    ****   /* USER CODE BEGIN USART2_Init 0 */
- 315:Src/main.c    **** 
- 316:Src/main.c    ****   /* USER CODE END USART2_Init 0 */
+ 306:Src/main.c    ****   /* USER CODE END SPI1_Init 2 */
+ 307:Src/main.c    **** 
+ 308:Src/main.c    **** }
+ 309:Src/main.c    **** 
+ 310:Src/main.c    **** /**
+ 311:Src/main.c    ****   * @brief USART2 Initialization Function
+ 312:Src/main.c    ****   * @param None
+ 313:Src/main.c    ****   * @retval None
+ 314:Src/main.c    ****   */
+ 315:Src/main.c    **** static void MX_USART2_UART_Init(void)
+ 316:Src/main.c    **** {
  317:Src/main.c    **** 
-ARM GAS  /tmp/ccypGBLc.s 			page 7
+ARM GAS  /tmp/ccRt7XoM.s 			page 7
 
 
- 318:Src/main.c    ****   /* USER CODE BEGIN USART2_Init 1 */
+ 318:Src/main.c    ****   /* USER CODE BEGIN USART2_Init 0 */
  319:Src/main.c    **** 
- 320:Src/main.c    ****   /* USER CODE END USART2_Init 1 */
- 321:Src/main.c    ****   huart2.Instance = USART2;
- 322:Src/main.c    ****   huart2.Init.BaudRate = 115200;
- 323:Src/main.c    ****   huart2.Init.WordLength = UART_WORDLENGTH_8B;
- 324:Src/main.c    ****   huart2.Init.StopBits = UART_STOPBITS_1;
- 325:Src/main.c    ****   huart2.Init.Parity = UART_PARITY_NONE;
- 326:Src/main.c    ****   huart2.Init.Mode = UART_MODE_TX_RX;
- 327:Src/main.c    ****   huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
- 328:Src/main.c    ****   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
- 329:Src/main.c    ****   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
- 330:Src/main.c    ****   huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
- 331:Src/main.c    ****   if (HAL_UART_Init(&huart2) != HAL_OK)
- 332:Src/main.c    ****   {
- 333:Src/main.c    ****     Error_Handler();
- 334:Src/main.c    ****   }
- 335:Src/main.c    ****   /* USER CODE BEGIN USART2_Init 2 */
- 336:Src/main.c    **** 
- 337:Src/main.c    ****   /* USER CODE END USART2_Init 2 */
- 338:Src/main.c    **** 
- 339:Src/main.c    **** }
+ 320:Src/main.c    ****   /* USER CODE END USART2_Init 0 */
+ 321:Src/main.c    **** 
+ 322:Src/main.c    ****   /* USER CODE BEGIN USART2_Init 1 */
+ 323:Src/main.c    **** 
+ 324:Src/main.c    ****   /* USER CODE END USART2_Init 1 */
+ 325:Src/main.c    ****   huart2.Instance = USART2;
+ 326:Src/main.c    ****   huart2.Init.BaudRate = 115200;
+ 327:Src/main.c    ****   huart2.Init.WordLength = UART_WORDLENGTH_8B;
+ 328:Src/main.c    ****   huart2.Init.StopBits = UART_STOPBITS_1;
+ 329:Src/main.c    ****   huart2.Init.Parity = UART_PARITY_NONE;
+ 330:Src/main.c    ****   huart2.Init.Mode = UART_MODE_TX_RX;
+ 331:Src/main.c    ****   huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+ 332:Src/main.c    ****   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+ 333:Src/main.c    ****   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+ 334:Src/main.c    ****   huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+ 335:Src/main.c    ****   if (HAL_UART_Init(&huart2) != HAL_OK)
+ 336:Src/main.c    ****   {
+ 337:Src/main.c    ****     Error_Handler();
+ 338:Src/main.c    ****   }
+ 339:Src/main.c    ****   /* USER CODE BEGIN USART2_Init 2 */
  340:Src/main.c    **** 
- 341:Src/main.c    **** /**
- 342:Src/main.c    ****   * @brief GPIO Initialization Function
- 343:Src/main.c    ****   * @param None
- 344:Src/main.c    ****   * @retval None
- 345:Src/main.c    ****   */
- 346:Src/main.c    **** static void MX_GPIO_Init(void)
- 347:Src/main.c    **** {
-  27              		.loc 1 347 0
+ 341:Src/main.c    ****   /* USER CODE END USART2_Init 2 */
+ 342:Src/main.c    **** 
+ 343:Src/main.c    **** }
+ 344:Src/main.c    **** 
+ 345:Src/main.c    **** /**
+ 346:Src/main.c    ****   * @brief GPIO Initialization Function
+ 347:Src/main.c    ****   * @param None
+ 348:Src/main.c    ****   * @retval None
+ 349:Src/main.c    ****   */
+ 350:Src/main.c    **** static void MX_GPIO_Init(void)
+ 351:Src/main.c    **** {
+  27              		.loc 1 351 0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 40
   30              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -405,8 +409,8 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
   38 0002 8AB0     		sub	sp, sp, #40
   39              	.LCFI1:
   40              		.cfi_def_cfa_offset 56
- 348:Src/main.c    ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  41              		.loc 1 348 0
+ 352:Src/main.c    ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+  41              		.loc 1 352 0
   42 0004 0024     		movs	r4, #0
   43 0006 0594     		str	r4, [sp, #20]
   44 0008 0694     		str	r4, [sp, #24]
@@ -414,13 +418,13 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
   46 000c 0894     		str	r4, [sp, #32]
   47 000e 0994     		str	r4, [sp, #36]
   48              	.LBB2:
- 349:Src/main.c    **** 
- 350:Src/main.c    ****   /* GPIO Ports Clock Enable */
- 351:Src/main.c    ****   __HAL_RCC_GPIOC_CLK_ENABLE();
-  49              		.loc 1 351 0
-ARM GAS  /tmp/ccypGBLc.s 			page 8
+ARM GAS  /tmp/ccRt7XoM.s 			page 8
 
 
+ 353:Src/main.c    **** 
+ 354:Src/main.c    ****   /* GPIO Ports Clock Enable */
+ 355:Src/main.c    ****   __HAL_RCC_GPIOC_CLK_ENABLE();
+  49              		.loc 1 355 0
   50 0010 2D4B     		ldr	r3, .L3
   51 0012 DA6C     		ldr	r2, [r3, #76]
   52 0014 42F00402 		orr	r2, r2, #4
@@ -431,8 +435,8 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
   57 0022 019A     		ldr	r2, [sp, #4]
   58              	.LBE2:
   59              	.LBB3:
- 352:Src/main.c    ****   __HAL_RCC_GPIOH_CLK_ENABLE();
-  60              		.loc 1 352 0
+ 356:Src/main.c    ****   __HAL_RCC_GPIOH_CLK_ENABLE();
+  60              		.loc 1 356 0
   61 0024 DA6C     		ldr	r2, [r3, #76]
   62 0026 42F08002 		orr	r2, r2, #128
   63 002a DA64     		str	r2, [r3, #76]
@@ -442,8 +446,8 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
   67 0034 029A     		ldr	r2, [sp, #8]
   68              	.LBE3:
   69              	.LBB4:
- 353:Src/main.c    ****   __HAL_RCC_GPIOA_CLK_ENABLE();
-  70              		.loc 1 353 0
+ 357:Src/main.c    ****   __HAL_RCC_GPIOA_CLK_ENABLE();
+  70              		.loc 1 357 0
   71 0036 DA6C     		ldr	r2, [r3, #76]
   72 0038 42F00102 		orr	r2, r2, #1
   73 003c DA64     		str	r2, [r3, #76]
@@ -453,8 +457,8 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
   77 0046 039A     		ldr	r2, [sp, #12]
   78              	.LBE4:
   79              	.LBB5:
- 354:Src/main.c    ****   __HAL_RCC_GPIOB_CLK_ENABLE();
-  80              		.loc 1 354 0
+ 358:Src/main.c    ****   __HAL_RCC_GPIOB_CLK_ENABLE();
+  80              		.loc 1 358 0
   81 0048 DA6C     		ldr	r2, [r3, #76]
   82 004a 42F00202 		orr	r2, r2, #2
   83 004e DA64     		str	r2, [r3, #76]
@@ -463,114 +467,114 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
   86 0056 0493     		str	r3, [sp, #16]
   87 0058 049B     		ldr	r3, [sp, #16]
   88              	.LBE5:
- 355:Src/main.c    **** 
- 356:Src/main.c    ****   /*Configure GPIO pin Output Level */
- 357:Src/main.c    ****   HAL_GPIO_WritePin(GPIOA, LD2_Pin|RST_Pin|DC_Pin, GPIO_PIN_RESET);
-  89              		.loc 1 357 0
+ 359:Src/main.c    **** 
+ 360:Src/main.c    ****   /*Configure GPIO pin Output Level */
+ 361:Src/main.c    ****   HAL_GPIO_WritePin(GPIOA, LD2_Pin|RST_Pin|DC_Pin, GPIO_PIN_RESET);
+  89              		.loc 1 361 0
   90 005a 2246     		mov	r2, r4
   91 005c 4FF4A461 		mov	r1, #1312
   92 0060 4FF09040 		mov	r0, #1207959552
   93 0064 FFF7FEFF 		bl	HAL_GPIO_WritePin
   94              	.LVL0:
- 358:Src/main.c    **** 
- 359:Src/main.c    ****   /*Configure GPIO pin Output Level */
- 360:Src/main.c    ****   HAL_GPIO_WritePin(SPI_CS_GPIO_Port, SPI_CS_Pin, GPIO_PIN_RESET);
-  95              		.loc 1 360 0
+ 362:Src/main.c    **** 
+ 363:Src/main.c    ****   /*Configure GPIO pin Output Level */
+ARM GAS  /tmp/ccRt7XoM.s 			page 9
+
+
+ 364:Src/main.c    ****   HAL_GPIO_WritePin(SPI_CS_GPIO_Port, SPI_CS_Pin, GPIO_PIN_RESET);
+  95              		.loc 1 364 0
   96 0068 184D     		ldr	r5, .L3+4
   97 006a 2246     		mov	r2, r4
-ARM GAS  /tmp/ccypGBLc.s 			page 9
-
-
   98 006c 1021     		movs	r1, #16
   99 006e 2846     		mov	r0, r5
  100 0070 FFF7FEFF 		bl	HAL_GPIO_WritePin
  101              	.LVL1:
- 361:Src/main.c    **** 
- 362:Src/main.c    ****   /*Configure GPIO pin : B1_Pin */
- 363:Src/main.c    ****   GPIO_InitStruct.Pin = B1_Pin;
- 102              		.loc 1 363 0
+ 365:Src/main.c    **** 
+ 366:Src/main.c    ****   /*Configure GPIO pin : B1_Pin */
+ 367:Src/main.c    ****   GPIO_InitStruct.Pin = B1_Pin;
+ 102              		.loc 1 367 0
  103 0074 4FF40053 		mov	r3, #8192
  104 0078 0593     		str	r3, [sp, #20]
- 364:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
- 105              		.loc 1 364 0
+ 368:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+ 105              		.loc 1 368 0
  106 007a 154B     		ldr	r3, .L3+8
  107 007c 0693     		str	r3, [sp, #24]
- 365:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
- 108              		.loc 1 365 0
+ 369:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 108              		.loc 1 369 0
  109 007e 0794     		str	r4, [sp, #28]
- 366:Src/main.c    ****   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
- 110              		.loc 1 366 0
+ 370:Src/main.c    ****   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+ 110              		.loc 1 370 0
  111 0080 05A9     		add	r1, sp, #20
  112 0082 1448     		ldr	r0, .L3+12
  113 0084 FFF7FEFF 		bl	HAL_GPIO_Init
  114              	.LVL2:
- 367:Src/main.c    **** 
- 368:Src/main.c    ****   /*Configure GPIO pins : LD2_Pin RST_Pin DC_Pin */
- 369:Src/main.c    ****   GPIO_InitStruct.Pin = LD2_Pin|RST_Pin|DC_Pin;
- 115              		.loc 1 369 0
+ 371:Src/main.c    **** 
+ 372:Src/main.c    ****   /*Configure GPIO pins : LD2_Pin RST_Pin DC_Pin */
+ 373:Src/main.c    ****   GPIO_InitStruct.Pin = LD2_Pin|RST_Pin|DC_Pin;
+ 115              		.loc 1 373 0
  116 0088 4FF4A463 		mov	r3, #1312
  117 008c 0593     		str	r3, [sp, #20]
- 370:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
- 118              		.loc 1 370 0
+ 374:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 118              		.loc 1 374 0
  119 008e 0126     		movs	r6, #1
  120 0090 0696     		str	r6, [sp, #24]
- 371:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
- 121              		.loc 1 371 0
+ 375:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 121              		.loc 1 375 0
  122 0092 0794     		str	r4, [sp, #28]
- 372:Src/main.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 123              		.loc 1 372 0
+ 376:Src/main.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 123              		.loc 1 376 0
  124 0094 0894     		str	r4, [sp, #32]
- 373:Src/main.c    ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
- 125              		.loc 1 373 0
+ 377:Src/main.c    ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 125              		.loc 1 377 0
  126 0096 05A9     		add	r1, sp, #20
  127 0098 4FF09040 		mov	r0, #1207959552
  128 009c FFF7FEFF 		bl	HAL_GPIO_Init
  129              	.LVL3:
- 374:Src/main.c    **** 
- 375:Src/main.c    ****   /*Configure GPIO pin : BUSY_Pin */
- 376:Src/main.c    ****   GPIO_InitStruct.Pin = BUSY_Pin;
- 130              		.loc 1 376 0
+ 378:Src/main.c    **** 
+ 379:Src/main.c    ****   /*Configure GPIO pin : BUSY_Pin */
+ 380:Src/main.c    ****   GPIO_InitStruct.Pin = BUSY_Pin;
+ 130              		.loc 1 380 0
  131 00a0 4FF48063 		mov	r3, #1024
  132 00a4 0593     		str	r3, [sp, #20]
- 377:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
- 133              		.loc 1 377 0
+ 381:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 133              		.loc 1 381 0
+ARM GAS  /tmp/ccRt7XoM.s 			page 10
+
+
  134 00a6 0694     		str	r4, [sp, #24]
- 378:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
- 135              		.loc 1 378 0
+ 382:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 135              		.loc 1 382 0
  136 00a8 0794     		str	r4, [sp, #28]
-ARM GAS  /tmp/ccypGBLc.s 			page 10
-
-
- 379:Src/main.c    ****   HAL_GPIO_Init(BUSY_GPIO_Port, &GPIO_InitStruct);
- 137              		.loc 1 379 0
+ 383:Src/main.c    ****   HAL_GPIO_Init(BUSY_GPIO_Port, &GPIO_InitStruct);
+ 137              		.loc 1 383 0
  138 00aa 05A9     		add	r1, sp, #20
  139 00ac 2846     		mov	r0, r5
  140 00ae FFF7FEFF 		bl	HAL_GPIO_Init
  141              	.LVL4:
- 380:Src/main.c    **** 
- 381:Src/main.c    ****   /*Configure GPIO pin : SPI_CS_Pin */
- 382:Src/main.c    ****   GPIO_InitStruct.Pin = SPI_CS_Pin;
- 142              		.loc 1 382 0
+ 384:Src/main.c    **** 
+ 385:Src/main.c    ****   /*Configure GPIO pin : SPI_CS_Pin */
+ 386:Src/main.c    ****   GPIO_InitStruct.Pin = SPI_CS_Pin;
+ 142              		.loc 1 386 0
  143 00b2 1023     		movs	r3, #16
  144 00b4 0593     		str	r3, [sp, #20]
- 383:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
- 145              		.loc 1 383 0
+ 387:Src/main.c    ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 145              		.loc 1 387 0
  146 00b6 0696     		str	r6, [sp, #24]
- 384:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
- 147              		.loc 1 384 0
+ 388:Src/main.c    ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 147              		.loc 1 388 0
  148 00b8 0794     		str	r4, [sp, #28]
- 385:Src/main.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 149              		.loc 1 385 0
+ 389:Src/main.c    ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 149              		.loc 1 389 0
  150 00ba 0894     		str	r4, [sp, #32]
- 386:Src/main.c    ****   HAL_GPIO_Init(SPI_CS_GPIO_Port, &GPIO_InitStruct);
- 151              		.loc 1 386 0
+ 390:Src/main.c    ****   HAL_GPIO_Init(SPI_CS_GPIO_Port, &GPIO_InitStruct);
+ 151              		.loc 1 390 0
  152 00bc 05A9     		add	r1, sp, #20
  153 00be 2846     		mov	r0, r5
  154 00c0 FFF7FEFF 		bl	HAL_GPIO_Init
  155              	.LVL5:
- 387:Src/main.c    **** 
- 388:Src/main.c    **** }
- 156              		.loc 1 388 0
+ 391:Src/main.c    **** 
+ 392:Src/main.c    **** }
+ 156              		.loc 1 392 0
  157 00c4 0AB0     		add	sp, sp, #40
  158              	.LCFI2:
  159              		.cfi_def_cfa_offset 16
@@ -593,60 +597,60 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
  177              		.fpu fpv4-sp-d16
  179              	MX_USART2_UART_Init:
  180              	.LFB126:
- 312:Src/main.c    **** 
- 181              		.loc 1 312 0
+ 316:Src/main.c    **** 
+ARM GAS  /tmp/ccRt7XoM.s 			page 11
+
+
+ 181              		.loc 1 316 0
  182              		.cfi_startproc
  183              		@ args = 0, pretend = 0, frame = 0
  184              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccypGBLc.s 			page 11
-
-
  185 0000 08B5     		push	{r3, lr}
  186              	.LCFI3:
  187              		.cfi_def_cfa_offset 8
  188              		.cfi_offset 3, -8
  189              		.cfi_offset 14, -4
- 321:Src/main.c    ****   huart2.Init.BaudRate = 115200;
- 190              		.loc 1 321 0
+ 325:Src/main.c    ****   huart2.Init.BaudRate = 115200;
+ 190              		.loc 1 325 0
  191 0002 0948     		ldr	r0, .L7
  192 0004 094B     		ldr	r3, .L7+4
  193 0006 0360     		str	r3, [r0]
- 322:Src/main.c    ****   huart2.Init.WordLength = UART_WORDLENGTH_8B;
- 194              		.loc 1 322 0
+ 326:Src/main.c    ****   huart2.Init.WordLength = UART_WORDLENGTH_8B;
+ 194              		.loc 1 326 0
  195 0008 4FF4E133 		mov	r3, #115200
  196 000c 4360     		str	r3, [r0, #4]
- 323:Src/main.c    ****   huart2.Init.StopBits = UART_STOPBITS_1;
- 197              		.loc 1 323 0
+ 327:Src/main.c    ****   huart2.Init.StopBits = UART_STOPBITS_1;
+ 197              		.loc 1 327 0
  198 000e 0023     		movs	r3, #0
  199 0010 8360     		str	r3, [r0, #8]
- 324:Src/main.c    ****   huart2.Init.Parity = UART_PARITY_NONE;
- 200              		.loc 1 324 0
+ 328:Src/main.c    ****   huart2.Init.Parity = UART_PARITY_NONE;
+ 200              		.loc 1 328 0
  201 0012 C360     		str	r3, [r0, #12]
- 325:Src/main.c    ****   huart2.Init.Mode = UART_MODE_TX_RX;
- 202              		.loc 1 325 0
+ 329:Src/main.c    ****   huart2.Init.Mode = UART_MODE_TX_RX;
+ 202              		.loc 1 329 0
  203 0014 0361     		str	r3, [r0, #16]
- 326:Src/main.c    ****   huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
- 204              		.loc 1 326 0
+ 330:Src/main.c    ****   huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+ 204              		.loc 1 330 0
  205 0016 0C22     		movs	r2, #12
  206 0018 4261     		str	r2, [r0, #20]
- 327:Src/main.c    ****   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
- 207              		.loc 1 327 0
+ 331:Src/main.c    ****   huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+ 207              		.loc 1 331 0
  208 001a 8361     		str	r3, [r0, #24]
- 328:Src/main.c    ****   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
- 209              		.loc 1 328 0
+ 332:Src/main.c    ****   huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+ 209              		.loc 1 332 0
  210 001c C361     		str	r3, [r0, #28]
- 329:Src/main.c    ****   huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
- 211              		.loc 1 329 0
+ 333:Src/main.c    ****   huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+ 211              		.loc 1 333 0
  212 001e 0362     		str	r3, [r0, #32]
- 330:Src/main.c    ****   if (HAL_UART_Init(&huart2) != HAL_OK)
- 213              		.loc 1 330 0
+ 334:Src/main.c    ****   if (HAL_UART_Init(&huart2) != HAL_OK)
+ 213              		.loc 1 334 0
  214 0020 4362     		str	r3, [r0, #36]
- 331:Src/main.c    ****   {
- 215              		.loc 1 331 0
+ 335:Src/main.c    ****   {
+ 215              		.loc 1 335 0
  216 0022 FFF7FEFF 		bl	HAL_UART_Init
  217              	.LVL6:
- 339:Src/main.c    **** 
- 218              		.loc 1 339 0
+ 343:Src/main.c    **** 
+ 218              		.loc 1 343 0
  219 0026 08BD     		pop	{r3, pc}
  220              	.L8:
  221              		.align	2
@@ -654,20 +658,20 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
  223 0028 00000000 		.word	huart2
  224 002c 00440040 		.word	1073759232
  225              		.cfi_endproc
+ARM GAS  /tmp/ccRt7XoM.s 			page 12
+
+
  226              	.LFE126:
  228              		.section	.text.MX_SPI1_Init,"ax",%progbits
  229              		.align	1
  230              		.syntax unified
-ARM GAS  /tmp/ccypGBLc.s 			page 12
-
-
  231              		.thumb
  232              		.thumb_func
  233              		.fpu fpv4-sp-d16
  235              	MX_SPI1_Init:
  236              	.LFB125:
- 272:Src/main.c    **** 
- 237              		.loc 1 272 0
+ 276:Src/main.c    **** 
+ 237              		.loc 1 276 0
  238              		.cfi_startproc
  239              		@ args = 0, pretend = 0, frame = 0
  240              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -676,66 +680,66 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
  243              		.cfi_def_cfa_offset 8
  244              		.cfi_offset 3, -8
  245              		.cfi_offset 14, -4
- 282:Src/main.c    ****   hspi1.Init.Mode = SPI_MODE_MASTER;
- 246              		.loc 1 282 0
+ 286:Src/main.c    ****   hspi1.Init.Mode = SPI_MODE_MASTER;
+ 246              		.loc 1 286 0
  247 0002 0E48     		ldr	r0, .L11
  248 0004 0E4B     		ldr	r3, .L11+4
  249 0006 0360     		str	r3, [r0]
- 283:Src/main.c    ****   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
- 250              		.loc 1 283 0
+ 287:Src/main.c    ****   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+ 250              		.loc 1 287 0
  251 0008 4FF48273 		mov	r3, #260
  252 000c 4360     		str	r3, [r0, #4]
- 284:Src/main.c    ****   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
- 253              		.loc 1 284 0
+ 288:Src/main.c    ****   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+ 253              		.loc 1 288 0
  254 000e 0023     		movs	r3, #0
  255 0010 8360     		str	r3, [r0, #8]
- 285:Src/main.c    ****   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
- 256              		.loc 1 285 0
+ 289:Src/main.c    ****   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+ 256              		.loc 1 289 0
  257 0012 4FF4E062 		mov	r2, #1792
  258 0016 C260     		str	r2, [r0, #12]
- 286:Src/main.c    ****   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
- 259              		.loc 1 286 0
+ 290:Src/main.c    ****   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+ 259              		.loc 1 290 0
  260 0018 0361     		str	r3, [r0, #16]
- 287:Src/main.c    ****   hspi1.Init.NSS = SPI_NSS_SOFT;
- 261              		.loc 1 287 0
+ 291:Src/main.c    ****   hspi1.Init.NSS = SPI_NSS_SOFT;
+ 261              		.loc 1 291 0
  262 001a 4361     		str	r3, [r0, #20]
- 288:Src/main.c    ****   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
- 263              		.loc 1 288 0
+ 292:Src/main.c    ****   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
+ 263              		.loc 1 292 0
  264 001c 4FF40072 		mov	r2, #512
  265 0020 8261     		str	r2, [r0, #24]
- 289:Src/main.c    ****   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
- 266              		.loc 1 289 0
+ 293:Src/main.c    ****   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+ 266              		.loc 1 293 0
  267 0022 2822     		movs	r2, #40
  268 0024 C261     		str	r2, [r0, #28]
- 290:Src/main.c    ****   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
- 269              		.loc 1 290 0
+ 294:Src/main.c    ****   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+ 269              		.loc 1 294 0
  270 0026 0362     		str	r3, [r0, #32]
- 291:Src/main.c    ****   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
- 271              		.loc 1 291 0
+ 295:Src/main.c    ****   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+ 271              		.loc 1 295 0
  272 0028 4362     		str	r3, [r0, #36]
- 292:Src/main.c    ****   hspi1.Init.CRCPolynomial = 7;
- 273              		.loc 1 292 0
+ 296:Src/main.c    ****   hspi1.Init.CRCPolynomial = 7;
+ARM GAS  /tmp/ccRt7XoM.s 			page 13
+
+
+ 273              		.loc 1 296 0
  274 002a 8362     		str	r3, [r0, #40]
- 293:Src/main.c    ****   hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
- 275              		.loc 1 293 0
-ARM GAS  /tmp/ccypGBLc.s 			page 13
-
-
+ 297:Src/main.c    ****   hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+ 275              		.loc 1 297 0
  276 002c 0722     		movs	r2, #7
  277 002e C262     		str	r2, [r0, #44]
- 294:Src/main.c    ****   hspi1.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
- 278              		.loc 1 294 0
+ 298:Src/main.c    ****   hspi1.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+ 278              		.loc 1 298 0
  279 0030 0363     		str	r3, [r0, #48]
- 295:Src/main.c    ****   if (HAL_SPI_Init(&hspi1) != HAL_OK)
- 280              		.loc 1 295 0
+ 299:Src/main.c    ****   if (HAL_SPI_Init(&hspi1) != HAL_OK)
+ 280              		.loc 1 299 0
  281 0032 0823     		movs	r3, #8
  282 0034 4363     		str	r3, [r0, #52]
- 296:Src/main.c    ****   {
- 283              		.loc 1 296 0
+ 300:Src/main.c    ****   {
+ 283              		.loc 1 300 0
  284 0036 FFF7FEFF 		bl	HAL_SPI_Init
  285              	.LVL7:
- 304:Src/main.c    **** 
- 286              		.loc 1 304 0
+ 308:Src/main.c    **** 
+ 286              		.loc 1 308 0
  287 003a 08BD     		pop	{r3, pc}
  288              	.L12:
  289              		.align	2
@@ -753,8 +757,8 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
  302              		.fpu fpv4-sp-d16
  304              	SystemClock_Config:
  305              	.LFB124:
- 218:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
- 306              		.loc 1 218 0
+ 222:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 306              		.loc 1 222 0
  307              		.cfi_startproc
  308              		@ args = 0, pretend = 0, frame = 224
  309              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -767,116 +771,116 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
  316 0002 B9B0     		sub	sp, sp, #228
  317              	.LCFI6:
  318              		.cfi_def_cfa_offset 240
- 219:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
- 319              		.loc 1 219 0
+ 223:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 319              		.loc 1 223 0
  320 0004 2422     		movs	r2, #36
  321 0006 0021     		movs	r1, #0
  322 0008 28A8     		add	r0, sp, #160
  323 000a FFF7FEFF 		bl	memset
  324              	.LVL8:
- 220:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
- 325              		.loc 1 220 0
+ARM GAS  /tmp/ccRt7XoM.s 			page 14
+
+
+ 224:Src/main.c    ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+ 325              		.loc 1 224 0
  326 000e 0024     		movs	r4, #0
  327 0010 2294     		str	r4, [sp, #136]
-ARM GAS  /tmp/ccypGBLc.s 			page 14
-
-
  328 0012 2394     		str	r4, [sp, #140]
  329 0014 2494     		str	r4, [sp, #144]
  330 0016 2594     		str	r4, [sp, #148]
  331 0018 2694     		str	r4, [sp, #152]
- 221:Src/main.c    **** 
- 332              		.loc 1 221 0
+ 225:Src/main.c    **** 
+ 332              		.loc 1 225 0
  333 001a 8822     		movs	r2, #136
  334 001c 2146     		mov	r1, r4
  335 001e 6846     		mov	r0, sp
  336 0020 FFF7FEFF 		bl	memset
  337              	.LVL9:
- 225:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
- 338              		.loc 1 225 0
+ 229:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 338              		.loc 1 229 0
  339 0024 0225     		movs	r5, #2
  340 0026 2795     		str	r5, [sp, #156]
- 226:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
- 341              		.loc 1 226 0
+ 230:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 341              		.loc 1 230 0
  342 0028 4FF48073 		mov	r3, #256
  343 002c 2A93     		str	r3, [sp, #168]
- 227:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
- 344              		.loc 1 227 0
+ 231:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 344              		.loc 1 231 0
  345 002e 1023     		movs	r3, #16
  346 0030 2B93     		str	r3, [sp, #172]
- 228:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
- 347              		.loc 1 228 0
+ 232:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 347              		.loc 1 232 0
  348 0032 3195     		str	r5, [sp, #196]
- 229:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 1;
- 349              		.loc 1 229 0
+ 233:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 1;
+ 349              		.loc 1 233 0
  350 0034 3295     		str	r5, [sp, #200]
- 230:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 10;
- 351              		.loc 1 230 0
+ 234:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 10;
+ 351              		.loc 1 234 0
  352 0036 0123     		movs	r3, #1
  353 0038 3393     		str	r3, [sp, #204]
- 231:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
- 354              		.loc 1 231 0
+ 235:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
+ 354              		.loc 1 235 0
  355 003a 0A23     		movs	r3, #10
  356 003c 3493     		str	r3, [sp, #208]
- 232:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
- 357              		.loc 1 232 0
+ 236:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+ 357              		.loc 1 236 0
  358 003e 0723     		movs	r3, #7
  359 0040 3593     		str	r3, [sp, #212]
- 233:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
- 360              		.loc 1 233 0
+ 237:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+ 360              		.loc 1 237 0
  361 0042 3695     		str	r5, [sp, #216]
- 234:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
- 362              		.loc 1 234 0
+ 238:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 362              		.loc 1 238 0
  363 0044 3795     		str	r5, [sp, #220]
- 235:Src/main.c    ****   {
- 364              		.loc 1 235 0
+ 239:Src/main.c    ****   {
+ 364              		.loc 1 239 0
  365 0046 27A8     		add	r0, sp, #156
  366 0048 FFF7FEFF 		bl	HAL_RCC_OscConfig
  367              	.LVL10:
- 241:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
- 368              		.loc 1 241 0
+ 245:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ARM GAS  /tmp/ccRt7XoM.s 			page 15
+
+
+ 368              		.loc 1 245 0
  369 004c 0F23     		movs	r3, #15
  370 004e 2293     		str	r3, [sp, #136]
- 243:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-ARM GAS  /tmp/ccypGBLc.s 			page 15
-
-
- 371              		.loc 1 243 0
+ 247:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 371              		.loc 1 247 0
  372 0050 0323     		movs	r3, #3
  373 0052 2393     		str	r3, [sp, #140]
- 244:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
- 374              		.loc 1 244 0
+ 248:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 374              		.loc 1 248 0
  375 0054 2494     		str	r4, [sp, #144]
- 245:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
- 376              		.loc 1 245 0
+ 249:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 376              		.loc 1 249 0
  377 0056 2594     		str	r4, [sp, #148]
- 246:Src/main.c    **** 
- 378              		.loc 1 246 0
+ 250:Src/main.c    **** 
+ 378              		.loc 1 250 0
  379 0058 2694     		str	r4, [sp, #152]
- 248:Src/main.c    ****   {
- 380              		.loc 1 248 0
+ 252:Src/main.c    ****   {
+ 380              		.loc 1 252 0
  381 005a 0421     		movs	r1, #4
  382 005c 22A8     		add	r0, sp, #136
  383 005e FFF7FEFF 		bl	HAL_RCC_ClockConfig
  384              	.LVL11:
- 252:Src/main.c    ****   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
- 385              		.loc 1 252 0
+ 256:Src/main.c    ****   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
+ 385              		.loc 1 256 0
  386 0062 0095     		str	r5, [sp]
- 253:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
- 387              		.loc 1 253 0
+ 257:Src/main.c    ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 387              		.loc 1 257 0
  388 0064 0F94     		str	r4, [sp, #60]
- 254:Src/main.c    ****   {
- 389              		.loc 1 254 0
+ 258:Src/main.c    ****   {
+ 389              		.loc 1 258 0
  390 0066 6846     		mov	r0, sp
  391 0068 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
  392              	.LVL12:
- 260:Src/main.c    ****   {
- 393              		.loc 1 260 0
+ 264:Src/main.c    ****   {
+ 393              		.loc 1 264 0
  394 006c 4FF40070 		mov	r0, #512
  395 0070 FFF7FEFF 		bl	HAL_PWREx_ControlVoltageScaling
  396              	.LVL13:
- 264:Src/main.c    **** 
- 397              		.loc 1 264 0
+ 268:Src/main.c    **** 
+ 397              		.loc 1 268 0
  398 0074 39B0     		add	sp, sp, #228
  399              	.LCFI7:
  400              		.cfi_def_cfa_offset 12
@@ -894,652 +898,298 @@ ARM GAS  /tmp/ccypGBLc.s 			page 1
  414              	main:
  415              	.LFB123:
   76:Src/main.c    ****   /* USER CODE BEGIN 1 */
+ARM GAS  /tmp/ccRt7XoM.s 			page 16
+
+
  416              		.loc 1 76 0
  417              		.cfi_startproc
- 418              		@ args = 0, pretend = 0, frame = 8
+ 418              		@ args = 0, pretend = 0, frame = 0
  419              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccypGBLc.s 			page 16
-
-
- 420 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 420 0000 30B5     		push	{r4, r5, lr}
  421              	.LCFI8:
- 422              		.cfi_def_cfa_offset 24
- 423              		.cfi_offset 4, -24
- 424              		.cfi_offset 5, -20
- 425              		.cfi_offset 6, -16
- 426              		.cfi_offset 7, -12
- 427              		.cfi_offset 8, -8
- 428              		.cfi_offset 14, -4
- 429 0004 86B0     		sub	sp, sp, #24
- 430              	.LCFI9:
- 431              		.cfi_def_cfa_offset 48
+ 422              		.cfi_def_cfa_offset 12
+ 423              		.cfi_offset 4, -12
+ 424              		.cfi_offset 5, -8
+ 425              		.cfi_offset 14, -4
+ 426 0002 83B0     		sub	sp, sp, #12
+ 427              	.LCFI9:
+ 428              		.cfi_def_cfa_offset 24
   84:Src/main.c    **** 
- 432              		.loc 1 84 0
- 433 0006 FFF7FEFF 		bl	HAL_Init
- 434              	.LVL14:
+ 429              		.loc 1 84 0
+ 430 0004 FFF7FEFF 		bl	HAL_Init
+ 431              	.LVL14:
   91:Src/main.c    **** 
- 435              		.loc 1 91 0
- 436 000a FFF7FEFF 		bl	SystemClock_Config
- 437              	.LVL15:
+ 432              		.loc 1 91 0
+ 433 0008 FFF7FEFF 		bl	SystemClock_Config
+ 434              	.LVL15:
   98:Src/main.c    ****   MX_USART2_UART_Init();
- 438              		.loc 1 98 0
- 439 000e FFF7FEFF 		bl	MX_GPIO_Init
- 440              	.LVL16:
+ 435              		.loc 1 98 0
+ 436 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 437              	.LVL16:
   99:Src/main.c    ****   MX_SPI1_Init();
- 441              		.loc 1 99 0
- 442 0012 FFF7FEFF 		bl	MX_USART2_UART_Init
- 443              	.LVL17:
+ 438              		.loc 1 99 0
+ 439 0010 FFF7FEFF 		bl	MX_USART2_UART_Init
+ 440              	.LVL17:
  100:Src/main.c    ****   /* USER CODE BEGIN 2 */
- 444              		.loc 1 100 0
- 445 0016 FFF7FEFF 		bl	MX_SPI1_Init
- 446              	.LVL18:
+ 441              		.loc 1 100 0
+ 442 0014 FFF7FEFF 		bl	MX_SPI1_Init
+ 443              	.LVL18:
  103:Src/main.c    ****         printf("e-Paper init failed\r\n");
- 447              		.loc 1 103 0
- 448 001a 9848     		ldr	r0, .L26
- 449 001c FFF7FEFF 		bl	EPD_Init
- 450              	.LVL19:
- 451 0020 0028     		cmp	r0, #0
- 452 0022 40F0DB80 		bne	.L24
- 453              	.L16:
+ 444              		.loc 1 103 0
+ 445 0018 2348     		ldr	r0, .L23
+ 446 001a FFF7FEFF 		bl	EPD_Init
+ 447              	.LVL19:
+ 448 001e C0BB     		cbnz	r0, .L22
+ 449              	.L16:
  106:Src/main.c    ****     DEV_Delay_ms(500);
- 454              		.loc 1 106 0
- 455 0026 FFF7FEFF 		bl	EPD_Clear
- 456              	.LVL20:
+ 450              		.loc 1 106 0
+ 451 0020 FFF7FEFF 		bl	EPD_Clear
+ 452              	.LVL20:
  107:Src/main.c    **** 
- 457              		.loc 1 107 0
- 458 002a 4FF4FA70 		mov	r0, #500
- 459 002e FFF7FEFF 		bl	HAL_Delay
- 460              	.LVL21:
+ 453              		.loc 1 107 0
+ 454 0024 4FF4FA70 		mov	r0, #500
+ 455 0028 FFF7FEFF 		bl	HAL_Delay
+ 456              	.LVL21:
  112:Src/main.c    ****         printf("Failed to apply for black memory...\r\n");
- 461              		.loc 1 112 0
- 462 0032 4FF49450 		mov	r0, #4736
- 463 0036 FFF7FEFF 		bl	malloc
- 464              	.LVL22:
- 465 003a 0546     		mov	r5, r0
- 466 003c 0028     		cmp	r0, #0
- 467 003e 00F01481 		beq	.L22
-ARM GAS  /tmp/ccypGBLc.s 			page 17
-
-
+ 457              		.loc 1 112 0
+ 458 002c 4FF49450 		mov	r0, #4736
+ 459 0030 FFF7FEFF 		bl	malloc
+ 460              	.LVL22:
+ 461 0034 0446     		mov	r4, r0
+ 462 0036 80B3     		cbz	r0, .L20
  116:Src/main.c    ****     Paint_NewImage(BlackImage, EPD_WIDTH, EPD_HEIGHT, 270, WHITE);
- 468              		.loc 1 116 0
- 469 0042 8F48     		ldr	r0, .L26+4
- 470              	.LVL23:
- 471 0044 FFF7FEFF 		bl	puts
- 472              	.LVL24:
+ARM GAS  /tmp/ccRt7XoM.s 			page 17
+
+
+ 463              		.loc 1 116 0
+ 464 0038 1C48     		ldr	r0, .L23+4
+ 465              	.LVL23:
+ 466 003a FFF7FEFF 		bl	puts
+ 467              	.LVL24:
  117:Src/main.c    ****     Paint_SelectImage(BlackImage);
- 473              		.loc 1 117 0
- 474 0048 FF27     		movs	r7, #255
- 475 004a 0097     		str	r7, [sp]
- 476 004c 4FF48773 		mov	r3, #270
- 477 0050 4FF49472 		mov	r2, #296
- 478 0054 8021     		movs	r1, #128
- 479 0056 2846     		mov	r0, r5
- 480 0058 FFF7FEFF 		bl	Paint_NewImage
- 481              	.LVL25:
+ 468              		.loc 1 117 0
+ 469 003e FF25     		movs	r5, #255
+ 470 0040 0095     		str	r5, [sp]
+ 471 0042 4FF48773 		mov	r3, #270
+ 472 0046 4FF49472 		mov	r2, #296
+ 473 004a 8021     		movs	r1, #128
+ 474 004c 2046     		mov	r0, r4
+ 475 004e FFF7FEFF 		bl	Paint_NewImage
+ 476              	.LVL25:
  118:Src/main.c    ****     Paint_Clear(WHITE);
- 482              		.loc 1 118 0
- 483 005c 2846     		mov	r0, r5
- 484 005e FFF7FEFF 		bl	Paint_SelectImage
- 485              	.LVL26:
+ 477              		.loc 1 118 0
+ 478 0052 2046     		mov	r0, r4
+ 479 0054 FFF7FEFF 		bl	Paint_SelectImage
+ 480              	.LVL26:
  119:Src/main.c    **** 
- 486              		.loc 1 119 0
- 487 0062 3846     		mov	r0, r7
- 488 0064 FFF7FEFF 		bl	Paint_Clear
- 489              	.LVL27:
+ 481              		.loc 1 119 0
+ 482 0058 2846     		mov	r0, r5
+ 483 005a FFF7FEFF 		bl	Paint_Clear
+ 484              	.LVL27:
  123:Src/main.c    ****     Paint_SelectImage(BlackImage);
- 490              		.loc 1 123 0
- 491 0068 8648     		ldr	r0, .L26+8
- 492 006a FFF7FEFF 		bl	puts
- 493              	.LVL28:
+ 485              		.loc 1 123 0
+ 486 005e 1448     		ldr	r0, .L23+8
+ 487 0060 FFF7FEFF 		bl	puts
+ 488              	.LVL28:
  124:Src/main.c    ****     Paint_Clear(WHITE);
- 494              		.loc 1 124 0
- 495 006e 2846     		mov	r0, r5
- 496 0070 FFF7FEFF 		bl	Paint_SelectImage
- 497              	.LVL29:
+ 489              		.loc 1 124 0
+ 490 0064 2046     		mov	r0, r4
+ 491 0066 FFF7FEFF 		bl	Paint_SelectImage
+ 492              	.LVL29:
  125:Src/main.c    ****     Paint_DrawBitMap(gImage_2in9);
- 498              		.loc 1 125 0
- 499 0074 3846     		mov	r0, r7
- 500 0076 FFF7FEFF 		bl	Paint_Clear
- 501              	.LVL30:
+ 493              		.loc 1 125 0
+ 494 006a 2846     		mov	r0, r5
+ 495 006c FFF7FEFF 		bl	Paint_Clear
+ 496              	.LVL30:
  126:Src/main.c    **** 
- 502              		.loc 1 126 0
- 503 007a 8348     		ldr	r0, .L26+12
- 504 007c FFF7FEFF 		bl	Paint_DrawBitMap
- 505              	.LVL31:
+ 497              		.loc 1 126 0
+ 498 0070 1048     		ldr	r0, .L23+12
+ 499 0072 FFF7FEFF 		bl	Paint_DrawBitMap
+ 500              	.LVL31:
  128:Src/main.c    ****     DEV_Delay_ms(2000);
- 506              		.loc 1 128 0
- 507 0080 2846     		mov	r0, r5
- 508 0082 FFF7FEFF 		bl	EPD_Display
- 509              	.LVL32:
- 129:Src/main.c    **** #endif
- 510              		.loc 1 129 0
- 511 0086 4FF4FA60 		mov	r0, #2000
- 512 008a FFF7FEFF 		bl	HAL_Delay
- 513              	.LVL33:
- 134:Src/main.c    ****     Paint_SelectImage(BlackImage);
-ARM GAS  /tmp/ccypGBLc.s 			page 18
+ 501              		.loc 1 128 0
+ 502 0076 2046     		mov	r0, r4
+ 503 0078 FFF7FEFF 		bl	EPD_Display
+ 504              	.LVL32:
+ 129:Src/main.c    **** 
+ 505              		.loc 1 129 0
+ 506 007c 4FF4FA60 		mov	r0, #2000
+ 507 0080 FFF7FEFF 		bl	HAL_Delay
+ 508              	.LVL33:
+ 131:Src/main.c    ****     EPD_Display(BlackImage);
+ 509              		.loc 1 131 0
+ARM GAS  /tmp/ccRt7XoM.s 			page 18
 
 
- 514              		.loc 1 134 0
- 515 008e 7F48     		ldr	r0, .L26+16
- 516 0090 FFF7FEFF 		bl	puts
- 517              	.LVL34:
- 135:Src/main.c    ****     Paint_Clear(WHITE);
- 518              		.loc 1 135 0
- 519 0094 2846     		mov	r0, r5
- 520 0096 FFF7FEFF 		bl	Paint_SelectImage
- 521              	.LVL35:
- 136:Src/main.c    **** 
- 522              		.loc 1 136 0
- 523 009a 3846     		mov	r0, r7
- 524 009c FFF7FEFF 		bl	Paint_Clear
- 525              	.LVL36:
- 139:Src/main.c    ****     Paint_DrawPoint(10, 80, BLACK, DOT_PIXEL_1X1, DOT_STYLE_DFT);
- 526              		.loc 1 139 0
- 527 00a0 7B48     		ldr	r0, .L26+20
- 528 00a2 FFF7FEFF 		bl	puts
- 529              	.LVL37:
- 140:Src/main.c    ****     Paint_DrawPoint(10, 90, BLACK, DOT_PIXEL_2X2, DOT_STYLE_DFT);
- 530              		.loc 1 140 0
- 531 00a6 0126     		movs	r6, #1
- 532 00a8 0096     		str	r6, [sp]
- 533 00aa 3346     		mov	r3, r6
- 534 00ac 0022     		movs	r2, #0
- 535 00ae 5021     		movs	r1, #80
- 536 00b0 0A20     		movs	r0, #10
- 537 00b2 FFF7FEFF 		bl	Paint_DrawPoint
- 538              	.LVL38:
- 141:Src/main.c    ****     Paint_DrawPoint(10, 100, BLACK, DOT_PIXEL_3X3, DOT_STYLE_DFT);
- 539              		.loc 1 141 0
- 540 00b6 0096     		str	r6, [sp]
- 541 00b8 0223     		movs	r3, #2
- 542 00ba 0022     		movs	r2, #0
- 543 00bc 5A21     		movs	r1, #90
- 544 00be 0A20     		movs	r0, #10
- 545 00c0 FFF7FEFF 		bl	Paint_DrawPoint
- 546              	.LVL39:
- 142:Src/main.c    ****     Paint_DrawLine(20, 70, 70, 120, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_1X1);
- 547              		.loc 1 142 0
- 548 00c4 0096     		str	r6, [sp]
- 549 00c6 0323     		movs	r3, #3
- 550 00c8 0022     		movs	r2, #0
- 551 00ca 6421     		movs	r1, #100
- 552 00cc 0A20     		movs	r0, #10
- 553 00ce FFF7FEFF 		bl	Paint_DrawPoint
- 554              	.LVL40:
- 143:Src/main.c    ****     Paint_DrawLine(70, 70, 20, 120, BLACK, LINE_STYLE_SOLID, DOT_PIXEL_1X1);
- 555              		.loc 1 143 0
- 556 00d2 0296     		str	r6, [sp, #8]
- 557 00d4 0024     		movs	r4, #0
- 558 00d6 0194     		str	r4, [sp, #4]
- 559 00d8 0094     		str	r4, [sp]
- 560 00da 7823     		movs	r3, #120
- 561 00dc 4622     		movs	r2, #70
- 562 00de 1146     		mov	r1, r2
- 563 00e0 1420     		movs	r0, #20
-ARM GAS  /tmp/ccypGBLc.s 			page 19
-
-
- 564 00e2 FFF7FEFF 		bl	Paint_DrawLine
- 565              	.LVL41:
- 144:Src/main.c    ****     Paint_DrawRectangle(20, 70, 70, 120, BLACK, DRAW_FILL_EMPTY, DOT_PIXEL_1X1);
- 566              		.loc 1 144 0
- 567 00e6 0296     		str	r6, [sp, #8]
- 568 00e8 0194     		str	r4, [sp, #4]
- 569 00ea 0094     		str	r4, [sp]
- 570 00ec 7823     		movs	r3, #120
- 571 00ee 1422     		movs	r2, #20
- 572 00f0 4621     		movs	r1, #70
- 573 00f2 0846     		mov	r0, r1
- 574 00f4 FFF7FEFF 		bl	Paint_DrawLine
- 575              	.LVL42:
- 145:Src/main.c    ****     Paint_DrawRectangle(80, 70, 130, 120, BLACK, DRAW_FILL_FULL, DOT_PIXEL_1X1);
- 576              		.loc 1 145 0
- 577 00f8 0296     		str	r6, [sp, #8]
- 578 00fa 0194     		str	r4, [sp, #4]
- 579 00fc 0094     		str	r4, [sp]
- 580 00fe 7823     		movs	r3, #120
- 581 0100 4622     		movs	r2, #70
- 582 0102 1146     		mov	r1, r2
- 583 0104 1420     		movs	r0, #20
- 584 0106 FFF7FEFF 		bl	Paint_DrawRectangle
- 585              	.LVL43:
- 146:Src/main.c    ****     Paint_DrawCircle(45, 95, 20, BLACK, DRAW_FILL_EMPTY, DOT_PIXEL_1X1);
- 586              		.loc 1 146 0
- 587 010a 0296     		str	r6, [sp, #8]
- 588 010c 0196     		str	r6, [sp, #4]
- 589 010e 0094     		str	r4, [sp]
- 590 0110 7823     		movs	r3, #120
- 591 0112 8222     		movs	r2, #130
- 592 0114 4621     		movs	r1, #70
- 593 0116 5020     		movs	r0, #80
- 594 0118 FFF7FEFF 		bl	Paint_DrawRectangle
- 595              	.LVL44:
- 147:Src/main.c    ****     Paint_DrawCircle(105, 95, 20, WHITE, DRAW_FILL_FULL, DOT_PIXEL_1X1);
- 596              		.loc 1 147 0
- 597 011c 0196     		str	r6, [sp, #4]
- 598 011e 0094     		str	r4, [sp]
- 599 0120 2346     		mov	r3, r4
- 600 0122 1422     		movs	r2, #20
- 601 0124 5F21     		movs	r1, #95
- 602 0126 2D20     		movs	r0, #45
- 603 0128 FFF7FEFF 		bl	Paint_DrawCircle
- 604              	.LVL45:
- 148:Src/main.c    ****     Paint_DrawLine(85, 95, 125, 95, BLACK, LINE_STYLE_DOTTED, DOT_PIXEL_1X1);
- 605              		.loc 1 148 0
- 606 012c 0196     		str	r6, [sp, #4]
- 607 012e 0096     		str	r6, [sp]
- 608 0130 3B46     		mov	r3, r7
- 609 0132 1422     		movs	r2, #20
- 610 0134 5F21     		movs	r1, #95
- 611 0136 6920     		movs	r0, #105
- 612 0138 FFF7FEFF 		bl	Paint_DrawCircle
- 613              	.LVL46:
- 149:Src/main.c    ****     Paint_DrawLine(105, 75, 105, 115, BLACK, LINE_STYLE_DOTTED, DOT_PIXEL_1X1);
- 614              		.loc 1 149 0
-ARM GAS  /tmp/ccypGBLc.s 			page 20
-
-
- 615 013c 0296     		str	r6, [sp, #8]
- 616 013e 0196     		str	r6, [sp, #4]
- 617 0140 0094     		str	r4, [sp]
- 618 0142 5F23     		movs	r3, #95
- 619 0144 7D22     		movs	r2, #125
- 620 0146 1946     		mov	r1, r3
- 621 0148 5520     		movs	r0, #85
- 622 014a FFF7FEFF 		bl	Paint_DrawLine
- 623              	.LVL47:
- 150:Src/main.c    ****     Paint_DrawString_EN(10, 0, "waveshare", &Font16, BLACK, WHITE);
- 624              		.loc 1 150 0
- 625 014e 0296     		str	r6, [sp, #8]
- 626 0150 0196     		str	r6, [sp, #4]
- 627 0152 0094     		str	r4, [sp]
- 628 0154 7323     		movs	r3, #115
- 629 0156 6922     		movs	r2, #105
- 630 0158 4B21     		movs	r1, #75
- 631 015a 1046     		mov	r0, r2
- 632 015c FFF7FEFF 		bl	Paint_DrawLine
- 633              	.LVL48:
- 151:Src/main.c    ****     Paint_DrawString_EN(10, 20, "hello world", &Font12, WHITE, BLACK);
- 634              		.loc 1 151 0
- 635 0160 4C4E     		ldr	r6, .L26+24
- 636 0162 0197     		str	r7, [sp, #4]
- 637 0164 0094     		str	r4, [sp]
- 638 0166 3346     		mov	r3, r6
- 639 0168 4B4A     		ldr	r2, .L26+28
- 640 016a 2146     		mov	r1, r4
- 641 016c 0A20     		movs	r0, #10
- 642 016e FFF7FEFF 		bl	Paint_DrawString_EN
- 643              	.LVL49:
- 152:Src/main.c    ****     Paint_DrawNum(10, 33, 123456789, &Font12, BLACK, WHITE);
- 644              		.loc 1 152 0
- 645 0172 DFF84881 		ldr	r8, .L26+64
- 646 0176 0194     		str	r4, [sp, #4]
- 647 0178 0097     		str	r7, [sp]
- 648 017a 4346     		mov	r3, r8
- 649 017c 474A     		ldr	r2, .L26+32
- 650 017e 1421     		movs	r1, #20
- 651 0180 0A20     		movs	r0, #10
- 652 0182 FFF7FEFF 		bl	Paint_DrawString_EN
- 653              	.LVL50:
- 153:Src/main.c    ****     Paint_DrawNum(10, 50, 987654321, &Font16, WHITE, BLACK);
- 654              		.loc 1 153 0
- 655 0186 0197     		str	r7, [sp, #4]
- 656 0188 0094     		str	r4, [sp]
- 657 018a 4346     		mov	r3, r8
- 658 018c 444A     		ldr	r2, .L26+36
- 659 018e 2121     		movs	r1, #33
- 660 0190 0A20     		movs	r0, #10
- 661 0192 FFF7FEFF 		bl	Paint_DrawNum
- 662              	.LVL51:
- 154:Src/main.c    **** 
- 663              		.loc 1 154 0
- 664 0196 0194     		str	r4, [sp, #4]
- 665 0198 0097     		str	r7, [sp]
- 666 019a 3346     		mov	r3, r6
-ARM GAS  /tmp/ccypGBLc.s 			page 21
-
-
- 667 019c 414A     		ldr	r2, .L26+40
- 668 019e 3221     		movs	r1, #50
- 669 01a0 0A20     		movs	r0, #10
- 670 01a2 FFF7FEFF 		bl	Paint_DrawNum
- 671              	.LVL52:
- 156:Src/main.c    ****     EPD_Display(BlackImage);
- 672              		.loc 1 156 0
- 673 01a6 4048     		ldr	r0, .L26+44
- 674 01a8 FFF7FEFF 		bl	puts
- 675              	.LVL53:
- 157:Src/main.c    ****     DEV_Delay_ms(2000);
- 676              		.loc 1 157 0
- 677 01ac 2846     		mov	r0, r5
- 678 01ae FFF7FEFF 		bl	EPD_Display
- 679              	.LVL54:
- 158:Src/main.c    **** #endif
- 680              		.loc 1 158 0
- 681 01b2 4FF4FA60 		mov	r0, #2000
- 682 01b6 FFF7FEFF 		bl	HAL_Delay
- 683              	.LVL55:
- 162:Src/main.c    ****         printf("e-Paper init failed\r\n");
- 684              		.loc 1 162 0
- 685 01ba 3C48     		ldr	r0, .L26+48
- 686 01bc FFF7FEFF 		bl	EPD_Init
- 687              	.LVL56:
- 688 01c0 80B9     		cbnz	r0, .L25
- 689              	.L18:
- 165:Src/main.c    ****     PAINT_TIME sPaint_time;
- 690              		.loc 1 165 0
- 691 01c2 2846     		mov	r0, r5
- 692 01c4 FFF7FEFF 		bl	Paint_SelectImage
- 693              	.LVL57:
- 167:Src/main.c    ****     sPaint_time.Min = 34;
- 694              		.loc 1 167 0
- 695 01c8 0C23     		movs	r3, #12
- 696 01ca 8DF81430 		strb	r3, [sp, #20]
- 168:Src/main.c    ****     sPaint_time.Sec = 56;
- 697              		.loc 1 168 0
- 698 01ce 2223     		movs	r3, #34
- 699 01d0 8DF81530 		strb	r3, [sp, #21]
- 169:Src/main.c    ****     for (;;) {
- 700              		.loc 1 169 0
- 701 01d4 3823     		movs	r3, #56
- 702 01d6 8DF81630 		strb	r3, [sp, #22]
- 703 01da 26E0     		b	.L20
- 704              	.LVL58:
- 705              	.L24:
- 706              	.LBB6:
+ 510 0084 2846     		mov	r0, r5
+ 511 0086 FFF7FEFF 		bl	Paint_Clear
+ 512              	.LVL34:
+ 132:Src/main.c    **** #endif
+ 513              		.loc 1 132 0
+ 514 008a 2046     		mov	r0, r4
+ 515 008c FFF7FEFF 		bl	EPD_Display
+ 516              	.LVL35:
+ 517              	.L18:
+ 518 0090 FEE7     		b	.L18
+ 519              	.LVL36:
+ 520              	.L22:
+ 521              	.LBB6:
  104:Src/main.c    ****     }
- 707              		.loc 1 104 0
- 708 01dc 3448     		ldr	r0, .L26+52
- 709 01de FFF7FEFF 		bl	puts
- 710              	.LVL59:
- 711 01e2 20E7     		b	.L16
- 712              	.LVL60:
- 713              	.L25:
- 714              	.LBE6:
-ARM GAS  /tmp/ccypGBLc.s 			page 22
-
-
- 163:Src/main.c    ****     }
- 715              		.loc 1 163 0
- 716 01e4 3248     		ldr	r0, .L26+52
- 717 01e6 FFF7FEFF 		bl	puts
- 718              	.LVL61:
- 719 01ea EAE7     		b	.L18
- 720              	.L19:
- 185:Src/main.c    ****         Paint_DrawTime(15, 65, &sPaint_time, &Font20, WHITE, BLACK);
- 721              		.loc 1 185 0
- 722 01ec 314C     		ldr	r4, .L26+56
- 723 01ee A288     		ldrh	r2, [r4, #4]
- 724 01f0 E388     		ldrh	r3, [r4, #6]
- 725 01f2 4133     		adds	r3, r3, #65
- 726 01f4 C2EBC202 		rsb	r2, r2, r2, lsl #3
- 727 01f8 0F32     		adds	r2, r2, #15
- 728 01fa FF26     		movs	r6, #255
- 729 01fc 0096     		str	r6, [sp]
- 730 01fe 9BB2     		uxth	r3, r3
- 731 0200 92B2     		uxth	r2, r2
- 732 0202 4121     		movs	r1, #65
- 733 0204 0F20     		movs	r0, #15
- 734 0206 FFF7FEFF 		bl	Paint_ClearWindows
- 735              	.LVL62:
- 186:Src/main.c    **** 
- 736              		.loc 1 186 0
- 737 020a 0023     		movs	r3, #0
- 738 020c 0193     		str	r3, [sp, #4]
- 739 020e 0096     		str	r6, [sp]
- 740 0210 2346     		mov	r3, r4
- 741 0212 04AA     		add	r2, sp, #16
- 742 0214 4121     		movs	r1, #65
- 743 0216 0F20     		movs	r0, #15
- 744 0218 FFF7FEFF 		bl	Paint_DrawTime
- 745              	.LVL63:
- 188:Src/main.c    ****         DEV_Delay_ms(500);//Analog clock 1s
- 746              		.loc 1 188 0
- 747 021c 2846     		mov	r0, r5
- 748 021e FFF7FEFF 		bl	EPD_Display
- 749              	.LVL64:
- 189:Src/main.c    ****     }
- 750              		.loc 1 189 0
- 751 0222 4FF4FA70 		mov	r0, #500
- 752 0226 FFF7FEFF 		bl	HAL_Delay
- 753              	.LVL65:
- 754              	.L20:
- 171:Src/main.c    ****         if (sPaint_time.Sec == 60) {
- 755              		.loc 1 171 0
- 756 022a 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
- 757 022e 0133     		adds	r3, r3, #1
- 758 0230 DBB2     		uxtb	r3, r3
- 759 0232 8DF81630 		strb	r3, [sp, #22]
- 172:Src/main.c    ****             sPaint_time.Min = sPaint_time.Min + 1;
- 760              		.loc 1 172 0
- 761 0236 3C2B     		cmp	r3, #60
- 762 0238 D8D1     		bne	.L19
- 173:Src/main.c    ****             sPaint_time.Sec = 0;
- 763              		.loc 1 173 0
-ARM GAS  /tmp/ccypGBLc.s 			page 23
-
-
- 764 023a 9DF81530 		ldrb	r3, [sp, #21]	@ zero_extendqisi2
- 765 023e 0133     		adds	r3, r3, #1
- 766 0240 DBB2     		uxtb	r3, r3
- 767 0242 8DF81530 		strb	r3, [sp, #21]
- 174:Src/main.c    ****             if (sPaint_time.Min == 60) {
- 768              		.loc 1 174 0
- 769 0246 0022     		movs	r2, #0
- 770 0248 8DF81620 		strb	r2, [sp, #22]
- 175:Src/main.c    ****                 sPaint_time.Hour =  sPaint_time.Hour + 1;
- 771              		.loc 1 175 0
- 772 024c 3C2B     		cmp	r3, #60
- 773 024e CDD1     		bne	.L19
- 176:Src/main.c    ****                 sPaint_time.Min = 0;
- 774              		.loc 1 176 0
- 775 0250 9DF81430 		ldrb	r3, [sp, #20]	@ zero_extendqisi2
- 776 0254 0133     		adds	r3, r3, #1
- 777 0256 DBB2     		uxtb	r3, r3
- 778 0258 8DF81430 		strb	r3, [sp, #20]
- 177:Src/main.c    ****                 if (sPaint_time.Hour == 24) {
- 779              		.loc 1 177 0
- 780 025c 8DF81520 		strb	r2, [sp, #21]
- 178:Src/main.c    ****                     sPaint_time.Hour = 0;
- 781              		.loc 1 178 0
- 782 0260 182B     		cmp	r3, #24
- 783 0262 C3D1     		bne	.L19
- 179:Src/main.c    ****                     sPaint_time.Min = 0;
- 784              		.loc 1 179 0
- 785 0264 8DF81420 		strb	r2, [sp, #20]
- 786 0268 C0E7     		b	.L19
- 787              	.LVL66:
- 788              	.L22:
- 789              	.LBB7:
+ 522              		.loc 1 104 0
+ 523 0092 0948     		ldr	r0, .L23+16
+ 524 0094 FFF7FEFF 		bl	puts
+ 525              	.LVL37:
+ 526 0098 C2E7     		b	.L16
+ 527              	.LVL38:
+ 528              	.L20:
+ 529              	.LBE6:
+ 530              	.LBB7:
  113:Src/main.c    ****         return -1;
- 790              		.loc 1 113 0
- 791 026a 1348     		ldr	r0, .L26+60
- 792              	.LVL67:
- 793 026c FFF7FEFF 		bl	puts
- 794              	.LVL68:
- 795              	.LBE7:
- 211:Src/main.c    **** 
- 796              		.loc 1 211 0
- 797 0270 4FF0FF30 		mov	r0, #-1
- 798 0274 06B0     		add	sp, sp, #24
- 799              	.LCFI10:
- 800              		.cfi_def_cfa_offset 24
- 801              		@ sp needed
- 802 0276 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 803              	.LVL69:
- 804              	.L27:
- 805 027a 00BF     		.align	2
- 806              	.L26:
- 807 027c 00000000 		.word	lut_full_update
- 808 0280 40000000 		.word	.LC2
- 809 0284 50000000 		.word	.LC3
- 810 0288 00000000 		.word	gImage_2in9
- 811 028c 68000000 		.word	.LC4
- 812 0290 80000000 		.word	.LC5
-ARM GAS  /tmp/ccypGBLc.s 			page 24
+ 531              		.loc 1 113 0
+ 532 009a 0848     		ldr	r0, .L23+20
+ 533              	.LVL39:
+ 534 009c FFF7FEFF 		bl	puts
+ 535              	.LVL40:
+ 536              	.LBE7:
+ 215:Src/main.c    **** 
+ 537              		.loc 1 215 0
+ 538 00a0 4FF0FF30 		mov	r0, #-1
+ 539 00a4 03B0     		add	sp, sp, #12
+ 540              	.LCFI10:
+ 541              		.cfi_def_cfa_offset 12
+ 542              		@ sp needed
+ 543 00a6 30BD     		pop	{r4, r5, pc}
+ 544              	.LVL41:
+ 545              	.L24:
+ 546              		.align	2
+ 547              	.L23:
+ 548 00a8 00000000 		.word	lut_full_update
+ 549 00ac 40000000 		.word	.LC2
+ 550 00b0 50000000 		.word	.LC3
+ 551 00b4 00000000 		.word	gImage_2in9
+ 552 00b8 00000000 		.word	.LC0
+ 553 00bc 18000000 		.word	.LC1
+ 554              		.cfi_endproc
+ 555              	.LFE123:
+ 557              		.section	.text.Error_Handler,"ax",%progbits
+ 558              		.align	1
+ 559              		.global	Error_Handler
+ 560              		.syntax unified
+ 561              		.thumb
+ 562              		.thumb_func
+ 563              		.fpu fpv4-sp-d16
+ARM GAS  /tmp/ccRt7XoM.s 			page 19
 
 
- 813 0294 00000000 		.word	Font16
- 814 0298 94000000 		.word	.LC6
- 815 029c A0000000 		.word	.LC7
- 816 02a0 15CD5B07 		.word	123456789
- 817 02a4 B168DE3A 		.word	987654321
- 818 02a8 AC000000 		.word	.LC8
- 819 02ac 00000000 		.word	lut_partial_update
- 820 02b0 00000000 		.word	.LC0
- 821 02b4 00000000 		.word	Font20
- 822 02b8 18000000 		.word	.LC1
- 823 02bc 00000000 		.word	Font12
- 824              		.cfi_endproc
- 825              	.LFE123:
- 827              		.section	.text.Error_Handler,"ax",%progbits
- 828              		.align	1
- 829              		.global	Error_Handler
- 830              		.syntax unified
- 831              		.thumb
- 832              		.thumb_func
- 833              		.fpu fpv4-sp-d16
- 835              	Error_Handler:
- 836              	.LFB128:
- 389:Src/main.c    **** 
- 390:Src/main.c    **** /* USER CODE BEGIN 4 */
- 391:Src/main.c    **** 
- 392:Src/main.c    **** /* USER CODE END 4 */
+ 565              	Error_Handler:
+ 566              	.LFB128:
  393:Src/main.c    **** 
- 394:Src/main.c    **** /**
- 395:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
- 396:Src/main.c    ****   * @retval None
- 397:Src/main.c    ****   */
- 398:Src/main.c    **** void Error_Handler(void)
- 399:Src/main.c    **** {
- 837              		.loc 1 399 0
- 838              		.cfi_startproc
- 839              		@ args = 0, pretend = 0, frame = 0
- 840              		@ frame_needed = 0, uses_anonymous_args = 0
- 841              		@ link register save eliminated.
- 400:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
- 401:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
- 402:Src/main.c    **** 
- 403:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */
- 404:Src/main.c    **** }
- 842              		.loc 1 404 0
- 843 0000 7047     		bx	lr
- 844              		.cfi_endproc
- 845              	.LFE128:
- 847              		.comm	huart2,120,4
- 848              		.comm	hspi1,100,4
- 849              		.section	.rodata.main.str1.4,"aMS",%progbits,1
- 850              		.align	2
- 851              	.LC0:
- 852 0000 652D5061 		.ascii	"e-Paper init failed\015\000"
- 852      70657220 
- 852      696E6974 
- 852      20666169 
- 852      6C65640D 
-ARM GAS  /tmp/ccypGBLc.s 			page 25
+ 394:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 395:Src/main.c    **** 
+ 396:Src/main.c    **** /* USER CODE END 4 */
+ 397:Src/main.c    **** 
+ 398:Src/main.c    **** /**
+ 399:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 400:Src/main.c    ****   * @retval None
+ 401:Src/main.c    ****   */
+ 402:Src/main.c    **** void Error_Handler(void)
+ 403:Src/main.c    **** {
+ 567              		.loc 1 403 0
+ 568              		.cfi_startproc
+ 569              		@ args = 0, pretend = 0, frame = 0
+ 570              		@ frame_needed = 0, uses_anonymous_args = 0
+ 571              		@ link register save eliminated.
+ 404:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 405:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+ 406:Src/main.c    **** 
+ 407:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */
+ 408:Src/main.c    **** }
+ 572              		.loc 1 408 0
+ 573 0000 7047     		bx	lr
+ 574              		.cfi_endproc
+ 575              	.LFE128:
+ 577              		.comm	huart2,120,4
+ 578              		.comm	hspi1,100,4
+ 579              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 580              		.align	2
+ 581              	.LC0:
+ 582 0000 652D5061 		.ascii	"e-Paper init failed\015\000"
+ 582      70657220 
+ 582      696E6974 
+ 582      20666169 
+ 582      6C65640D 
+ 583 0015 000000   		.space	3
+ 584              	.LC1:
+ 585 0018 4661696C 		.ascii	"Failed to apply for black memory...\015\000"
+ 585      65642074 
+ 585      6F206170 
+ 585      706C7920 
+ 585      666F7220 
+ 586 003d 000000   		.space	3
+ 587              	.LC2:
+ 588 0040 5061696E 		.ascii	"Paint_NewImage\015\000"
+ 588      745F4E65 
+ 588      77496D61 
+ 588      67650D00 
+ 589              	.LC3:
+ 590 0050 73686F77 		.ascii	"show image for array\015\000"
+ 590      20696D61 
+ 590      67652066 
+ 590      6F722061 
+ 590      72726179 
+ 591              		.text
+ARM GAS  /tmp/ccRt7XoM.s 			page 20
 
 
- 853 0015 000000   		.space	3
- 854              	.LC1:
- 855 0018 4661696C 		.ascii	"Failed to apply for black memory...\015\000"
- 855      65642074 
- 855      6F206170 
- 855      706C7920 
- 855      666F7220 
- 856 003d 000000   		.space	3
- 857              	.LC2:
- 858 0040 5061696E 		.ascii	"Paint_NewImage\015\000"
- 858      745F4E65 
- 858      77496D61 
- 858      67650D00 
- 859              	.LC3:
- 860 0050 73686F77 		.ascii	"show image for array\015\000"
- 860      20696D61 
- 860      67652066 
- 860      6F722061 
- 860      72726179 
- 861 0066 0000     		.space	2
- 862              	.LC4:
- 863 0068 53656C65 		.ascii	"SelectImage:BlackImage\015\000"
- 863      6374496D 
- 863      6167653A 
- 863      426C6163 
- 863      6B496D61 
- 864              	.LC5:
- 865 0080 44726177 		.ascii	"Drawing:BlackImage\015\000"
- 865      696E673A 
- 865      426C6163 
- 865      6B496D61 
- 865      67650D00 
- 866              	.LC6:
- 867 0094 77617665 		.ascii	"waveshare\000"
- 867      73686172 
- 867      6500
- 868 009e 0000     		.space	2
- 869              	.LC7:
- 870 00a0 68656C6C 		.ascii	"hello world\000"
- 870      6F20776F 
- 870      726C6400 
- 871              	.LC8:
- 872 00ac 4550445F 		.ascii	"EPD_Display\015\000"
- 872      44697370 
- 872      6C61790D 
- 872      00
- 873              		.text
- 874              	.Letext0:
- 875              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 876              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 877              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 878              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 879              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
- 880              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
- 881              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h"
- 882              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc_ex.h"
- 883              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
-ARM GAS  /tmp/ccypGBLc.s 			page 26
-
-
- 884              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
- 885              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
- 886              		.file 13 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
- 887              		.file 14 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 888              		.file 15 "Display/e-Paper/EPD_2in9.h"
- 889              		.file 16 "Display/GUI/../Fonts/fonts.h"
- 890              		.file 17 "Display/GUI/GUI_Paint.h"
- 891              		.file 18 "Display/e-Paper/ImageData.h"
- 892              		.file 19 "/usr/arm-none-eabi/include/sys/lock.h"
- 893              		.file 20 "/usr/arm-none-eabi/include/sys/_types.h"
- 894              		.file 21 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 895              		.file 22 "/usr/arm-none-eabi/include/sys/reent.h"
- 896              		.file 23 "/usr/arm-none-eabi/include/stdlib.h"
- 897              		.file 24 "<built-in>"
- 898              		.file 25 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h"
-ARM GAS  /tmp/ccypGBLc.s 			page 27
+ 592              	.Letext0:
+ 593              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 594              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 595              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 596              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 597              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 598              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 599              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h"
+ 600              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc_ex.h"
+ 601              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 602              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 603              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
+ 604              		.file 13 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
+ 605              		.file 14 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 606              		.file 15 "Display/e-Paper/EPD_2in9.h"
+ 607              		.file 16 "Display/GUI/../Fonts/fonts.h"
+ 608              		.file 17 "Display/GUI/GUI_Paint.h"
+ 609              		.file 18 "Display/e-Paper/ImageData.h"
+ 610              		.file 19 "/usr/arm-none-eabi/include/sys/lock.h"
+ 611              		.file 20 "/usr/arm-none-eabi/include/sys/_types.h"
+ 612              		.file 21 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 613              		.file 22 "/usr/arm-none-eabi/include/sys/reent.h"
+ 614              		.file 23 "/usr/arm-none-eabi/include/stdlib.h"
+ 615              		.file 24 "<built-in>"
+ 616              		.file 25 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h"
+ARM GAS  /tmp/ccRt7XoM.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccypGBLc.s:18     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/ccypGBLc.s:24     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/ccypGBLc.s:165    .text.MX_GPIO_Init:00000000000000c8 $d
-     /tmp/ccypGBLc.s:173    .text.MX_USART2_UART_Init:0000000000000000 $t
-     /tmp/ccypGBLc.s:179    .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
-     /tmp/ccypGBLc.s:223    .text.MX_USART2_UART_Init:0000000000000028 $d
+     /tmp/ccRt7XoM.s:18     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/ccRt7XoM.s:24     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/ccRt7XoM.s:165    .text.MX_GPIO_Init:00000000000000c8 $d
+     /tmp/ccRt7XoM.s:173    .text.MX_USART2_UART_Init:0000000000000000 $t
+     /tmp/ccRt7XoM.s:179    .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
+     /tmp/ccRt7XoM.s:223    .text.MX_USART2_UART_Init:0000000000000028 $d
                             *COM*:0000000000000078 huart2
-     /tmp/ccypGBLc.s:229    .text.MX_SPI1_Init:0000000000000000 $t
-     /tmp/ccypGBLc.s:235    .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
-     /tmp/ccypGBLc.s:291    .text.MX_SPI1_Init:000000000000003c $d
+     /tmp/ccRt7XoM.s:229    .text.MX_SPI1_Init:0000000000000000 $t
+     /tmp/ccRt7XoM.s:235    .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
+     /tmp/ccRt7XoM.s:291    .text.MX_SPI1_Init:000000000000003c $d
                             *COM*:0000000000000064 hspi1
-     /tmp/ccypGBLc.s:297    .text.SystemClock_Config:0000000000000000 $t
-     /tmp/ccypGBLc.s:304    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/ccypGBLc.s:407    .text.main:0000000000000000 $t
-     /tmp/ccypGBLc.s:414    .text.main:0000000000000000 main
-     /tmp/ccypGBLc.s:807    .text.main:000000000000027c $d
-     /tmp/ccypGBLc.s:828    .text.Error_Handler:0000000000000000 $t
-     /tmp/ccypGBLc.s:835    .text.Error_Handler:0000000000000000 Error_Handler
-     /tmp/ccypGBLc.s:850    .rodata.main.str1.4:0000000000000000 $d
+     /tmp/ccRt7XoM.s:297    .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccRt7XoM.s:304    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccRt7XoM.s:407    .text.main:0000000000000000 $t
+     /tmp/ccRt7XoM.s:414    .text.main:0000000000000000 main
+     /tmp/ccRt7XoM.s:548    .text.main:00000000000000a8 $d
+     /tmp/ccRt7XoM.s:558    .text.Error_Handler:0000000000000000 $t
+     /tmp/ccRt7XoM.s:565    .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/ccRt7XoM.s:580    .rodata.main.str1.4:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
@@ -1562,20 +1212,5 @@ Paint_SelectImage
 Paint_Clear
 Paint_DrawBitMap
 EPD_Display
-Paint_DrawPoint
-Paint_DrawLine
-Paint_DrawRectangle
-Paint_DrawCircle
-Paint_DrawString_EN
-Paint_DrawNum
-Paint_ClearWindows
-Paint_DrawTime
 lut_full_update
 gImage_2in9
-Font16
-lut_partial_update
-Font20
-Font12
-ARM GAS  /tmp/ccypGBLc.s 			page 28
-
-
