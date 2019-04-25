@@ -33,5 +33,6 @@
 
   void Display_Draw_Menu_Box(int,int,int);
   void Partial_Display_Draw_Menu_Box(int,int,int);
+  void Display_Text(void);
 
   #endif /* __DISPLAY_H */
