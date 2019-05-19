@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc8wMFcf.s 			page 1
+ARM GAS  /tmp/ccso2Dvy.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
   30:Src/main.c    **** /* USER CODE BEGIN PTD */
   31:Src/main.c    **** 
   32:Src/main.c    **** /* USER CODE END PTD */
-ARM GAS  /tmp/cc8wMFcf.s 			page 2
+ARM GAS  /tmp/ccso2Dvy.s 			page 2
 
 
   33:Src/main.c    **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
   87:Src/main.c    ****   /* USER CODE END Init */
   88:Src/main.c    **** 
   89:Src/main.c    ****   /* Configure the system clock */
-ARM GAS  /tmp/cc8wMFcf.s 			page 3
+ARM GAS  /tmp/ccso2Dvy.s 			page 3
 
 
   90:Src/main.c    ****   SystemClock_Config();
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  144:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
  145:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
  146:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
-ARM GAS  /tmp/cc8wMFcf.s 			page 4
+ARM GAS  /tmp/ccso2Dvy.s 			page 4
 
 
  147:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  201:Src/main.c    ****   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
  202:Src/main.c    ****   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
  203:Src/main.c    ****   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
-ARM GAS  /tmp/cc8wMFcf.s 			page 5
+ARM GAS  /tmp/ccso2Dvy.s 			page 5
 
 
  204:Src/main.c    ****   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  258:Src/main.c    ****   }
  259:Src/main.c    ****   /* USER CODE BEGIN TIM1_Init 2 */
  260:Src/main.c    **** 
-ARM GAS  /tmp/cc8wMFcf.s 			page 6
+ARM GAS  /tmp/ccso2Dvy.s 			page 6
 
 
  261:Src/main.c    ****   /* USER CODE END TIM1_Init 2 */
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
   35              		.cfi_offset 5, -12
   36              		.cfi_offset 6, -8
   37              		.cfi_offset 14, -4
-ARM GAS  /tmp/cc8wMFcf.s 			page 7
+ARM GAS  /tmp/ccso2Dvy.s 			page 7
 
 
   38 0002 8AB0     		sub	sp, sp, #40
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
   85 0052 03F00203 		and	r3, r3, #2
   86 0056 0493     		str	r3, [sp, #16]
   87 0058 049B     		ldr	r3, [sp, #16]
-ARM GAS  /tmp/cc8wMFcf.s 			page 8
+ARM GAS  /tmp/ccso2Dvy.s 			page 8
 
 
   88              	.LBE5:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  124 0092 4FF09040 		mov	r0, #1207959552
  125 0096 FFF7FEFF 		bl	HAL_GPIO_Init
  126              	.LVL3:
-ARM GAS  /tmp/cc8wMFcf.s 			page 9
+ARM GAS  /tmp/ccso2Dvy.s 			page 9
 
 
  332:Src/main.c    **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  162 00cc 0894     		str	r4, [sp, #32]
  351:Src/main.c    ****   HAL_GPIO_Init(SPI_CS_GPIO_Port, &GPIO_InitStruct);
  163              		.loc 1 351 0
-ARM GAS  /tmp/cc8wMFcf.s 			page 10
+ARM GAS  /tmp/ccso2Dvy.s 			page 10
 
 
  164 00ce 05A9     		add	r1, sp, #20
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  213 0012 C360     		str	r3, [r0, #12]
  284:Src/main.c    ****   huart2.Init.Mode = UART_MODE_TX_RX;
  214              		.loc 1 284 0
-ARM GAS  /tmp/cc8wMFcf.s 			page 11
+ARM GAS  /tmp/ccso2Dvy.s 			page 11
 
 
  215 0014 0361     		str	r3, [r0, #16]
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  195:Src/main.c    ****   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
  262              		.loc 1 195 0
  263 0008 4FF48273 		mov	r3, #260
-ARM GAS  /tmp/cc8wMFcf.s 			page 12
+ARM GAS  /tmp/ccso2Dvy.s 			page 12
 
 
  264 000c 4360     		str	r3, [r0, #4]
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  304 0040 00300140 		.word	1073819648
  305              		.cfi_endproc
  306              	.LFE125:
-ARM GAS  /tmp/cc8wMFcf.s 			page 13
+ARM GAS  /tmp/ccso2Dvy.s 			page 13
 
 
  308              		.section	.text.MX_TIM1_Init,"ax",%progbits
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  354              		.loc 1 241 0
  355 0028 6C61     		str	r4, [r5, #20]
  242:Src/main.c    ****   if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
-ARM GAS  /tmp/cc8wMFcf.s 			page 14
+ARM GAS  /tmp/ccso2Dvy.s 			page 14
 
 
  356              		.loc 1 242 0
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  404              	SystemClock_Config:
  405              	.LFB124:
  130:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-ARM GAS  /tmp/cc8wMFcf.s 			page 15
+ARM GAS  /tmp/ccso2Dvy.s 			page 15
 
 
  406              		.loc 1 130 0
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  451              		.loc 1 142 0
  452 0036 0123     		movs	r3, #1
  453 0038 3393     		str	r3, [sp, #204]
-ARM GAS  /tmp/cc8wMFcf.s 			page 16
+ARM GAS  /tmp/ccso2Dvy.s 			page 16
 
 
  143:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  493              		.loc 1 172 0
  494 006c 4FF40070 		mov	r0, #512
  495 0070 FFF7FEFF 		bl	HAL_PWREx_ControlVoltageScaling
-ARM GAS  /tmp/cc8wMFcf.s 			page 17
+ARM GAS  /tmp/ccso2Dvy.s 			page 17
 
 
  496              	.LVL17:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  102:Src/main.c    ****   Display();
  544              		.loc 1 102 0
  545 001a FFF7FEFF 		bl	Display_Init
-ARM GAS  /tmp/cc8wMFcf.s 			page 18
+ARM GAS  /tmp/ccso2Dvy.s 			page 18
 
 
  546              	.LVL24:
@@ -1078,77 +1078,81 @@ ARM GAS  /tmp/cc8wMFcf.s 			page 1
  583 0000 7047     		bx	lr
  584              		.cfi_endproc
  585              	.LFE129:
-ARM GAS  /tmp/cc8wMFcf.s 			page 19
+ARM GAS  /tmp/ccso2Dvy.s 			page 19
 
 
  587              		.comm	huart2,120,4
  588              		.comm	htim1,64,4
  589              		.comm	hspi1,100,4
- 590              		.comm	BlackImage,4,4
- 591              		.comm	click,4,4
- 592              		.comm	current_position,4,4
- 593              		.comm	menu_text_usage,12,4
- 594              		.comm	mode,4,4
- 595              		.comm	action,4,4
- 596              		.text
- 597              	.Letext0:
- 598              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 599              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 600              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 601              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 602              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
- 603              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
- 604              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h"
- 605              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc_ex.h"
- 606              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
- 607              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
- 608              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
- 609              		.file 13 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
- 610              		.file 14 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
- 611              		.file 15 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 612              		.file 16 "Display/e-Paper/EPD_2in9.h"
- 613              		.file 17 "Display/GUI/../Fonts/fonts.h"
- 614              		.file 18 "Display/GUI/GUI_Paint.h"
- 615              		.file 19 "Display/e-Paper/ImageData.h"
- 616              		.file 20 "/usr/arm-none-eabi/include/sys/lock.h"
- 617              		.file 21 "/usr/arm-none-eabi/include/sys/_types.h"
- 618              		.file 22 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 619              		.file 23 "/usr/arm-none-eabi/include/sys/reent.h"
- 620              		.file 24 "/usr/arm-none-eabi/include/stdlib.h"
- 621              		.file 25 "Inc/keyboard.h"
- 622              		.file 26 "Display/Menu/menu.h"
- 623              		.file 27 "Display/display.h"
- 624              		.file 28 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h"
- 625              		.file 29 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h"
- 626              		.file 30 "<built-in>"
-ARM GAS  /tmp/cc8wMFcf.s 			page 20
+ 590              		.comm	display_previous_mode,4,4
+ 591              		.comm	display_mode,4,4
+ 592              		.comm	BlackImage,4,4
+ 593              		.comm	click,4,4
+ 594              		.comm	current_position,4,4
+ 595              		.comm	menu_text_usage,12,4
+ 596              		.comm	mode,4,4
+ 597              		.comm	action,4,4
+ 598              		.text
+ 599              	.Letext0:
+ 600              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 601              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 602              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 603              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 604              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 605              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 606              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h"
+ 607              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc_ex.h"
+ 608              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 609              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 610              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
+ 611              		.file 13 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
+ 612              		.file 14 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
+ 613              		.file 15 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 614              		.file 16 "Display/e-Paper/EPD_2in9.h"
+ 615              		.file 17 "Display/GUI/../Fonts/fonts.h"
+ 616              		.file 18 "Display/GUI/GUI_Paint.h"
+ 617              		.file 19 "Display/e-Paper/ImageData.h"
+ 618              		.file 20 "/usr/arm-none-eabi/include/sys/lock.h"
+ 619              		.file 21 "/usr/arm-none-eabi/include/sys/_types.h"
+ 620              		.file 22 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 621              		.file 23 "/usr/arm-none-eabi/include/sys/reent.h"
+ 622              		.file 24 "/usr/arm-none-eabi/include/stdlib.h"
+ 623              		.file 25 "Inc/keyboard.h"
+ 624              		.file 26 "Display/Menu/menu.h"
+ 625              		.file 27 "Display/display.h"
+ 626              		.file 28 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h"
+ 627              		.file 29 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h"
+ 628              		.file 30 "<built-in>"
+ARM GAS  /tmp/ccso2Dvy.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/cc8wMFcf.s:18     .text.MX_GPIO_Init:0000000000000000 $t
-     /tmp/cc8wMFcf.s:24     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-     /tmp/cc8wMFcf.s:177    .text.MX_GPIO_Init:00000000000000dc $d
-     /tmp/cc8wMFcf.s:185    .text.MX_USART2_UART_Init:0000000000000000 $t
-     /tmp/cc8wMFcf.s:191    .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
-     /tmp/cc8wMFcf.s:235    .text.MX_USART2_UART_Init:0000000000000028 $d
+     /tmp/ccso2Dvy.s:18     .text.MX_GPIO_Init:0000000000000000 $t
+     /tmp/ccso2Dvy.s:24     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+     /tmp/ccso2Dvy.s:177    .text.MX_GPIO_Init:00000000000000dc $d
+     /tmp/ccso2Dvy.s:185    .text.MX_USART2_UART_Init:0000000000000000 $t
+     /tmp/ccso2Dvy.s:191    .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
+     /tmp/ccso2Dvy.s:235    .text.MX_USART2_UART_Init:0000000000000028 $d
                             *COM*:0000000000000078 huart2
-     /tmp/cc8wMFcf.s:241    .text.MX_SPI1_Init:0000000000000000 $t
-     /tmp/cc8wMFcf.s:247    .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
-     /tmp/cc8wMFcf.s:303    .text.MX_SPI1_Init:000000000000003c $d
+     /tmp/ccso2Dvy.s:241    .text.MX_SPI1_Init:0000000000000000 $t
+     /tmp/ccso2Dvy.s:247    .text.MX_SPI1_Init:0000000000000000 MX_SPI1_Init
+     /tmp/ccso2Dvy.s:303    .text.MX_SPI1_Init:000000000000003c $d
                             *COM*:0000000000000064 hspi1
-     /tmp/cc8wMFcf.s:309    .text.MX_TIM1_Init:0000000000000000 $t
-     /tmp/cc8wMFcf.s:315    .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
-     /tmp/cc8wMFcf.s:391    .text.MX_TIM1_Init:0000000000000054 $d
+     /tmp/ccso2Dvy.s:309    .text.MX_TIM1_Init:0000000000000000 $t
+     /tmp/ccso2Dvy.s:315    .text.MX_TIM1_Init:0000000000000000 MX_TIM1_Init
+     /tmp/ccso2Dvy.s:391    .text.MX_TIM1_Init:0000000000000054 $d
                             *COM*:0000000000000040 htim1
-     /tmp/cc8wMFcf.s:397    .text.SystemClock_Config:0000000000000000 $t
-     /tmp/cc8wMFcf.s:404    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/cc8wMFcf.s:507    .text.main:0000000000000000 $t
-     /tmp/cc8wMFcf.s:514    .text.main:0000000000000000 main
-     /tmp/cc8wMFcf.s:563    .text.main:0000000000000030 $d
+     /tmp/ccso2Dvy.s:397    .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccso2Dvy.s:404    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccso2Dvy.s:507    .text.main:0000000000000000 $t
+     /tmp/ccso2Dvy.s:514    .text.main:0000000000000000 main
+     /tmp/ccso2Dvy.s:563    .text.main:0000000000000030 $d
                             *COM*:0000000000000004 action
-     /tmp/cc8wMFcf.s:568    .text.Error_Handler:0000000000000000 $t
-     /tmp/cc8wMFcf.s:575    .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/ccso2Dvy.s:568    .text.Error_Handler:0000000000000000 $t
+     /tmp/ccso2Dvy.s:575    .text.Error_Handler:0000000000000000 Error_Handler
+                            *COM*:0000000000000004 display_previous_mode
+                            *COM*:0000000000000004 display_mode
                             *COM*:0000000000000004 BlackImage
                             *COM*:0000000000000004 click
                             *COM*:0000000000000004 current_position

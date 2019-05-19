@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccmqDnAB.s 			page 1
+ARM GAS  /tmp/ccN1lQoo.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -54,11 +54,11 @@ ARM GAS  /tmp/ccmqDnAB.s 			page 1
   13:Display/display.c **** 
   14:Display/display.c ****   EPD_Init(lut_full_update);
   40              		.loc 1 14 0
-  41 0004 1148     		ldr	r0, .L4
+  41 0004 1448     		ldr	r0, .L4
   42 0006 FFF7FEFF 		bl	EPD_Init
   43              	.LVL0:
   15:Display/display.c ****   EPD_Clear();
-ARM GAS  /tmp/ccmqDnAB.s 			page 2
+ARM GAS  /tmp/ccN1lQoo.s 			page 2
 
 
   44              		.loc 1 15 0
@@ -76,9 +76,9 @@ ARM GAS  /tmp/ccmqDnAB.s 			page 1
   52 0016 4FF49450 		mov	r0, #4736
   53 001a FFF7FEFF 		bl	malloc
   54              	.LVL3:
-  55 001e 0C4B     		ldr	r3, .L4+4
+  55 001e 0F4B     		ldr	r3, .L4+4
   56 0020 1860     		str	r0, [r3]
-  57 0022 88B1     		cbz	r0, .L1
+  57 0022 B0B1     		cbz	r0, .L1
   20:Display/display.c ****       return -1;
   21:Display/display.c ****   }
   22:Display/display.c ****   Paint_NewImage(BlackImage, EPD_WIDTH, EPD_HEIGHT, 270, WHITE);
@@ -92,7 +92,7 @@ ARM GAS  /tmp/ccmqDnAB.s 			page 1
   65              	.LVL4:
   23:Display/display.c ****   Paint_SelectImage(BlackImage);
   66              		.loc 1 23 0
-  67 0036 064B     		ldr	r3, .L4+4
+  67 0036 094B     		ldr	r3, .L4+4
   68 0038 1868     		ldr	r0, [r3]
   69 003a FFF7FEFF 		bl	Paint_SelectImage
   70              	.LVL5:
@@ -116,500 +116,591 @@ ARM GAS  /tmp/ccmqDnAB.s 			page 1
   37:Display/display.c ****       EPD_Display(BlackImage);
   38:Display/display.c ****   #endif
   39:Display/display.c **** 
-  40:Display/display.c ****   Menu_Init();
+  40:Display/display.c ****   display_mode=MENU_MODE;
   75              		.loc 1 40 0
-ARM GAS  /tmp/ccmqDnAB.s 			page 3
+ARM GAS  /tmp/ccN1lQoo.s 			page 3
 
 
-  76 0044 FFF7FEFF 		bl	Menu_Init
-  77              	.LVL7:
-  78              	.L1:
-  41:Display/display.c **** }
+  76 0044 0123     		movs	r3, #1
+  77 0046 064A     		ldr	r2, .L4+8
+  78 0048 1360     		str	r3, [r2]
+  41:Display/display.c ****   display_previous_mode=MENU_MODE;
   79              		.loc 1 41 0
-  80 0048 02B0     		add	sp, sp, #8
-  81              	.LCFI2:
-  82              		.cfi_def_cfa_offset 8
-  83              		@ sp needed
-  84 004a 10BD     		pop	{r4, pc}
-  85              	.L5:
-  86              		.align	2
-  87              	.L4:
-  88 004c 00000000 		.word	lut_full_update
-  89 0050 00000000 		.word	BlackImage
-  90              		.cfi_endproc
-  91              	.LFE123:
-  93              		.section	.text.Display,"ax",%progbits
-  94              		.align	1
-  95              		.global	Display
-  96              		.syntax unified
-  97              		.thumb
-  98              		.thumb_func
-  99              		.fpu fpv4-sp-d16
- 101              	Display:
- 102              	.LFB124:
+  80 004a 064A     		ldr	r2, .L4+12
+  81 004c 1360     		str	r3, [r2]
   42:Display/display.c **** 
-  43:Display/display.c **** void Display()
-  44:Display/display.c **** {
- 103              		.loc 1 44 0
- 104              		.cfi_startproc
- 105              		@ args = 0, pretend = 0, frame = 0
- 106              		@ frame_needed = 0, uses_anonymous_args = 0
- 107 0000 08B5     		push	{r3, lr}
- 108              	.LCFI3:
- 109              		.cfi_def_cfa_offset 8
- 110              		.cfi_offset 3, -8
- 111              		.cfi_offset 14, -4
-  45:Display/display.c ****   Update_Menu();
- 112              		.loc 1 45 0
- 113 0002 FFF7FEFF 		bl	Update_Menu
- 114              	.LVL8:
-  46:Display/display.c ****   action=0;
- 115              		.loc 1 46 0
- 116 0006 024B     		ldr	r3, .L8
- 117 0008 0022     		movs	r2, #0
- 118 000a 1A60     		str	r2, [r3]
-  47:Display/display.c **** }
- 119              		.loc 1 47 0
- 120 000c 08BD     		pop	{r3, pc}
- 121              	.L9:
- 122 000e 00BF     		.align	2
- 123              	.L8:
- 124 0010 00000000 		.word	action
- 125              		.cfi_endproc
- 126              	.LFE124:
- 128              		.section	.text.Display_Text,"ax",%progbits
-ARM GAS  /tmp/ccmqDnAB.s 			page 4
+  43:Display/display.c ****   Menu_Init();
+  82              		.loc 1 43 0
+  83 004e FFF7FEFF 		bl	Menu_Init
+  84              	.LVL7:
+  85              	.L1:
+  44:Display/display.c **** }
+  86              		.loc 1 44 0
+  87 0052 02B0     		add	sp, sp, #8
+  88              	.LCFI2:
+  89              		.cfi_def_cfa_offset 8
+  90              		@ sp needed
+  91 0054 10BD     		pop	{r4, pc}
+  92              	.L5:
+  93 0056 00BF     		.align	2
+  94              	.L4:
+  95 0058 00000000 		.word	lut_full_update
+  96 005c 00000000 		.word	BlackImage
+  97 0060 00000000 		.word	display_mode
+  98 0064 00000000 		.word	display_previous_mode
+  99              		.cfi_endproc
+ 100              	.LFE123:
+ 102              		.section	.text.Display,"ax",%progbits
+ 103              		.align	1
+ 104              		.global	Display
+ 105              		.syntax unified
+ 106              		.thumb
+ 107              		.thumb_func
+ 108              		.fpu fpv4-sp-d16
+ 110              	Display:
+ 111              	.LFB124:
+  45:Display/display.c **** 
+  46:Display/display.c **** void Display()
+  47:Display/display.c **** {
+ 112              		.loc 1 47 0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116 0000 08B5     		push	{r3, lr}
+ 117              	.LCFI3:
+ 118              		.cfi_def_cfa_offset 8
+ 119              		.cfi_offset 3, -8
+ 120              		.cfi_offset 14, -4
+  48:Display/display.c ****   switch (display_mode) {
+ 121              		.loc 1 48 0
+ 122 0002 0F4B     		ldr	r3, .L13
+ 123 0004 1B68     		ldr	r3, [r3]
+ 124 0006 012B     		cmp	r3, #1
+ 125 0008 0AD0     		beq	.L8
+ 126 000a 13DB     		blt	.L7
+ARM GAS  /tmp/ccN1lQoo.s 			page 4
 
 
- 129              		.align	1
- 130              		.global	Display_Text
- 131              		.syntax unified
- 132              		.thumb
- 133              		.thumb_func
- 134              		.fpu fpv4-sp-d16
- 136              	Display_Text:
- 137              	.LFB125:
-  48:Display/display.c **** 
-  49:Display/display.c **** /*
-  50:Display/display.c ****  * Function: Display_Text
-  51:Display/display.c ****  * ----------------------------
-  52:Display/display.c ****  *   Displays long text with proper usage of new lines.
-  53:Display/display.c ****  *
-  54:Display/display.c ****  *   (in future) text_pointer: char pointer to text, that will be displayed
-  55:Display/display.c ****  *
-  56:Display/display.c ****  *   (in future) returns: pointer to the last character that was displayed
-  57:Display/display.c ****  */
-  58:Display/display.c **** void Display_Text()
-  59:Display/display.c **** {
- 138              		.loc 1 59 0
- 139              		.cfi_startproc
- 140              		@ args = 0, pretend = 0, frame = 0
- 141              		@ frame_needed = 0, uses_anonymous_args = 0
- 142 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
- 143              	.LCFI4:
- 144              		.cfi_def_cfa_offset 24
- 145              		.cfi_offset 4, -24
- 146              		.cfi_offset 5, -20
- 147              		.cfi_offset 6, -16
- 148              		.cfi_offset 7, -12
- 149              		.cfi_offset 8, -8
- 150              		.cfi_offset 14, -4
- 151 0004 82B0     		sub	sp, sp, #8
- 152              	.LCFI5:
- 153              		.cfi_def_cfa_offset 32
+ 127 000c 042B     		cmp	r3, #4
+ 128 000e 11DC     		bgt	.L7
+ 129              	.L9:
+  49:Display/display.c ****     case MENU_MODE:
+  50:Display/display.c ****         if(display_previous_mode==MENU_MODE)
+  51:Display/display.c ****           Update_Menu();
+  52:Display/display.c ****         else
+  53:Display/display.c ****           Menu_Reinit();
+  54:Display/display.c ****       break;
+  55:Display/display.c **** 
+  56:Display/display.c ****     case TEXT_MODE:
+  57:Display/display.c **** 
+  58:Display/display.c ****       break;
+  59:Display/display.c **** 
+  60:Display/display.c ****     case SLEEP_MODE:
+  61:Display/display.c **** 
+  62:Display/display.c ****       break;
+  63:Display/display.c **** 
+  64:Display/display.c ****     case CONNECT_MODE:
+  65:Display/display.c **** 
+  66:Display/display.c ****       break;
+  67:Display/display.c **** 
+  68:Display/display.c ****     default:
+  69:Display/display.c ****         Menu_Reinit();
+  70:Display/display.c ****         display_mode=MENU_MODE;
+  71:Display/display.c ****       break;
+  72:Display/display.c ****   }
+  73:Display/display.c ****   display_previous_mode=display_mode;
+ 130              		.loc 1 73 0
+ 131 0010 0B4B     		ldr	r3, .L13
+ 132 0012 1A68     		ldr	r2, [r3]
+ 133 0014 0B4B     		ldr	r3, .L13+4
+ 134 0016 1A60     		str	r2, [r3]
+  74:Display/display.c ****   action=0;
+ 135              		.loc 1 74 0
+ 136 0018 0B4B     		ldr	r3, .L13+8
+ 137 001a 0022     		movs	r2, #0
+ 138 001c 1A60     		str	r2, [r3]
+  75:Display/display.c **** }
+ 139              		.loc 1 75 0
+ 140 001e 08BD     		pop	{r3, pc}
+ 141              	.L8:
+  50:Display/display.c ****           Update_Menu();
+ 142              		.loc 1 50 0
+ 143 0020 084B     		ldr	r3, .L13+4
+ 144 0022 1B68     		ldr	r3, [r3]
+ 145 0024 012B     		cmp	r3, #1
+ 146 0026 02D0     		beq	.L12
+  53:Display/display.c ****       break;
+ 147              		.loc 1 53 0
+ 148 0028 FFF7FEFF 		bl	Menu_Reinit
+ 149              	.LVL8:
+ 150 002c F0E7     		b	.L9
+ 151              	.L12:
+  51:Display/display.c ****         else
+ 152              		.loc 1 51 0
+ 153 002e FFF7FEFF 		bl	Update_Menu
+ARM GAS  /tmp/ccN1lQoo.s 			page 5
+
+
  154              	.LVL9:
-  60:Display/display.c ****   int pointer_text = 0;
-  61:Display/display.c ****   int start = 0;
-  62:Display/display.c ****   int finish = 0;
-  63:Display/display.c ****   int max_break = 0;
-  64:Display/display.c ****   int max_space = 0;
-  65:Display/display.c ****   int pointerx=1;
-  66:Display/display.c ****   int pointery=1;
- 155              		.loc 1 66 0
- 156 0006 0126     		movs	r6, #1
-  60:Display/display.c ****   int pointer_text = 0;
- 157              		.loc 1 60 0
- 158 0008 0024     		movs	r4, #0
-  67:Display/display.c ****   static char* text = "Prologue\n Light rapidly faded away as the darkness began to swallow him. Ha
-  68:Display/display.c **** 
-  69:Display/display.c ****   while(pointery<EPD_WIDTH-Font12.Height)
- 159              		.loc 1 69 0
- 160 000a 2FE0     		b	.L11
- 161              	.LVL10:
- 162              	.L19:
- 163              	.LBB2:
-ARM GAS  /tmp/ccmqDnAB.s 			page 5
+ 155 0032 EDE7     		b	.L9
+ 156              	.L7:
+  69:Display/display.c ****         display_mode=MENU_MODE;
+ 157              		.loc 1 69 0
+ 158 0034 FFF7FEFF 		bl	Menu_Reinit
+ 159              	.LVL10:
+  70:Display/display.c ****       break;
+ 160              		.loc 1 70 0
+ 161 0038 014B     		ldr	r3, .L13
+ 162 003a 0122     		movs	r2, #1
+ 163 003c 1A60     		str	r2, [r3]
+  71:Display/display.c ****   }
+ 164              		.loc 1 71 0
+ 165 003e E7E7     		b	.L9
+ 166              	.L14:
+ 167              		.align	2
+ 168              	.L13:
+ 169 0040 00000000 		.word	display_mode
+ 170 0044 00000000 		.word	display_previous_mode
+ 171 0048 00000000 		.word	action
+ 172              		.cfi_endproc
+ 173              	.LFE124:
+ 175              		.section	.text.Display_Text,"ax",%progbits
+ 176              		.align	1
+ 177              		.global	Display_Text
+ 178              		.syntax unified
+ 179              		.thumb
+ 180              		.thumb_func
+ 181              		.fpu fpv4-sp-d16
+ 183              	Display_Text:
+ 184              	.LFB125:
+  76:Display/display.c **** 
+  77:Display/display.c **** /*
+  78:Display/display.c ****  * Function: Display_Text
+  79:Display/display.c ****  * ----------------------------
+  80:Display/display.c ****  *   Displays long text with proper usage of new lines.
+  81:Display/display.c ****  *
+  82:Display/display.c ****  *   (in future) text_pointer: char pointer to text, that will be displayed
+  83:Display/display.c ****  *
+  84:Display/display.c ****  *   (in future) returns: pointer to the last character that was displayed
+  85:Display/display.c ****  */
+  86:Display/display.c **** void Display_Text()
+  87:Display/display.c **** {
+ 185              		.loc 1 87 0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 190              	.LCFI4:
+ 191              		.cfi_def_cfa_offset 24
+ 192              		.cfi_offset 4, -24
+ 193              		.cfi_offset 5, -20
+ 194              		.cfi_offset 6, -16
+ 195              		.cfi_offset 7, -12
+ 196              		.cfi_offset 8, -8
+ 197              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccN1lQoo.s 			page 6
 
 
-  70:Display/display.c ****   {
-  71:Display/display.c ****     for(int j=start;j<start+EPD_HEIGHT/Font12.Width;j++)
-  72:Display/display.c ****     {
-  73:Display/display.c ****       if(text[j]==' ')
-  74:Display/display.c ****         max_space=j;
- 164              		.loc 1 74 0
- 165 000c 1546     		mov	r5, r2
- 166              	.LVL11:
- 167              	.L12:
-  71:Display/display.c ****     {
- 168              		.loc 1 71 0 discriminator 2
- 169 000e 0132     		adds	r2, r2, #1
- 170              	.LVL12:
- 171              	.L18:
-  71:Display/display.c ****     {
- 172              		.loc 1 71 0 is_stmt 0 discriminator 1
- 173 0010 1E4B     		ldr	r3, .L24
- 174 0012 9988     		ldrh	r1, [r3, #4]
- 175 0014 4FF49473 		mov	r3, #296
- 176 0018 93FBF1F3 		sdiv	r3, r3, r1
- 177 001c 2344     		add	r3, r3, r4
- 178 001e 9342     		cmp	r3, r2
- 179 0020 06DD     		ble	.L22
-  73:Display/display.c ****         max_space=j;
- 180              		.loc 1 73 0 is_stmt 1
- 181 0022 1B4B     		ldr	r3, .L24+4
- 182 0024 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
- 183 0026 202B     		cmp	r3, #32
- 184 0028 F0D0     		beq	.L19
-  75:Display/display.c ****       else
-  76:Display/display.c ****       {
-  77:Display/display.c ****         if(text[j]=='\n')
- 185              		.loc 1 77 0
- 186 002a 0A2B     		cmp	r3, #10
- 187 002c EFD1     		bne	.L12
- 188 002e 00E0     		b	.L13
- 189              	.L22:
- 190 0030 0022     		movs	r2, #0
- 191              	.LVL13:
- 192              	.L13:
- 193              	.LBE2:
-  78:Display/display.c ****         {
-  79:Display/display.c ****           max_break=j;
-  80:Display/display.c ****           break;
-  81:Display/display.c ****         }
-  82:Display/display.c ****       }
-  83:Display/display.c ****     }
-  84:Display/display.c ****     if(max_break > max_space)
- 194              		.loc 1 84 0
- 195 0032 AA42     		cmp	r2, r5
- 196 0034 00DD     		ble	.L15
-  85:Display/display.c ****       finish = max_break;
- 197              		.loc 1 85 0
- 198 0036 1546     		mov	r5, r2
- 199              	.LVL14:
- 200              	.L15:
- 201              	.LBB3:
-ARM GAS  /tmp/ccmqDnAB.s 			page 6
+ 198 0004 82B0     		sub	sp, sp, #8
+ 199              	.LCFI5:
+ 200              		.cfi_def_cfa_offset 32
+ 201              	.LVL11:
+  88:Display/display.c ****   int pointer_text = 0;
+  89:Display/display.c ****   int start = 0;
+  90:Display/display.c ****   int finish = 0;
+  91:Display/display.c ****   int max_break = 0;
+  92:Display/display.c ****   int max_space = 0;
+  93:Display/display.c ****   int pointerx=1;
+  94:Display/display.c ****   int pointery=1;
+ 202              		.loc 1 94 0
+ 203 0006 0126     		movs	r6, #1
+  88:Display/display.c ****   int pointer_text = 0;
+ 204              		.loc 1 88 0
+ 205 0008 0024     		movs	r4, #0
+  95:Display/display.c ****   static char* text = "Prologue\n Light rapidly faded away as the darkness began to swallow him. Ha
+  96:Display/display.c **** 
+  97:Display/display.c ****   while(pointery<EPD_WIDTH-Font12.Height)
+ 206              		.loc 1 97 0
+ 207 000a 2FE0     		b	.L16
+ 208              	.LVL12:
+ 209              	.L24:
+ 210              	.LBB2:
+  98:Display/display.c ****   {
+  99:Display/display.c ****     for(int j=start;j<start+EPD_HEIGHT/Font12.Width;j++)
+ 100:Display/display.c ****     {
+ 101:Display/display.c ****       if(text[j]==' ')
+ 102:Display/display.c ****         max_space=j;
+ 211              		.loc 1 102 0
+ 212 000c 1546     		mov	r5, r2
+ 213              	.LVL13:
+ 214              	.L17:
+  99:Display/display.c ****     {
+ 215              		.loc 1 99 0 discriminator 2
+ 216 000e 0132     		adds	r2, r2, #1
+ 217              	.LVL14:
+ 218              	.L23:
+  99:Display/display.c ****     {
+ 219              		.loc 1 99 0 is_stmt 0 discriminator 1
+ 220 0010 1E4B     		ldr	r3, .L29
+ 221 0012 9988     		ldrh	r1, [r3, #4]
+ 222 0014 4FF49473 		mov	r3, #296
+ 223 0018 93FBF1F3 		sdiv	r3, r3, r1
+ 224 001c 2344     		add	r3, r3, r4
+ 225 001e 9342     		cmp	r3, r2
+ 226 0020 06DD     		ble	.L27
+ 101:Display/display.c ****         max_space=j;
+ 227              		.loc 1 101 0 is_stmt 1
+ 228 0022 1B4B     		ldr	r3, .L29+4
+ 229 0024 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 230 0026 202B     		cmp	r3, #32
+ 231 0028 F0D0     		beq	.L24
+ 103:Display/display.c ****       else
+ 104:Display/display.c ****       {
+ 105:Display/display.c ****         if(text[j]=='\n')
+ 232              		.loc 1 105 0
+ARM GAS  /tmp/ccN1lQoo.s 			page 7
 
 
-  86:Display/display.c ****     else
-  87:Display/display.c ****       finish = max_space;
-  88:Display/display.c ****     for(int j=start;j<finish;j++)
- 202              		.loc 1 88 0
- 203 0038 0127     		movs	r7, #1
- 204 003a 10E0     		b	.L16
- 205              	.LVL15:
- 206              	.L17:
-  89:Display/display.c ****     {
-  90:Display/display.c ****       Paint_DrawChar(pointerx, pointery, text[j], &Font12, WHITE, BLACK);
- 207              		.loc 1 90 0 discriminator 3
- 208 003c DFF84C80 		ldr	r8, .L24
- 209 0040 134B     		ldr	r3, .L24+4
- 210 0042 E25C     		ldrb	r2, [r4, r3]	@ zero_extendqisi2
- 211 0044 0023     		movs	r3, #0
- 212 0046 0193     		str	r3, [sp, #4]
- 213 0048 FF23     		movs	r3, #255
- 214 004a 0093     		str	r3, [sp]
- 215 004c 4346     		mov	r3, r8
- 216 004e B1B2     		uxth	r1, r6
- 217 0050 B8B2     		uxth	r0, r7
- 218 0052 FFF7FEFF 		bl	Paint_DrawChar
- 219              	.LVL16:
-  91:Display/display.c ****       pointerx+=Font12.Width;
- 220              		.loc 1 91 0 discriminator 3
- 221 0056 B8F80430 		ldrh	r3, [r8, #4]
- 222 005a 1F44     		add	r7, r7, r3
- 223              	.LVL17:
-  92:Display/display.c ****       pointer_text++;
- 224              		.loc 1 92 0 discriminator 3
- 225 005c 0134     		adds	r4, r4, #1
- 226              	.LVL18:
- 227              	.L16:
-  88:Display/display.c ****     {
- 228              		.loc 1 88 0 discriminator 1
- 229 005e AC42     		cmp	r4, r5
- 230 0060 ECDB     		blt	.L17
- 231              	.LBE3:
-  93:Display/display.c ****     }
-  94:Display/display.c ****     pointer_text++;
- 232              		.loc 1 94 0
- 233 0062 0134     		adds	r4, r4, #1
- 234              	.LVL19:
-  95:Display/display.c ****     start=pointer_text;
-  96:Display/display.c ****     pointery+=Font12.Height+1;
- 235              		.loc 1 96 0
- 236 0064 094B     		ldr	r3, .L24
- 237 0066 DB88     		ldrh	r3, [r3, #6]
- 238 0068 0133     		adds	r3, r3, #1
- 239 006a 1E44     		add	r6, r6, r3
- 240              	.LVL20:
- 241              	.L11:
-  69:Display/display.c ****   {
- 242              		.loc 1 69 0
- 243 006c 074B     		ldr	r3, .L24
- 244 006e DB88     		ldrh	r3, [r3, #6]
- 245 0070 C3F18003 		rsb	r3, r3, #128
-ARM GAS  /tmp/ccmqDnAB.s 			page 7
+ 233 002a 0A2B     		cmp	r3, #10
+ 234 002c EFD1     		bne	.L17
+ 235 002e 00E0     		b	.L18
+ 236              	.L27:
+ 237 0030 0022     		movs	r2, #0
+ 238              	.LVL15:
+ 239              	.L18:
+ 240              	.LBE2:
+ 106:Display/display.c ****         {
+ 107:Display/display.c ****           max_break=j;
+ 108:Display/display.c ****           break;
+ 109:Display/display.c ****         }
+ 110:Display/display.c ****       }
+ 111:Display/display.c ****     }
+ 112:Display/display.c ****     if(max_break > max_space)
+ 241              		.loc 1 112 0
+ 242 0032 AA42     		cmp	r2, r5
+ 243 0034 00DD     		ble	.L20
+ 113:Display/display.c ****       finish = max_break;
+ 244              		.loc 1 113 0
+ 245 0036 1546     		mov	r5, r2
+ 246              	.LVL16:
+ 247              	.L20:
+ 248              	.LBB3:
+ 114:Display/display.c ****     else
+ 115:Display/display.c ****       finish = max_space;
+ 116:Display/display.c ****     for(int j=start;j<finish;j++)
+ 249              		.loc 1 116 0
+ 250 0038 0127     		movs	r7, #1
+ 251 003a 10E0     		b	.L21
+ 252              	.LVL17:
+ 253              	.L22:
+ 117:Display/display.c ****     {
+ 118:Display/display.c ****       Paint_DrawChar(pointerx, pointery, text[j], &Font12, WHITE, BLACK);
+ 254              		.loc 1 118 0 discriminator 3
+ 255 003c DFF84C80 		ldr	r8, .L29
+ 256 0040 134B     		ldr	r3, .L29+4
+ 257 0042 E25C     		ldrb	r2, [r4, r3]	@ zero_extendqisi2
+ 258 0044 0023     		movs	r3, #0
+ 259 0046 0193     		str	r3, [sp, #4]
+ 260 0048 FF23     		movs	r3, #255
+ 261 004a 0093     		str	r3, [sp]
+ 262 004c 4346     		mov	r3, r8
+ 263 004e B1B2     		uxth	r1, r6
+ 264 0050 B8B2     		uxth	r0, r7
+ 265 0052 FFF7FEFF 		bl	Paint_DrawChar
+ 266              	.LVL18:
+ 119:Display/display.c ****       pointerx+=Font12.Width;
+ 267              		.loc 1 119 0 discriminator 3
+ 268 0056 B8F80430 		ldrh	r3, [r8, #4]
+ 269 005a 1F44     		add	r7, r7, r3
+ 270              	.LVL19:
+ 120:Display/display.c ****       pointer_text++;
+ 271              		.loc 1 120 0 discriminator 3
+ 272 005c 0134     		adds	r4, r4, #1
+ 273              	.LVL20:
+ 274              	.L21:
+ARM GAS  /tmp/ccN1lQoo.s 			page 8
 
 
- 246 0074 B342     		cmp	r3, r6
- 247 0076 02DD     		ble	.L23
- 248              	.LBB4:
-  71:Display/display.c ****     {
- 249              		.loc 1 71 0
- 250 0078 2246     		mov	r2, r4
- 251              	.LBE4:
- 252 007a 0025     		movs	r5, #0
- 253 007c C8E7     		b	.L18
- 254              	.L23:
-  97:Display/display.c ****     pointerx=1;
-  98:Display/display.c ****     max_break = 0;
-  99:Display/display.c ****     max_space = 0;
- 100:Display/display.c ****   }
- 101:Display/display.c ****   EPD_Display(BlackImage);
- 255              		.loc 1 101 0
- 256 007e 054B     		ldr	r3, .L24+8
- 257 0080 1868     		ldr	r0, [r3]
- 258 0082 FFF7FEFF 		bl	EPD_Display
- 259              	.LVL21:
- 102:Display/display.c **** }
- 260              		.loc 1 102 0
- 261 0086 02B0     		add	sp, sp, #8
- 262              	.LCFI6:
- 263              		.cfi_def_cfa_offset 24
- 264              		@ sp needed
- 265 0088 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
- 266              	.LVL22:
- 267              	.L25:
- 268              		.align	2
- 269              	.L24:
- 270 008c 00000000 		.word	Font12
- 271 0090 00000000 		.word	.LC0
- 272 0094 00000000 		.word	BlackImage
- 273              		.cfi_endproc
- 274              	.LFE125:
- 276              		.comm	BlackImage,4,4
- 277              		.comm	click,4,4
- 278              		.comm	current_position,4,4
- 279              		.comm	menu_text_usage,12,4
- 280              		.comm	mode,4,4
- 281              		.comm	action,4,4
- 282              		.section	.rodata.Display_Text.str1.4,"aMS",%progbits,1
- 283              		.align	2
- 284              	.LC0:
- 285 0000 50726F6C 		.ascii	"Prologue\012 Light rapidly faded away as the darkne"
- 285      6F677565 
- 285      0A204C69 
- 285      67687420 
- 285      72617069 
- 286 0030 73732062 		.ascii	"ss began to swallow him. Hajime Nagumos face twiste"
- 286      6567616E 
- 286      20746F20 
- 286      7377616C 
- 286      6C6F7720 
- 287 0063 6420696E 		.ascii	"d in terror as he stared at the vanishing light abo"
- 287      20746572 
-ARM GAS  /tmp/ccmqDnAB.s 			page 8
+ 116:Display/display.c ****     {
+ 275              		.loc 1 116 0 discriminator 1
+ 276 005e AC42     		cmp	r4, r5
+ 277 0060 ECDB     		blt	.L22
+ 278              	.LBE3:
+ 121:Display/display.c ****     }
+ 122:Display/display.c ****     pointer_text++;
+ 279              		.loc 1 122 0
+ 280 0062 0134     		adds	r4, r4, #1
+ 281              	.LVL21:
+ 123:Display/display.c ****     start=pointer_text;
+ 124:Display/display.c ****     pointery+=Font12.Height+1;
+ 282              		.loc 1 124 0
+ 283 0064 094B     		ldr	r3, .L29
+ 284 0066 DB88     		ldrh	r3, [r3, #6]
+ 285 0068 0133     		adds	r3, r3, #1
+ 286 006a 1E44     		add	r6, r6, r3
+ 287              	.LVL22:
+ 288              	.L16:
+  97:Display/display.c ****   {
+ 289              		.loc 1 97 0
+ 290 006c 074B     		ldr	r3, .L29
+ 291 006e DB88     		ldrh	r3, [r3, #6]
+ 292 0070 C3F18003 		rsb	r3, r3, #128
+ 293 0074 B342     		cmp	r3, r6
+ 294 0076 02DD     		ble	.L28
+ 295              	.LBB4:
+  99:Display/display.c ****     {
+ 296              		.loc 1 99 0
+ 297 0078 2246     		mov	r2, r4
+ 298              	.LBE4:
+ 299 007a 0025     		movs	r5, #0
+ 300 007c C8E7     		b	.L23
+ 301              	.L28:
+ 125:Display/display.c ****     pointerx=1;
+ 126:Display/display.c ****     max_break = 0;
+ 127:Display/display.c ****     max_space = 0;
+ 128:Display/display.c ****   }
+ 129:Display/display.c ****   EPD_Display(BlackImage);
+ 302              		.loc 1 129 0
+ 303 007e 054B     		ldr	r3, .L29+8
+ 304 0080 1868     		ldr	r0, [r3]
+ 305 0082 FFF7FEFF 		bl	EPD_Display
+ 306              	.LVL23:
+ 130:Display/display.c **** }
+ 307              		.loc 1 130 0
+ 308 0086 02B0     		add	sp, sp, #8
+ 309              	.LCFI6:
+ 310              		.cfi_def_cfa_offset 24
+ 311              		@ sp needed
+ 312 0088 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 313              	.LVL24:
+ 314              	.L30:
+ 315              		.align	2
+ 316              	.L29:
+ 317 008c 00000000 		.word	Font12
+ 318 0090 00000000 		.word	.LC0
+ARM GAS  /tmp/ccN1lQoo.s 			page 9
 
 
- 287      726F7220 
- 287      61732068 
- 287      65207374 
- 288 0096 76652068 		.ascii	"ve him. He desperately shot out his hand, grasping "
- 288      696D2E20 
- 288      48652064 
- 288      65737065 
- 288      72617465 
- 289 00c9 61742074 		.ascii	"at the light he knew he could never truly grab hold"
- 289      6865206C 
- 289      69676874 
- 289      20686520 
- 289      6B6E6577 
- 290 00fc 206F662E 		.ascii	" of. He felt his nether regions tense up as he fell"
- 290      20486520 
- 290      66656C74 
- 290      20686973 
- 290      206E6574 
- 291 012f 20667265 		.ascii	" freely through the darkness.\012 The chasm hed fal"
- 291      656C7920 
- 291      7468726F 
- 291      75676820 
- 291      74686520 
- 292 015f 6C656E20 		.ascii	"len into was so deep that it seemed almost as if he"
- 292      696E746F 
- 292      20776173 
- 292      20736F20 
- 292      64656570 
- 293 0192 20776173 		.ascii	" was falling down to the pits of hell. And the ligh"
- 293      2066616C 
- 293      6C696E67 
- 293      20646F77 
- 293      6E20746F 
- 294 01c5 74206865 		.ascii	"t he was staring at was the portal to the world of "
- 294      20776173 
- 294      20737461 
- 294      72696E67 
- 294      20617420 
- 295 01f8 74686520 		.ascii	"the living. Hed fallen down a massive tear in the e"
- 295      6C697669 
- 295      6E672E20 
- 295      48656420 
- 295      66616C6C 
- 296 022b 61727468 		.ascii	"arth while hed been exploring a dungeon. The hole w"
- 296      20776869 
- 296      6C652068 
- 296      65642062 
- 296      65656E20 
- 297 025e 61732073 		.ascii	"as so deep that he kept falling long after the tiny"
- 297      6F206465 
- 297      65702074 
- 297      68617420 
- 297      6865206B 
- 298 0291 2070696E 		.ascii	" pinprick of light had shrunk to nothing. His entir"
- 298      70726963 
- 298      6B206F66 
- 298      206C6967 
-ARM GAS  /tmp/ccmqDnAB.s 			page 9
+ 319 0094 00000000 		.word	BlackImage
+ 320              		.cfi_endproc
+ 321              	.LFE125:
+ 323              		.comm	display_previous_mode,4,4
+ 324              		.comm	display_mode,4,4
+ 325              		.comm	BlackImage,4,4
+ 326              		.comm	click,4,4
+ 327              		.comm	current_position,4,4
+ 328              		.comm	menu_text_usage,12,4
+ 329              		.comm	mode,4,4
+ 330              		.comm	action,4,4
+ 331              		.section	.rodata.Display_Text.str1.4,"aMS",%progbits,1
+ 332              		.align	2
+ 333              	.LC0:
+ 334 0000 50726F6C 		.ascii	"Prologue\012 Light rapidly faded away as the darkne"
+ 334      6F677565 
+ 334      0A204C69 
+ 334      67687420 
+ 334      72617069 
+ 335 0030 73732062 		.ascii	"ss began to swallow him. Hajime Nagumos face twiste"
+ 335      6567616E 
+ 335      20746F20 
+ 335      7377616C 
+ 335      6C6F7720 
+ 336 0063 6420696E 		.ascii	"d in terror as he stared at the vanishing light abo"
+ 336      20746572 
+ 336      726F7220 
+ 336      61732068 
+ 336      65207374 
+ 337 0096 76652068 		.ascii	"ve him. He desperately shot out his hand, grasping "
+ 337      696D2E20 
+ 337      48652064 
+ 337      65737065 
+ 337      72617465 
+ 338 00c9 61742074 		.ascii	"at the light he knew he could never truly grab hold"
+ 338      6865206C 
+ 338      69676874 
+ 338      20686520 
+ 338      6B6E6577 
+ 339 00fc 206F662E 		.ascii	" of. He felt his nether regions tense up as he fell"
+ 339      20486520 
+ 339      66656C74 
+ 339      20686973 
+ 339      206E6574 
+ 340 012f 20667265 		.ascii	" freely through the darkness.\012 The chasm hed fal"
+ 340      656C7920 
+ 340      7468726F 
+ 340      75676820 
+ 340      74686520 
+ 341 015f 6C656E20 		.ascii	"len into was so deep that it seemed almost as if he"
+ 341      696E746F 
+ 341      20776173 
+ 341      20736F20 
+ 341      64656570 
+ 342 0192 20776173 		.ascii	" was falling down to the pits of hell. And the ligh"
+ 342      2066616C 
+ 342      6C696E67 
+ARM GAS  /tmp/ccN1lQoo.s 			page 10
 
 
- 298      68742068 
- 299 02c4 65206C69 		.ascii	"e life flashed before his eyes, with nothing but th"
- 299      66652066 
- 299      6C617368 
- 299      65642062 
- 299      65666F72 
- 300 02f7 6520736F 		.ascii	"e sound of wind rushing past accompanying his plung"
- 300      756E6420 
- 300      6F662077 
- 300      696E6420 
- 300      72757368 
- 301 032a 6520746F 		.ascii	"e to the hellish depths below.\012 Let us turn back"
- 301      20746865 
- 301      2068656C 
- 301      6C697368 
- 301      20646570 
- 302 035a 20746865 		.ascii	" the clock a bit and recount how a young Japanese b"
- 302      20636C6F 
- 302      636B2061 
- 302      20626974 
- 302      20616E64 
- 303 038d 6F792066 		.ascii	"oy found himself in a world that was far too cruel "
- 303      6F756E64 
- 303      2068696D 
- 303      73656C66 
- 303      20696E20 
- 304 03c0 616E6420 		.ascii	"and heartless for the word fantasy to be an accurat"
- 304      68656172 
- 304      746C6573 
- 304      7320666F 
- 304      72207468 
- 305 03f3 65206465 		.ascii	"e descriptor. After all, the harsh and unfair event"
- 305      73637269 
- 305      70746F72 
- 305      2E204166 
- 305      74657220 
- 306 0426 73206865 		.ascii	"s hed experienced, and was still experiencing, were"
- 306      64206578 
- 306      70657269 
- 306      656E6365 
- 306      642C2061 
- 307 0459 20612062 		.ascii	" a bit too bereft of the wonderful hopes and dreams"
- 307      69742074 
- 307      6F6F2062 
- 307      65726566 
- 307      74206F66 
- 308 048c 206F6E65 		.ascii	" one imagined when they heard that word.\012 Monday"
- 308      20696D61 
- 308      67696E65 
- 308      64207768 
- 308      656E2074 
- 309 04bc 2E205175 		.ascii	". Quite possibly the most depressing day of the wee"
- 309      69746520 
- 309      706F7373 
- 309      69626C79 
- 309      20746865 
- 310 04ef 6B2E204D 		.ascii	"k. Most people were, without a doubt, sighing heavi"
-ARM GAS  /tmp/ccmqDnAB.s 			page 10
+ 342      20646F77 
+ 342      6E20746F 
+ 343 01c5 74206865 		.ascii	"t he was staring at was the portal to the world of "
+ 343      20776173 
+ 343      20737461 
+ 343      72696E67 
+ 343      20617420 
+ 344 01f8 74686520 		.ascii	"the living. Hed fallen down a massive tear in the e"
+ 344      6C697669 
+ 344      6E672E20 
+ 344      48656420 
+ 344      66616C6C 
+ 345 022b 61727468 		.ascii	"arth while hed been exploring a dungeon. The hole w"
+ 345      20776869 
+ 345      6C652068 
+ 345      65642062 
+ 345      65656E20 
+ 346 025e 61732073 		.ascii	"as so deep that he kept falling long after the tiny"
+ 346      6F206465 
+ 346      65702074 
+ 346      68617420 
+ 346      6865206B 
+ 347 0291 2070696E 		.ascii	" pinprick of light had shrunk to nothing. His entir"
+ 347      70726963 
+ 347      6B206F66 
+ 347      206C6967 
+ 347      68742068 
+ 348 02c4 65206C69 		.ascii	"e life flashed before his eyes, with nothing but th"
+ 348      66652066 
+ 348      6C617368 
+ 348      65642062 
+ 348      65666F72 
+ 349 02f7 6520736F 		.ascii	"e sound of wind rushing past accompanying his plung"
+ 349      756E6420 
+ 349      6F662077 
+ 349      696E6420 
+ 349      72757368 
+ 350 032a 6520746F 		.ascii	"e to the hellish depths below.\012 Let us turn back"
+ 350      20746865 
+ 350      2068656C 
+ 350      6C697368 
+ 350      20646570 
+ 351 035a 20746865 		.ascii	" the clock a bit and recount how a young Japanese b"
+ 351      20636C6F 
+ 351      636B2061 
+ 351      20626974 
+ 351      20616E64 
+ 352 038d 6F792066 		.ascii	"oy found himself in a world that was far too cruel "
+ 352      6F756E64 
+ 352      2068696D 
+ 352      73656C66 
+ 352      20696E20 
+ 353 03c0 616E6420 		.ascii	"and heartless for the word fantasy to be an accurat"
+ 353      68656172 
+ 353      746C6573 
+ 353      7320666F 
+ 353      72207468 
+ARM GAS  /tmp/ccN1lQoo.s 			page 11
 
 
- 310      6F737420 
- 310      70656F70 
- 310      6C652077 
- 310      6572652C 
- 311 0522 6C792061 		.ascii	"ly as they lamented the beginning of the week and t"
- 311      73207468 
- 311      6579206C 
- 311      616D656E 
- 311      74656420 
- 312 0555 68652065 		.ascii	"he end of their glorious weekend. Hajime Nagumo was"
- 312      6E64206F 
- 312      66207468 
- 312      65697220 
- 312      676C6F72 
- 313 0588 206E6F20 		.ascii	" no exception. However, in his case, his depression"
- 313      65786365 
- 313      7074696F 
- 313      6E2E2048 
- 313      6F776576 
- 314 05bb 20776173 		.ascii	" was multiplied by the fact that school was not jus"
- 314      206D756C 
- 314      7469706C 
- 314      69656420 
- 314      62792074 
- 315 05ee 74206120 		.ascii	"t a pain, but a veritable hell.\000"
- 315      7061696E 
- 315      2C206275 
- 315      74206120 
- 315      76657269 
- 316              		.text
- 317              	.Letext0:
- 318              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 319              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 320              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 321              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 322              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 323              		.file 7 "Inc/keyboard.h"
- 324              		.file 8 "Display/e-Paper/EPD_2in9.h"
- 325              		.file 9 "Display/GUI/../Fonts/fonts.h"
- 326              		.file 10 "Display/GUI/GUI_Paint.h"
- 327              		.file 11 "Display/e-Paper/ImageData.h"
- 328              		.file 12 "/usr/arm-none-eabi/include/sys/lock.h"
- 329              		.file 13 "/usr/arm-none-eabi/include/sys/_types.h"
- 330              		.file 14 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 331              		.file 15 "/usr/arm-none-eabi/include/sys/reent.h"
- 332              		.file 16 "/usr/arm-none-eabi/include/stdlib.h"
- 333              		.file 17 "Display/Menu/menu.h"
- 334              		.file 18 "Display/display.h"
-ARM GAS  /tmp/ccmqDnAB.s 			page 11
+ 354 03f3 65206465 		.ascii	"e descriptor. After all, the harsh and unfair event"
+ 354      73637269 
+ 354      70746F72 
+ 354      2E204166 
+ 354      74657220 
+ 355 0426 73206865 		.ascii	"s hed experienced, and was still experiencing, were"
+ 355      64206578 
+ 355      70657269 
+ 355      656E6365 
+ 355      642C2061 
+ 356 0459 20612062 		.ascii	" a bit too bereft of the wonderful hopes and dreams"
+ 356      69742074 
+ 356      6F6F2062 
+ 356      65726566 
+ 356      74206F66 
+ 357 048c 206F6E65 		.ascii	" one imagined when they heard that word.\012 Monday"
+ 357      20696D61 
+ 357      67696E65 
+ 357      64207768 
+ 357      656E2074 
+ 358 04bc 2E205175 		.ascii	". Quite possibly the most depressing day of the wee"
+ 358      69746520 
+ 358      706F7373 
+ 358      69626C79 
+ 358      20746865 
+ 359 04ef 6B2E204D 		.ascii	"k. Most people were, without a doubt, sighing heavi"
+ 359      6F737420 
+ 359      70656F70 
+ 359      6C652077 
+ 359      6572652C 
+ 360 0522 6C792061 		.ascii	"ly as they lamented the beginning of the week and t"
+ 360      73207468 
+ 360      6579206C 
+ 360      616D656E 
+ 360      74656420 
+ 361 0555 68652065 		.ascii	"he end of their glorious weekend. Hajime Nagumo was"
+ 361      6E64206F 
+ 361      66207468 
+ 361      65697220 
+ 361      676C6F72 
+ 362 0588 206E6F20 		.ascii	" no exception. However, in his case, his depression"
+ 362      65786365 
+ 362      7074696F 
+ 362      6E2E2048 
+ 362      6F776576 
+ 363 05bb 20776173 		.ascii	" was multiplied by the fact that school was not jus"
+ 363      206D756C 
+ 363      7469706C 
+ 363      69656420 
+ 363      62792074 
+ 364 05ee 74206120 		.ascii	"t a pain, but a veritable hell.\000"
+ 364      7061696E 
+ 364      2C206275 
+ 364      74206120 
+ 364      76657269 
+ 365              		.text
+ 366              	.Letext0:
+ARM GAS  /tmp/ccN1lQoo.s 			page 12
+
+
+ 367              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 368              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 369              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 370              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 371              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 372              		.file 7 "Inc/keyboard.h"
+ 373              		.file 8 "Display/e-Paper/EPD_2in9.h"
+ 374              		.file 9 "Display/GUI/../Fonts/fonts.h"
+ 375              		.file 10 "Display/GUI/GUI_Paint.h"
+ 376              		.file 11 "Display/e-Paper/ImageData.h"
+ 377              		.file 12 "/usr/arm-none-eabi/include/sys/lock.h"
+ 378              		.file 13 "/usr/arm-none-eabi/include/sys/_types.h"
+ 379              		.file 14 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 380              		.file 15 "/usr/arm-none-eabi/include/sys/reent.h"
+ 381              		.file 16 "/usr/arm-none-eabi/include/stdlib.h"
+ 382              		.file 17 "Display/Menu/menu.h"
+ 383              		.file 18 "Display/display.h"
+ARM GAS  /tmp/ccN1lQoo.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 display.c
-     /tmp/ccmqDnAB.s:18     .text.Display_Init:0000000000000000 $t
-     /tmp/ccmqDnAB.s:25     .text.Display_Init:0000000000000000 Display_Init
-     /tmp/ccmqDnAB.s:88     .text.Display_Init:000000000000004c $d
+     /tmp/ccN1lQoo.s:18     .text.Display_Init:0000000000000000 $t
+     /tmp/ccN1lQoo.s:25     .text.Display_Init:0000000000000000 Display_Init
+     /tmp/ccN1lQoo.s:95     .text.Display_Init:0000000000000058 $d
                             *COM*:0000000000000004 BlackImage
-     /tmp/ccmqDnAB.s:94     .text.Display:0000000000000000 $t
-     /tmp/ccmqDnAB.s:101    .text.Display:0000000000000000 Display
-     /tmp/ccmqDnAB.s:124    .text.Display:0000000000000010 $d
+                            *COM*:0000000000000004 display_mode
+                            *COM*:0000000000000004 display_previous_mode
+     /tmp/ccN1lQoo.s:103    .text.Display:0000000000000000 $t
+     /tmp/ccN1lQoo.s:110    .text.Display:0000000000000000 Display
+     /tmp/ccN1lQoo.s:169    .text.Display:0000000000000040 $d
                             *COM*:0000000000000004 action
-     /tmp/ccmqDnAB.s:129    .text.Display_Text:0000000000000000 $t
-     /tmp/ccmqDnAB.s:136    .text.Display_Text:0000000000000000 Display_Text
-     /tmp/ccmqDnAB.s:270    .text.Display_Text:000000000000008c $d
+     /tmp/ccN1lQoo.s:176    .text.Display_Text:0000000000000000 $t
+     /tmp/ccN1lQoo.s:183    .text.Display_Text:0000000000000000 Display_Text
+     /tmp/ccN1lQoo.s:317    .text.Display_Text:000000000000008c $d
                             *COM*:0000000000000004 click
                             *COM*:0000000000000004 current_position
                             *COM*:000000000000000c menu_text_usage
                             *COM*:0000000000000004 mode
-     /tmp/ccmqDnAB.s:283    .rodata.Display_Text.str1.4:0000000000000000 $d
+     /tmp/ccN1lQoo.s:332    .rodata.Display_Text.str1.4:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 EPD_Init
@@ -621,6 +712,7 @@ Paint_SelectImage
 Paint_Clear
 Menu_Init
 lut_full_update
+Menu_Reinit
 Update_Menu
 Paint_DrawChar
 EPD_Display

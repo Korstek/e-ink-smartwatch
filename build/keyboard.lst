@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccBv7zuI.s 			page 1
+ARM GAS  /tmp/ccWJ4Nht.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccBv7zuI.s 			page 1
   39 0004 4FF09040 		mov	r0, #1207959552
   40 0008 FFF7FEFF 		bl	HAL_GPIO_ReadPin
   41              	.LVL0:
-ARM GAS  /tmp/ccBv7zuI.s 			page 2
+ARM GAS  /tmp/ccWJ4Nht.s 			page 2
 
 
   42 000c E8B9     		cbnz	r0, .L2
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccBv7zuI.s 			page 1
   37:Src/keyboard.c ****           if(down>=keyboard_delay)
   38:Src/keyboard.c ****           {
   39:Src/keyboard.c ****             if(current_position<max_current_position)
-ARM GAS  /tmp/ccBv7zuI.s 			page 3
+ARM GAS  /tmp/ccWJ4Nht.s 			page 3
 
 
   40:Src/keyboard.c ****               current_position++;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccBv7zuI.s 			page 1
   83 0046 1360     		str	r3, [r2]
   84 0048 F5E7     		b	.L5
   85              	.L2:
-ARM GAS  /tmp/ccBv7zuI.s 			page 4
+ARM GAS  /tmp/ccWJ4Nht.s 			page 4
 
 
   35:Src/keyboard.c ****         {
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccBv7zuI.s 			page 1
  131 0090 F5E7     		b	.L10
  132              	.L7:
   53:Src/keyboard.c ****           {
-ARM GAS  /tmp/ccBv7zuI.s 			page 5
+ARM GAS  /tmp/ccWJ4Nht.s 			page 5
 
 
  133              		.loc 1 53 0
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccBv7zuI.s 			page 1
  178 00d4 9342     		cmp	r3, r2
  179 00d6 10DD     		ble	.L14
   72:Src/keyboard.c ****             else
-ARM GAS  /tmp/ccBv7zuI.s 			page 6
+ARM GAS  /tmp/ccWJ4Nht.s 			page 6
 
 
  180              		.loc 1 72 0
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccBv7zuI.s 			page 1
  227 0118 00000000 		.word	current_position
  228 011c 00000000 		.word	.LANCHOR1
  229 0120 00000000 		.word	action
-ARM GAS  /tmp/ccBv7zuI.s 			page 7
+ARM GAS  /tmp/ccWJ4Nht.s 			page 7
 
 
  230 0124 A8FDFFFF 		.word	-600
@@ -375,83 +375,87 @@ ARM GAS  /tmp/ccBv7zuI.s 			page 1
  242              		.global	up
  243              		.comm	mode,4,4
  244              		.comm	action,4,4
- 245              		.comm	BlackImage,4,4
- 246              		.comm	click,4,4
- 247              		.comm	current_position,4,4
- 248              		.comm	menu_text_usage,12,4
- 249              		.section	.bss.down,"aw",%nobits
- 250              		.align	2
- 251              		.set	.LANCHOR2,. + 0
- 254              	down:
- 255 0000 00000000 		.space	4
- 256              		.section	.bss.middle,"aw",%nobits
- 257              		.align	2
- 258              		.set	.LANCHOR3,. + 0
- 261              	middle:
- 262 0000 00000000 		.space	4
- 263              		.section	.bss.min_current_position,"aw",%nobits
- 264              		.align	2
- 265              		.set	.LANCHOR1,. + 0
- 268              	min_current_position:
- 269 0000 00000000 		.space	4
- 270              		.section	.bss.up,"aw",%nobits
- 271              		.align	2
- 272              		.set	.LANCHOR0,. + 0
- 275              	up:
- 276 0000 00000000 		.space	4
- 277              		.section	.data.max_current_position,"aw",%progbits
- 278              		.align	2
- 279              		.set	.LANCHOR4,. + 0
- 282              	max_current_position:
- 283 0000 02000000 		.word	2
- 284              		.text
- 285              	.Letext0:
- 286              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 287              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 288              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 289              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 290              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
- 291              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 292              		.file 8 "Display/e-Paper/EPD_2in9.h"
- 293              		.file 9 "Display/GUI/../Fonts/fonts.h"
- 294              		.file 10 "Display/GUI/GUI_Paint.h"
- 295              		.file 11 "Display/e-Paper/ImageData.h"
- 296              		.file 12 "/usr/arm-none-eabi/include/sys/lock.h"
- 297              		.file 13 "/usr/arm-none-eabi/include/sys/_types.h"
-ARM GAS  /tmp/ccBv7zuI.s 			page 8
+ 245              		.comm	display_previous_mode,4,4
+ 246              		.comm	display_mode,4,4
+ 247              		.comm	BlackImage,4,4
+ 248              		.comm	click,4,4
+ 249              		.comm	current_position,4,4
+ 250              		.comm	menu_text_usage,12,4
+ 251              		.section	.bss.down,"aw",%nobits
+ 252              		.align	2
+ 253              		.set	.LANCHOR2,. + 0
+ 256              	down:
+ 257 0000 00000000 		.space	4
+ 258              		.section	.bss.middle,"aw",%nobits
+ 259              		.align	2
+ 260              		.set	.LANCHOR3,. + 0
+ 263              	middle:
+ 264 0000 00000000 		.space	4
+ 265              		.section	.bss.min_current_position,"aw",%nobits
+ 266              		.align	2
+ 267              		.set	.LANCHOR1,. + 0
+ 270              	min_current_position:
+ 271 0000 00000000 		.space	4
+ 272              		.section	.bss.up,"aw",%nobits
+ 273              		.align	2
+ 274              		.set	.LANCHOR0,. + 0
+ 277              	up:
+ 278 0000 00000000 		.space	4
+ 279              		.section	.data.max_current_position,"aw",%progbits
+ 280              		.align	2
+ 281              		.set	.LANCHOR4,. + 0
+ 284              	max_current_position:
+ 285 0000 02000000 		.word	2
+ 286              		.text
+ 287              	.Letext0:
+ 288              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 289              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 290              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 291              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 292              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 293              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 294              		.file 8 "Display/e-Paper/EPD_2in9.h"
+ 295              		.file 9 "Display/GUI/../Fonts/fonts.h"
+ 296              		.file 10 "Display/GUI/GUI_Paint.h"
+ 297              		.file 11 "Display/e-Paper/ImageData.h"
+ARM GAS  /tmp/ccWJ4Nht.s 			page 8
 
 
- 298              		.file 14 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 299              		.file 15 "/usr/arm-none-eabi/include/sys/reent.h"
- 300              		.file 16 "/usr/arm-none-eabi/include/stdlib.h"
- 301              		.file 17 "Display/Menu/menu.h"
- 302              		.file 18 "Display/display.h"
- 303              		.file 19 "Inc/keyboard.h"
- 304              		.file 20 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
-ARM GAS  /tmp/ccBv7zuI.s 			page 9
+ 298              		.file 12 "/usr/arm-none-eabi/include/sys/lock.h"
+ 299              		.file 13 "/usr/arm-none-eabi/include/sys/_types.h"
+ 300              		.file 14 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 301              		.file 15 "/usr/arm-none-eabi/include/sys/reent.h"
+ 302              		.file 16 "/usr/arm-none-eabi/include/stdlib.h"
+ 303              		.file 17 "Display/Menu/menu.h"
+ 304              		.file 18 "Display/display.h"
+ 305              		.file 19 "Inc/keyboard.h"
+ 306              		.file 20 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ARM GAS  /tmp/ccWJ4Nht.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 keyboard.c
-     /tmp/ccBv7zuI.s:18     .text.Keyboard:0000000000000000 $t
-     /tmp/ccBv7zuI.s:25     .text.Keyboard:0000000000000000 Keyboard
-     /tmp/ccBv7zuI.s:226    .text.Keyboard:0000000000000114 $d
+     /tmp/ccWJ4Nht.s:18     .text.Keyboard:0000000000000000 $t
+     /tmp/ccWJ4Nht.s:25     .text.Keyboard:0000000000000000 Keyboard
+     /tmp/ccWJ4Nht.s:226    .text.Keyboard:0000000000000114 $d
                             *COM*:0000000000000004 current_position
                             *COM*:0000000000000004 action
                             *COM*:0000000000000004 click
-     /tmp/ccBv7zuI.s:282    .data.max_current_position:0000000000000000 max_current_position
-     /tmp/ccBv7zuI.s:268    .bss.min_current_position:0000000000000000 min_current_position
-     /tmp/ccBv7zuI.s:261    .bss.middle:0000000000000000 middle
-     /tmp/ccBv7zuI.s:254    .bss.down:0000000000000000 down
-     /tmp/ccBv7zuI.s:275    .bss.up:0000000000000000 up
+     /tmp/ccWJ4Nht.s:284    .data.max_current_position:0000000000000000 max_current_position
+     /tmp/ccWJ4Nht.s:270    .bss.min_current_position:0000000000000000 min_current_position
+     /tmp/ccWJ4Nht.s:263    .bss.middle:0000000000000000 middle
+     /tmp/ccWJ4Nht.s:256    .bss.down:0000000000000000 down
+     /tmp/ccWJ4Nht.s:277    .bss.up:0000000000000000 up
                             *COM*:0000000000000004 mode
+                            *COM*:0000000000000004 display_previous_mode
+                            *COM*:0000000000000004 display_mode
                             *COM*:0000000000000004 BlackImage
                             *COM*:000000000000000c menu_text_usage
-     /tmp/ccBv7zuI.s:250    .bss.down:0000000000000000 $d
-     /tmp/ccBv7zuI.s:257    .bss.middle:0000000000000000 $d
-     /tmp/ccBv7zuI.s:264    .bss.min_current_position:0000000000000000 $d
-     /tmp/ccBv7zuI.s:271    .bss.up:0000000000000000 $d
-     /tmp/ccBv7zuI.s:278    .data.max_current_position:0000000000000000 $d
+     /tmp/ccWJ4Nht.s:252    .bss.down:0000000000000000 $d
+     /tmp/ccWJ4Nht.s:259    .bss.middle:0000000000000000 $d
+     /tmp/ccWJ4Nht.s:266    .bss.min_current_position:0000000000000000 $d
+     /tmp/ccWJ4Nht.s:273    .bss.up:0000000000000000 $d
+     /tmp/ccWJ4Nht.s:280    .data.max_current_position:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_ReadPin

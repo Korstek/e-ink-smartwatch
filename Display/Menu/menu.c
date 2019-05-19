@@ -18,7 +18,11 @@
     *(menu_text+1) = "Connect";
     *(menu_text+2) = "Options";
 
+    Menu_Reinit();
+  }
 
+  void Menu_Reinit()
+  {
     EPD_Init(lut_partial_update);
     Paint_Clear(WHITE);
     for(int i=0;i<menu_length;i++)

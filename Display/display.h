@@ -21,6 +21,13 @@
 
   //Image cache
   UBYTE *BlackImage;
+  int display_mode;
+  int display_previous_mode;
+
+  #define MENU_MODE 1
+  #define TEXT_MODE 2
+  #define SLEEP_MODE 3
+  #define CONNECT_MODE 4
 
   void Display_Init(void);
   void Display(void);

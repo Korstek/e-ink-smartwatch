@@ -27,6 +27,7 @@
   int click;
 
   void Menu_Init(void);
+  void Menu_Reinit(void);
   void Update_Menu(void);
 
   void Display_Draw_Menu_Box(int,int,int);

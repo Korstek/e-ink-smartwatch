@@ -37,12 +37,40 @@ void Display_Init()
       EPD_Display(BlackImage);
   #endif
 
+  display_mode=MENU_MODE;
+  display_previous_mode=MENU_MODE;
+
   Menu_Init();
 }
 
 void Display()
 {
-  Update_Menu();
+  switch (display_mode) {
+    case MENU_MODE:
+        if(display_previous_mode==MENU_MODE)
+          Update_Menu();
+        else
+          Menu_Reinit();
+      break;
+
+    case TEXT_MODE:
+
+      break;
+
+    case SLEEP_MODE:
+
+      break;
+
+    case CONNECT_MODE:
+
+      break;
+
+    default:
+        Menu_Reinit();
+        display_mode=MENU_MODE;
+      break;
+  }
+  display_previous_mode=display_mode;
   action=0;
 }
 
