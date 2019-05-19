@@ -33,7 +33,8 @@ build/keyboard.o: Src/keyboard.c Inc/keyboard.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  Display/display.h Display/e-Paper/EPD_2in9.h Display/Config/DEV_Config.h \
  Inc/main.h Inc/keyboard.h Display/GUI/GUI_Paint.h \
- Display/GUI/../Fonts/fonts.h Display/e-Paper/ImageData.h
+ Display/GUI/../Fonts/fonts.h Display/e-Paper/ImageData.h \
+ Display/Menu/menu.h
 
 Inc/keyboard.h:
 
@@ -120,3 +121,5 @@ Display/GUI/GUI_Paint.h:
 Display/GUI/../Fonts/fonts.h:
 
 Display/e-Paper/ImageData.h:
+
+Display/Menu/menu.h:

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cczaq7Ar.s 			page 1
+ARM GAS  /tmp/ccEh7tpl.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
   29:Src/stm32l4xx_hal_msp.c **** /* USER CODE BEGIN TD */
   30:Src/stm32l4xx_hal_msp.c **** 
   31:Src/stm32l4xx_hal_msp.c **** /* USER CODE END TD */
-ARM GAS  /tmp/cczaq7Ar.s 			page 2
+ARM GAS  /tmp/ccEh7tpl.s 			page 2
 
 
   32:Src/stm32l4xx_hal_msp.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
   43 000e 02F00102 		and	r2, r2, #1
   44 0012 0092     		str	r2, [sp]
   45 0014 009A     		ldr	r2, [sp]
-ARM GAS  /tmp/cczaq7Ar.s 			page 3
+ARM GAS  /tmp/ccEh7tpl.s 			page 3
 
 
   46              	.LBE2:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
   85 0000 00B5     		push	{lr}
   86              	.LCFI2:
   87              		.cfi_def_cfa_offset 4
-ARM GAS  /tmp/cczaq7Ar.s 			page 4
+ARM GAS  /tmp/ccEh7tpl.s 			page 4
 
 
   88              		.cfi_offset 14, -4
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  115              	.LCFI5:
  116              		.cfi_restore_state
  117              	.LBB4:
-ARM GAS  /tmp/cczaq7Ar.s 			page 5
+ARM GAS  /tmp/ccEh7tpl.s 			page 5
 
 
   95:Src/stm32l4xx_hal_msp.c ****   
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  166              		.section	.text.HAL_SPI_MspDeInit,"ax",%progbits
  167              		.align	1
  168              		.global	HAL_SPI_MspDeInit
-ARM GAS  /tmp/cczaq7Ar.s 			page 6
+ARM GAS  /tmp/ccEh7tpl.s 			page 6
 
 
  169              		.syntax unified
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  195              	.LVL7:
  196              	.L14:
  130:Src/stm32l4xx_hal_msp.c ****   
-ARM GAS  /tmp/cczaq7Ar.s 			page 7
+ARM GAS  /tmp/ccEh7tpl.s 			page 7
 
 
  197              		.loc 1 130 0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  241              		.loc 1 152 0
  242 000a 00B5     		push	{lr}
  243              	.LCFI7:
-ARM GAS  /tmp/cczaq7Ar.s 			page 8
+ARM GAS  /tmp/ccEh7tpl.s 			page 8
 
 
  244              		.cfi_def_cfa_offset 4
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  284              		.section	.text.HAL_TIM_Base_MspDeInit,"ax",%progbits
  285              		.align	1
  286              		.global	HAL_TIM_Base_MspDeInit
-ARM GAS  /tmp/cczaq7Ar.s 			page 9
+ARM GAS  /tmp/ccEh7tpl.s 			page 9
 
 
  287              		.syntax unified
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  316 000c 054A     		ldr	r2, .L30+4
  317 000e 136E     		ldr	r3, [r2, #96]
  318 0010 23F40063 		bic	r3, r3, #2048
-ARM GAS  /tmp/cczaq7Ar.s 			page 10
+ARM GAS  /tmp/ccEh7tpl.s 			page 10
 
 
  319 0014 1366     		str	r3, [r2, #96]
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  204:Src/stm32l4xx_hal_msp.c ****   if(huart->Instance==USART2)
  364              		.loc 1 204 0
  365 0010 0268     		ldr	r2, [r0]
-ARM GAS  /tmp/cczaq7Ar.s 			page 11
+ARM GAS  /tmp/ccEh7tpl.s 			page 11
 
 
  366 0012 144B     		ldr	r3, .L36
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  212:Src/stm32l4xx_hal_msp.c ****     /**USART2 GPIO Configuration    
  394              		.loc 1 212 0
  395 0034 DA6C     		ldr	r2, [r3, #76]
-ARM GAS  /tmp/cczaq7Ar.s 			page 12
+ARM GAS  /tmp/ccEh7tpl.s 			page 12
 
 
  396 0036 42F00102 		orr	r2, r2, #1
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  237:Src/stm32l4xx_hal_msp.c **** void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
  238:Src/stm32l4xx_hal_msp.c **** {
  440              		.loc 1 238 0
-ARM GAS  /tmp/cczaq7Ar.s 			page 13
+ARM GAS  /tmp/ccEh7tpl.s 			page 13
 
 
  441              		.cfi_startproc
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  473 0020 F3E7     		b	.L38
  474              	.L43:
  475 0022 00BF     		.align	2
-ARM GAS  /tmp/cczaq7Ar.s 			page 14
+ARM GAS  /tmp/ccEh7tpl.s 			page 14
 
 
  476              	.L42:
@@ -786,67 +786,70 @@ ARM GAS  /tmp/cczaq7Ar.s 			page 1
  478 0028 00100240 		.word	1073876992
  479              		.cfi_endproc
  480              	.LFE129:
- 482              		.comm	click,4,4
- 483              		.comm	current_position,4,4
- 484              		.comm	menu_text_usage,12,4
- 485              		.comm	BlackImage,4,4
- 486              		.comm	action,4,4
- 487              		.text
- 488              	.Letext0:
- 489              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 490              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 491              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 492              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 493              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
- 494              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
- 495              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
- 496              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
- 497              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
- 498              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
- 499              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
- 500              		.file 13 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 501              		.file 14 "Display/e-Paper/EPD_2in9.h"
- 502              		.file 15 "Display/GUI/../Fonts/fonts.h"
- 503              		.file 16 "Display/GUI/GUI_Paint.h"
- 504              		.file 17 "Display/e-Paper/ImageData.h"
- 505              		.file 18 "/usr/arm-none-eabi/include/sys/lock.h"
- 506              		.file 19 "/usr/arm-none-eabi/include/sys/_types.h"
- 507              		.file 20 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 508              		.file 21 "/usr/arm-none-eabi/include/sys/reent.h"
- 509              		.file 22 "/usr/arm-none-eabi/include/stdlib.h"
- 510              		.file 23 "Inc/keyboard.h"
- 511              		.file 24 "Display/display.h"
- 512              		.file 25 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_cortex.h"
-ARM GAS  /tmp/cczaq7Ar.s 			page 15
+ 482              		.comm	BlackImage,4,4
+ 483              		.comm	click,4,4
+ 484              		.comm	current_position,4,4
+ 485              		.comm	menu_text_usage,12,4
+ 486              		.comm	mode,4,4
+ 487              		.comm	action,4,4
+ 488              		.text
+ 489              	.Letext0:
+ 490              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 491              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 492              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 493              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 494              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 495              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+ 496              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ 497              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+ 498              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
+ 499              		.file 11 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h"
+ 500              		.file 12 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h"
+ 501              		.file 13 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 502              		.file 14 "Display/e-Paper/EPD_2in9.h"
+ 503              		.file 15 "Display/GUI/../Fonts/fonts.h"
+ 504              		.file 16 "Display/GUI/GUI_Paint.h"
+ 505              		.file 17 "Display/e-Paper/ImageData.h"
+ 506              		.file 18 "/usr/arm-none-eabi/include/sys/lock.h"
+ 507              		.file 19 "/usr/arm-none-eabi/include/sys/_types.h"
+ 508              		.file 20 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 509              		.file 21 "/usr/arm-none-eabi/include/sys/reent.h"
+ 510              		.file 22 "/usr/arm-none-eabi/include/stdlib.h"
+ 511              		.file 23 "Inc/keyboard.h"
+ 512              		.file 24 "Display/Menu/menu.h"
+ 513              		.file 25 "Display/display.h"
+ 514              		.file 26 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_cortex.h"
+ARM GAS  /tmp/ccEh7tpl.s 			page 15
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32l4xx_hal_msp.c
-     /tmp/cczaq7Ar.s:18     .text.HAL_MspInit:0000000000000000 $t
-     /tmp/cczaq7Ar.s:25     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-     /tmp/cczaq7Ar.s:66     .text.HAL_MspInit:000000000000002c $d
-     /tmp/cczaq7Ar.s:71     .text.HAL_SPI_MspInit:0000000000000000 $t
-     /tmp/cczaq7Ar.s:78     .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
-     /tmp/cczaq7Ar.s:161    .text.HAL_SPI_MspInit:0000000000000060 $d
-     /tmp/cczaq7Ar.s:167    .text.HAL_SPI_MspDeInit:0000000000000000 $t
-     /tmp/cczaq7Ar.s:174    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
-     /tmp/cczaq7Ar.s:213    .text.HAL_SPI_MspDeInit:0000000000000020 $d
-     /tmp/cczaq7Ar.s:220    .text.HAL_TIM_Base_MspInit:0000000000000000 $t
-     /tmp/cczaq7Ar.s:227    .text.HAL_TIM_Base_MspInit:0000000000000000 HAL_TIM_Base_MspInit
-     /tmp/cczaq7Ar.s:280    .text.HAL_TIM_Base_MspInit:000000000000003c $d
-     /tmp/cczaq7Ar.s:285    .text.HAL_TIM_Base_MspDeInit:0000000000000000 $t
-     /tmp/cczaq7Ar.s:292    .text.HAL_TIM_Base_MspDeInit:0000000000000000 HAL_TIM_Base_MspDeInit
-     /tmp/cczaq7Ar.s:330    .text.HAL_TIM_Base_MspDeInit:0000000000000020 $d
-     /tmp/cczaq7Ar.s:336    .text.HAL_UART_MspInit:0000000000000000 $t
-     /tmp/cczaq7Ar.s:343    .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
-     /tmp/cczaq7Ar.s:426    .text.HAL_UART_MspInit:0000000000000064 $d
-     /tmp/cczaq7Ar.s:431    .text.HAL_UART_MspDeInit:0000000000000000 $t
-     /tmp/cczaq7Ar.s:438    .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
-     /tmp/cczaq7Ar.s:477    .text.HAL_UART_MspDeInit:0000000000000024 $d
+     /tmp/ccEh7tpl.s:18     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/ccEh7tpl.s:25     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/ccEh7tpl.s:66     .text.HAL_MspInit:000000000000002c $d
+     /tmp/ccEh7tpl.s:71     .text.HAL_SPI_MspInit:0000000000000000 $t
+     /tmp/ccEh7tpl.s:78     .text.HAL_SPI_MspInit:0000000000000000 HAL_SPI_MspInit
+     /tmp/ccEh7tpl.s:161    .text.HAL_SPI_MspInit:0000000000000060 $d
+     /tmp/ccEh7tpl.s:167    .text.HAL_SPI_MspDeInit:0000000000000000 $t
+     /tmp/ccEh7tpl.s:174    .text.HAL_SPI_MspDeInit:0000000000000000 HAL_SPI_MspDeInit
+     /tmp/ccEh7tpl.s:213    .text.HAL_SPI_MspDeInit:0000000000000020 $d
+     /tmp/ccEh7tpl.s:220    .text.HAL_TIM_Base_MspInit:0000000000000000 $t
+     /tmp/ccEh7tpl.s:227    .text.HAL_TIM_Base_MspInit:0000000000000000 HAL_TIM_Base_MspInit
+     /tmp/ccEh7tpl.s:280    .text.HAL_TIM_Base_MspInit:000000000000003c $d
+     /tmp/ccEh7tpl.s:285    .text.HAL_TIM_Base_MspDeInit:0000000000000000 $t
+     /tmp/ccEh7tpl.s:292    .text.HAL_TIM_Base_MspDeInit:0000000000000000 HAL_TIM_Base_MspDeInit
+     /tmp/ccEh7tpl.s:330    .text.HAL_TIM_Base_MspDeInit:0000000000000020 $d
+     /tmp/ccEh7tpl.s:336    .text.HAL_UART_MspInit:0000000000000000 $t
+     /tmp/ccEh7tpl.s:343    .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
+     /tmp/ccEh7tpl.s:426    .text.HAL_UART_MspInit:0000000000000064 $d
+     /tmp/ccEh7tpl.s:431    .text.HAL_UART_MspDeInit:0000000000000000 $t
+     /tmp/ccEh7tpl.s:438    .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
+     /tmp/ccEh7tpl.s:477    .text.HAL_UART_MspDeInit:0000000000000024 $d
+                            *COM*:0000000000000004 BlackImage
                             *COM*:0000000000000004 click
                             *COM*:0000000000000004 current_position
                             *COM*:000000000000000c menu_text_usage
-                            *COM*:0000000000000004 BlackImage
+                            *COM*:0000000000000004 mode
                             *COM*:0000000000000004 action
 
 UNDEFINED SYMBOLS

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccddC8SH.s 			page 1
+ARM GAS  /tmp/ccBv7zuI.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -37,9 +37,13 @@ ARM GAS  /tmp/ccddC8SH.s 			page 1
    8:Src/keyboard.c **** 
    9:Src/keyboard.c ****   #include "keyboard.h"
   10:Src/keyboard.c **** 
-  11:Src/keyboard.c ****   void Keyboard()
-  12:Src/keyboard.c ****   {
-  28              		.loc 1 12 0
+  11:Src/keyboard.c ****   int up=0, down=0, middle=0;
+  12:Src/keyboard.c ****   int min_current_position=0;
+  13:Src/keyboard.c ****   int max_current_position=2;
+  14:Src/keyboard.c **** 
+  15:Src/keyboard.c ****   void Keyboard()
+  16:Src/keyboard.c ****   {
+  28              		.loc 1 16 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -48,148 +52,406 @@ ARM GAS  /tmp/ccddC8SH.s 			page 1
   34              		.cfi_def_cfa_offset 8
   35              		.cfi_offset 3, -8
   36              		.cfi_offset 14, -4
-  13:Src/keyboard.c ****     if(HAL_GPIO_ReadPin(BT_UP_GPIO_Port,BT_UP_Pin)==0)
-  37              		.loc 1 13 0
+  17:Src/keyboard.c ****     if(HAL_GPIO_ReadPin(BT_UP_GPIO_Port,BT_UP_Pin)==0)
+  37              		.loc 1 17 0
   38 0002 0121     		movs	r1, #1
   39 0004 4FF09040 		mov	r0, #1207959552
   40 0008 FFF7FEFF 		bl	HAL_GPIO_ReadPin
   41              	.LVL0:
-  42 000c 38B9     		cbnz	r0, .L2
-  14:Src/keyboard.c ****     {
-  15:Src/keyboard.c ****       current_position--;
-  43              		.loc 1 15 0
-ARM GAS  /tmp/ccddC8SH.s 			page 2
+ARM GAS  /tmp/ccBv7zuI.s 			page 2
 
 
-  44 000e 134A     		ldr	r2, .L8
-  45 0010 1368     		ldr	r3, [r2]
-  46 0012 013B     		subs	r3, r3, #1
-  47 0014 1360     		str	r3, [r2]
-  16:Src/keyboard.c ****       action = 1;
-  48              		.loc 1 16 0
-  49 0016 124B     		ldr	r3, .L8+4
-  50 0018 0122     		movs	r2, #1
-  51 001a 1A60     		str	r2, [r3]
-  52              	.L1:
-  17:Src/keyboard.c ****     }
-  18:Src/keyboard.c ****     else
-  19:Src/keyboard.c ****     {
-  20:Src/keyboard.c ****         if(HAL_GPIO_ReadPin(BT_DOWN_GPIO_Port,BT_DOWN_Pin)==0)
-  21:Src/keyboard.c ****         {
-  22:Src/keyboard.c ****           current_position++;
-  23:Src/keyboard.c ****           action = 1;
-  24:Src/keyboard.c ****         }
-  25:Src/keyboard.c ****         else
-  26:Src/keyboard.c ****         {
-  27:Src/keyboard.c ****           if(HAL_GPIO_ReadPin(BT_MIDDLE_GPIO_Port,BT_MIDDLE_Pin)==0)
-  28:Src/keyboard.c ****           {
-  29:Src/keyboard.c ****             click=1;
-  30:Src/keyboard.c ****             action = 1;
-  31:Src/keyboard.c ****           }
-  32:Src/keyboard.c ****           else
-  33:Src/keyboard.c ****           {
-  34:Src/keyboard.c ****             action = 0;
-  35:Src/keyboard.c ****           }
-  36:Src/keyboard.c ****         }
-  37:Src/keyboard.c ****     }
-  38:Src/keyboard.c ****   }
-  53              		.loc 1 38 0
-  54 001c 08BD     		pop	{r3, pc}
-  55              	.L2:
-  20:Src/keyboard.c ****         {
-  56              		.loc 1 20 0
-  57 001e 0221     		movs	r1, #2
-  58 0020 4FF09040 		mov	r0, #1207959552
-  59 0024 FFF7FEFF 		bl	HAL_GPIO_ReadPin
-  60              	.LVL1:
-  61 0028 38B9     		cbnz	r0, .L4
-  22:Src/keyboard.c ****           action = 1;
-  62              		.loc 1 22 0
-  63 002a 0C4A     		ldr	r2, .L8
-  64 002c 1368     		ldr	r3, [r2]
-  65 002e 0133     		adds	r3, r3, #1
-  66 0030 1360     		str	r3, [r2]
-  23:Src/keyboard.c ****         }
-  67              		.loc 1 23 0
-  68 0032 0B4B     		ldr	r3, .L8+4
-  69 0034 0122     		movs	r2, #1
-  70 0036 1A60     		str	r2, [r3]
-  71 0038 F0E7     		b	.L1
-  72              	.L4:
-  27:Src/keyboard.c ****           {
-  73              		.loc 1 27 0
-ARM GAS  /tmp/ccddC8SH.s 			page 3
+  42 000c E8B9     		cbnz	r0, .L2
+  18:Src/keyboard.c ****     {
+  19:Src/keyboard.c ****       if(up>=keyboard_delay)
+  43              		.loc 1 19 0
+  44 000e 414B     		ldr	r3, .L20
+  45 0010 1B68     		ldr	r3, [r3]
+  46 0012 632B     		cmp	r3, #99
+  47 0014 15DD     		ble	.L3
+  20:Src/keyboard.c ****       {
+  21:Src/keyboard.c ****         if(current_position>min_current_position)
+  48              		.loc 1 21 0
+  49 0016 404B     		ldr	r3, .L20+4
+  50 0018 1B68     		ldr	r3, [r3]
+  51 001a 404A     		ldr	r2, .L20+8
+  52 001c 1268     		ldr	r2, [r2]
+  53 001e 9342     		cmp	r3, r2
+  54 0020 02DD     		ble	.L4
+  22:Src/keyboard.c ****           current_position--;
+  55              		.loc 1 22 0
+  56 0022 013B     		subs	r3, r3, #1
+  57 0024 3C4A     		ldr	r2, .L20+4
+  58 0026 1360     		str	r3, [r2]
+  59              	.L4:
+  23:Src/keyboard.c ****         action = 1;
+  60              		.loc 1 23 0
+  61 0028 3D4B     		ldr	r3, .L20+12
+  62 002a 0122     		movs	r2, #1
+  63 002c 1A60     		str	r2, [r3]
+  24:Src/keyboard.c ****         up=keyboard_delay_after_click;
+  64              		.loc 1 24 0
+  65 002e 394B     		ldr	r3, .L20
+  66 0030 A2F25922 		subw	r2, r2, #601
+  67 0034 1A60     		str	r2, [r3]
+  68              	.L5:
+  25:Src/keyboard.c ****       }
+  26:Src/keyboard.c ****       else
+  27:Src/keyboard.c ****       {
+  28:Src/keyboard.c ****         up++;
+  29:Src/keyboard.c ****       }
+  30:Src/keyboard.c ****       down=keyboard_delay_after_click;
+  69              		.loc 1 30 0
+  70 0036 3B4B     		ldr	r3, .L20+16
+  71 0038 3B4A     		ldr	r2, .L20+20
+  72 003a 1360     		str	r3, [r2]
+  31:Src/keyboard.c ****       middle=keyboard_delay_after_click;
+  73              		.loc 1 31 0
+  74 003c 3B4A     		ldr	r2, .L20+24
+  75 003e 1360     		str	r3, [r2]
+  76              	.L1:
+  32:Src/keyboard.c ****     }
+  33:Src/keyboard.c ****     else
+  34:Src/keyboard.c ****     {
+  35:Src/keyboard.c ****         if(HAL_GPIO_ReadPin(BT_DOWN_GPIO_Port,BT_DOWN_Pin)==0)
+  36:Src/keyboard.c ****         {
+  37:Src/keyboard.c ****           if(down>=keyboard_delay)
+  38:Src/keyboard.c ****           {
+  39:Src/keyboard.c ****             if(current_position<max_current_position)
+ARM GAS  /tmp/ccBv7zuI.s 			page 3
 
 
-  74 003a 1021     		movs	r1, #16
-  75 003c 4FF09040 		mov	r0, #1207959552
-  76 0040 FFF7FEFF 		bl	HAL_GPIO_ReadPin
-  77              	.LVL2:
-  78 0044 18B1     		cbz	r0, .L7
-  34:Src/keyboard.c ****           }
-  79              		.loc 1 34 0
-  80 0046 064B     		ldr	r3, .L8+4
-  81 0048 0022     		movs	r2, #0
-  82 004a 1A60     		str	r2, [r3]
-  83              		.loc 1 38 0
-  84 004c E6E7     		b	.L1
-  85              	.L7:
-  29:Src/keyboard.c ****             action = 1;
-  86              		.loc 1 29 0
-  87 004e 0123     		movs	r3, #1
-  88 0050 044A     		ldr	r2, .L8+8
-  89 0052 1360     		str	r3, [r2]
-  30:Src/keyboard.c ****           }
-  90              		.loc 1 30 0
-  91 0054 024A     		ldr	r2, .L8+4
-  92 0056 1360     		str	r3, [r2]
-  93 0058 E0E7     		b	.L1
-  94              	.L9:
-  95 005a 00BF     		.align	2
-  96              	.L8:
-  97 005c 00000000 		.word	current_position
-  98 0060 00000000 		.word	action
-  99 0064 00000000 		.word	click
- 100              		.cfi_endproc
- 101              	.LFE123:
- 103              		.comm	action,4,4
- 104              		.comm	click,4,4
- 105              		.comm	current_position,4,4
- 106              		.comm	menu_text_usage,12,4
- 107              		.comm	BlackImage,4,4
- 108              		.text
- 109              	.Letext0:
- 110              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 111              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 112              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 113              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 114              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
- 115              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 116              		.file 8 "Display/e-Paper/EPD_2in9.h"
- 117              		.file 9 "Display/GUI/../Fonts/fonts.h"
- 118              		.file 10 "Display/GUI/GUI_Paint.h"
- 119              		.file 11 "Display/e-Paper/ImageData.h"
- 120              		.file 12 "/usr/arm-none-eabi/include/sys/lock.h"
- 121              		.file 13 "/usr/arm-none-eabi/include/sys/_types.h"
- 122              		.file 14 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 123              		.file 15 "/usr/arm-none-eabi/include/sys/reent.h"
- 124              		.file 16 "/usr/arm-none-eabi/include/stdlib.h"
- 125              		.file 17 "Display/display.h"
- 126              		.file 18 "Inc/keyboard.h"
- 127              		.file 19 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
-ARM GAS  /tmp/ccddC8SH.s 			page 4
+  40:Src/keyboard.c ****               current_position++;
+  41:Src/keyboard.c ****             action = 1;
+  42:Src/keyboard.c ****             down=keyboard_delay_after_click;
+  43:Src/keyboard.c ****           }
+  44:Src/keyboard.c ****           else
+  45:Src/keyboard.c ****           {
+  46:Src/keyboard.c ****             down++;
+  47:Src/keyboard.c ****           }
+  48:Src/keyboard.c ****           up=keyboard_delay_after_click;
+  49:Src/keyboard.c ****           middle=keyboard_delay_after_click;
+  50:Src/keyboard.c ****         }
+  51:Src/keyboard.c ****         else
+  52:Src/keyboard.c ****         {
+  53:Src/keyboard.c ****           if(HAL_GPIO_ReadPin(BT_MIDDLE_GPIO_Port,BT_MIDDLE_Pin)==0)
+  54:Src/keyboard.c ****           {
+  55:Src/keyboard.c ****             if(middle>=keyboard_delay)
+  56:Src/keyboard.c ****             {
+  57:Src/keyboard.c ****               click=1;
+  58:Src/keyboard.c ****               action = 1;
+  59:Src/keyboard.c ****               middle=keyboard_delay_after_click;
+  60:Src/keyboard.c ****             }
+  61:Src/keyboard.c ****             else
+  62:Src/keyboard.c ****             {
+  63:Src/keyboard.c ****               middle++;
+  64:Src/keyboard.c ****             }
+  65:Src/keyboard.c ****             up=keyboard_delay_after_click;
+  66:Src/keyboard.c ****             down=keyboard_delay_after_click;
+  67:Src/keyboard.c ****           }
+  68:Src/keyboard.c ****           else
+  69:Src/keyboard.c ****           {
+  70:Src/keyboard.c ****             action = 0;
+  71:Src/keyboard.c ****             if(up>0)
+  72:Src/keyboard.c ****               up=0;
+  73:Src/keyboard.c ****             else
+  74:Src/keyboard.c ****               up++;
+  75:Src/keyboard.c ****             if(down>0)
+  76:Src/keyboard.c ****               down=0;
+  77:Src/keyboard.c ****             else
+  78:Src/keyboard.c ****               down++;
+  79:Src/keyboard.c ****             if(middle>0)
+  80:Src/keyboard.c ****               middle=0;
+  81:Src/keyboard.c ****             else
+  82:Src/keyboard.c ****               middle++;
+  83:Src/keyboard.c ****           }
+  84:Src/keyboard.c ****         }
+  85:Src/keyboard.c ****     }
+  86:Src/keyboard.c ****   }
+  77              		.loc 1 86 0
+  78 0040 08BD     		pop	{r3, pc}
+  79              	.L3:
+  28:Src/keyboard.c ****       }
+  80              		.loc 1 28 0
+  81 0042 0133     		adds	r3, r3, #1
+  82 0044 334A     		ldr	r2, .L20
+  83 0046 1360     		str	r3, [r2]
+  84 0048 F5E7     		b	.L5
+  85              	.L2:
+ARM GAS  /tmp/ccBv7zuI.s 			page 4
+
+
+  35:Src/keyboard.c ****         {
+  86              		.loc 1 35 0
+  87 004a 0221     		movs	r1, #2
+  88 004c 4FF09040 		mov	r0, #1207959552
+  89 0050 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  90              	.LVL1:
+  91 0054 E8B9     		cbnz	r0, .L7
+  37:Src/keyboard.c ****           {
+  92              		.loc 1 37 0
+  93 0056 344B     		ldr	r3, .L20+20
+  94 0058 1B68     		ldr	r3, [r3]
+  95 005a 632B     		cmp	r3, #99
+  96 005c 15DD     		ble	.L8
+  39:Src/keyboard.c ****               current_position++;
+  97              		.loc 1 39 0
+  98 005e 2E4B     		ldr	r3, .L20+4
+  99 0060 1B68     		ldr	r3, [r3]
+ 100 0062 334A     		ldr	r2, .L20+28
+ 101 0064 1268     		ldr	r2, [r2]
+ 102 0066 9342     		cmp	r3, r2
+ 103 0068 02DA     		bge	.L9
+  40:Src/keyboard.c ****             action = 1;
+ 104              		.loc 1 40 0
+ 105 006a 0133     		adds	r3, r3, #1
+ 106 006c 2A4A     		ldr	r2, .L20+4
+ 107 006e 1360     		str	r3, [r2]
+ 108              	.L9:
+  41:Src/keyboard.c ****             down=keyboard_delay_after_click;
+ 109              		.loc 1 41 0
+ 110 0070 2B4B     		ldr	r3, .L20+12
+ 111 0072 0122     		movs	r2, #1
+ 112 0074 1A60     		str	r2, [r3]
+  42:Src/keyboard.c ****           }
+ 113              		.loc 1 42 0
+ 114 0076 2C4B     		ldr	r3, .L20+20
+ 115 0078 A2F25922 		subw	r2, r2, #601
+ 116 007c 1A60     		str	r2, [r3]
+ 117              	.L10:
+  48:Src/keyboard.c ****           middle=keyboard_delay_after_click;
+ 118              		.loc 1 48 0
+ 119 007e 294B     		ldr	r3, .L20+16
+ 120 0080 244A     		ldr	r2, .L20
+ 121 0082 1360     		str	r3, [r2]
+  49:Src/keyboard.c ****         }
+ 122              		.loc 1 49 0
+ 123 0084 294A     		ldr	r2, .L20+24
+ 124 0086 1360     		str	r3, [r2]
+ 125 0088 DAE7     		b	.L1
+ 126              	.L8:
+  46:Src/keyboard.c ****           }
+ 127              		.loc 1 46 0
+ 128 008a 0133     		adds	r3, r3, #1
+ 129 008c 264A     		ldr	r2, .L20+20
+ 130 008e 1360     		str	r3, [r2]
+ 131 0090 F5E7     		b	.L10
+ 132              	.L7:
+  53:Src/keyboard.c ****           {
+ARM GAS  /tmp/ccBv7zuI.s 			page 5
+
+
+ 133              		.loc 1 53 0
+ 134 0092 1021     		movs	r1, #16
+ 135 0094 4FF09040 		mov	r0, #1207959552
+ 136 0098 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 137              	.LVL2:
+ 138 009c A8B9     		cbnz	r0, .L11
+  55:Src/keyboard.c ****             {
+ 139              		.loc 1 55 0
+ 140 009e 234B     		ldr	r3, .L20+24
+ 141 00a0 1B68     		ldr	r3, [r3]
+ 142 00a2 632B     		cmp	r3, #99
+ 143 00a4 0DDD     		ble	.L12
+  57:Src/keyboard.c ****               action = 1;
+ 144              		.loc 1 57 0
+ 145 00a6 0123     		movs	r3, #1
+ 146 00a8 224A     		ldr	r2, .L20+32
+ 147 00aa 1360     		str	r3, [r2]
+  58:Src/keyboard.c ****               middle=keyboard_delay_after_click;
+ 148              		.loc 1 58 0
+ 149 00ac 1C4A     		ldr	r2, .L20+12
+ 150 00ae 1360     		str	r3, [r2]
+  59:Src/keyboard.c ****             }
+ 151              		.loc 1 59 0
+ 152 00b0 1E4B     		ldr	r3, .L20+24
+ 153 00b2 1C4A     		ldr	r2, .L20+16
+ 154 00b4 1A60     		str	r2, [r3]
+ 155              	.L13:
+  65:Src/keyboard.c ****             down=keyboard_delay_after_click;
+ 156              		.loc 1 65 0
+ 157 00b6 1B4B     		ldr	r3, .L20+16
+ 158 00b8 164A     		ldr	r2, .L20
+ 159 00ba 1360     		str	r3, [r2]
+  66:Src/keyboard.c ****           }
+ 160              		.loc 1 66 0
+ 161 00bc 1A4A     		ldr	r2, .L20+20
+ 162 00be 1360     		str	r3, [r2]
+ 163 00c0 BEE7     		b	.L1
+ 164              	.L12:
+  63:Src/keyboard.c ****             }
+ 165              		.loc 1 63 0
+ 166 00c2 0133     		adds	r3, r3, #1
+ 167 00c4 194A     		ldr	r2, .L20+24
+ 168 00c6 1360     		str	r3, [r2]
+ 169 00c8 F5E7     		b	.L13
+ 170              	.L11:
+  70:Src/keyboard.c ****             if(up>0)
+ 171              		.loc 1 70 0
+ 172 00ca 154B     		ldr	r3, .L20+12
+ 173 00cc 0022     		movs	r2, #0
+ 174 00ce 1A60     		str	r2, [r3]
+  71:Src/keyboard.c ****               up=0;
+ 175              		.loc 1 71 0
+ 176 00d0 104B     		ldr	r3, .L20
+ 177 00d2 1B68     		ldr	r3, [r3]
+ 178 00d4 9342     		cmp	r3, r2
+ 179 00d6 10DD     		ble	.L14
+  72:Src/keyboard.c ****             else
+ARM GAS  /tmp/ccBv7zuI.s 			page 6
+
+
+ 180              		.loc 1 72 0
+ 181 00d8 0E4B     		ldr	r3, .L20
+ 182 00da 1A60     		str	r2, [r3]
+ 183              	.L15:
+  75:Src/keyboard.c ****               down=0;
+ 184              		.loc 1 75 0
+ 185 00dc 124B     		ldr	r3, .L20+20
+ 186 00de 1B68     		ldr	r3, [r3]
+ 187 00e0 002B     		cmp	r3, #0
+ 188 00e2 0EDD     		ble	.L16
+  76:Src/keyboard.c ****             else
+ 189              		.loc 1 76 0
+ 190 00e4 104B     		ldr	r3, .L20+20
+ 191 00e6 0022     		movs	r2, #0
+ 192 00e8 1A60     		str	r2, [r3]
+ 193              	.L17:
+  79:Src/keyboard.c ****               middle=0;
+ 194              		.loc 1 79 0
+ 195 00ea 104B     		ldr	r3, .L20+24
+ 196 00ec 1B68     		ldr	r3, [r3]
+ 197 00ee 002B     		cmp	r3, #0
+ 198 00f0 0BDD     		ble	.L18
+  80:Src/keyboard.c ****             else
+ 199              		.loc 1 80 0
+ 200 00f2 0E4B     		ldr	r3, .L20+24
+ 201 00f4 0022     		movs	r2, #0
+ 202 00f6 1A60     		str	r2, [r3]
+ 203 00f8 A2E7     		b	.L1
+ 204              	.L14:
+  74:Src/keyboard.c ****             if(down>0)
+ 205              		.loc 1 74 0
+ 206 00fa 0133     		adds	r3, r3, #1
+ 207 00fc 054A     		ldr	r2, .L20
+ 208 00fe 1360     		str	r3, [r2]
+ 209 0100 ECE7     		b	.L15
+ 210              	.L16:
+  78:Src/keyboard.c ****             if(middle>0)
+ 211              		.loc 1 78 0
+ 212 0102 0133     		adds	r3, r3, #1
+ 213 0104 084A     		ldr	r2, .L20+20
+ 214 0106 1360     		str	r3, [r2]
+ 215 0108 EFE7     		b	.L17
+ 216              	.L18:
+  82:Src/keyboard.c ****           }
+ 217              		.loc 1 82 0
+ 218 010a 0133     		adds	r3, r3, #1
+ 219 010c 074A     		ldr	r2, .L20+24
+ 220 010e 1360     		str	r3, [r2]
+ 221              		.loc 1 86 0
+ 222 0110 96E7     		b	.L1
+ 223              	.L21:
+ 224 0112 00BF     		.align	2
+ 225              	.L20:
+ 226 0114 00000000 		.word	.LANCHOR0
+ 227 0118 00000000 		.word	current_position
+ 228 011c 00000000 		.word	.LANCHOR1
+ 229 0120 00000000 		.word	action
+ARM GAS  /tmp/ccBv7zuI.s 			page 7
+
+
+ 230 0124 A8FDFFFF 		.word	-600
+ 231 0128 00000000 		.word	.LANCHOR2
+ 232 012c 00000000 		.word	.LANCHOR3
+ 233 0130 00000000 		.word	.LANCHOR4
+ 234 0134 00000000 		.word	click
+ 235              		.cfi_endproc
+ 236              	.LFE123:
+ 238              		.global	max_current_position
+ 239              		.global	min_current_position
+ 240              		.global	middle
+ 241              		.global	down
+ 242              		.global	up
+ 243              		.comm	mode,4,4
+ 244              		.comm	action,4,4
+ 245              		.comm	BlackImage,4,4
+ 246              		.comm	click,4,4
+ 247              		.comm	current_position,4,4
+ 248              		.comm	menu_text_usage,12,4
+ 249              		.section	.bss.down,"aw",%nobits
+ 250              		.align	2
+ 251              		.set	.LANCHOR2,. + 0
+ 254              	down:
+ 255 0000 00000000 		.space	4
+ 256              		.section	.bss.middle,"aw",%nobits
+ 257              		.align	2
+ 258              		.set	.LANCHOR3,. + 0
+ 261              	middle:
+ 262 0000 00000000 		.space	4
+ 263              		.section	.bss.min_current_position,"aw",%nobits
+ 264              		.align	2
+ 265              		.set	.LANCHOR1,. + 0
+ 268              	min_current_position:
+ 269 0000 00000000 		.space	4
+ 270              		.section	.bss.up,"aw",%nobits
+ 271              		.align	2
+ 272              		.set	.LANCHOR0,. + 0
+ 275              	up:
+ 276 0000 00000000 		.space	4
+ 277              		.section	.data.max_current_position,"aw",%progbits
+ 278              		.align	2
+ 279              		.set	.LANCHOR4,. + 0
+ 282              	max_current_position:
+ 283 0000 02000000 		.word	2
+ 284              		.text
+ 285              	.Letext0:
+ 286              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 287              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 288              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 289              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 290              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ 291              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 292              		.file 8 "Display/e-Paper/EPD_2in9.h"
+ 293              		.file 9 "Display/GUI/../Fonts/fonts.h"
+ 294              		.file 10 "Display/GUI/GUI_Paint.h"
+ 295              		.file 11 "Display/e-Paper/ImageData.h"
+ 296              		.file 12 "/usr/arm-none-eabi/include/sys/lock.h"
+ 297              		.file 13 "/usr/arm-none-eabi/include/sys/_types.h"
+ARM GAS  /tmp/ccBv7zuI.s 			page 8
+
+
+ 298              		.file 14 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 299              		.file 15 "/usr/arm-none-eabi/include/sys/reent.h"
+ 300              		.file 16 "/usr/arm-none-eabi/include/stdlib.h"
+ 301              		.file 17 "Display/Menu/menu.h"
+ 302              		.file 18 "Display/display.h"
+ 303              		.file 19 "Inc/keyboard.h"
+ 304              		.file 20 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_gpio.h"
+ARM GAS  /tmp/ccBv7zuI.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 keyboard.c
-     /tmp/ccddC8SH.s:18     .text.Keyboard:0000000000000000 $t
-     /tmp/ccddC8SH.s:25     .text.Keyboard:0000000000000000 Keyboard
-     /tmp/ccddC8SH.s:97     .text.Keyboard:000000000000005c $d
+     /tmp/ccBv7zuI.s:18     .text.Keyboard:0000000000000000 $t
+     /tmp/ccBv7zuI.s:25     .text.Keyboard:0000000000000000 Keyboard
+     /tmp/ccBv7zuI.s:226    .text.Keyboard:0000000000000114 $d
                             *COM*:0000000000000004 current_position
                             *COM*:0000000000000004 action
                             *COM*:0000000000000004 click
-                            *COM*:000000000000000c menu_text_usage
+     /tmp/ccBv7zuI.s:282    .data.max_current_position:0000000000000000 max_current_position
+     /tmp/ccBv7zuI.s:268    .bss.min_current_position:0000000000000000 min_current_position
+     /tmp/ccBv7zuI.s:261    .bss.middle:0000000000000000 middle
+     /tmp/ccBv7zuI.s:254    .bss.down:0000000000000000 down
+     /tmp/ccBv7zuI.s:275    .bss.up:0000000000000000 up
+                            *COM*:0000000000000004 mode
                             *COM*:0000000000000004 BlackImage
+                            *COM*:000000000000000c menu_text_usage
+     /tmp/ccBv7zuI.s:250    .bss.down:0000000000000000 $d
+     /tmp/ccBv7zuI.s:257    .bss.middle:0000000000000000 $d
+     /tmp/ccBv7zuI.s:264    .bss.min_current_position:0000000000000000 $d
+     /tmp/ccBv7zuI.s:271    .bss.up:0000000000000000 $d
+     /tmp/ccBv7zuI.s:278    .data.max_current_position:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_ReadPin

@@ -16,5 +16,9 @@
 
   void Keyboard(void);
   int action;
+  int mode;
+
+  #define keyboard_delay 100
+  #define keyboard_delay_after_click -600
 
   #endif /* __KEYBOARD_H */
