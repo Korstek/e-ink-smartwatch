@@ -1,4 +1,5 @@
-build/main.o: Src/main.c Inc/main.h \
+build/modes.o: Display/Modes/modes.c Display/Modes/modes.h \
+ Display/e-Paper/EPD_2in9.h Display/Config/DEV_Config.h Inc/main.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h \
  Inc/stm32l4xx_hal_conf.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_rcc.h \
@@ -31,11 +32,16 @@ build/main.o: Src/main.c Inc/main.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- Display/display.h Display/e-Paper/EPD_2in9.h Display/Config/DEV_Config.h \
- Display/GUI/GUI_Paint.h Display/GUI/../Fonts/fonts.h \
+ Display/display.h Display/GUI/GUI_Paint.h Display/GUI/../Fonts/fonts.h \
  Display/e-Paper/ImageData.h Inc/keyboard.h Display/Modes/modes.h \
  Display/Text_Mode/text.h Display/Text_Mode/example.h \
  Display/Menu_Mode/menu.h Inc/keyboard.h
+
+Display/Modes/modes.h:
+
+Display/e-Paper/EPD_2in9.h:
+
+Display/Config/DEV_Config.h:
 
 Inc/main.h:
 
@@ -108,10 +114,6 @@ Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
 
 Display/display.h:
-
-Display/e-Paper/EPD_2in9.h:
-
-Display/Config/DEV_Config.h:
 
 Display/GUI/GUI_Paint.h:
 

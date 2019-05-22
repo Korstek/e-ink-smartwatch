@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccA5eG1F.s 			page 1
+ARM GAS  /tmp/ccPdnIQU.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -54,11 +54,11 @@ ARM GAS  /tmp/ccA5eG1F.s 			page 1
   13:Display/display.c **** 
   14:Display/display.c ****   EPD_Init(lut_full_update);
   40              		.loc 1 14 0
-  41 0004 1448     		ldr	r0, .L4
+  41 0004 1148     		ldr	r0, .L4
   42 0006 FFF7FEFF 		bl	EPD_Init
   43              	.LVL0:
   15:Display/display.c ****   EPD_Clear();
-ARM GAS  /tmp/ccA5eG1F.s 			page 2
+ARM GAS  /tmp/ccPdnIQU.s 			page 2
 
 
   44              		.loc 1 15 0
@@ -76,9 +76,9 @@ ARM GAS  /tmp/ccA5eG1F.s 			page 1
   52 0016 4FF49450 		mov	r0, #4736
   53 001a FFF7FEFF 		bl	malloc
   54              	.LVL3:
-  55 001e 0F4B     		ldr	r3, .L4+4
+  55 001e 0C4B     		ldr	r3, .L4+4
   56 0020 1860     		str	r0, [r3]
-  57 0022 B0B1     		cbz	r0, .L1
+  57 0022 88B1     		cbz	r0, .L1
   20:Display/display.c ****       return -1;
   21:Display/display.c ****   }
   22:Display/display.c ****   Paint_NewImage(BlackImage, EPD_WIDTH, EPD_HEIGHT, 270, WHITE);
@@ -92,7 +92,7 @@ ARM GAS  /tmp/ccA5eG1F.s 			page 1
   65              	.LVL4:
   23:Display/display.c ****   Paint_SelectImage(BlackImage);
   66              		.loc 1 23 0
-  67 0036 094B     		ldr	r3, .L4+4
+  67 0036 064B     		ldr	r3, .L4+4
   68 0038 1868     		ldr	r0, [r3]
   69 003a FFF7FEFF 		bl	Paint_SelectImage
   70              	.LVL5:
@@ -116,274 +116,132 @@ ARM GAS  /tmp/ccA5eG1F.s 			page 1
   37:Display/display.c ****       EPD_Display(BlackImage);
   38:Display/display.c ****   #endif
   39:Display/display.c **** 
-  40:Display/display.c ****   display_mode=MENU_MODE;
+  40:Display/display.c ****   Modes_Init();
   75              		.loc 1 40 0
-ARM GAS  /tmp/ccA5eG1F.s 			page 3
+ARM GAS  /tmp/ccPdnIQU.s 			page 3
 
 
-  76 0044 0123     		movs	r3, #1
-  77 0046 064A     		ldr	r2, .L4+8
-  78 0048 1360     		str	r3, [r2]
-  41:Display/display.c ****   display_previous_mode=MENU_MODE;
+  76 0044 FFF7FEFF 		bl	Modes_Init
+  77              	.LVL7:
+  78              	.L1:
+  41:Display/display.c **** }
   79              		.loc 1 41 0
-  80 004a 064A     		ldr	r2, .L4+12
-  81 004c 1360     		str	r3, [r2]
+  80 0048 02B0     		add	sp, sp, #8
+  81              	.LCFI2:
+  82              		.cfi_def_cfa_offset 8
+  83              		@ sp needed
+  84 004a 10BD     		pop	{r4, pc}
+  85              	.L5:
+  86              		.align	2
+  87              	.L4:
+  88 004c 00000000 		.word	lut_full_update
+  89 0050 00000000 		.word	BlackImage
+  90              		.cfi_endproc
+  91              	.LFE123:
+  93              		.section	.text.Display,"ax",%progbits
+  94              		.align	1
+  95              		.global	Display
+  96              		.syntax unified
+  97              		.thumb
+  98              		.thumb_func
+  99              		.fpu fpv4-sp-d16
+ 101              	Display:
+ 102              	.LFB124:
   42:Display/display.c **** 
-  43:Display/display.c ****   Menu_Init();
-  82              		.loc 1 43 0
-  83 004e FFF7FEFF 		bl	Menu_Init
-  84              	.LVL7:
-  85              	.L1:
-  44:Display/display.c **** }
-  86              		.loc 1 44 0
-  87 0052 02B0     		add	sp, sp, #8
-  88              	.LCFI2:
-  89              		.cfi_def_cfa_offset 8
-  90              		@ sp needed
-  91 0054 10BD     		pop	{r4, pc}
-  92              	.L5:
-  93 0056 00BF     		.align	2
-  94              	.L4:
-  95 0058 00000000 		.word	lut_full_update
-  96 005c 00000000 		.word	BlackImage
-  97 0060 00000000 		.word	display_mode
-  98 0064 00000000 		.word	display_previous_mode
-  99              		.cfi_endproc
- 100              	.LFE123:
- 102              		.section	.text.Display,"ax",%progbits
- 103              		.align	1
- 104              		.global	Display
- 105              		.syntax unified
- 106              		.thumb
- 107              		.thumb_func
- 108              		.fpu fpv4-sp-d16
- 110              	Display:
- 111              	.LFB124:
-  45:Display/display.c **** 
-  46:Display/display.c **** void Display()
-  47:Display/display.c **** {
- 112              		.loc 1 47 0
- 113              		.cfi_startproc
- 114              		@ args = 0, pretend = 0, frame = 0
- 115              		@ frame_needed = 0, uses_anonymous_args = 0
- 116 0000 08B5     		push	{r3, lr}
- 117              	.LCFI3:
- 118              		.cfi_def_cfa_offset 8
- 119              		.cfi_offset 3, -8
- 120              		.cfi_offset 14, -4
-  48:Display/display.c ****   if(click==1)
- 121              		.loc 1 48 0
- 122 0002 1E4B     		ldr	r3, .L23
- 123 0004 1B68     		ldr	r3, [r3]
- 124 0006 012B     		cmp	r3, #1
- 125 0008 08D0     		beq	.L20
- 126              	.L7:
-ARM GAS  /tmp/ccA5eG1F.s 			page 4
+  43:Display/display.c **** void Display()
+  44:Display/display.c **** {
+ 103              		.loc 1 44 0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107 0000 08B5     		push	{r3, lr}
+ 108              	.LCFI3:
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 3, -8
+ 111              		.cfi_offset 14, -4
+  45:Display/display.c ****   if(click==1)
+ 112              		.loc 1 45 0
+ 113 0002 064B     		ldr	r3, .L10
+ 114 0004 1B68     		ldr	r3, [r3]
+ 115 0006 012B     		cmp	r3, #1
+ 116 0008 05D0     		beq	.L9
+ 117              	.L7:
+  46:Display/display.c ****     Click_Handler();
+  47:Display/display.c **** 
+  48:Display/display.c ****   Mode_Handler();
+ 118              		.loc 1 48 0
+ 119 000a FFF7FEFF 		bl	Mode_Handler
+ 120              	.LVL8:
+  49:Display/display.c **** 
+  50:Display/display.c ****   action=0;
+ 121              		.loc 1 50 0
+ 122 000e 044B     		ldr	r3, .L10+4
+ 123 0010 0022     		movs	r2, #0
+ 124 0012 1A60     		str	r2, [r3]
+ARM GAS  /tmp/ccPdnIQU.s 			page 4
 
 
-  49:Display/display.c ****   {
-  50:Display/display.c ****     switch (current_position) {
-  51:Display/display.c ****       case OPEN_POSITION:
-  52:Display/display.c ****           display_mode = TEXT_MODE;
-  53:Display/display.c ****         break;
-  54:Display/display.c ****       default:
-  55:Display/display.c ****           display_mode = MENU_MODE;
-  56:Display/display.c ****         break;
-  57:Display/display.c ****     }
-  58:Display/display.c ****     click=0;
-  59:Display/display.c ****   }
-  60:Display/display.c ****   switch (display_mode) {
- 127              		.loc 1 60 0
- 128 000a 1D4B     		ldr	r3, .L23+4
- 129 000c 1B68     		ldr	r3, [r3]
- 130 000e 013B     		subs	r3, r3, #1
- 131 0010 032B     		cmp	r3, #3
- 132 0012 25D8     		bhi	.L11
- 133 0014 DFE803F0 		tbb	[pc, r3]
- 134              	.L13:
- 135 0018 10       		.byte	(.L12-.L13)/2
- 136 0019 1A       		.byte	(.L14-.L13)/2
- 137 001a 29       		.byte	(.L15-.L13)/2
- 138 001b 29       		.byte	(.L15-.L13)/2
- 139              		.p2align 1
- 140              	.L20:
-  50:Display/display.c ****       case OPEN_POSITION:
- 141              		.loc 1 50 0
- 142 001c 194B     		ldr	r3, .L23+8
- 143 001e 1B68     		ldr	r3, [r3]
- 144 0020 33B9     		cbnz	r3, .L18
-  52:Display/display.c ****         break;
- 145              		.loc 1 52 0
- 146 0022 174B     		ldr	r3, .L23+4
- 147 0024 0222     		movs	r2, #2
- 148 0026 1A60     		str	r2, [r3]
- 149              	.L10:
-  58:Display/display.c ****   }
- 150              		.loc 1 58 0
- 151 0028 144B     		ldr	r3, .L23
- 152 002a 0022     		movs	r2, #0
- 153 002c 1A60     		str	r2, [r3]
- 154 002e ECE7     		b	.L7
- 155              	.L18:
-  55:Display/display.c ****         break;
- 156              		.loc 1 55 0
- 157 0030 134B     		ldr	r3, .L23+4
- 158 0032 0122     		movs	r2, #1
- 159 0034 1A60     		str	r2, [r3]
-  56:Display/display.c ****     }
- 160              		.loc 1 56 0
- 161 0036 F7E7     		b	.L10
- 162              	.L12:
-  61:Display/display.c ****     case MENU_MODE:
-  62:Display/display.c ****         if(display_previous_mode==MENU_MODE)
- 163              		.loc 1 62 0
- 164 0038 134B     		ldr	r3, .L23+12
-ARM GAS  /tmp/ccA5eG1F.s 			page 5
-
-
- 165 003a 1B68     		ldr	r3, [r3]
- 166 003c 012B     		cmp	r3, #1
- 167 003e 02D0     		beq	.L21
-  63:Display/display.c ****           Update_Menu();
-  64:Display/display.c ****         else
-  65:Display/display.c ****           Menu_Reinit();
- 168              		.loc 1 65 0
- 169 0040 FFF7FEFF 		bl	Menu_Reinit
- 170              	.LVL8:
- 171 0044 11E0     		b	.L15
- 172              	.L21:
-  63:Display/display.c ****           Update_Menu();
- 173              		.loc 1 63 0
- 174 0046 FFF7FEFF 		bl	Update_Menu
- 175              	.LVL9:
- 176 004a 0EE0     		b	.L15
- 177              	.L14:
-  66:Display/display.c ****       break;
-  67:Display/display.c **** 
-  68:Display/display.c ****     case TEXT_MODE:
-  69:Display/display.c ****         if(display_previous_mode==TEXT_MODE)
- 178              		.loc 1 69 0
- 179 004c 0E4B     		ldr	r3, .L23+12
- 180 004e 1B68     		ldr	r3, [r3]
- 181 0050 022B     		cmp	r3, #2
- 182 0052 02D0     		beq	.L22
-  70:Display/display.c ****           Text_Init();
-  71:Display/display.c ****           //Update_Text();
-  72:Display/display.c ****         else
-  73:Display/display.c ****           Text_Init();
- 183              		.loc 1 73 0
- 184 0054 FFF7FEFF 		bl	Text_Init
- 185              	.LVL10:
- 186 0058 07E0     		b	.L15
- 187              	.L22:
-  70:Display/display.c ****           Text_Init();
- 188              		.loc 1 70 0
- 189 005a FFF7FEFF 		bl	Text_Init
- 190              	.LVL11:
- 191 005e 04E0     		b	.L15
- 192              	.L11:
-  74:Display/display.c ****       break;
-  75:Display/display.c **** 
-  76:Display/display.c ****     case SLEEP_MODE:
-  77:Display/display.c **** 
-  78:Display/display.c ****       break;
-  79:Display/display.c **** 
-  80:Display/display.c ****     case CONNECT_MODE:
-  81:Display/display.c **** 
-  82:Display/display.c ****       break;
-  83:Display/display.c **** 
-  84:Display/display.c ****     default:
-  85:Display/display.c ****         Menu_Reinit();
- 193              		.loc 1 85 0
- 194 0060 FFF7FEFF 		bl	Menu_Reinit
- 195              	.LVL12:
-  86:Display/display.c ****         display_mode=MENU_MODE;
-ARM GAS  /tmp/ccA5eG1F.s 			page 6
-
-
- 196              		.loc 1 86 0
- 197 0064 064B     		ldr	r3, .L23+4
- 198 0066 0122     		movs	r2, #1
- 199 0068 1A60     		str	r2, [r3]
- 200              	.L15:
-  87:Display/display.c ****       break;
-  88:Display/display.c ****   }
-  89:Display/display.c ****   display_previous_mode=display_mode;
- 201              		.loc 1 89 0
- 202 006a 054B     		ldr	r3, .L23+4
- 203 006c 1A68     		ldr	r2, [r3]
- 204 006e 064B     		ldr	r3, .L23+12
- 205 0070 1A60     		str	r2, [r3]
-  90:Display/display.c ****   action=0;
- 206              		.loc 1 90 0
- 207 0072 064B     		ldr	r3, .L23+16
- 208 0074 0022     		movs	r2, #0
- 209 0076 1A60     		str	r2, [r3]
-  91:Display/display.c **** }
- 210              		.loc 1 91 0
- 211 0078 08BD     		pop	{r3, pc}
- 212              	.L24:
- 213 007a 00BF     		.align	2
- 214              	.L23:
- 215 007c 00000000 		.word	click
- 216 0080 00000000 		.word	display_mode
- 217 0084 00000000 		.word	current_position
- 218 0088 00000000 		.word	display_previous_mode
- 219 008c 00000000 		.word	action
- 220              		.cfi_endproc
- 221              	.LFE124:
- 223              		.comm	display_previous_mode,4,4
- 224              		.comm	display_mode,4,4
- 225              		.comm	BlackImage,4,4
- 226              		.comm	click,4,4
- 227              		.comm	current_position,4,4
- 228              		.comm	menu_text_usage,12,4
- 229              		.comm	mode,4,4
- 230              		.comm	action,4,4
- 231              		.text
- 232              	.Letext0:
- 233              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 234              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 235              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 236              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 237              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 238              		.file 7 "Inc/keyboard.h"
- 239              		.file 8 "Display/e-Paper/EPD_2in9.h"
- 240              		.file 9 "Display/GUI/../Fonts/fonts.h"
- 241              		.file 10 "Display/GUI/GUI_Paint.h"
- 242              		.file 11 "Display/e-Paper/ImageData.h"
- 243              		.file 12 "/usr/arm-none-eabi/include/sys/lock.h"
- 244              		.file 13 "/usr/arm-none-eabi/include/sys/_types.h"
- 245              		.file 14 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 246              		.file 15 "/usr/arm-none-eabi/include/sys/reent.h"
- 247              		.file 16 "/usr/arm-none-eabi/include/stdlib.h"
- 248              		.file 17 "Display/Text_Mode/text.h"
-ARM GAS  /tmp/ccA5eG1F.s 			page 7
-
-
- 249              		.file 18 "Display/Menu/menu.h"
- 250              		.file 19 "Display/display.h"
-ARM GAS  /tmp/ccA5eG1F.s 			page 8
+  51:Display/display.c **** }
+ 125              		.loc 1 51 0
+ 126 0014 08BD     		pop	{r3, pc}
+ 127              	.L9:
+  46:Display/display.c ****     Click_Handler();
+ 128              		.loc 1 46 0
+ 129 0016 FFF7FEFF 		bl	Click_Handler
+ 130              	.LVL9:
+ 131 001a F6E7     		b	.L7
+ 132              	.L11:
+ 133              		.align	2
+ 134              	.L10:
+ 135 001c 00000000 		.word	click
+ 136 0020 00000000 		.word	action
+ 137              		.cfi_endproc
+ 138              	.LFE124:
+ 140              		.comm	click,4,4
+ 141              		.comm	menu_current_position,4,4
+ 142              		.comm	action,4,4
+ 143              		.comm	previous_operation_mode,4,4
+ 144              		.comm	operation_mode,4,4
+ 145              		.comm	BlackImage,4,4
+ 146              		.comm	menu_text_usage,12,4
+ 147              		.text
+ 148              	.Letext0:
+ 149              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 150              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 151              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 152              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 153              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 154              		.file 7 "Display/GUI/../Fonts/fonts.h"
+ 155              		.file 8 "Display/GUI/GUI_Paint.h"
+ 156              		.file 9 "Display/e-Paper/ImageData.h"
+ 157              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
+ 158              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
+ 159              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 160              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
+ 161              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
+ 162              		.file 15 "Display/Text_Mode/text.h"
+ 163              		.file 16 "Display/Menu_Mode/menu.h"
+ 164              		.file 17 "Display/Modes/modes.h"
+ 165              		.file 18 "Inc/keyboard.h"
+ 166              		.file 19 "Display/e-Paper/EPD_2in9.h"
+ARM GAS  /tmp/ccPdnIQU.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 display.c
-     /tmp/ccA5eG1F.s:18     .text.Display_Init:0000000000000000 $t
-     /tmp/ccA5eG1F.s:25     .text.Display_Init:0000000000000000 Display_Init
-     /tmp/ccA5eG1F.s:95     .text.Display_Init:0000000000000058 $d
+     /tmp/ccPdnIQU.s:18     .text.Display_Init:0000000000000000 $t
+     /tmp/ccPdnIQU.s:25     .text.Display_Init:0000000000000000 Display_Init
+     /tmp/ccPdnIQU.s:88     .text.Display_Init:000000000000004c $d
                             *COM*:0000000000000004 BlackImage
-                            *COM*:0000000000000004 display_mode
-                            *COM*:0000000000000004 display_previous_mode
-     /tmp/ccA5eG1F.s:103    .text.Display:0000000000000000 $t
-     /tmp/ccA5eG1F.s:110    .text.Display:0000000000000000 Display
-     /tmp/ccA5eG1F.s:135    .text.Display:0000000000000018 $d
-     /tmp/ccA5eG1F.s:139    .text.Display:000000000000001c $t
-     /tmp/ccA5eG1F.s:215    .text.Display:000000000000007c $d
+     /tmp/ccPdnIQU.s:94     .text.Display:0000000000000000 $t
+     /tmp/ccPdnIQU.s:101    .text.Display:0000000000000000 Display
+     /tmp/ccPdnIQU.s:135    .text.Display:000000000000001c $d
                             *COM*:0000000000000004 click
-                            *COM*:0000000000000004 current_position
                             *COM*:0000000000000004 action
+                            *COM*:0000000000000004 menu_current_position
+                            *COM*:0000000000000004 previous_operation_mode
+                            *COM*:0000000000000004 operation_mode
                             *COM*:000000000000000c menu_text_usage
-                            *COM*:0000000000000004 mode
 
 UNDEFINED SYMBOLS
 EPD_Init
@@ -393,8 +251,7 @@ malloc
 Paint_NewImage
 Paint_SelectImage
 Paint_Clear
-Menu_Init
+Modes_Init
 lut_full_update
-Menu_Reinit
-Update_Menu
-Text_Init
+Mode_Handler
+Click_Handler

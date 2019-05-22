@@ -100,6 +100,7 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   Display_Init();
+  Keyboard_Init();
   Display();
   /* USER CODE END 2 */
 

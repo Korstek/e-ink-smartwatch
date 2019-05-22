@@ -20,6 +20,7 @@
   #include "example.h"
 
   void Text_Init(void);
+  void Text_Processing(void);
 
   extern const char text[];
 

@@ -1,0 +1,389 @@
+ARM GAS  /tmp/ccfXne8V.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"modes.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Modes_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	Modes_Init
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	Modes_Init:
+  26              	.LFB123:
+  27              		.file 1 "Display/Modes/modes.c"
+   1:Display/Modes/modes.c **** 
+   2:Display/Modes/modes.c **** #include "modes.h"
+   3:Display/Modes/modes.c **** 
+   4:Display/Modes/modes.c **** void Modes_Init()
+   5:Display/Modes/modes.c **** {
+  28              		.loc 1 5 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 3, -8
+  36              		.cfi_offset 14, -4
+   6:Display/Modes/modes.c ****   operation_mode=MENU_MODE;
+  37              		.loc 1 6 0
+  38 0002 0123     		movs	r3, #1
+  39 0004 034A     		ldr	r2, .L3
+  40 0006 1360     		str	r3, [r2]
+   7:Display/Modes/modes.c ****   previous_operation_mode=MENU_MODE;
+  41              		.loc 1 7 0
+  42 0008 034A     		ldr	r2, .L3+4
+  43 000a 1360     		str	r3, [r2]
+   8:Display/Modes/modes.c **** 
+   9:Display/Modes/modes.c ****   Menu_Init();
+  44              		.loc 1 9 0
+  45 000c FFF7FEFF 		bl	Menu_Init
+  46              	.LVL0:
+  10:Display/Modes/modes.c **** }
+  47              		.loc 1 10 0
+  48 0010 08BD     		pop	{r3, pc}
+ARM GAS  /tmp/ccfXne8V.s 			page 2
+
+
+  49              	.L4:
+  50 0012 00BF     		.align	2
+  51              	.L3:
+  52 0014 00000000 		.word	operation_mode
+  53 0018 00000000 		.word	previous_operation_mode
+  54              		.cfi_endproc
+  55              	.LFE123:
+  57              		.section	.text.Click_Handler_Menu,"ax",%progbits
+  58              		.align	1
+  59              		.global	Click_Handler_Menu
+  60              		.syntax unified
+  61              		.thumb
+  62              		.thumb_func
+  63              		.fpu fpv4-sp-d16
+  65              	Click_Handler_Menu:
+  66              	.LFB125:
+  11:Display/Modes/modes.c **** 
+  12:Display/Modes/modes.c **** void Click_Handler()
+  13:Display/Modes/modes.c **** {
+  14:Display/Modes/modes.c ****   switch (operation_mode) {
+  15:Display/Modes/modes.c ****     case MENU_MODE:
+  16:Display/Modes/modes.c ****         Click_Handler_Menu();
+  17:Display/Modes/modes.c ****       break;
+  18:Display/Modes/modes.c ****     case TEXT_MODE:
+  19:Display/Modes/modes.c ****         operation_mode = MENU_MODE;
+  20:Display/Modes/modes.c ****       break;
+  21:Display/Modes/modes.c ****   }
+  22:Display/Modes/modes.c **** 
+  23:Display/Modes/modes.c ****   click=0;
+  24:Display/Modes/modes.c **** }
+  25:Display/Modes/modes.c **** 
+  26:Display/Modes/modes.c **** void Click_Handler_Menu()
+  27:Display/Modes/modes.c **** {
+  67              		.loc 1 27 0
+  68              		.cfi_startproc
+  69              		@ args = 0, pretend = 0, frame = 0
+  70              		@ frame_needed = 0, uses_anonymous_args = 0
+  71              		@ link register save eliminated.
+  28:Display/Modes/modes.c ****   switch (menu_current_position) {
+  72              		.loc 1 28 0
+  73 0000 054B     		ldr	r3, .L11
+  74 0002 1B68     		ldr	r3, [r3]
+  75 0004 1BB1     		cbz	r3, .L10
+  29:Display/Modes/modes.c ****     case OPEN_POSITION:
+  30:Display/Modes/modes.c ****         operation_mode = TEXT_MODE;
+  31:Display/Modes/modes.c ****       break;
+  32:Display/Modes/modes.c ****     default:
+  33:Display/Modes/modes.c ****         operation_mode = MENU_MODE;
+  76              		.loc 1 33 0
+  77 0006 054B     		ldr	r3, .L11+4
+  78 0008 0122     		movs	r2, #1
+  79 000a 1A60     		str	r2, [r3]
+  34:Display/Modes/modes.c ****       break;
+  35:Display/Modes/modes.c ****   }
+  36:Display/Modes/modes.c **** }
+  80              		.loc 1 36 0
+  81 000c 7047     		bx	lr
+ARM GAS  /tmp/ccfXne8V.s 			page 3
+
+
+  82              	.L10:
+  30:Display/Modes/modes.c ****       break;
+  83              		.loc 1 30 0
+  84 000e 034B     		ldr	r3, .L11+4
+  85 0010 0222     		movs	r2, #2
+  86 0012 1A60     		str	r2, [r3]
+  31:Display/Modes/modes.c ****     default:
+  87              		.loc 1 31 0
+  88 0014 7047     		bx	lr
+  89              	.L12:
+  90 0016 00BF     		.align	2
+  91              	.L11:
+  92 0018 00000000 		.word	menu_current_position
+  93 001c 00000000 		.word	operation_mode
+  94              		.cfi_endproc
+  95              	.LFE125:
+  97              		.section	.text.Click_Handler,"ax",%progbits
+  98              		.align	1
+  99              		.global	Click_Handler
+ 100              		.syntax unified
+ 101              		.thumb
+ 102              		.thumb_func
+ 103              		.fpu fpv4-sp-d16
+ 105              	Click_Handler:
+ 106              	.LFB124:
+  13:Display/Modes/modes.c ****   switch (operation_mode) {
+ 107              		.loc 1 13 0
+ 108              		.cfi_startproc
+ 109              		@ args = 0, pretend = 0, frame = 0
+ 110              		@ frame_needed = 0, uses_anonymous_args = 0
+ 111 0000 08B5     		push	{r3, lr}
+ 112              	.LCFI1:
+ 113              		.cfi_def_cfa_offset 8
+ 114              		.cfi_offset 3, -8
+ 115              		.cfi_offset 14, -4
+  14:Display/Modes/modes.c ****     case MENU_MODE:
+ 116              		.loc 1 14 0
+ 117 0002 084B     		ldr	r3, .L18
+ 118 0004 1B68     		ldr	r3, [r3]
+ 119 0006 012B     		cmp	r3, #1
+ 120 0008 05D0     		beq	.L15
+ 121 000a 022B     		cmp	r3, #2
+ 122 000c 06D0     		beq	.L16
+ 123              	.L14:
+  23:Display/Modes/modes.c **** }
+ 124              		.loc 1 23 0
+ 125 000e 064B     		ldr	r3, .L18+4
+ 126 0010 0022     		movs	r2, #0
+ 127 0012 1A60     		str	r2, [r3]
+  24:Display/Modes/modes.c **** 
+ 128              		.loc 1 24 0
+ 129 0014 08BD     		pop	{r3, pc}
+ 130              	.L15:
+  16:Display/Modes/modes.c ****       break;
+ 131              		.loc 1 16 0
+ 132 0016 FFF7FEFF 		bl	Click_Handler_Menu
+ 133              	.LVL1:
+ARM GAS  /tmp/ccfXne8V.s 			page 4
+
+
+  17:Display/Modes/modes.c ****     case TEXT_MODE:
+ 134              		.loc 1 17 0
+ 135 001a F8E7     		b	.L14
+ 136              	.L16:
+  19:Display/Modes/modes.c ****       break;
+ 137              		.loc 1 19 0
+ 138 001c 014B     		ldr	r3, .L18
+ 139 001e 0122     		movs	r2, #1
+ 140 0020 1A60     		str	r2, [r3]
+  20:Display/Modes/modes.c ****   }
+ 141              		.loc 1 20 0
+ 142 0022 F4E7     		b	.L14
+ 143              	.L19:
+ 144              		.align	2
+ 145              	.L18:
+ 146 0024 00000000 		.word	operation_mode
+ 147 0028 00000000 		.word	click
+ 148              		.cfi_endproc
+ 149              	.LFE124:
+ 151              		.section	.text.Mode_Handler,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	Mode_Handler
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 157              		.fpu fpv4-sp-d16
+ 159              	Mode_Handler:
+ 160              	.LFB126:
+  37:Display/Modes/modes.c **** 
+  38:Display/Modes/modes.c **** void Mode_Handler()
+  39:Display/Modes/modes.c **** {
+ 161              		.loc 1 39 0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165 0000 08B5     		push	{r3, lr}
+ 166              	.LCFI2:
+ 167              		.cfi_def_cfa_offset 8
+ 168              		.cfi_offset 3, -8
+ 169              		.cfi_offset 14, -4
+  40:Display/Modes/modes.c ****   switch (operation_mode) {
+ 170              		.loc 1 40 0
+ 171 0002 134B     		ldr	r3, .L31
+ 172 0004 1B68     		ldr	r3, [r3]
+ 173 0006 013B     		subs	r3, r3, #1
+ 174 0008 032B     		cmp	r3, #3
+ 175 000a 17D8     		bhi	.L21
+ 176 000c DFE803F0 		tbb	[pc, r3]
+ 177              	.L23:
+ 178 0010 02       		.byte	(.L22-.L23)/2
+ 179 0011 0C       		.byte	(.L24-.L23)/2
+ 180 0012 1B       		.byte	(.L25-.L23)/2
+ 181 0013 1B       		.byte	(.L25-.L23)/2
+ 182              		.p2align 1
+ 183              	.L22:
+  41:Display/Modes/modes.c ****     case MENU_MODE:
+  42:Display/Modes/modes.c ****         if(previous_operation_mode==MENU_MODE)
+ARM GAS  /tmp/ccfXne8V.s 			page 5
+
+
+ 184              		.loc 1 42 0
+ 185 0014 0F4B     		ldr	r3, .L31+4
+ 186 0016 1B68     		ldr	r3, [r3]
+ 187 0018 012B     		cmp	r3, #1
+ 188 001a 02D0     		beq	.L29
+  43:Display/Modes/modes.c ****           Update_Menu();
+  44:Display/Modes/modes.c ****         else
+  45:Display/Modes/modes.c ****           Menu_Reinit();
+ 189              		.loc 1 45 0
+ 190 001c FFF7FEFF 		bl	Menu_Reinit
+ 191              	.LVL2:
+ 192 0020 11E0     		b	.L25
+ 193              	.L29:
+  43:Display/Modes/modes.c ****           Update_Menu();
+ 194              		.loc 1 43 0
+ 195 0022 FFF7FEFF 		bl	Update_Menu
+ 196              	.LVL3:
+ 197 0026 0EE0     		b	.L25
+ 198              	.L24:
+  46:Display/Modes/modes.c ****       break;
+  47:Display/Modes/modes.c **** 
+  48:Display/Modes/modes.c ****     case TEXT_MODE:
+  49:Display/Modes/modes.c ****         if(previous_operation_mode==TEXT_MODE)
+ 199              		.loc 1 49 0
+ 200 0028 0A4B     		ldr	r3, .L31+4
+ 201 002a 1B68     		ldr	r3, [r3]
+ 202 002c 022B     		cmp	r3, #2
+ 203 002e 02D0     		beq	.L30
+  50:Display/Modes/modes.c ****           Text_Processing();
+  51:Display/Modes/modes.c ****           //Update_Text();
+  52:Display/Modes/modes.c ****         else
+  53:Display/Modes/modes.c ****           Text_Init();
+ 204              		.loc 1 53 0
+ 205 0030 FFF7FEFF 		bl	Text_Init
+ 206              	.LVL4:
+ 207 0034 07E0     		b	.L25
+ 208              	.L30:
+  50:Display/Modes/modes.c ****           Text_Processing();
+ 209              		.loc 1 50 0
+ 210 0036 FFF7FEFF 		bl	Text_Processing
+ 211              	.LVL5:
+ 212 003a 04E0     		b	.L25
+ 213              	.L21:
+  54:Display/Modes/modes.c ****       break;
+  55:Display/Modes/modes.c **** 
+  56:Display/Modes/modes.c ****     case SLEEP_MODE:
+  57:Display/Modes/modes.c **** 
+  58:Display/Modes/modes.c ****       break;
+  59:Display/Modes/modes.c **** 
+  60:Display/Modes/modes.c ****     case CONNECT_MODE:
+  61:Display/Modes/modes.c **** 
+  62:Display/Modes/modes.c ****       break;
+  63:Display/Modes/modes.c **** 
+  64:Display/Modes/modes.c ****     default:
+  65:Display/Modes/modes.c ****         Menu_Reinit();
+ 214              		.loc 1 65 0
+ 215 003c FFF7FEFF 		bl	Menu_Reinit
+ARM GAS  /tmp/ccfXne8V.s 			page 6
+
+
+ 216              	.LVL6:
+  66:Display/Modes/modes.c ****         operation_mode=MENU_MODE;
+ 217              		.loc 1 66 0
+ 218 0040 034B     		ldr	r3, .L31
+ 219 0042 0122     		movs	r2, #1
+ 220 0044 1A60     		str	r2, [r3]
+ 221              	.L25:
+  67:Display/Modes/modes.c ****       break;
+  68:Display/Modes/modes.c ****   }
+  69:Display/Modes/modes.c ****   previous_operation_mode=operation_mode;
+ 222              		.loc 1 69 0
+ 223 0046 024B     		ldr	r3, .L31
+ 224 0048 1A68     		ldr	r2, [r3]
+ 225 004a 024B     		ldr	r3, .L31+4
+ 226 004c 1A60     		str	r2, [r3]
+  70:Display/Modes/modes.c **** }
+ 227              		.loc 1 70 0
+ 228 004e 08BD     		pop	{r3, pc}
+ 229              	.L32:
+ 230              		.align	2
+ 231              	.L31:
+ 232 0050 00000000 		.word	operation_mode
+ 233 0054 00000000 		.word	previous_operation_mode
+ 234              		.cfi_endproc
+ 235              	.LFE126:
+ 237              		.comm	previous_operation_mode,4,4
+ 238              		.comm	operation_mode,4,4
+ 239              		.comm	BlackImage,4,4
+ 240              		.comm	menu_text_usage,12,4
+ 241              		.comm	click,4,4
+ 242              		.comm	menu_current_position,4,4
+ 243              		.comm	action,4,4
+ 244              		.text
+ 245              	.Letext0:
+ 246              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 247              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 248              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 249              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 250              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 251              		.file 7 "Display/GUI/../Fonts/fonts.h"
+ 252              		.file 8 "Display/GUI/GUI_Paint.h"
+ 253              		.file 9 "Display/e-Paper/ImageData.h"
+ 254              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
+ 255              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
+ 256              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 257              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
+ 258              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
+ 259              		.file 15 "Inc/keyboard.h"
+ 260              		.file 16 "Display/Text_Mode/text.h"
+ 261              		.file 17 "Display/Menu_Mode/menu.h"
+ 262              		.file 18 "Display/display.h"
+ 263              		.file 19 "Display/e-Paper/EPD_2in9.h"
+ 264              		.file 20 "Display/Modes/modes.h"
+ARM GAS  /tmp/ccfXne8V.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 modes.c
+     /tmp/ccfXne8V.s:18     .text.Modes_Init:0000000000000000 $t
+     /tmp/ccfXne8V.s:25     .text.Modes_Init:0000000000000000 Modes_Init
+     /tmp/ccfXne8V.s:52     .text.Modes_Init:0000000000000014 $d
+                            *COM*:0000000000000004 operation_mode
+                            *COM*:0000000000000004 previous_operation_mode
+     /tmp/ccfXne8V.s:58     .text.Click_Handler_Menu:0000000000000000 $t
+     /tmp/ccfXne8V.s:65     .text.Click_Handler_Menu:0000000000000000 Click_Handler_Menu
+     /tmp/ccfXne8V.s:92     .text.Click_Handler_Menu:0000000000000018 $d
+                            *COM*:0000000000000004 menu_current_position
+     /tmp/ccfXne8V.s:98     .text.Click_Handler:0000000000000000 $t
+     /tmp/ccfXne8V.s:105    .text.Click_Handler:0000000000000000 Click_Handler
+     /tmp/ccfXne8V.s:146    .text.Click_Handler:0000000000000024 $d
+                            *COM*:0000000000000004 click
+     /tmp/ccfXne8V.s:152    .text.Mode_Handler:0000000000000000 $t
+     /tmp/ccfXne8V.s:159    .text.Mode_Handler:0000000000000000 Mode_Handler
+     /tmp/ccfXne8V.s:178    .text.Mode_Handler:0000000000000010 $d
+     /tmp/ccfXne8V.s:182    .text.Mode_Handler:0000000000000014 $t
+     /tmp/ccfXne8V.s:232    .text.Mode_Handler:0000000000000050 $d
+                            *COM*:0000000000000004 BlackImage
+                            *COM*:000000000000000c menu_text_usage
+                            *COM*:0000000000000004 action
+
+UNDEFINED SYMBOLS
+Menu_Init
+Menu_Reinit
+Update_Menu
+Text_Init
+Text_Processing

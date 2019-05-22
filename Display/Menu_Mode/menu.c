@@ -10,9 +10,6 @@
 
   void Menu_Init()
   {
-    current_position = 1;
-    click = 0;
-    action = 0;
     menu_text = malloc(sizeof(char *)*menu_length);
     *menu_text = "Open";
     *(menu_text+1) = "Connect";
@@ -27,7 +24,7 @@
     Paint_Clear(WHITE);
     for(int i=0;i<menu_length;i++)
     {
-      if(current_position==i)
+      if(menu_current_position==i)
       {
         Display_Draw_Menu_Box(i,0,1);
         menu_text_usage[i]=1;
@@ -45,7 +42,7 @@
   {
     for(int i=0;i<menu_length;i++)
     {
-      if(current_position==i)
+      if(menu_current_position==i)
       {
         if(menu_text_usage[i]==0)
           Partial_Display_Draw_Menu_Box(i,0,1);

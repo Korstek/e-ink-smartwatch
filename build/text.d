@@ -33,8 +33,9 @@ build/text.o: Display/Text_Mode/text.c Display/Text_Mode/text.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  Display/display.h Display/GUI/GUI_Paint.h Display/GUI/../Fonts/fonts.h \
- Display/e-Paper/ImageData.h Inc/keyboard.h Display/Text_Mode/text.h \
- Display/Menu/menu.h Inc/keyboard.h Display/Text_Mode/example.h
+ Display/e-Paper/ImageData.h Inc/keyboard.h Display/Modes/modes.h \
+ Display/Text_Mode/text.h Display/Menu_Mode/menu.h Inc/keyboard.h \
+ Display/Text_Mode/example.h
 
 Display/Text_Mode/text.h:
 
@@ -122,9 +123,11 @@ Display/e-Paper/ImageData.h:
 
 Inc/keyboard.h:
 
+Display/Modes/modes.h:
+
 Display/Text_Mode/text.h:
 
-Display/Menu/menu.h:
+Display/Menu_Mode/menu.h:
 
 Inc/keyboard.h:
 

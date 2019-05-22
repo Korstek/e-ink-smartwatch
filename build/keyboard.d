@@ -34,7 +34,8 @@ build/keyboard.o: Src/keyboard.c Inc/keyboard.h \
  Display/display.h Display/e-Paper/EPD_2in9.h Display/Config/DEV_Config.h \
  Inc/main.h Inc/keyboard.h Display/GUI/GUI_Paint.h \
  Display/GUI/../Fonts/fonts.h Display/e-Paper/ImageData.h \
- Display/Text_Mode/text.h Display/Text_Mode/example.h Display/Menu/menu.h
+ Display/Text_Mode/text.h Display/Text_Mode/example.h \
+ Display/Menu_Mode/menu.h Display/Modes/modes.h
 
 Inc/keyboard.h:
 
@@ -126,4 +127,6 @@ Display/Text_Mode/text.h:
 
 Display/Text_Mode/example.h:
 
-Display/Menu/menu.h:
+Display/Menu_Mode/menu.h:
+
+Display/Modes/modes.h:

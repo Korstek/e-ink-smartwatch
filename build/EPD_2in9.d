@@ -34,8 +34,9 @@ build/EPD_2in9.o: Display/e-Paper/EPD_2in9.c Display/e-Paper/EPD_2in9.h \
  Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
  Display/display.h Display/e-Paper/EPD_2in9.h Display/GUI/GUI_Paint.h \
  Display/GUI/../Fonts/fonts.h Display/e-Paper/ImageData.h Inc/keyboard.h \
- Display/Text_Mode/text.h Display/Text_Mode/example.h Display/Menu/menu.h \
- Inc/keyboard.h Display/Config/Debug.h
+ Display/Modes/modes.h Display/Text_Mode/text.h \
+ Display/Text_Mode/example.h Display/Menu_Mode/menu.h Inc/keyboard.h \
+ Display/Config/Debug.h
 
 Display/e-Paper/EPD_2in9.h:
 
@@ -123,11 +124,13 @@ Display/e-Paper/ImageData.h:
 
 Inc/keyboard.h:
 
+Display/Modes/modes.h:
+
 Display/Text_Mode/text.h:
 
 Display/Text_Mode/example.h:
 
-Display/Menu/menu.h:
+Display/Menu_Mode/menu.h:
 
 Inc/keyboard.h:
 

@@ -23,8 +23,6 @@
   int menu_text_usage[menu_length];
   static char ** options_menu_text;
   #define options_menu_length 3
-  int current_position;
-  int click;
 
   #define OPEN_POSITION 0
 

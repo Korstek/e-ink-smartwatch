@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cchrDpAE.s 			page 1
+ARM GAS  /tmp/ccUN5TVO.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cchrDpAE.s 			page 1
   34              		.cfi_def_cfa_offset 24
   35              		.cfi_offset 4, -24
   36              		.cfi_offset 5, -20
-ARM GAS  /tmp/cchrDpAE.s 			page 2
+ARM GAS  /tmp/ccUN5TVO.s 			page 2
 
 
   37              		.cfi_offset 6, -16
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cchrDpAE.s 			page 1
   70              		.loc 1 36 0 is_stmt 0 discriminator 1
   71 001c 1F4B     		ldr	r3, .L15+4
   72 001e 9988     		ldrh	r1, [r3, #4]
-ARM GAS  /tmp/cchrDpAE.s 			page 3
+ARM GAS  /tmp/ccUN5TVO.s 			page 3
 
 
   73 0020 4FF49473 		mov	r3, #296
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cchrDpAE.s 			page 1
  110 0052 0193     		str	r3, [sp, #4]
  111 0054 FF23     		movs	r3, #255
  112 0056 0093     		str	r3, [sp]
-ARM GAS  /tmp/cchrDpAE.s 			page 4
+ARM GAS  /tmp/ccUN5TVO.s 			page 4
 
 
  113 0058 4346     		mov	r3, r8
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cchrDpAE.s 			page 1
  153              		.loc 1 66 0
  154 008a 064B     		ldr	r3, .L15+12
  155 008c 1868     		ldr	r0, [r3]
-ARM GAS  /tmp/cchrDpAE.s 			page 5
+ARM GAS  /tmp/ccUN5TVO.s 			page 5
 
 
  156 008e FFF7FEFF 		bl	EPD_Display
@@ -260,50 +260,76 @@ ARM GAS  /tmp/cchrDpAE.s 			page 1
  171 00a4 00000000 		.word	BlackImage
  172              		.cfi_endproc
  173              	.LFE123:
- 175              		.comm	display_previous_mode,4,4
- 176              		.comm	display_mode,4,4
- 177              		.comm	BlackImage,4,4
- 178              		.comm	click,4,4
- 179              		.comm	current_position,4,4
- 180              		.comm	menu_text_usage,12,4
- 181              		.comm	mode,4,4
- 182              		.comm	action,4,4
- 183              		.text
- 184              	.Letext0:
- 185              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 186              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 187              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 188              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 189              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 190              		.file 7 "Display/GUI/../Fonts/fonts.h"
- 191              		.file 8 "Display/GUI/GUI_Paint.h"
- 192              		.file 9 "Display/e-Paper/ImageData.h"
- 193              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
- 194              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
- 195              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 196              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
- 197              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
- 198              		.file 15 "Inc/keyboard.h"
- 199              		.file 16 "Display/Menu/menu.h"
- 200              		.file 17 "Display/display.h"
- 201              		.file 18 "Display/e-Paper/EPD_2in9.h"
- 202              		.file 19 "Display/Text_Mode/text.h"
-ARM GAS  /tmp/cchrDpAE.s 			page 6
+ 175              		.section	.text.Text_Processing,"ax",%progbits
+ 176              		.align	1
+ 177              		.global	Text_Processing
+ 178              		.syntax unified
+ 179              		.thumb
+ 180              		.thumb_func
+ 181              		.fpu fpv4-sp-d16
+ 183              	Text_Processing:
+ 184              	.LFB124:
+  68:Display/Text_Mode/text.c **** 
+  69:Display/Text_Mode/text.c ****   void Text_Processing()
+  70:Display/Text_Mode/text.c ****   {
+ 185              		.loc 1 70 0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189              		@ link register save eliminated.
+  71:Display/Text_Mode/text.c ****     /* code */
+  72:Display/Text_Mode/text.c ****   }
+ 190              		.loc 1 72 0
+ 191 0000 7047     		bx	lr
+ 192              		.cfi_endproc
+ 193              	.LFE124:
+ 195              		.comm	click,4,4
+ 196              		.comm	menu_current_position,4,4
+ 197              		.comm	action,4,4
+ 198              		.comm	previous_operation_mode,4,4
+ 199              		.comm	operation_mode,4,4
+ 200              		.comm	BlackImage,4,4
+ 201              		.comm	menu_text_usage,12,4
+ 202              		.text
+ 203              	.Letext0:
+ 204              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 205              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 206              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 207              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 208              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 209              		.file 7 "Display/GUI/../Fonts/fonts.h"
+ARM GAS  /tmp/ccUN5TVO.s 			page 6
+
+
+ 210              		.file 8 "Display/GUI/GUI_Paint.h"
+ 211              		.file 9 "Display/e-Paper/ImageData.h"
+ 212              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
+ 213              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
+ 214              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 215              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
+ 216              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
+ 217              		.file 15 "Display/Menu_Mode/menu.h"
+ 218              		.file 16 "Display/Modes/modes.h"
+ 219              		.file 17 "Inc/keyboard.h"
+ 220              		.file 18 "Display/e-Paper/EPD_2in9.h"
+ 221              		.file 19 "Display/Text_Mode/text.h"
+ARM GAS  /tmp/ccUN5TVO.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 text.c
-     /tmp/cchrDpAE.s:18     .text.Text_Init:0000000000000000 $t
-     /tmp/cchrDpAE.s:25     .text.Text_Init:0000000000000000 Text_Init
-     /tmp/cchrDpAE.s:168    .text.Text_Init:0000000000000098 $d
+     /tmp/ccUN5TVO.s:18     .text.Text_Init:0000000000000000 $t
+     /tmp/ccUN5TVO.s:25     .text.Text_Init:0000000000000000 Text_Init
+     /tmp/ccUN5TVO.s:168    .text.Text_Init:0000000000000098 $d
                             *COM*:0000000000000004 BlackImage
-                            *COM*:0000000000000004 display_previous_mode
-                            *COM*:0000000000000004 display_mode
+     /tmp/ccUN5TVO.s:176    .text.Text_Processing:0000000000000000 $t
+     /tmp/ccUN5TVO.s:183    .text.Text_Processing:0000000000000000 Text_Processing
                             *COM*:0000000000000004 click
-                            *COM*:0000000000000004 current_position
-                            *COM*:000000000000000c menu_text_usage
-                            *COM*:0000000000000004 mode
+                            *COM*:0000000000000004 menu_current_position
                             *COM*:0000000000000004 action
+                            *COM*:0000000000000004 previous_operation_mode
+                            *COM*:0000000000000004 operation_mode
+                            *COM*:000000000000000c menu_text_usage
 
 UNDEFINED SYMBOLS
 EPD_Init

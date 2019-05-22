@@ -65,3 +65,8 @@
     }
     EPD_Display(BlackImage);
   }
+
+  void Text_Processing()
+  {
+    /* code */
+  }

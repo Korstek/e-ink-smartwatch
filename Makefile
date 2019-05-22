@@ -70,10 +70,11 @@ Display/Fonts/font16.c \
 Display/Fonts/font20.c \
 Display/Fonts/font24.c \
 Display/GUI/GUI_Paint.c \
-Display/Menu/menu.c \
+Display/Menu_Mode/menu.c \
 Display/Text_Mode/example.c \
 Display/Text_Mode/text.c \
 Display/display.c \
+Display/Modes/modes.c \
 Src/keyboard.c
 
 # ASM sources
@@ -140,8 +141,9 @@ C_INCLUDES =  \
 -IDisplay/e-Paper \
 -IDisplay/Fonts \
 -IDisplay/GUI \
--IDisplay/Menu \
+-IDisplay/Menu_Mode \
 -IDisplay/Text_Mode \
+-IDisplay/Modes \
 -IDisplay
 
 
