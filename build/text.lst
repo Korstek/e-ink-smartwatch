@@ -1,0 +1,315 @@
+ARM GAS  /tmp/cchrDpAE.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"text.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Text_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	Text_Init
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	Text_Init:
+  26              	.LFB123:
+  27              		.file 1 "Display/Text_Mode/text.c"
+   1:Display/Text_Mode/text.c **** /**
+   2:Display/Text_Mode/text.c ****   ******************************************************************************
+   3:Display/Text_Mode/text.c ****   * @file           : text.c
+   4:Display/Text_Mode/text.c ****   * @author         : Karol Gutowski
+   5:Display/Text_Mode/text.c ****   * @brief          : This file contains funcitons for dispalying text.
+   6:Display/Text_Mode/text.c ****   ******************************************************************************
+   7:Display/Text_Mode/text.c ****   */
+   8:Display/Text_Mode/text.c **** 
+   9:Display/Text_Mode/text.c ****   #include "text.h"
+  10:Display/Text_Mode/text.c **** 
+  11:Display/Text_Mode/text.c **** 
+  12:Display/Text_Mode/text.c ****   /*
+  13:Display/Text_Mode/text.c ****    * Function: Display_Text
+  14:Display/Text_Mode/text.c ****    * ----------------------------
+  15:Display/Text_Mode/text.c ****    *   Displays long text with proper usage of new lines.
+  16:Display/Text_Mode/text.c ****    *
+  17:Display/Text_Mode/text.c ****    *   (in future) text_pointer: char pointer to text, that will be displayed
+  18:Display/Text_Mode/text.c ****    *
+  19:Display/Text_Mode/text.c ****    *   (in future) returns: pointer to the last character that was displayed
+  20:Display/Text_Mode/text.c ****    */
+  21:Display/Text_Mode/text.c ****   void Text_Init()
+  22:Display/Text_Mode/text.c ****   {
+  28              		.loc 1 22 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 24
+  35              		.cfi_offset 4, -24
+  36              		.cfi_offset 5, -20
+ARM GAS  /tmp/cchrDpAE.s 			page 2
+
+
+  37              		.cfi_offset 6, -16
+  38              		.cfi_offset 7, -12
+  39              		.cfi_offset 8, -8
+  40              		.cfi_offset 14, -4
+  41 0004 82B0     		sub	sp, sp, #8
+  42              	.LCFI1:
+  43              		.cfi_def_cfa_offset 32
+  44              	.LVL0:
+  23:Display/Text_Mode/text.c ****     int pointer_text = 0;
+  24:Display/Text_Mode/text.c ****     int start = 0;
+  25:Display/Text_Mode/text.c ****     int finish = 0;
+  26:Display/Text_Mode/text.c ****     int max_break = 0;
+  27:Display/Text_Mode/text.c ****     int max_space = 0;
+  28:Display/Text_Mode/text.c ****     int pointerx=1;
+  29:Display/Text_Mode/text.c ****     int pointery=1;
+  30:Display/Text_Mode/text.c **** 
+  31:Display/Text_Mode/text.c ****     EPD_Init(lut_full_update);
+  45              		.loc 1 31 0
+  46 0006 2448     		ldr	r0, .L15
+  47 0008 FFF7FEFF 		bl	EPD_Init
+  48              	.LVL1:
+  32:Display/Text_Mode/text.c ****     Paint_Clear(WHITE);
+  49              		.loc 1 32 0
+  50 000c FF20     		movs	r0, #255
+  51 000e FFF7FEFF 		bl	Paint_Clear
+  52              	.LVL2:
+  29:Display/Text_Mode/text.c **** 
+  53              		.loc 1 29 0
+  54 0012 0126     		movs	r6, #1
+  23:Display/Text_Mode/text.c ****     int pointer_text = 0;
+  55              		.loc 1 23 0
+  56 0014 0024     		movs	r4, #0
+  33:Display/Text_Mode/text.c **** 
+  34:Display/Text_Mode/text.c ****     while(pointery<EPD_WIDTH-Font12.Height)
+  57              		.loc 1 34 0
+  58 0016 2FE0     		b	.L2
+  59              	.LVL3:
+  60              	.L10:
+  61              	.LBB2:
+  35:Display/Text_Mode/text.c ****     {
+  36:Display/Text_Mode/text.c ****       for(int j=start;j<start+EPD_HEIGHT/Font12.Width;j++)
+  37:Display/Text_Mode/text.c ****       {
+  38:Display/Text_Mode/text.c ****         if(text[j]==' ')
+  39:Display/Text_Mode/text.c ****           max_space=j;
+  62              		.loc 1 39 0
+  63 0018 1546     		mov	r5, r2
+  64              	.LVL4:
+  65              	.L3:
+  36:Display/Text_Mode/text.c ****       {
+  66              		.loc 1 36 0 discriminator 2
+  67 001a 0132     		adds	r2, r2, #1
+  68              	.LVL5:
+  69              	.L9:
+  36:Display/Text_Mode/text.c ****       {
+  70              		.loc 1 36 0 is_stmt 0 discriminator 1
+  71 001c 1F4B     		ldr	r3, .L15+4
+  72 001e 9988     		ldrh	r1, [r3, #4]
+ARM GAS  /tmp/cchrDpAE.s 			page 3
+
+
+  73 0020 4FF49473 		mov	r3, #296
+  74 0024 93FBF1F3 		sdiv	r3, r3, r1
+  75 0028 2344     		add	r3, r3, r4
+  76 002a 9342     		cmp	r3, r2
+  77 002c 06DD     		ble	.L13
+  38:Display/Text_Mode/text.c ****           max_space=j;
+  78              		.loc 1 38 0 is_stmt 1
+  79 002e 1C4B     		ldr	r3, .L15+8
+  80 0030 9B5C     		ldrb	r3, [r3, r2]	@ zero_extendqisi2
+  81 0032 202B     		cmp	r3, #32
+  82 0034 F0D0     		beq	.L10
+  40:Display/Text_Mode/text.c ****         else
+  41:Display/Text_Mode/text.c ****         {
+  42:Display/Text_Mode/text.c ****           if(text[j]=='\n')
+  83              		.loc 1 42 0
+  84 0036 0A2B     		cmp	r3, #10
+  85 0038 EFD1     		bne	.L3
+  86 003a 00E0     		b	.L4
+  87              	.L13:
+  88 003c 0022     		movs	r2, #0
+  89              	.LVL6:
+  90              	.L4:
+  91              	.LBE2:
+  43:Display/Text_Mode/text.c ****           {
+  44:Display/Text_Mode/text.c ****             max_break=j;
+  45:Display/Text_Mode/text.c ****             break;
+  46:Display/Text_Mode/text.c ****           }
+  47:Display/Text_Mode/text.c ****         }
+  48:Display/Text_Mode/text.c ****       }
+  49:Display/Text_Mode/text.c ****       if(max_break > max_space)
+  92              		.loc 1 49 0
+  93 003e AA42     		cmp	r2, r5
+  94 0040 00DD     		ble	.L6
+  50:Display/Text_Mode/text.c ****         finish = max_break;
+  95              		.loc 1 50 0
+  96 0042 1546     		mov	r5, r2
+  97              	.LVL7:
+  98              	.L6:
+  99              	.LBB3:
+  51:Display/Text_Mode/text.c ****       else
+  52:Display/Text_Mode/text.c ****         finish = max_space;
+  53:Display/Text_Mode/text.c ****       for(int j=start;j<finish;j++)
+ 100              		.loc 1 53 0
+ 101 0044 0127     		movs	r7, #1
+ 102 0046 10E0     		b	.L7
+ 103              	.LVL8:
+ 104              	.L8:
+  54:Display/Text_Mode/text.c ****       {
+  55:Display/Text_Mode/text.c ****         Paint_DrawChar(pointerx, pointery, text[j], &Font12, WHITE, BLACK);
+ 105              		.loc 1 55 0 discriminator 3
+ 106 0048 DFF85080 		ldr	r8, .L15+4
+ 107 004c 144B     		ldr	r3, .L15+8
+ 108 004e 1A5D     		ldrb	r2, [r3, r4]	@ zero_extendqisi2
+ 109 0050 0023     		movs	r3, #0
+ 110 0052 0193     		str	r3, [sp, #4]
+ 111 0054 FF23     		movs	r3, #255
+ 112 0056 0093     		str	r3, [sp]
+ARM GAS  /tmp/cchrDpAE.s 			page 4
+
+
+ 113 0058 4346     		mov	r3, r8
+ 114 005a B1B2     		uxth	r1, r6
+ 115 005c B8B2     		uxth	r0, r7
+ 116 005e FFF7FEFF 		bl	Paint_DrawChar
+ 117              	.LVL9:
+  56:Display/Text_Mode/text.c ****         pointerx+=Font12.Width;
+ 118              		.loc 1 56 0 discriminator 3
+ 119 0062 B8F80430 		ldrh	r3, [r8, #4]
+ 120 0066 1F44     		add	r7, r7, r3
+ 121              	.LVL10:
+  57:Display/Text_Mode/text.c ****         pointer_text++;
+ 122              		.loc 1 57 0 discriminator 3
+ 123 0068 0134     		adds	r4, r4, #1
+ 124              	.LVL11:
+ 125              	.L7:
+  53:Display/Text_Mode/text.c ****       {
+ 126              		.loc 1 53 0 discriminator 1
+ 127 006a AC42     		cmp	r4, r5
+ 128 006c ECDB     		blt	.L8
+ 129              	.LBE3:
+  58:Display/Text_Mode/text.c ****       }
+  59:Display/Text_Mode/text.c ****       pointer_text++;
+ 130              		.loc 1 59 0
+ 131 006e 0134     		adds	r4, r4, #1
+ 132              	.LVL12:
+  60:Display/Text_Mode/text.c ****       start=pointer_text;
+  61:Display/Text_Mode/text.c ****       pointery+=Font12.Height+1;
+ 133              		.loc 1 61 0
+ 134 0070 0A4B     		ldr	r3, .L15+4
+ 135 0072 DB88     		ldrh	r3, [r3, #6]
+ 136 0074 0133     		adds	r3, r3, #1
+ 137 0076 1E44     		add	r6, r6, r3
+ 138              	.LVL13:
+ 139              	.L2:
+  34:Display/Text_Mode/text.c ****     {
+ 140              		.loc 1 34 0
+ 141 0078 084B     		ldr	r3, .L15+4
+ 142 007a DB88     		ldrh	r3, [r3, #6]
+ 143 007c C3F18003 		rsb	r3, r3, #128
+ 144 0080 B342     		cmp	r3, r6
+ 145 0082 02DD     		ble	.L14
+ 146              	.LBB4:
+  36:Display/Text_Mode/text.c ****       {
+ 147              		.loc 1 36 0
+ 148 0084 2246     		mov	r2, r4
+ 149              	.LBE4:
+ 150 0086 0025     		movs	r5, #0
+ 151 0088 C8E7     		b	.L9
+ 152              	.L14:
+  62:Display/Text_Mode/text.c ****       pointerx=1;
+  63:Display/Text_Mode/text.c ****       max_break = 0;
+  64:Display/Text_Mode/text.c ****       max_space = 0;
+  65:Display/Text_Mode/text.c ****     }
+  66:Display/Text_Mode/text.c ****     EPD_Display(BlackImage);
+ 153              		.loc 1 66 0
+ 154 008a 064B     		ldr	r3, .L15+12
+ 155 008c 1868     		ldr	r0, [r3]
+ARM GAS  /tmp/cchrDpAE.s 			page 5
+
+
+ 156 008e FFF7FEFF 		bl	EPD_Display
+ 157              	.LVL14:
+  67:Display/Text_Mode/text.c ****   }
+ 158              		.loc 1 67 0
+ 159 0092 02B0     		add	sp, sp, #8
+ 160              	.LCFI2:
+ 161              		.cfi_def_cfa_offset 24
+ 162              		@ sp needed
+ 163 0094 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 164              	.LVL15:
+ 165              	.L16:
+ 166              		.align	2
+ 167              	.L15:
+ 168 0098 00000000 		.word	lut_full_update
+ 169 009c 00000000 		.word	Font12
+ 170 00a0 00000000 		.word	text
+ 171 00a4 00000000 		.word	BlackImage
+ 172              		.cfi_endproc
+ 173              	.LFE123:
+ 175              		.comm	display_previous_mode,4,4
+ 176              		.comm	display_mode,4,4
+ 177              		.comm	BlackImage,4,4
+ 178              		.comm	click,4,4
+ 179              		.comm	current_position,4,4
+ 180              		.comm	menu_text_usage,12,4
+ 181              		.comm	mode,4,4
+ 182              		.comm	action,4,4
+ 183              		.text
+ 184              	.Letext0:
+ 185              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 186              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 187              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 188              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 189              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 190              		.file 7 "Display/GUI/../Fonts/fonts.h"
+ 191              		.file 8 "Display/GUI/GUI_Paint.h"
+ 192              		.file 9 "Display/e-Paper/ImageData.h"
+ 193              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
+ 194              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
+ 195              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 196              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
+ 197              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
+ 198              		.file 15 "Inc/keyboard.h"
+ 199              		.file 16 "Display/Menu/menu.h"
+ 200              		.file 17 "Display/display.h"
+ 201              		.file 18 "Display/e-Paper/EPD_2in9.h"
+ 202              		.file 19 "Display/Text_Mode/text.h"
+ARM GAS  /tmp/cchrDpAE.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 text.c
+     /tmp/cchrDpAE.s:18     .text.Text_Init:0000000000000000 $t
+     /tmp/cchrDpAE.s:25     .text.Text_Init:0000000000000000 Text_Init
+     /tmp/cchrDpAE.s:168    .text.Text_Init:0000000000000098 $d
+                            *COM*:0000000000000004 BlackImage
+                            *COM*:0000000000000004 display_previous_mode
+                            *COM*:0000000000000004 display_mode
+                            *COM*:0000000000000004 click
+                            *COM*:0000000000000004 current_position
+                            *COM*:000000000000000c menu_text_usage
+                            *COM*:0000000000000004 mode
+                            *COM*:0000000000000004 action
+
+UNDEFINED SYMBOLS
+EPD_Init
+Paint_Clear
+Paint_DrawChar
+EPD_Display
+lut_full_update
+Font12
+text

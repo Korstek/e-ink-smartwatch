@@ -26,6 +26,8 @@
   int current_position;
   int click;
 
+  #define OPEN_POSITION 0
+
   void Menu_Init(void);
   void Menu_Reinit(void);
   void Update_Menu(void);
@@ -33,4 +35,4 @@
   void Display_Draw_Menu_Box(int,int,int);
   void Partial_Display_Draw_Menu_Box(int,int,int);
 
-  #endif /* __DISPLAY_H */
+  #endif /* __MENU_H */

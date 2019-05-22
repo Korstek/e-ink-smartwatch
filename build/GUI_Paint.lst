@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc8iSaFV.s 			page 1
+ARM GAS  /tmp/ccEmlwRr.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
   29:Display/GUI/GUI_Paint.c **** * of this software and associated documnetation files (the "Software"), to deal
   30:Display/GUI/GUI_Paint.c **** * in the Software without restriction, including without limitation the rights
   31:Display/GUI/GUI_Paint.c **** * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-ARM GAS  /tmp/cc8iSaFV.s 			page 2
+ARM GAS  /tmp/ccEmlwRr.s 			page 2
 
 
   32:Display/GUI/GUI_Paint.c **** * copies of the Software, and to permit persons to  whom the Software is
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
   43              		.loc 1 70 0
   44 0008 6281     		strh	r2, [r4, #10]	@ movhi
   71:Display/GUI/GUI_Paint.c ****     Paint.Color = Color;
-ARM GAS  /tmp/cc8iSaFV.s 			page 3
+ARM GAS  /tmp/ccEmlwRr.s 			page 3
 
 
   45              		.loc 1 71 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
   84              	.L4:
   79:Display/GUI/GUI_Paint.c ****         Paint.Height = Height;
   85              		.loc 1 79 0
-ARM GAS  /tmp/cc8iSaFV.s 			page 4
+ARM GAS  /tmp/ccEmlwRr.s 			page 4
 
 
   86 0038 024B     		ldr	r3, .L8
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  131              		.cfi_endproc
  132              	.LFE124:
  134              		.section	.text.Paint_SetRotate,"ax",%progbits
-ARM GAS  /tmp/cc8iSaFV.s 			page 5
+ARM GAS  /tmp/ccEmlwRr.s 			page 5
 
 
  135              		.align	1
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  176              		.section	.text.Paint_SetMirroring,"ax",%progbits
  177              		.align	1
  178              		.global	Paint_SetMirroring
-ARM GAS  /tmp/cc8iSaFV.s 			page 6
+ARM GAS  /tmp/ccEmlwRr.s 			page 6
 
 
  179              		.syntax unified
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  129:Display/GUI/GUI_Paint.c **** /******************************************************************************
  130:Display/GUI/GUI_Paint.c **** function:	Draw Pixels
  131:Display/GUI/GUI_Paint.c **** parameter:
-ARM GAS  /tmp/cc8iSaFV.s 			page 7
+ARM GAS  /tmp/ccEmlwRr.s 			page 7
 
 
  132:Display/GUI/GUI_Paint.c ****     Xpoint  :   At point X
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  152:Display/GUI/GUI_Paint.c ****         break;
  153:Display/GUI/GUI_Paint.c ****     case 180:
  154:Display/GUI/GUI_Paint.c ****         X = Paint.WidthMemory - Xpoint - 1;
-ARM GAS  /tmp/cc8iSaFV.s 			page 8
+ARM GAS  /tmp/ccEmlwRr.s 			page 8
 
 
  155:Display/GUI/GUI_Paint.c ****         Y = Paint.HeightMemory - Ypoint - 1;
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  290 004e 5B1A     		subs	r3, r3, r1
  291 0050 9BB2     		uxth	r3, r3
  292 0052 013B     		subs	r3, r3, #1
-ARM GAS  /tmp/cc8iSaFV.s 			page 9
+ARM GAS  /tmp/ccEmlwRr.s 			page 9
 
 
  293              	.LVL17:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  174:Display/GUI/GUI_Paint.c ****         break;
  175:Display/GUI/GUI_Paint.c ****     case MIRROR_ORIGIN:
  176:Display/GUI/GUI_Paint.c ****         X = Paint.WidthMemory - X - 1;
-ARM GAS  /tmp/cc8iSaFV.s 			page 10
+ARM GAS  /tmp/ccEmlwRr.s 			page 10
 
 
  177:Display/GUI/GUI_Paint.c ****         Y = Paint.HeightMemory - Y - 1;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  370              		.cfi_restore 4
  371              		.cfi_def_cfa_offset 0
  372 00b0 7047     		bx	lr
-ARM GAS  /tmp/cc8iSaFV.s 			page 11
+ARM GAS  /tmp/ccEmlwRr.s 			page 11
 
 
  373              	.LVL31:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  421              		.cfi_def_cfa_offset 0
  422              		.cfi_restore 4
  423              		.cfi_restore 5
-ARM GAS  /tmp/cc8iSaFV.s 			page 12
+ARM GAS  /tmp/ccEmlwRr.s 			page 12
 
 
  424 00e8 7047     		bx	lr
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  468              	.LBE4:
  204:Display/GUI/GUI_Paint.c ****         for (UWORD X = 0; X < Paint.WidthByte; X++ ) {//8 pixel =  1 byte
  469              		.loc 1 204 0 discriminator 3
-ARM GAS  /tmp/cc8iSaFV.s 			page 13
+ARM GAS  /tmp/ccEmlwRr.s 			page 13
 
 
  470 0010 0133     		adds	r3, r3, #1
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  518              		.thumb_func
  519              		.fpu fpv4-sp-d16
  521              	Paint_ClearWindows:
-ARM GAS  /tmp/cc8iSaFV.s 			page 14
+ARM GAS  /tmp/ccEmlwRr.s 			page 14
 
 
  522              	.LFB129:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  560              	.L55:
  223:Display/GUI/GUI_Paint.c ****         for (X = Xstart; X < Xend; X++) {//8 pixel =  1 byte
  561              		.loc 1 223 0 is_stmt 0 discriminator 1
-ARM GAS  /tmp/cc8iSaFV.s 			page 15
+ARM GAS  /tmp/ccEmlwRr.s 			page 15
 
 
  562 0020 B442     		cmp	r4, r6
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  600              		.cfi_offset 4, -36
  601              		.cfi_offset 5, -32
  602              		.cfi_offset 6, -28
-ARM GAS  /tmp/cc8iSaFV.s 			page 16
+ARM GAS  /tmp/ccEmlwRr.s 			page 16
 
 
  603              		.cfi_offset 7, -24
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  640              	.LVL62:
  641              	.L61:
  247:Display/GUI/GUI_Paint.c ****         for (XDir_Num = 0; XDir_Num < 2 * Dot_Pixel - 1; XDir_Num++) {
-ARM GAS  /tmp/cc8iSaFV.s 			page 17
+ARM GAS  /tmp/ccEmlwRr.s 			page 17
 
 
  642              		.loc 1 247 0 is_stmt 0 discriminator 1
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  689              		.loc 1 247 0
  690 0084 4FF00009 		mov	r9, #0
  691 0088 D4E7     		b	.L61
-ARM GAS  /tmp/cc8iSaFV.s 			page 18
+ARM GAS  /tmp/ccEmlwRr.s 			page 18
 
 
  692              	.LVL68:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  735 00c0 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
  736              	.LVL74:
  737              	.L73:
-ARM GAS  /tmp/cc8iSaFV.s 			page 19
+ARM GAS  /tmp/ccEmlwRr.s 			page 19
 
 
  738              		.align	2
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  781 0012 0392     		str	r2, [sp, #12]
  782 0014 9DF84C80 		ldrb	r8, [sp, #76]	@ zero_extendqisi2
  783 0018 9DF85020 		ldrb	r2, [sp, #80]	@ zero_extendqisi2
-ARM GAS  /tmp/cc8iSaFV.s 			page 20
+ARM GAS  /tmp/ccEmlwRr.s 			page 20
 
 
  784 001c 0292     		str	r2, [sp, #8]
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  288:Display/GUI/GUI_Paint.c ****     int YAddway = Ystart < Yend ? 1 : -1;
  825              		.loc 1 288 0 discriminator 4
  826 005c 049B     		ldr	r3, [sp, #16]
-ARM GAS  /tmp/cc8iSaFV.s 			page 21
+ARM GAS  /tmp/ccEmlwRr.s 			page 21
 
 
  827 005e 9E42     		cmp	r6, r3
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  304:Display/GUI/GUI_Paint.c ****         if (2 * Esp >= dy) {
  864              		.loc 1 304 0
  865 0090 BBEB470F 		cmp	fp, r7, lsl #1
-ARM GAS  /tmp/cc8iSaFV.s 			page 22
+ARM GAS  /tmp/ccEmlwRr.s 			page 22
 
 
  866 0094 06DC     		bgt	.L81
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  907 00c4 A3FB0423 		umull	r2, r3, r3, r4
  908 00c8 5B08     		lsrs	r3, r3, #1
  909 00ca 03EB4303 		add	r3, r3, r3, lsl #1
-ARM GAS  /tmp/cc8iSaFV.s 			page 23
+ARM GAS  /tmp/ccEmlwRr.s 			page 23
 
 
  910 00ce E31A     		subs	r3, r4, r3
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  327:Display/GUI/GUI_Paint.c ****     Filled : Whether it is filled--- 1 solid 0：empty
  328:Display/GUI/GUI_Paint.c **** ******************************************************************************/
  329:Display/GUI/GUI_Paint.c **** void Paint_DrawRectangle(UWORD Xstart, UWORD Ystart, UWORD Xend, UWORD Yend,
-ARM GAS  /tmp/cc8iSaFV.s 			page 24
+ARM GAS  /tmp/ccEmlwRr.s 			page 24
 
 
  330:Display/GUI/GUI_Paint.c ****                          UWORD Color, DRAW_FILL Filled, DOT_PIXEL Dot_Pixel)
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  997              		.loc 1 338 0
  998 0032 0029     		cmp	r1, #0
  999 0034 3FD1     		bne	.L90
-ARM GAS  /tmp/cc8iSaFV.s 			page 25
+ARM GAS  /tmp/ccEmlwRr.s 			page 25
 
 
  339:Display/GUI/GUI_Paint.c ****         UWORD Ypoint;
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1044              		.loc 1 341 0 discriminator 3
  1045 009a CDF80890 		str	r9, [sp, #8]
  1046 009e 0023     		movs	r3, #0
-ARM GAS  /tmp/cc8iSaFV.s 			page 26
+ARM GAS  /tmp/ccEmlwRr.s 			page 26
 
 
  1047 00a0 0193     		str	r3, [sp, #4]
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  358:Display/GUI/GUI_Paint.c ****     Color     ：The color of the ：circle segment
  359:Display/GUI/GUI_Paint.c ****     Filled    : Whether it is filled: 1 filling 0：Do not
  360:Display/GUI/GUI_Paint.c **** ******************************************************************************/
-ARM GAS  /tmp/cc8iSaFV.s 			page 27
+ARM GAS  /tmp/ccEmlwRr.s 			page 27
 
 
  361:Display/GUI/GUI_Paint.c **** void Paint_DrawCircle(UWORD X_Center, UWORD Y_Center, UWORD Radius,
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  374:Display/GUI/GUI_Paint.c ****     //Cumulative error,judge the next point of the logo
  375:Display/GUI/GUI_Paint.c ****     int16_t Esp = 3 - (Radius << 1 );
  1132              		.loc 1 375 0
-ARM GAS  /tmp/cc8iSaFV.s 			page 28
+ARM GAS  /tmp/ccEmlwRr.s 			page 28
 
 
  1133 002a 5200     		lsls	r2, r2, #1
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1178 0086 AAEB050B 		sub	fp, r10, r5
  1179 008a 1FFA8BFB 		uxth	fp, fp
  1180 008e 06EB0907 		add	r7, r6, r9
-ARM GAS  /tmp/cc8iSaFV.s 			page 29
+ARM GAS  /tmp/ccEmlwRr.s 			page 29
 
 
  1181 0092 BFB2     		uxth	r7, r7
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1230 00f6 2346     		mov	r3, r4
  1231 00f8 5A46     		mov	r2, fp
  1232 00fa 3946     		mov	r1, r7
-ARM GAS  /tmp/cc8iSaFV.s 			page 30
+ARM GAS  /tmp/ccEmlwRr.s 			page 30
 
 
  1233 00fc 4046     		mov	r0, r8
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1276 0136 9342     		cmp	r3, r2
  1277 0138 00F38E80 		bgt	.L97
  380:Display/GUI/GUI_Paint.c ****                 Paint_DrawPoint(X_Center + XCurrent, Y_Center + sCountY, Color, DOT_PIXEL_DFT, DOT_
-ARM GAS  /tmp/cc8iSaFV.s 			page 31
+ARM GAS  /tmp/ccEmlwRr.s 			page 31
 
 
  1278              		.loc 1 380 0
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  414:Display/GUI/GUI_Paint.c ****             }
  415:Display/GUI/GUI_Paint.c ****             XCurrent ++;
  1313              		.loc 1 415 0
-ARM GAS  /tmp/cc8iSaFV.s 			page 32
+ARM GAS  /tmp/ccEmlwRr.s 			page 32
 
 
  1314 016e 0135     		adds	r5, r5, #1
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1363              		.loc 1 403 0
  1364 01d8 A9EB0507 		sub	r7, r9, r5
  1365 01dc BFB2     		uxth	r7, r7
-ARM GAS  /tmp/cc8iSaFV.s 			page 33
+ARM GAS  /tmp/ccEmlwRr.s 			page 33
 
 
  1366 01de 0094     		str	r4, [sp]
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1414 023a 059B     		ldr	r3, [sp, #20]
  1415 023c A8EB0308 		sub	r8, r8, r3
  1416              	.LVL151:
-ARM GAS  /tmp/cc8iSaFV.s 			page 34
+ARM GAS  /tmp/ccEmlwRr.s 			page 34
 
 
  1417 0240 079B     		ldr	r3, [sp, #28]
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1455              		.loc 1 432 0
  1456              		.cfi_startproc
  1457              		@ args = 8, pretend = 0, frame = 0
-ARM GAS  /tmp/cc8iSaFV.s 			page 35
+ARM GAS  /tmp/ccEmlwRr.s 			page 35
 
 
  1458              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1503              	.LVL160:
  442:Display/GUI/GUI_Paint.c **** 
  443:Display/GUI/GUI_Paint.c ****     for (Page = 0; Page < Font->Height; Page ++ ) {
-ARM GAS  /tmp/cc8iSaFV.s 			page 36
+ARM GAS  /tmp/ccEmlwRr.s 			page 36
 
 
  1504              		.loc 1 443 0
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  444:Display/GUI/GUI_Paint.c **** 
  1540              		.loc 1 444 0 discriminator 2
  1541 007e 0134     		adds	r4, r4, #1
-ARM GAS  /tmp/cc8iSaFV.s 			page 37
+ARM GAS  /tmp/ccEmlwRr.s 			page 37
 
 
  1542              	.LVL164:
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1587              	.L117:
  443:Display/GUI/GUI_Paint.c ****         for (Column = 0; Column < Font->Width; Column ++ ) {
  1588              		.loc 1 443 0 is_stmt 0 discriminator 1
-ARM GAS  /tmp/cc8iSaFV.s 			page 38
+ARM GAS  /tmp/ccEmlwRr.s 			page 38
 
 
  1589 00c0 FB88     		ldrh	r3, [r7, #6]
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1628              		.cfi_offset 7, -24
  1629              		.cfi_offset 8, -20
  1630              		.cfi_offset 9, -16
-ARM GAS  /tmp/cc8iSaFV.s 			page 39
+ARM GAS  /tmp/ccEmlwRr.s 			page 39
 
 
  1631              		.cfi_offset 10, -12
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1662              		.loc 1 502 0
  1663 002c CDF804B0 		str	fp, [sp, #4]
  1664 0030 CDF800A0 		str	r10, [sp]
-ARM GAS  /tmp/cc8iSaFV.s 			page 40
+ARM GAS  /tmp/ccEmlwRr.s 			page 40
 
 
  1665 0034 2B46     		mov	r3, r5
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  500:Display/GUI/GUI_Paint.c ****         }
  1708              		.loc 1 500 0
  1709 006a 4F46     		mov	r7, r9
-ARM GAS  /tmp/cc8iSaFV.s 			page 41
+ARM GAS  /tmp/ccEmlwRr.s 			page 41
 
 
  1710              	.LVL185:
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1748              		.cfi_def_cfa_offset 36
  1749              		.cfi_offset 4, -36
  1750              		.cfi_offset 5, -32
-ARM GAS  /tmp/cc8iSaFV.s 			page 42
+ARM GAS  /tmp/ccEmlwRr.s 			page 42
 
 
  1751              		.cfi_offset 6, -28
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  555:Display/GUI/GUI_Paint.c ****                             }
  556:Display/GUI/GUI_Paint.c ****                         }
  557:Display/GUI/GUI_Paint.c ****                         if (font->Width % 8 != 0) {
-ARM GAS  /tmp/cc8iSaFV.s 			page 43
+ARM GAS  /tmp/ccEmlwRr.s 			page 43
 
 
  558:Display/GUI/GUI_Paint.c ****                             ptr++;
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1814 005e 04F00703 		and	r3, r4, #7
  1815 0062 02F00702 		and	r2, r2, #7
  1816 0066 58BF     		it	pl
-ARM GAS  /tmp/cc8iSaFV.s 			page 44
+ARM GAS  /tmp/ccEmlwRr.s 			page 44
 
 
  1817 0068 5342     		rsbpl	r3, r2, #0
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1863              	.LVL200:
  1864              	.L153:
  537:Display/GUI/GUI_Paint.c ****                         for (i = 0; i < font->Width; i++) {
-ARM GAS  /tmp/cc8iSaFV.s 			page 45
+ARM GAS  /tmp/ccEmlwRr.s 			page 45
 
 
  1865              		.loc 1 537 0 discriminator 2
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1910 00e6 9844     		add	r8, r8, r3
  1911              	.LVL207:
  1912              	.L143:
-ARM GAS  /tmp/cc8iSaFV.s 			page 46
+ARM GAS  /tmp/ccEmlwRr.s 			page 46
 
 
  531:Display/GUI/GUI_Paint.c ****         if(*p_text <= 0x7F) {  //ASCII < 126
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1948 0126 09EB0B01 		add	r1, r9, fp
  1949 012a 08EB0400 		add	r0, r8, r4
  1950 012e 3A46     		mov	r2, r7
-ARM GAS  /tmp/cc8iSaFV.s 			page 47
+ARM GAS  /tmp/ccEmlwRr.s 			page 47
 
 
  1951 0130 89B2     		uxth	r1, r1
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  1996              	.L179:
  590:Display/GUI/GUI_Paint.c ****                                 ptr++;
  1997              		.loc 1 590 0
-ARM GAS  /tmp/cc8iSaFV.s 			page 48
+ARM GAS  /tmp/ccEmlwRr.s 			page 48
 
 
  1998 0182 0136     		adds	r6, r6, #1
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  2041 01b8 7378     		ldrb	r3, [r6, #1]	@ zero_extendqisi2
  2042 01ba 9942     		cmp	r1, r3
  2043 01bc EED1     		bne	.L158
-ARM GAS  /tmp/cc8iSaFV.s 			page 49
+ARM GAS  /tmp/ccEmlwRr.s 			page 49
 
 
  2044              	.LBB10:
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  611:Display/GUI/GUI_Paint.c ****     Xstart           ：X coordinate
  612:Display/GUI/GUI_Paint.c ****     Ystart           : Y coordinate
  613:Display/GUI/GUI_Paint.c ****     Nummber          : The number displayed
-ARM GAS  /tmp/cc8iSaFV.s 			page 50
+ARM GAS  /tmp/ccEmlwRr.s 			page 50
 
 
  614:Display/GUI/GUI_Paint.c ****     Font             ：A structure pointer that displays a character size
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  2122 002c A342     		cmp	r3, r4
  2123 002e 31D3     		bcc	.L182
  2124              		.loc 1 627 0 is_stmt 0 discriminator 1
-ARM GAS  /tmp/cc8iSaFV.s 			page 51
+ARM GAS  /tmp/ccEmlwRr.s 			page 51
 
 
  2125 0030 1A4B     		ldr	r3, .L190
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  641:Display/GUI/GUI_Paint.c ****         Str_Array[Str_Bit] = Num_Array[Num_Bit - 1];
  2163              		.loc 1 641 0
  2164 0066 511E     		subs	r1, r2, #1
-ARM GAS  /tmp/cc8iSaFV.s 			page 52
+ARM GAS  /tmp/ccEmlwRr.s 			page 52
 
 
  2165 0068 02A8     		add	r0, sp, #8
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  2211              	.LFE137:
  2213              		.section	.text.Paint_DrawTime,"ax",%progbits
  2214              		.align	1
-ARM GAS  /tmp/cc8iSaFV.s 			page 53
+ARM GAS  /tmp/ccEmlwRr.s 			page 53
 
 
  2215              		.global	Paint_DrawTime
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  663:Display/GUI/GUI_Paint.c **** 
  664:Display/GUI/GUI_Paint.c ****     UWORD Dx = Font->Width;
  2256              		.loc 1 664 0
-ARM GAS  /tmp/cc8iSaFV.s 			page 54
+ARM GAS  /tmp/ccEmlwRr.s 			page 54
 
 
  2257 001e 0393     		str	r3, [sp, #12]
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  2306 009e FFF7FEFF 		bl	Paint_DrawChar
  2307              	.LVL249:
  670:Display/GUI/GUI_Paint.c ****     Paint_DrawChar(Xstart + Dx * 2 + Dx / 2         , Ystart, value[pTime->Min / 10] , Font, Color_
-ARM GAS  /tmp/cc8iSaFV.s 			page 55
+ARM GAS  /tmp/ccEmlwRr.s 			page 55
 
 
  2308              		.loc 1 670 0
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  2359              		.loc 1 673 0
  2360 0130 9AF80630 		ldrb	r3, [r10, #6]	@ zero_extendqisi2
  2361 0134 A4FB0313 		umull	r1, r3, r4, r3
-ARM GAS  /tmp/cc8iSaFV.s 			page 56
+ARM GAS  /tmp/ccEmlwRr.s 			page 56
 
 
  2362 0138 0AA9     		add	r1, sp, #40
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  2415              		.thumb_func
  2416              		.fpu fpv4-sp-d16
  2418              	Paint_DrawBitMap:
-ARM GAS  /tmp/cc8iSaFV.s 			page 57
+ARM GAS  /tmp/ccEmlwRr.s 			page 57
 
 
  2419              	.LFB139:
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  2453 0018 528A     		ldrh	r2, [r2, #18]
  2454 001a 9A42     		cmp	r2, r3
  2455 001c F3D8     		bhi	.L198
-ARM GAS  /tmp/cc8iSaFV.s 			page 58
+ARM GAS  /tmp/ccEmlwRr.s 			page 58
 
 
  690:Display/GUI/GUI_Paint.c ****         for (x = 0; x < Paint.WidthByte; x++) {//8 pixel =  1 byte
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  2505 0006 36       		.byte	54
  2506 0007 37       		.byte	55
  2507 0008 38       		.byte	56
-ARM GAS  /tmp/cc8iSaFV.s 			page 59
+ARM GAS  /tmp/ccEmlwRr.s 			page 59
 
 
  2508 0009 39       		.byte	57
@@ -3497,73 +3497,74 @@ ARM GAS  /tmp/cc8iSaFV.s 			page 1
  2521              		.file 12 "/usr/arm-none-eabi/include/sys/reent.h"
  2522              		.file 13 "/usr/arm-none-eabi/include/stdlib.h"
  2523              		.file 14 "Inc/keyboard.h"
- 2524              		.file 15 "Display/Menu/menu.h"
- 2525              		.file 16 "Display/display.h"
- 2526              		.file 17 "Display/GUI/../Fonts/fonts.h"
- 2527              		.file 18 "Display/GUI/GUI_Paint.h"
- 2528              		.file 19 "/usr/arm-none-eabi/include/math.h"
- 2529              		.file 20 "<built-in>"
-ARM GAS  /tmp/cc8iSaFV.s 			page 60
+ 2524              		.file 15 "Display/Text_Mode/text.h"
+ 2525              		.file 16 "Display/Menu/menu.h"
+ 2526              		.file 17 "Display/display.h"
+ 2527              		.file 18 "Display/GUI/../Fonts/fonts.h"
+ 2528              		.file 19 "Display/GUI/GUI_Paint.h"
+ 2529              		.file 20 "/usr/arm-none-eabi/include/math.h"
+ 2530              		.file 21 "<built-in>"
+ARM GAS  /tmp/ccEmlwRr.s 			page 60
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 GUI_Paint.c
-     /tmp/cc8iSaFV.s:18     .text.Paint_NewImage:0000000000000000 $t
-     /tmp/cc8iSaFV.s:25     .text.Paint_NewImage:0000000000000000 Paint_NewImage
-     /tmp/cc8iSaFV.s:102    .text.Paint_NewImage:0000000000000044 $d
+     /tmp/ccEmlwRr.s:18     .text.Paint_NewImage:0000000000000000 $t
+     /tmp/ccEmlwRr.s:25     .text.Paint_NewImage:0000000000000000 Paint_NewImage
+     /tmp/ccEmlwRr.s:102    .text.Paint_NewImage:0000000000000044 $d
                             *COM*:0000000000000018 Paint
-     /tmp/cc8iSaFV.s:107    .text.Paint_SelectImage:0000000000000000 $t
-     /tmp/cc8iSaFV.s:114    .text.Paint_SelectImage:0000000000000000 Paint_SelectImage
-     /tmp/cc8iSaFV.s:130    .text.Paint_SelectImage:0000000000000008 $d
-     /tmp/cc8iSaFV.s:135    .text.Paint_SetRotate:0000000000000000 $t
-     /tmp/cc8iSaFV.s:142    .text.Paint_SetRotate:0000000000000000 Paint_SetRotate
-     /tmp/cc8iSaFV.s:172    .text.Paint_SetRotate:0000000000000018 $d
-     /tmp/cc8iSaFV.s:177    .text.Paint_SetMirroring:0000000000000000 $t
-     /tmp/cc8iSaFV.s:184    .text.Paint_SetMirroring:0000000000000000 Paint_SetMirroring
-     /tmp/cc8iSaFV.s:204    .text.Paint_SetMirroring:000000000000000c $d
-     /tmp/cc8iSaFV.s:209    .text.Paint_SetPixel:0000000000000000 $t
-     /tmp/cc8iSaFV.s:216    .text.Paint_SetPixel:0000000000000000 Paint_SetPixel
-     /tmp/cc8iSaFV.s:280    .text.Paint_SetPixel:0000000000000046 $d
-     /tmp/cc8iSaFV.s:285    .text.Paint_SetPixel:000000000000004a $t
-     /tmp/cc8iSaFV.s:428    .text.Paint_SetPixel:00000000000000ec $d
-     /tmp/cc8iSaFV.s:433    .text.Paint_Clear:0000000000000000 $t
-     /tmp/cc8iSaFV.s:440    .text.Paint_Clear:0000000000000000 Paint_Clear
-     /tmp/cc8iSaFV.s:509    .text.Paint_Clear:0000000000000034 $d
-     /tmp/cc8iSaFV.s:514    .text.Paint_ClearWindows:0000000000000000 $t
-     /tmp/cc8iSaFV.s:521    .text.Paint_ClearWindows:0000000000000000 Paint_ClearWindows
-     /tmp/cc8iSaFV.s:583    .text.Paint_DrawPoint:0000000000000000 $t
-     /tmp/cc8iSaFV.s:590    .text.Paint_DrawPoint:0000000000000000 Paint_DrawPoint
-     /tmp/cc8iSaFV.s:740    .text.Paint_DrawPoint:00000000000000c4 $d
-     /tmp/cc8iSaFV.s:745    .text.Paint_DrawLine:0000000000000000 $t
-     /tmp/cc8iSaFV.s:752    .text.Paint_DrawLine:0000000000000000 Paint_DrawLine
-     /tmp/cc8iSaFV.s:937    .text.Paint_DrawLine:00000000000000f0 $d
-     /tmp/cc8iSaFV.s:943    .text.Paint_DrawRectangle:0000000000000000 $t
-     /tmp/cc8iSaFV.s:950    .text.Paint_DrawRectangle:0000000000000000 Paint_DrawRectangle
-     /tmp/cc8iSaFV.s:1077   .text.Paint_DrawRectangle:00000000000000c0 $d
-     /tmp/cc8iSaFV.s:1082   .text.Paint_DrawCircle:0000000000000000 $t
-     /tmp/cc8iSaFV.s:1089   .text.Paint_DrawCircle:0000000000000000 Paint_DrawCircle
-     /tmp/cc8iSaFV.s:1441   .text.Paint_DrawCircle:0000000000000260 $d
-     /tmp/cc8iSaFV.s:1446   .text.Paint_DrawChar:0000000000000000 $t
-     /tmp/cc8iSaFV.s:1453   .text.Paint_DrawChar:0000000000000000 Paint_DrawChar
-     /tmp/cc8iSaFV.s:1603   .text.Paint_DrawChar:00000000000000d0 $d
-     /tmp/cc8iSaFV.s:1608   .text.Paint_DrawString_EN:0000000000000000 $t
-     /tmp/cc8iSaFV.s:1615   .text.Paint_DrawString_EN:0000000000000000 Paint_DrawString_EN
-     /tmp/cc8iSaFV.s:1727   .text.Paint_DrawString_EN:0000000000000078 $d
-     /tmp/cc8iSaFV.s:1732   .text.Paint_DrawString_CN:0000000000000000 $t
-     /tmp/cc8iSaFV.s:1739   .text.Paint_DrawString_CN:0000000000000000 Paint_DrawString_CN
-     /tmp/cc8iSaFV.s:2073   .text.Paint_DrawNum:0000000000000000 $t
-     /tmp/cc8iSaFV.s:2080   .text.Paint_DrawNum:0000000000000000 Paint_DrawNum
-     /tmp/cc8iSaFV.s:2208   .text.Paint_DrawNum:000000000000009c $d
-     /tmp/cc8iSaFV.s:2214   .text.Paint_DrawTime:0000000000000000 $t
-     /tmp/cc8iSaFV.s:2221   .text.Paint_DrawTime:0000000000000000 Paint_DrawTime
-     /tmp/cc8iSaFV.s:2405   .text.Paint_DrawTime:0000000000000194 $d
-     /tmp/cc8iSaFV.s:2411   .text.Paint_DrawBitMap:0000000000000000 $t
-     /tmp/cc8iSaFV.s:2418   .text.Paint_DrawBitMap:0000000000000000 Paint_DrawBitMap
-     /tmp/cc8iSaFV.s:2482   .text.Paint_DrawBitMap:0000000000000034 $d
+     /tmp/ccEmlwRr.s:107    .text.Paint_SelectImage:0000000000000000 $t
+     /tmp/ccEmlwRr.s:114    .text.Paint_SelectImage:0000000000000000 Paint_SelectImage
+     /tmp/ccEmlwRr.s:130    .text.Paint_SelectImage:0000000000000008 $d
+     /tmp/ccEmlwRr.s:135    .text.Paint_SetRotate:0000000000000000 $t
+     /tmp/ccEmlwRr.s:142    .text.Paint_SetRotate:0000000000000000 Paint_SetRotate
+     /tmp/ccEmlwRr.s:172    .text.Paint_SetRotate:0000000000000018 $d
+     /tmp/ccEmlwRr.s:177    .text.Paint_SetMirroring:0000000000000000 $t
+     /tmp/ccEmlwRr.s:184    .text.Paint_SetMirroring:0000000000000000 Paint_SetMirroring
+     /tmp/ccEmlwRr.s:204    .text.Paint_SetMirroring:000000000000000c $d
+     /tmp/ccEmlwRr.s:209    .text.Paint_SetPixel:0000000000000000 $t
+     /tmp/ccEmlwRr.s:216    .text.Paint_SetPixel:0000000000000000 Paint_SetPixel
+     /tmp/ccEmlwRr.s:280    .text.Paint_SetPixel:0000000000000046 $d
+     /tmp/ccEmlwRr.s:285    .text.Paint_SetPixel:000000000000004a $t
+     /tmp/ccEmlwRr.s:428    .text.Paint_SetPixel:00000000000000ec $d
+     /tmp/ccEmlwRr.s:433    .text.Paint_Clear:0000000000000000 $t
+     /tmp/ccEmlwRr.s:440    .text.Paint_Clear:0000000000000000 Paint_Clear
+     /tmp/ccEmlwRr.s:509    .text.Paint_Clear:0000000000000034 $d
+     /tmp/ccEmlwRr.s:514    .text.Paint_ClearWindows:0000000000000000 $t
+     /tmp/ccEmlwRr.s:521    .text.Paint_ClearWindows:0000000000000000 Paint_ClearWindows
+     /tmp/ccEmlwRr.s:583    .text.Paint_DrawPoint:0000000000000000 $t
+     /tmp/ccEmlwRr.s:590    .text.Paint_DrawPoint:0000000000000000 Paint_DrawPoint
+     /tmp/ccEmlwRr.s:740    .text.Paint_DrawPoint:00000000000000c4 $d
+     /tmp/ccEmlwRr.s:745    .text.Paint_DrawLine:0000000000000000 $t
+     /tmp/ccEmlwRr.s:752    .text.Paint_DrawLine:0000000000000000 Paint_DrawLine
+     /tmp/ccEmlwRr.s:937    .text.Paint_DrawLine:00000000000000f0 $d
+     /tmp/ccEmlwRr.s:943    .text.Paint_DrawRectangle:0000000000000000 $t
+     /tmp/ccEmlwRr.s:950    .text.Paint_DrawRectangle:0000000000000000 Paint_DrawRectangle
+     /tmp/ccEmlwRr.s:1077   .text.Paint_DrawRectangle:00000000000000c0 $d
+     /tmp/ccEmlwRr.s:1082   .text.Paint_DrawCircle:0000000000000000 $t
+     /tmp/ccEmlwRr.s:1089   .text.Paint_DrawCircle:0000000000000000 Paint_DrawCircle
+     /tmp/ccEmlwRr.s:1441   .text.Paint_DrawCircle:0000000000000260 $d
+     /tmp/ccEmlwRr.s:1446   .text.Paint_DrawChar:0000000000000000 $t
+     /tmp/ccEmlwRr.s:1453   .text.Paint_DrawChar:0000000000000000 Paint_DrawChar
+     /tmp/ccEmlwRr.s:1603   .text.Paint_DrawChar:00000000000000d0 $d
+     /tmp/ccEmlwRr.s:1608   .text.Paint_DrawString_EN:0000000000000000 $t
+     /tmp/ccEmlwRr.s:1615   .text.Paint_DrawString_EN:0000000000000000 Paint_DrawString_EN
+     /tmp/ccEmlwRr.s:1727   .text.Paint_DrawString_EN:0000000000000078 $d
+     /tmp/ccEmlwRr.s:1732   .text.Paint_DrawString_CN:0000000000000000 $t
+     /tmp/ccEmlwRr.s:1739   .text.Paint_DrawString_CN:0000000000000000 Paint_DrawString_CN
+     /tmp/ccEmlwRr.s:2073   .text.Paint_DrawNum:0000000000000000 $t
+     /tmp/ccEmlwRr.s:2080   .text.Paint_DrawNum:0000000000000000 Paint_DrawNum
+     /tmp/ccEmlwRr.s:2208   .text.Paint_DrawNum:000000000000009c $d
+     /tmp/ccEmlwRr.s:2214   .text.Paint_DrawTime:0000000000000000 $t
+     /tmp/ccEmlwRr.s:2221   .text.Paint_DrawTime:0000000000000000 Paint_DrawTime
+     /tmp/ccEmlwRr.s:2405   .text.Paint_DrawTime:0000000000000194 $d
+     /tmp/ccEmlwRr.s:2411   .text.Paint_DrawBitMap:0000000000000000 $t
+     /tmp/ccEmlwRr.s:2418   .text.Paint_DrawBitMap:0000000000000000 Paint_DrawBitMap
+     /tmp/ccEmlwRr.s:2482   .text.Paint_DrawBitMap:0000000000000034 $d
                             *COM*:0000000000000004 display_previous_mode
                             *COM*:0000000000000004 display_mode
                             *COM*:0000000000000004 BlackImage
-ARM GAS  /tmp/cc8iSaFV.s 			page 61
+ARM GAS  /tmp/ccEmlwRr.s 			page 61
 
 
                             *COM*:0000000000000004 click
@@ -3571,7 +3572,7 @@ DEFINED SYMBOLS
                             *COM*:000000000000000c menu_text_usage
                             *COM*:0000000000000004 mode
                             *COM*:0000000000000004 action
-     /tmp/cc8iSaFV.s:2496   .rodata:0000000000000000 $d
+     /tmp/ccEmlwRr.s:2496   .rodata:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 memset

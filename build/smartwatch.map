@@ -1328,18 +1328,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/font12.o
  .data          0x0000000000000000        0x0 build/font12.o
  .bss           0x0000000000000000        0x0 build/font12.o
- .data.Font12   0x0000000000000000        0x8 build/font12.o
- .rodata.Font12_Table
-                0x0000000000000000      0x474 build/font12.o
- .debug_info    0x0000000000000000      0x234 build/font12.o
- .debug_abbrev  0x0000000000000000       0xb8 build/font12.o
- .debug_aranges
-                0x0000000000000000       0x18 build/font12.o
- .debug_line    0x0000000000000000       0xa5 build/font12.o
- .debug_str     0x0000000000000000      0x22b build/font12.o
- .comment       0x0000000000000000       0x80 build/font12.o
- .ARM.attributes
-                0x0000000000000000       0x39 build/font12.o
  .text          0x0000000000000000        0x0 build/font16.o
  .data          0x0000000000000000        0x0 build/font16.o
  .bss           0x0000000000000000        0x0 build/font16.o
@@ -1394,13 +1382,15 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/menu.o
  .data          0x0000000000000000        0x0 build/menu.o
  .bss           0x0000000000000000        0x0 build/menu.o
+ .text          0x0000000000000000        0x0 build/example.o
+ .data          0x0000000000000000        0x0 build/example.o
+ .bss           0x0000000000000000        0x0 build/example.o
+ .text          0x0000000000000000        0x0 build/text.o
+ .data          0x0000000000000000        0x0 build/text.o
+ .bss           0x0000000000000000        0x0 build/text.o
  .text          0x0000000000000000        0x0 build/display.o
  .data          0x0000000000000000        0x0 build/display.o
  .bss           0x0000000000000000        0x0 build/display.o
- .text.Display_Text
-                0x0000000000000000       0x98 build/display.o
- .rodata.Display_Text.str1.4
-                0x0000000000000000      0x60e build/display.o
  .text          0x0000000000000000        0x0 build/keyboard.o
  .data          0x0000000000000000        0x0 build/keyboard.o
  .bss           0x0000000000000000        0x0 build/keyboard.o
@@ -1527,6 +1517,8 @@ LOAD build/font20.o
 LOAD build/font24.o
 LOAD build/GUI_Paint.o
 LOAD build/menu.o
+LOAD build/example.o
+LOAD build/text.o
 LOAD build/display.o
 LOAD build/keyboard.o
 LOAD build/startup_stm32l476xx.o
@@ -1554,7 +1546,7 @@ LOAD /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
                 0x0000000008000000                g_pfnVectors
                 0x0000000008000188                . = ALIGN (0x8)
 
-.text           0x0000000008000188     0x3798
+.text           0x0000000008000188     0x3888
                 0x0000000008000188                . = ALIGN (0x8)
  *(.text)
  .text          0x0000000008000188       0x40 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
@@ -1847,220 +1839,230 @@ LOAD /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
  .text.Update_Menu
                 0x0000000008003504       0x68 build/menu.o
                 0x0000000008003504                Update_Menu
+ .text.Text_Init
+                0x000000000800356c       0xa8 build/text.o
+                0x000000000800356c                Text_Init
  .text.Display_Init
-                0x000000000800356c       0x68 build/display.o
-                0x000000000800356c                Display_Init
- .text.Display  0x00000000080035d4       0x4c build/display.o
-                0x00000000080035d4                Display
+                0x0000000008003614       0x68 build/display.o
+                0x0000000008003614                Display_Init
+ .text.Display  0x000000000800367c       0x90 build/display.o
+                0x000000000800367c                Display
  .text.Keyboard
-                0x0000000008003620      0x138 build/keyboard.o
-                0x0000000008003620                Keyboard
+                0x000000000800370c      0x138 build/keyboard.o
+                0x000000000800370c                Keyboard
  .text.Reset_Handler
-                0x0000000008003758       0x50 build/startup_stm32l476xx.o
-                0x0000000008003758                Reset_Handler
+                0x0000000008003844       0x50 build/startup_stm32l476xx.o
+                0x0000000008003844                Reset_Handler
  .text.Default_Handler
-                0x00000000080037a8        0x2 build/startup_stm32l476xx.o
-                0x00000000080037a8                RTC_Alarm_IRQHandler
-                0x00000000080037a8                EXTI2_IRQHandler
-                0x00000000080037a8                TIM8_TRG_COM_IRQHandler
-                0x00000000080037a8                TIM8_CC_IRQHandler
-                0x00000000080037a8                TIM1_CC_IRQHandler
-                0x00000000080037a8                TSC_IRQHandler
-                0x00000000080037a8                TAMP_STAMP_IRQHandler
-                0x00000000080037a8                EXTI3_IRQHandler
-                0x00000000080037a8                LPTIM2_IRQHandler
-                0x00000000080037a8                DFSDM1_FLT1_IRQHandler
-                0x00000000080037a8                I2C3_ER_IRQHandler
-                0x00000000080037a8                DFSDM1_FLT2_IRQHandler
-                0x00000000080037a8                EXTI0_IRQHandler
-                0x00000000080037a8                I2C2_EV_IRQHandler
-                0x00000000080037a8                CAN1_RX0_IRQHandler
-                0x00000000080037a8                FPU_IRQHandler
-                0x00000000080037a8                TIM1_UP_TIM16_IRQHandler
-                0x00000000080037a8                ADC1_2_IRQHandler
-                0x00000000080037a8                SPI1_IRQHandler
-                0x00000000080037a8                TIM6_DAC_IRQHandler
-                0x00000000080037a8                TIM8_UP_IRQHandler
-                0x00000000080037a8                DMA2_Channel2_IRQHandler
-                0x00000000080037a8                DMA1_Channel4_IRQHandler
-                0x00000000080037a8                SAI2_IRQHandler
-                0x00000000080037a8                DFSDM1_FLT3_IRQHandler
-                0x00000000080037a8                USART3_IRQHandler
-                0x00000000080037a8                DMA1_Channel7_IRQHandler
-                0x00000000080037a8                CAN1_RX1_IRQHandler
-                0x00000000080037a8                LCD_IRQHandler
-                0x00000000080037a8                UART5_IRQHandler
-                0x00000000080037a8                ADC3_IRQHandler
-                0x00000000080037a8                TIM4_IRQHandler
-                0x00000000080037a8                DMA2_Channel1_IRQHandler
-                0x00000000080037a8                QUADSPI_IRQHandler
-                0x00000000080037a8                I2C1_EV_IRQHandler
-                0x00000000080037a8                DMA1_Channel6_IRQHandler
-                0x00000000080037a8                UART4_IRQHandler
-                0x00000000080037a8                DMA2_Channel4_IRQHandler
-                0x00000000080037a8                TIM3_IRQHandler
-                0x00000000080037a8                RCC_IRQHandler
-                0x00000000080037a8                DMA1_Channel1_IRQHandler
-                0x00000000080037a8                Default_Handler
-                0x00000000080037a8                DMA2_Channel7_IRQHandler
-                0x00000000080037a8                EXTI15_10_IRQHandler
-                0x00000000080037a8                TIM7_IRQHandler
-                0x00000000080037a8                SDMMC1_IRQHandler
-                0x00000000080037a8                TIM5_IRQHandler
-                0x00000000080037a8                I2C3_EV_IRQHandler
-                0x00000000080037a8                EXTI9_5_IRQHandler
-                0x00000000080037a8                RTC_WKUP_IRQHandler
-                0x00000000080037a8                PVD_PVM_IRQHandler
-                0x00000000080037a8                SPI2_IRQHandler
-                0x00000000080037a8                CAN1_TX_IRQHandler
-                0x00000000080037a8                DMA2_Channel5_IRQHandler
-                0x00000000080037a8                DMA1_Channel5_IRQHandler
-                0x00000000080037a8                EXTI4_IRQHandler
-                0x00000000080037a8                RNG_IRQHandler
-                0x00000000080037a8                TIM1_TRG_COM_TIM17_IRQHandler
-                0x00000000080037a8                DMA1_Channel3_IRQHandler
-                0x00000000080037a8                COMP_IRQHandler
-                0x00000000080037a8                WWDG_IRQHandler
-                0x00000000080037a8                LPUART1_IRQHandler
-                0x00000000080037a8                DMA2_Channel6_IRQHandler
-                0x00000000080037a8                TIM2_IRQHandler
-                0x00000000080037a8                EXTI1_IRQHandler
-                0x00000000080037a8                USART2_IRQHandler
-                0x00000000080037a8                DFSDM1_FLT0_IRQHandler
-                0x00000000080037a8                I2C2_ER_IRQHandler
-                0x00000000080037a8                DMA1_Channel2_IRQHandler
-                0x00000000080037a8                TIM8_BRK_IRQHandler
-                0x00000000080037a8                CAN1_SCE_IRQHandler
-                0x00000000080037a8                FLASH_IRQHandler
-                0x00000000080037a8                USART1_IRQHandler
-                0x00000000080037a8                OTG_FS_IRQHandler
-                0x00000000080037a8                SPI3_IRQHandler
-                0x00000000080037a8                I2C1_ER_IRQHandler
-                0x00000000080037a8                FMC_IRQHandler
-                0x00000000080037a8                SWPMI1_IRQHandler
-                0x00000000080037a8                LPTIM1_IRQHandler
-                0x00000000080037a8                SAI1_IRQHandler
-                0x00000000080037a8                DMA2_Channel3_IRQHandler
- *fill*         0x00000000080037aa        0x2 
+                0x0000000008003894        0x2 build/startup_stm32l476xx.o
+                0x0000000008003894                RTC_Alarm_IRQHandler
+                0x0000000008003894                EXTI2_IRQHandler
+                0x0000000008003894                TIM8_TRG_COM_IRQHandler
+                0x0000000008003894                TIM8_CC_IRQHandler
+                0x0000000008003894                TIM1_CC_IRQHandler
+                0x0000000008003894                TSC_IRQHandler
+                0x0000000008003894                TAMP_STAMP_IRQHandler
+                0x0000000008003894                EXTI3_IRQHandler
+                0x0000000008003894                LPTIM2_IRQHandler
+                0x0000000008003894                DFSDM1_FLT1_IRQHandler
+                0x0000000008003894                I2C3_ER_IRQHandler
+                0x0000000008003894                DFSDM1_FLT2_IRQHandler
+                0x0000000008003894                EXTI0_IRQHandler
+                0x0000000008003894                I2C2_EV_IRQHandler
+                0x0000000008003894                CAN1_RX0_IRQHandler
+                0x0000000008003894                FPU_IRQHandler
+                0x0000000008003894                TIM1_UP_TIM16_IRQHandler
+                0x0000000008003894                ADC1_2_IRQHandler
+                0x0000000008003894                SPI1_IRQHandler
+                0x0000000008003894                TIM6_DAC_IRQHandler
+                0x0000000008003894                TIM8_UP_IRQHandler
+                0x0000000008003894                DMA2_Channel2_IRQHandler
+                0x0000000008003894                DMA1_Channel4_IRQHandler
+                0x0000000008003894                SAI2_IRQHandler
+                0x0000000008003894                DFSDM1_FLT3_IRQHandler
+                0x0000000008003894                USART3_IRQHandler
+                0x0000000008003894                DMA1_Channel7_IRQHandler
+                0x0000000008003894                CAN1_RX1_IRQHandler
+                0x0000000008003894                LCD_IRQHandler
+                0x0000000008003894                UART5_IRQHandler
+                0x0000000008003894                ADC3_IRQHandler
+                0x0000000008003894                TIM4_IRQHandler
+                0x0000000008003894                DMA2_Channel1_IRQHandler
+                0x0000000008003894                QUADSPI_IRQHandler
+                0x0000000008003894                I2C1_EV_IRQHandler
+                0x0000000008003894                DMA1_Channel6_IRQHandler
+                0x0000000008003894                UART4_IRQHandler
+                0x0000000008003894                DMA2_Channel4_IRQHandler
+                0x0000000008003894                TIM3_IRQHandler
+                0x0000000008003894                RCC_IRQHandler
+                0x0000000008003894                DMA1_Channel1_IRQHandler
+                0x0000000008003894                Default_Handler
+                0x0000000008003894                DMA2_Channel7_IRQHandler
+                0x0000000008003894                EXTI15_10_IRQHandler
+                0x0000000008003894                TIM7_IRQHandler
+                0x0000000008003894                SDMMC1_IRQHandler
+                0x0000000008003894                TIM5_IRQHandler
+                0x0000000008003894                I2C3_EV_IRQHandler
+                0x0000000008003894                EXTI9_5_IRQHandler
+                0x0000000008003894                RTC_WKUP_IRQHandler
+                0x0000000008003894                PVD_PVM_IRQHandler
+                0x0000000008003894                SPI2_IRQHandler
+                0x0000000008003894                CAN1_TX_IRQHandler
+                0x0000000008003894                DMA2_Channel5_IRQHandler
+                0x0000000008003894                DMA1_Channel5_IRQHandler
+                0x0000000008003894                EXTI4_IRQHandler
+                0x0000000008003894                RNG_IRQHandler
+                0x0000000008003894                TIM1_TRG_COM_TIM17_IRQHandler
+                0x0000000008003894                DMA1_Channel3_IRQHandler
+                0x0000000008003894                COMP_IRQHandler
+                0x0000000008003894                WWDG_IRQHandler
+                0x0000000008003894                LPUART1_IRQHandler
+                0x0000000008003894                DMA2_Channel6_IRQHandler
+                0x0000000008003894                TIM2_IRQHandler
+                0x0000000008003894                EXTI1_IRQHandler
+                0x0000000008003894                USART2_IRQHandler
+                0x0000000008003894                DFSDM1_FLT0_IRQHandler
+                0x0000000008003894                I2C2_ER_IRQHandler
+                0x0000000008003894                DMA1_Channel2_IRQHandler
+                0x0000000008003894                TIM8_BRK_IRQHandler
+                0x0000000008003894                CAN1_SCE_IRQHandler
+                0x0000000008003894                FLASH_IRQHandler
+                0x0000000008003894                USART1_IRQHandler
+                0x0000000008003894                OTG_FS_IRQHandler
+                0x0000000008003894                SPI3_IRQHandler
+                0x0000000008003894                I2C1_ER_IRQHandler
+                0x0000000008003894                FMC_IRQHandler
+                0x0000000008003894                SWPMI1_IRQHandler
+                0x0000000008003894                LPTIM1_IRQHandler
+                0x0000000008003894                SAI1_IRQHandler
+                0x0000000008003894                DMA2_Channel3_IRQHandler
+ *fill*         0x0000000008003896        0x2 
  .text.__libc_init_array
-                0x00000000080037ac       0x48 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
-                0x00000000080037ac                __libc_init_array
- .text.malloc   0x00000000080037f4       0x10 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
-                0x00000000080037f4                malloc
- .text.memset   0x0000000008003804       0x10 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
-                0x0000000008003804                memset
+                0x0000000008003898       0x48 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
+                0x0000000008003898                __libc_init_array
+ .text.malloc   0x00000000080038e0       0x10 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+                0x00000000080038e0                malloc
+ .text.memset   0x00000000080038f0       0x10 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
+                0x00000000080038f0                memset
  .text._malloc_r
-                0x0000000008003814       0xb4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
-                0x0000000008003814                _malloc_r
- .text._sbrk_r  0x00000000080038c8       0x20 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
-                0x00000000080038c8                _sbrk_r
+                0x0000000008003900       0xb4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000000008003900                _malloc_r
+ .text._sbrk_r  0x00000000080039b4       0x20 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
+                0x00000000080039b4                _sbrk_r
  .text.__malloc_lock
-                0x00000000080038e8        0x2 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
-                0x00000000080038e8                __malloc_lock
+                0x00000000080039d4        0x2 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+                0x00000000080039d4                __malloc_lock
  .text.__malloc_unlock
-                0x00000000080038ea        0x2 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
-                0x00000000080038ea                __malloc_unlock
- .text._sbrk    0x00000000080038ec       0x1c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(sbrk.o)
-                0x00000000080038ec                _sbrk
+                0x00000000080039d6        0x2 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+                0x00000000080039d6                __malloc_unlock
+ .text._sbrk    0x00000000080039d8       0x1c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(sbrk.o)
+                0x00000000080039d8                _sbrk
  *(.glue_7)
- .glue_7        0x0000000008003908        0x0 linker stubs
+ .glue_7        0x00000000080039f4        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0000000008003908        0x0 linker stubs
+ .glue_7t       0x00000000080039f4        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x0000000008003908        0x0 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+ .eh_frame      0x00000000080039f4        0x0 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
  *(.init)
- .init          0x0000000008003908        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
-                0x0000000008003908                _init
- .init          0x000000000800390c        0x8 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
+ .init          0x00000000080039f4        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
+                0x00000000080039f4                _init
+ .init          0x00000000080039f8        0x8 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
  *(.fini)
- .fini          0x0000000008003914        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
-                0x0000000008003914                _fini
- .fini          0x0000000008003918        0x8 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
-                0x0000000008003920                . = ALIGN (0x8)
-                0x0000000008003920                _etext = .
+ .fini          0x0000000008003a00        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crti.o
+                0x0000000008003a00                _fini
+ .fini          0x0000000008003a04        0x8 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
+                0x0000000008003a10                . = ALIGN (0x8)
+ *fill*         0x0000000008003a0c        0x4 
+                0x0000000008003a10                _etext = .
 
-.vfp11_veneer   0x0000000008003920        0x0
- .vfp11_veneer  0x0000000008003920        0x0 linker stubs
+.vfp11_veneer   0x0000000008003a10        0x0
+ .vfp11_veneer  0x0000000008003a10        0x0 linker stubs
 
-.v4_bx          0x0000000008003920        0x0
- .v4_bx         0x0000000008003920        0x0 linker stubs
+.v4_bx          0x0000000008003a10        0x0
+ .v4_bx         0x0000000008003a10        0x0 linker stubs
 
-.iplt           0x0000000008003920        0x0
- .iplt          0x0000000008003920        0x0 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+.iplt           0x0000000008003a10        0x0
+ .iplt          0x0000000008003a10        0x0 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
 
-.rodata         0x0000000008003920      0xf78
-                0x0000000008003920                . = ALIGN (0x8)
+.rodata         0x0000000008003a10     0x3358
+                0x0000000008003a10                . = ALIGN (0x8)
  *(.rodata)
  *(.rodata*)
  .rodata.AHBPrescTable
-                0x0000000008003920       0x10 build/system_stm32l4xx.o
-                0x0000000008003920                AHBPrescTable
+                0x0000000008003a10       0x10 build/system_stm32l4xx.o
+                0x0000000008003a10                AHBPrescTable
  .rodata.APBPrescTable
-                0x0000000008003930        0x8 build/system_stm32l4xx.o
-                0x0000000008003930                APBPrescTable
+                0x0000000008003a20        0x8 build/system_stm32l4xx.o
+                0x0000000008003a20                APBPrescTable
  .rodata.MSIRangeTable
-                0x0000000008003938       0x30 build/system_stm32l4xx.o
-                0x0000000008003938                MSIRangeTable
+                0x0000000008003a28       0x30 build/system_stm32l4xx.o
+                0x0000000008003a28                MSIRangeTable
  .rodata.lut_full_update
-                0x0000000008003968       0x1e build/EPD_2in9.o
-                0x0000000008003968                lut_full_update
- *fill*         0x0000000008003986        0x2 
+                0x0000000008003a58       0x1e build/EPD_2in9.o
+                0x0000000008003a58                lut_full_update
+ *fill*         0x0000000008003a76        0x2 
  .rodata.lut_partial_update
-                0x0000000008003988       0x1e build/EPD_2in9.o
-                0x0000000008003988                lut_partial_update
- *fill*         0x00000000080039a6        0x2 
+                0x0000000008003a78       0x1e build/EPD_2in9.o
+                0x0000000008003a78                lut_partial_update
+ *fill*         0x0000000008003a96        0x2 
+ .rodata.Font12_Table
+                0x0000000008003a98      0x474 build/font12.o
+                0x0000000008003a98                Font12_Table
  .rodata.Font20_Table
-                0x00000000080039a8      0xed8 build/font20.o
-                0x00000000080039a8                Font20_Table
+                0x0000000008003f0c      0xed8 build/font20.o
+                0x0000000008003f0c                Font20_Table
  .rodata.Menu_Init.str1.4
-                0x0000000008004880       0x18 build/menu.o
-                0x0000000008004898                . = ALIGN (0x8)
+                0x0000000008004de4       0x18 build/menu.o
+ .rodata.text   0x0000000008004dfc     0x1f67 build/example.o
+                0x0000000008004dfc                text
+                0x0000000008006d68                . = ALIGN (0x8)
+ *fill*         0x0000000008006d63        0x5 
 
-.ARM.extab      0x0000000008004898        0x0
-                0x0000000008004898                . = ALIGN (0x8)
+.ARM.extab      0x0000000008006d68        0x0
+                0x0000000008006d68                . = ALIGN (0x8)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000008004898                . = ALIGN (0x8)
+                0x0000000008006d68                . = ALIGN (0x8)
 
-.ARM            0x0000000008004898        0x8
-                0x0000000008004898                . = ALIGN (0x8)
-                0x0000000008004898                __exidx_start = .
+.ARM            0x0000000008006d68        0x8
+                0x0000000008006d68                . = ALIGN (0x8)
+                0x0000000008006d68                __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x0000000008004898        0x8 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
-                0x00000000080048a0                __exidx_end = .
-                0x00000000080048a0                . = ALIGN (0x8)
+ .ARM.exidx     0x0000000008006d68        0x8 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
+                0x0000000008006d70                __exidx_end = .
+                0x0000000008006d70                . = ALIGN (0x8)
 
-.rel.dyn        0x00000000080048a0        0x0
- .rel.iplt      0x00000000080048a0        0x0 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+.rel.dyn        0x0000000008006d70        0x0
+ .rel.iplt      0x0000000008006d70        0x0 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
 
-.preinit_array  0x00000000080048a0        0x0
-                0x00000000080048a0                . = ALIGN (0x8)
-                0x00000000080048a0                PROVIDE (__preinit_array_start = .)
+.preinit_array  0x0000000008006d70        0x0
+                0x0000000008006d70                . = ALIGN (0x8)
+                0x0000000008006d70                PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x00000000080048a0                PROVIDE (__preinit_array_end = .)
-                0x00000000080048a0                . = ALIGN (0x8)
+                0x0000000008006d70                PROVIDE (__preinit_array_end = .)
+                0x0000000008006d70                . = ALIGN (0x8)
 
-.init_array     0x00000000080048a0        0x8
-                0x00000000080048a0                . = ALIGN (0x8)
-                0x00000000080048a0                PROVIDE (__init_array_start = .)
+.init_array     0x0000000008006d70        0x8
+                0x0000000008006d70                . = ALIGN (0x8)
+                0x0000000008006d70                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x00000000080048a0        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
-                0x00000000080048a4                PROVIDE (__init_array_end = .)
-                0x00000000080048a8                . = ALIGN (0x8)
- *fill*         0x00000000080048a4        0x4 
+ .init_array    0x0000000008006d70        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+                0x0000000008006d74                PROVIDE (__init_array_end = .)
+                0x0000000008006d78                . = ALIGN (0x8)
+ *fill*         0x0000000008006d74        0x4 
 
-.fini_array     0x00000000080048a8        0x8
-                0x00000000080048a8                . = ALIGN (0x8)
+.fini_array     0x0000000008006d78        0x8
+                0x0000000008006d78                . = ALIGN (0x8)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x00000000080048a8        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+ .fini_array    0x0000000008006d78        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x00000000080048b0                . = ALIGN (0x8)
- *fill*         0x00000000080048ac        0x4 
-                0x00000000080048b0                _sidata = LOADADDR (.data)
+                0x0000000008006d80                . = ALIGN (0x8)
+ *fill*         0x0000000008006d7c        0x4 
+                0x0000000008006d80                _sidata = LOADADDR (.data)
 
-.data           0x0000000020000000       0x78 load address 0x00000000080048b0
+.data           0x0000000020000000       0x80 load address 0x0000000008006d80
                 0x0000000020000000                . = ALIGN (0x8)
                 0x0000000020000000                _sdata = .
  *(.data)
@@ -2068,82 +2070,84 @@ LOAD /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
  .data.SystemCoreClock
                 0x0000000020000000        0x4 build/system_stm32l4xx.o
                 0x0000000020000000                SystemCoreClock
- .data.Font20   0x0000000020000004        0x8 build/font20.o
-                0x0000000020000004                Font20
+ .data.Font12   0x0000000020000004        0x8 build/font12.o
+                0x0000000020000004                Font12
+ .data.Font20   0x000000002000000c        0x8 build/font20.o
+                0x000000002000000c                Font20
  .data.max_current_position
-                0x000000002000000c        0x4 build/keyboard.o
-                0x000000002000000c                max_current_position
+                0x0000000020000014        0x4 build/keyboard.o
+                0x0000000020000014                max_current_position
  .data._impure_ptr
-                0x0000000020000010        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
-                0x0000000020000010                _impure_ptr
+                0x0000000020000018        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
+                0x0000000020000018                _impure_ptr
  .data.impure_data
-                0x0000000020000014       0x60 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
-                0x0000000020000078                . = ALIGN (0x8)
- *fill*         0x0000000020000074        0x4 
-                0x0000000020000078                _edata = .
+                0x000000002000001c       0x60 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
+                0x0000000020000080                . = ALIGN (0x8)
+ *fill*         0x000000002000007c        0x4 
+                0x0000000020000080                _edata = .
 
-.igot.plt       0x0000000020000078        0x0 load address 0x0000000008004928
- .igot.plt      0x0000000020000078        0x0 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
-                0x0000000020000078                . = ALIGN (0x4)
+.igot.plt       0x0000000020000080        0x0 load address 0x0000000008006e00
+ .igot.plt      0x0000000020000080        0x0 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+                0x0000000020000080                . = ALIGN (0x4)
 
-.bss            0x0000000020000078      0x1a0 load address 0x0000000008004928
-                0x0000000020000078                _sbss = .
-                0x0000000020000078                __bss_start__ = _sbss
+.bss            0x0000000020000080      0x1a0 load address 0x0000000008006e00
+                0x0000000020000080                _sbss = .
+                0x0000000020000080                __bss_start__ = _sbss
  *(.bss)
- .bss           0x0000000020000078       0x1c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
+ .bss           0x0000000020000080       0x1c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
  *(.bss*)
  .bss.menu_text
-                0x0000000020000094        0x4 build/menu.o
- .bss.down      0x0000000020000098        0x4 build/keyboard.o
-                0x0000000020000098                down
- .bss.middle    0x000000002000009c        0x4 build/keyboard.o
-                0x000000002000009c                middle
+                0x000000002000009c        0x4 build/menu.o
+ .bss.down      0x00000000200000a0        0x4 build/keyboard.o
+                0x00000000200000a0                down
+ .bss.middle    0x00000000200000a4        0x4 build/keyboard.o
+                0x00000000200000a4                middle
  .bss.min_current_position
-                0x00000000200000a0        0x4 build/keyboard.o
-                0x00000000200000a0                min_current_position
- .bss.up        0x00000000200000a4        0x4 build/keyboard.o
-                0x00000000200000a4                up
+                0x00000000200000a8        0x4 build/keyboard.o
+                0x00000000200000a8                min_current_position
+ .bss.up        0x00000000200000ac        0x4 build/keyboard.o
+                0x00000000200000ac                up
  .bss.__malloc_free_list
-                0x00000000200000a8        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
-                0x00000000200000a8                __malloc_free_list
+                0x00000000200000b0        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+                0x00000000200000b0                __malloc_free_list
  .bss.__malloc_sbrk_start
-                0x00000000200000ac        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
-                0x00000000200000ac                __malloc_sbrk_start
+                0x00000000200000b4        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+                0x00000000200000b4                __malloc_sbrk_start
  .bss.heap_end.5377
-                0x00000000200000b0        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(sbrk.o)
+                0x00000000200000b8        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(sbrk.o)
  *(COMMON)
- COMMON         0x00000000200000b4      0x144 build/main.o
-                0x00000000200000b4                display_previous_mode
-                0x00000000200000b8                click
-                0x00000000200000bc                menu_text_usage
-                0x00000000200000c8                display_mode
-                0x00000000200000cc                mode
-                0x00000000200000d0                BlackImage
-                0x00000000200000d4                current_position
-                0x00000000200000d8                htim1
-                0x0000000020000118                action
-                0x000000002000011c                hspi1
-                0x0000000020000180                huart2
- COMMON         0x00000000200001f8        0x4 build/stm32l4xx_hal.o
-                0x00000000200001f8                uwTick
- COMMON         0x00000000200001fc       0x18 build/GUI_Paint.o
-                0x00000000200001fc                Paint
- COMMON         0x0000000020000214        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
-                0x0000000020000214                errno
-                0x0000000020000218                . = ALIGN (0x4)
-                0x0000000020000218                _ebss = .
-                0x0000000020000218                __bss_end__ = _ebss
+ COMMON         0x00000000200000bc      0x144 build/main.o
+                0x00000000200000bc                display_previous_mode
+                0x00000000200000c0                click
+                0x00000000200000c4                menu_text_usage
+                0x00000000200000d0                display_mode
+                0x00000000200000d4                mode
+                0x00000000200000d8                BlackImage
+                0x00000000200000dc                current_position
+                0x00000000200000e0                htim1
+                0x0000000020000120                action
+                0x0000000020000124                hspi1
+                0x0000000020000188                huart2
+ COMMON         0x0000000020000200        0x4 build/stm32l4xx_hal.o
+                0x0000000020000200                uwTick
+ COMMON         0x0000000020000204       0x18 build/GUI_Paint.o
+                0x0000000020000204                Paint
+ COMMON         0x000000002000021c        0x4 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
+                0x000000002000021c                errno
+                0x0000000020000220                . = ALIGN (0x4)
+                0x0000000020000220                _ebss = .
+                0x0000000020000220                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x0000000020000218      0x600 load address 0x0000000008004928
-                0x0000000020000218                . = ALIGN (0x8)
-                0x0000000020000218                PROVIDE (end = .)
+                0x0000000020000220      0x600 load address 0x0000000008006e00
+                0x0000000020000220                . = ALIGN (0x8)
+                0x0000000020000220                PROVIDE (end = .)
                 [!provide]                        PROVIDE (_end = .)
-                0x0000000020000418                . = (. + _Min_Heap_Size)
- *fill*         0x0000000020000218      0x200 
-                0x0000000020000818                . = (. + _Min_Stack_Size)
- *fill*         0x0000000020000418      0x400 
-                0x0000000020000818                . = ALIGN (0x8)
+                0x0000000020000420                . = (. + _Min_Heap_Size)
+ *fill*         0x0000000020000220      0x200 
+                0x0000000020000820                . = (. + _Min_Stack_Size)
+ *fill*         0x0000000020000420      0x400 
+                0x0000000020000820                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
@@ -2190,70 +2194,79 @@ LOAD /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
  .ARM.attributes
                 0x00000000000003ad       0x39 build/EPD_2in9.o
  .ARM.attributes
-                0x00000000000003e6       0x39 build/font20.o
+                0x00000000000003e6       0x39 build/font12.o
  .ARM.attributes
-                0x000000000000041f       0x39 build/GUI_Paint.o
+                0x000000000000041f       0x39 build/font20.o
  .ARM.attributes
-                0x0000000000000458       0x39 build/menu.o
+                0x0000000000000458       0x39 build/GUI_Paint.o
  .ARM.attributes
-                0x0000000000000491       0x39 build/display.o
+                0x0000000000000491       0x39 build/menu.o
  .ARM.attributes
-                0x00000000000004ca       0x39 build/keyboard.o
+                0x00000000000004ca       0x39 build/example.o
  .ARM.attributes
-                0x0000000000000503       0x21 build/startup_stm32l476xx.o
+                0x0000000000000503       0x39 build/text.o
  .ARM.attributes
-                0x0000000000000524       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
+                0x000000000000053c       0x39 build/display.o
  .ARM.attributes
-                0x0000000000000558       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
+                0x0000000000000575       0x39 build/keyboard.o
  .ARM.attributes
-                0x000000000000058c       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+                0x00000000000005ae       0x21 build/startup_stm32l476xx.o
  .ARM.attributes
-                0x00000000000005c0       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
+                0x00000000000005cf       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-impure.o)
  .ARM.attributes
-                0x00000000000005f4       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+                0x0000000000000603       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
  .ARM.attributes
-                0x0000000000000628       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
+                0x0000000000000637       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
  .ARM.attributes
-                0x000000000000065c       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+                0x000000000000066b       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
  .ARM.attributes
-                0x0000000000000690       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
+                0x000000000000069f       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
  .ARM.attributes
-                0x00000000000006c4       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(sbrk.o)
+                0x00000000000006d3       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
  .ARM.attributes
-                0x00000000000006f8       0x22 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_aeabi_uldivmod.o)
+                0x0000000000000707       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
  .ARM.attributes
-                0x000000000000071a       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
+                0x000000000000073b       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
  .ARM.attributes
-                0x000000000000074e       0x22 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_dvmd_tls.o)
+                0x000000000000076f       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(sbrk.o)
  .ARM.attributes
-                0x0000000000000770       0x22 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
+                0x00000000000007a3       0x22 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_aeabi_uldivmod.o)
+ .ARM.attributes
+                0x00000000000007c5       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
+ .ARM.attributes
+                0x00000000000007f9       0x22 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x000000000000081b       0x22 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtn.o
 OUTPUT(build/smartwatch.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000    0x1bfb1
- .debug_info    0x0000000000000000     0x2652 build/main.o
- .debug_info    0x0000000000002652     0x148c build/stm32l4xx_it.o
- .debug_info    0x0000000000003ade     0x223f build/stm32l4xx_hal_msp.o
- .debug_info    0x0000000000005d1d     0x329b build/stm32l4xx_hal_tim.o
- .debug_info    0x0000000000008fb8     0x16ad build/stm32l4xx_hal_tim_ex.o
- .debug_info    0x000000000000a665     0x1def build/stm32l4xx_hal_uart.o
- .debug_info    0x000000000000c454      0xd26 build/stm32l4xx_hal.o
- .debug_info    0x000000000000d17a      0xf5c build/stm32l4xx_hal_rcc.o
- .debug_info    0x000000000000e0d6     0x12f3 build/stm32l4xx_hal_rcc_ex.o
- .debug_info    0x000000000000f3c9      0x928 build/stm32l4xx_hal_gpio.o
- .debug_info    0x000000000000fcf1      0xc0d build/stm32l4xx_hal_pwr_ex.o
- .debug_info    0x00000000000108fe     0x1052 build/stm32l4xx_hal_cortex.o
- .debug_info    0x0000000000011950     0x1f61 build/stm32l4xx_hal_spi.o
- .debug_info    0x00000000000138b1      0x65e build/system_stm32l4xx.o
- .debug_info    0x0000000000013f0f     0x135e build/DEV_Config.o
- .debug_info    0x000000000001526d     0x170f build/EPD_2in9.o
- .debug_info    0x000000000001697c      0x234 build/font20.o
- .debug_info    0x0000000000016bb0     0x219c build/GUI_Paint.o
- .debug_info    0x0000000000018d4c     0x122b build/menu.o
- .debug_info    0x0000000000019f77     0x107e build/display.o
- .debug_info    0x000000000001aff5      0xf9a build/keyboard.o
- .debug_info    0x000000000001bf8f       0x22 build/startup_stm32l476xx.o
+.debug_info     0x0000000000000000    0x1d1a2
+ .debug_info    0x0000000000000000     0x266f build/main.o
+ .debug_info    0x000000000000266f     0x14a9 build/stm32l4xx_it.o
+ .debug_info    0x0000000000003b18     0x225c build/stm32l4xx_hal_msp.o
+ .debug_info    0x0000000000005d74     0x329b build/stm32l4xx_hal_tim.o
+ .debug_info    0x000000000000900f     0x16ad build/stm32l4xx_hal_tim_ex.o
+ .debug_info    0x000000000000a6bc     0x1def build/stm32l4xx_hal_uart.o
+ .debug_info    0x000000000000c4ab      0xd26 build/stm32l4xx_hal.o
+ .debug_info    0x000000000000d1d1      0xf5c build/stm32l4xx_hal_rcc.o
+ .debug_info    0x000000000000e12d     0x12f3 build/stm32l4xx_hal_rcc_ex.o
+ .debug_info    0x000000000000f420      0x928 build/stm32l4xx_hal_gpio.o
+ .debug_info    0x000000000000fd48      0xc0d build/stm32l4xx_hal_pwr_ex.o
+ .debug_info    0x0000000000010955     0x1052 build/stm32l4xx_hal_cortex.o
+ .debug_info    0x00000000000119a7     0x1f61 build/stm32l4xx_hal_spi.o
+ .debug_info    0x0000000000013908      0x65e build/system_stm32l4xx.o
+ .debug_info    0x0000000000013f66     0x137b build/DEV_Config.o
+ .debug_info    0x00000000000152e1     0x172c build/EPD_2in9.o
+ .debug_info    0x0000000000016a0d      0x234 build/font12.o
+ .debug_info    0x0000000000016c41      0x234 build/font20.o
+ .debug_info    0x0000000000016e75     0x21b9 build/GUI_Paint.o
+ .debug_info    0x000000000001902e     0x1248 build/menu.o
+ .debug_info    0x000000000001a276       0x59 build/example.o
+ .debug_info    0x000000000001a2cf      0xf54 build/text.o
+ .debug_info    0x000000000001b223      0xfa6 build/display.o
+ .debug_info    0x000000000001c1c9      0xfb7 build/keyboard.o
+ .debug_info    0x000000000001d180       0x22 build/startup_stm32l476xx.o
 
-.debug_abbrev   0x0000000000000000     0x304e
+.debug_abbrev   0x0000000000000000     0x3329
  .debug_abbrev  0x0000000000000000      0x2e6 build/main.o
  .debug_abbrev  0x00000000000002e6      0x238 build/stm32l4xx_it.o
  .debug_abbrev  0x000000000000051e      0x262 build/stm32l4xx_hal_msp.o
@@ -2270,12 +2283,15 @@ OUTPUT(build/smartwatch.elf elf32-littlearm)
  .debug_abbrev  0x0000000000001f85      0x133 build/system_stm32l4xx.o
  .debug_abbrev  0x00000000000020b8      0x218 build/DEV_Config.o
  .debug_abbrev  0x00000000000022d0      0x2e2 build/EPD_2in9.o
- .debug_abbrev  0x00000000000025b2       0xb8 build/font20.o
- .debug_abbrev  0x000000000000266a      0x321 build/GUI_Paint.o
- .debug_abbrev  0x000000000000298b      0x24a build/menu.o
- .debug_abbrev  0x0000000000002bd5      0x25a build/display.o
- .debug_abbrev  0x0000000000002e2f      0x20d build/keyboard.o
- .debug_abbrev  0x000000000000303c       0x12 build/startup_stm32l476xx.o
+ .debug_abbrev  0x00000000000025b2       0xb8 build/font12.o
+ .debug_abbrev  0x000000000000266a       0xb8 build/font20.o
+ .debug_abbrev  0x0000000000002722      0x321 build/GUI_Paint.o
+ .debug_abbrev  0x0000000000002a43      0x24a build/menu.o
+ .debug_abbrev  0x0000000000002c8d       0x45 build/example.o
+ .debug_abbrev  0x0000000000002cd2      0x22a build/text.o
+ .debug_abbrev  0x0000000000002efc      0x20e build/display.o
+ .debug_abbrev  0x000000000000310a      0x20d build/keyboard.o
+ .debug_abbrev  0x0000000000003317       0x12 build/startup_stm32l476xx.o
 
 .debug_loc      0x0000000000000000     0xf88c
  .debug_loc     0x0000000000000000      0x109 build/main.o
@@ -2296,10 +2312,11 @@ OUTPUT(build/smartwatch.elf elf32-littlearm)
  .debug_loc     0x000000000000dd65      0x3bb build/EPD_2in9.o
  .debug_loc     0x000000000000e120     0x133d build/GUI_Paint.o
  .debug_loc     0x000000000000f45d      0x244 build/menu.o
- .debug_loc     0x000000000000f6a1      0x1cb build/display.o
+ .debug_loc     0x000000000000f6a1      0x173 build/text.o
+ .debug_loc     0x000000000000f814       0x58 build/display.o
  .debug_loc     0x000000000000f86c       0x20 build/keyboard.o
 
-.debug_aranges  0x0000000000000000     0x1078
+.debug_aranges  0x0000000000000000     0x10c0
  .debug_aranges
                 0x0000000000000000       0x50 build/main.o
  .debug_aranges
@@ -2333,19 +2350,25 @@ OUTPUT(build/smartwatch.elf elf32-littlearm)
  .debug_aranges
                 0x0000000000000e98       0x70 build/EPD_2in9.o
  .debug_aranges
-                0x0000000000000f08       0x18 build/font20.o
+                0x0000000000000f08       0x18 build/font12.o
  .debug_aranges
-                0x0000000000000f20       0xa0 build/GUI_Paint.o
+                0x0000000000000f20       0x18 build/font20.o
  .debug_aranges
-                0x0000000000000fc0       0x40 build/menu.o
+                0x0000000000000f38       0xa0 build/GUI_Paint.o
  .debug_aranges
-                0x0000000000001000       0x30 build/display.o
+                0x0000000000000fd8       0x40 build/menu.o
  .debug_aranges
-                0x0000000000001030       0x20 build/keyboard.o
+                0x0000000000001018       0x18 build/example.o
  .debug_aranges
-                0x0000000000001050       0x28 build/startup_stm32l476xx.o
+                0x0000000000001030       0x20 build/text.o
+ .debug_aranges
+                0x0000000000001050       0x28 build/display.o
+ .debug_aranges
+                0x0000000000001078       0x20 build/keyboard.o
+ .debug_aranges
+                0x0000000000001098       0x28 build/startup_stm32l476xx.o
 
-.debug_ranges   0x0000000000000000     0x1040
+.debug_ranges   0x0000000000000000     0x1048
  .debug_ranges  0x0000000000000000       0x40 build/main.o
  .debug_ranges  0x0000000000000040       0x58 build/stm32l4xx_it.o
  .debug_ranges  0x0000000000000098       0x40 build/stm32l4xx_hal_msp.o
@@ -2364,41 +2387,45 @@ OUTPUT(build/smartwatch.elf elf32-littlearm)
  .debug_ranges  0x0000000000000e40       0x90 build/EPD_2in9.o
  .debug_ranges  0x0000000000000ed0       0xd8 build/GUI_Paint.o
  .debug_ranges  0x0000000000000fa8       0x30 build/menu.o
- .debug_ranges  0x0000000000000fd8       0x38 build/display.o
- .debug_ranges  0x0000000000001010       0x10 build/keyboard.o
- .debug_ranges  0x0000000000001020       0x20 build/startup_stm32l476xx.o
+ .debug_ranges  0x0000000000000fd8       0x28 build/text.o
+ .debug_ranges  0x0000000000001000       0x18 build/display.o
+ .debug_ranges  0x0000000000001018       0x10 build/keyboard.o
+ .debug_ranges  0x0000000000001028       0x20 build/startup_stm32l476xx.o
 
-.debug_line     0x0000000000000000     0x79fe
- .debug_line    0x0000000000000000      0x43c build/main.o
- .debug_line    0x000000000000043c      0x350 build/stm32l4xx_it.o
- .debug_line    0x000000000000078c      0x3bf build/stm32l4xx_hal_msp.o
- .debug_line    0x0000000000000b4b     0x14e8 build/stm32l4xx_hal_tim.o
- .debug_line    0x0000000000002033      0x8c9 build/stm32l4xx_hal_tim_ex.o
- .debug_line    0x00000000000028fc      0xd84 build/stm32l4xx_hal_uart.o
- .debug_line    0x0000000000003680      0x3ef build/stm32l4xx_hal.o
- .debug_line    0x0000000000003a6f      0x53e build/stm32l4xx_hal_rcc.o
- .debug_line    0x0000000000003fad      0x7e2 build/stm32l4xx_hal_rcc_ex.o
- .debug_line    0x000000000000478f      0x30b build/stm32l4xx_hal_gpio.o
- .debug_line    0x0000000000004a9a      0x648 build/stm32l4xx_hal_pwr_ex.o
- .debug_line    0x00000000000050e2      0x3cc build/stm32l4xx_hal_cortex.o
- .debug_line    0x00000000000054ae      0xd00 build/stm32l4xx_hal_spi.o
- .debug_line    0x00000000000061ae      0x1a8 build/system_stm32l4xx.o
- .debug_line    0x0000000000006356      0x2c1 build/DEV_Config.o
- .debug_line    0x0000000000006617      0x3df build/EPD_2in9.o
- .debug_line    0x00000000000069f6       0xa5 build/font20.o
- .debug_line    0x0000000000006a9b      0x697 build/GUI_Paint.o
- .debug_line    0x0000000000007132      0x2dd build/menu.o
- .debug_line    0x000000000000740f      0x2ca build/display.o
- .debug_line    0x00000000000076d9      0x2b1 build/keyboard.o
- .debug_line    0x000000000000798a       0x74 build/startup_stm32l476xx.o
+.debug_line     0x0000000000000000     0x7e47
+ .debug_line    0x0000000000000000      0x458 build/main.o
+ .debug_line    0x0000000000000458      0x36c build/stm32l4xx_it.o
+ .debug_line    0x00000000000007c4      0x3db build/stm32l4xx_hal_msp.o
+ .debug_line    0x0000000000000b9f     0x14e8 build/stm32l4xx_hal_tim.o
+ .debug_line    0x0000000000002087      0x8c9 build/stm32l4xx_hal_tim_ex.o
+ .debug_line    0x0000000000002950      0xd84 build/stm32l4xx_hal_uart.o
+ .debug_line    0x00000000000036d4      0x3ef build/stm32l4xx_hal.o
+ .debug_line    0x0000000000003ac3      0x53e build/stm32l4xx_hal_rcc.o
+ .debug_line    0x0000000000004001      0x7e2 build/stm32l4xx_hal_rcc_ex.o
+ .debug_line    0x00000000000047e3      0x30b build/stm32l4xx_hal_gpio.o
+ .debug_line    0x0000000000004aee      0x648 build/stm32l4xx_hal_pwr_ex.o
+ .debug_line    0x0000000000005136      0x3cc build/stm32l4xx_hal_cortex.o
+ .debug_line    0x0000000000005502      0xd00 build/stm32l4xx_hal_spi.o
+ .debug_line    0x0000000000006202      0x1a8 build/system_stm32l4xx.o
+ .debug_line    0x00000000000063aa      0x2dd build/DEV_Config.o
+ .debug_line    0x0000000000006687      0x3fb build/EPD_2in9.o
+ .debug_line    0x0000000000006a82       0xa5 build/font12.o
+ .debug_line    0x0000000000006b27       0xa5 build/font20.o
+ .debug_line    0x0000000000006bcc      0x6b3 build/GUI_Paint.o
+ .debug_line    0x000000000000727f      0x2f9 build/menu.o
+ .debug_line    0x0000000000007578       0x3c build/example.o
+ .debug_line    0x00000000000075b4      0x2ab build/text.o
+ .debug_line    0x000000000000785f      0x2a7 build/display.o
+ .debug_line    0x0000000000007b06      0x2cd build/keyboard.o
+ .debug_line    0x0000000000007dd3       0x74 build/startup_stm32l476xx.o
 
-.debug_str      0x0000000000000000     0x54f7
+.debug_str      0x0000000000000000     0x554d
  .debug_str     0x0000000000000000     0x1673 build/main.o
-                                       0x17f9 (size before relaxing)
+                                       0x17fe (size before relaxing)
  .debug_str     0x0000000000001673       0xe5 build/stm32l4xx_it.o
-                                        0xc8f (size before relaxing)
+                                        0xc94 (size before relaxing)
  .debug_str     0x0000000000001758      0x5ce build/stm32l4xx_hal_msp.o
-                                       0x1760 (size before relaxing)
+                                       0x1765 (size before relaxing)
  .debug_str     0x0000000000001d26      0xd0b build/stm32l4xx_hal_tim.o
                                        0x1454 (size before relaxing)
  .debug_str     0x0000000000002a31      0x59b build/stm32l4xx_hal_tim_ex.o
@@ -2422,20 +2449,26 @@ OUTPUT(build/smartwatch.elf elf32-littlearm)
  .debug_str     0x0000000000004e5d       0x38 build/system_stm32l4xx.o
                                         0x3ef (size before relaxing)
  .debug_str     0x0000000000004e95       0x2e build/DEV_Config.o
-                                        0xba7 (size before relaxing)
+                                        0xbac (size before relaxing)
  .debug_str     0x0000000000004ec3       0xc9 build/EPD_2in9.o
-                                        0x8f4 (size before relaxing)
- .debug_str     0x0000000000004f8c       0x24 build/font20.o
+                                        0x8f9 (size before relaxing)
+ .debug_str     0x0000000000004f8c       0x24 build/font12.o
                                         0x22b (size before relaxing)
- .debug_str     0x0000000000004fb0      0x41a build/GUI_Paint.o
-                                        0xbfd (size before relaxing)
- .debug_str     0x00000000000053ca       0x61 build/menu.o
-                                        0x906 (size before relaxing)
- .debug_str     0x000000000000542b       0x63 build/display.o
-                                        0x8a5 (size before relaxing)
- .debug_str     0x000000000000548e       0x45 build/keyboard.o
-                                        0x82a (size before relaxing)
- .debug_str     0x00000000000054d3       0x24 build/startup_stm32l476xx.o
+ .debug_str     0x0000000000004fb0       0x24 build/font20.o
+                                        0x22b (size before relaxing)
+ .debug_str     0x0000000000004fd4      0x41a build/GUI_Paint.o
+                                        0xc02 (size before relaxing)
+ .debug_str     0x00000000000053ee       0x61 build/menu.o
+                                        0x90b (size before relaxing)
+ .debug_str     0x000000000000544f       0x1c build/example.o
+                                        0x10d (size before relaxing)
+ .debug_str     0x000000000000546b       0x5d build/text.o
+                                        0x82c (size before relaxing)
+ .debug_str     0x00000000000054c8       0x1c build/display.o
+                                        0x847 (size before relaxing)
+ .debug_str     0x00000000000054e4       0x45 build/keyboard.o
+                                        0x82f (size before relaxing)
+ .debug_str     0x0000000000005529       0x24 build/startup_stm32l476xx.o
                                          0x45 (size before relaxing)
 
 .comment        0x0000000000000000       0x7f
@@ -2456,13 +2489,16 @@ OUTPUT(build/smartwatch.elf elf32-littlearm)
  .comment       0x000000000000007f       0x80 build/system_stm32l4xx.o
  .comment       0x000000000000007f       0x80 build/DEV_Config.o
  .comment       0x000000000000007f       0x80 build/EPD_2in9.o
+ .comment       0x000000000000007f       0x80 build/font12.o
  .comment       0x000000000000007f       0x80 build/font20.o
  .comment       0x000000000000007f       0x80 build/GUI_Paint.o
  .comment       0x000000000000007f       0x80 build/menu.o
+ .comment       0x000000000000007f       0x80 build/example.o
+ .comment       0x000000000000007f       0x80 build/text.o
  .comment       0x000000000000007f       0x80 build/display.o
  .comment       0x000000000000007f       0x80 build/keyboard.o
 
-.debug_frame    0x0000000000000000     0x31ac
+.debug_frame    0x0000000000000000     0x31bc
  .debug_frame   0x0000000000000000       0xe4 build/main.o
  .debug_frame   0x00000000000000e4       0xc8 build/stm32l4xx_it.o
  .debug_frame   0x00000000000001ac       0xd8 build/stm32l4xx_hal_msp.o
@@ -2481,18 +2517,19 @@ OUTPUT(build/smartwatch.elf elf32-littlearm)
  .debug_frame   0x0000000000002a2c      0x168 build/EPD_2in9.o
  .debug_frame   0x0000000000002b94      0x2d4 build/GUI_Paint.o
  .debug_frame   0x0000000000002e68       0xc0 build/menu.o
- .debug_frame   0x0000000000002f28       0x78 build/display.o
- .debug_frame   0x0000000000002fa0       0x2c build/keyboard.o
- .debug_frame   0x0000000000002fcc       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
- .debug_frame   0x0000000000002ff8       0x30 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
- .debug_frame   0x0000000000003028       0x20 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
- .debug_frame   0x0000000000003048       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x0000000000003074       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
- .debug_frame   0x00000000000030a0       0x30 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
- .debug_frame   0x00000000000030d0       0x5c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
- .debug_frame   0x000000000000312c       0x20 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(sbrk.o)
- .debug_frame   0x000000000000314c       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x0000000000003178       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x0000000000002f28       0x3c build/text.o
+ .debug_frame   0x0000000000002f64       0x4c build/display.o
+ .debug_frame   0x0000000000002fb0       0x2c build/keyboard.o
+ .debug_frame   0x0000000000002fdc       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-init.o)
+ .debug_frame   0x0000000000003008       0x30 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-malloc.o)
+ .debug_frame   0x0000000000003038       0x20 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-memset.o)
+ .debug_frame   0x0000000000003058       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x0000000000003084       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x00000000000030b0       0x30 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-mlock.o)
+ .debug_frame   0x00000000000030e0       0x5c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
+ .debug_frame   0x000000000000313c       0x20 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libnosys.a(sbrk.o)
+ .debug_frame   0x000000000000315c       0x2c /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x0000000000003188       0x34 /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/libgcc.a(_udivmoddi4.o)
 
 Cross Reference Table
 
@@ -2505,6 +2542,7 @@ APBPrescTable                                     build/system_stm32l4xx.o
                                                   build/stm32l4xx_hal_rcc.o
 BlackImage                                        build/keyboard.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
                                                   build/GUI_Paint.o
                                                   build/EPD_2in9.o
@@ -2545,14 +2583,14 @@ Display                                           build/display.o
 Display_Draw_Menu_Box                             build/menu.o
 Display_Init                                      build/display.o
                                                   build/main.o
-Display_Text                                      build/display.o
 EPD_Clear                                         build/EPD_2in9.o
                                                   build/display.o
 EPD_Display                                       build/EPD_2in9.o
-                                                  build/display.o
+                                                  build/text.o
                                                   build/menu.o
 EPD_Init                                          build/EPD_2in9.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
 EPD_Sleep                                         build/EPD_2in9.o
 EPD_WaitUntilIdle                                 build/EPD_2in9.o
@@ -2574,7 +2612,7 @@ FLASH_WaitForLastOperation                        build/stm32l4xx_hal_flash.o
 FMC_IRQHandler                                    build/startup_stm32l476xx.o
 FPU_IRQHandler                                    build/startup_stm32l476xx.o
 Font12                                            build/font12.o
-                                                  build/display.o
+                                                  build/text.o
 Font12_Table                                      build/font12.o
 Font16                                            build/font16.o
 Font16_Table                                      build/font16.o
@@ -3118,12 +3156,13 @@ PVD_PVM_IRQHandler                                build/startup_stm32l476xx.o
 Paint                                             build/GUI_Paint.o
 Paint_Clear                                       build/GUI_Paint.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
 Paint_ClearWindows                                build/GUI_Paint.o
                                                   build/menu.o
 Paint_DrawBitMap                                  build/GUI_Paint.o
 Paint_DrawChar                                    build/GUI_Paint.o
-                                                  build/display.o
+                                                  build/text.o
 Paint_DrawCircle                                  build/GUI_Paint.o
 Paint_DrawLine                                    build/GUI_Paint.o
 Paint_DrawNum                                     build/GUI_Paint.o
@@ -3200,6 +3239,8 @@ TIM_OC2_SetConfig                                 build/stm32l4xx_hal_tim.o
 TIM_TI1_SetConfig                                 build/stm32l4xx_hal_tim.o
                                                   build/stm32l4xx_hal_tim_ex.o
 TSC_IRQHandler                                    build/startup_stm32l476xx.o
+Text_Init                                         build/text.o
+                                                  build/display.o
 UART4_IRQHandler                                  build/startup_stm32l476xx.o
 UART5_IRQHandler                                  build/startup_stm32l476xx.o
 UART_AdvFeatureConfig                             build/stm32l4xx_hal_uart.o
@@ -3281,6 +3322,7 @@ _sidata                                           build/startup_stm32l476xx.o
 _start                                            /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/crt0.o
 action                                            build/keyboard.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
                                                   build/GUI_Paint.o
                                                   build/EPD_2in9.o
@@ -3292,6 +3334,7 @@ atexit                                            /usr/bin/../lib/gcc/arm-none-e
 cleanup_glue                                      /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/libc_nano.a(lib_a-reent.o)
 click                                             build/keyboard.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
                                                   build/GUI_Paint.o
                                                   build/EPD_2in9.o
@@ -3301,6 +3344,7 @@ click                                             build/keyboard.o
                                                   build/main.o
 current_position                                  build/keyboard.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
                                                   build/GUI_Paint.o
                                                   build/EPD_2in9.o
@@ -3310,6 +3354,7 @@ current_position                                  build/keyboard.o
                                                   build/main.o
 display_mode                                      build/keyboard.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
                                                   build/GUI_Paint.o
                                                   build/EPD_2in9.o
@@ -3319,6 +3364,7 @@ display_mode                                      build/keyboard.o
                                                   build/main.o
 display_previous_mode                             build/keyboard.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
                                                   build/GUI_Paint.o
                                                   build/EPD_2in9.o
@@ -3343,6 +3389,7 @@ htim1                                             build/main.o
 huart2                                            build/main.o
 lut_full_update                                   build/EPD_2in9.o
                                                   build/display.o
+                                                  build/text.o
 lut_partial_update                                build/EPD_2in9.o
                                                   build/menu.o
 main                                              build/main.o
@@ -3358,6 +3405,7 @@ memset                                            /usr/bin/../lib/gcc/arm-none-e
                                                   /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/crt0.o
 menu_text_usage                                   build/keyboard.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
                                                   build/GUI_Paint.o
                                                   build/EPD_2in9.o
@@ -3369,6 +3417,7 @@ middle                                            build/keyboard.o
 min_current_position                              build/keyboard.o
 mode                                              build/keyboard.o
                                                   build/display.o
+                                                  build/text.o
                                                   build/menu.o
                                                   build/GUI_Paint.o
                                                   build/EPD_2in9.o
@@ -3379,5 +3428,7 @@ mode                                              build/keyboard.o
 pFlash                                            build/stm32l4xx_hal_flash.o
                                                   build/stm32l4xx_hal_flash_ex.o
 software_init_hook                                /usr/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard/crt0.o
+text                                              build/example.o
+                                                  build/text.o
 up                                                build/keyboard.o
 uwTick                                            build/stm32l4xx_hal.o

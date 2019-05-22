@@ -1,0 +1,935 @@
+ARM GAS  /tmp/ccDYLIQf.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"example.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	text
+  18              		.section	.rodata.text,"a",%progbits
+  19              		.align	2
+  22              	text:
+  23 0000 50726F6C 		.ascii	"Prologue\012\012Light rapidly faded away as the dar"
+  23      6F677565 
+  23      0A0A4C69 
+  23      67687420 
+  23      72617069 
+  24 002d 6B6E6573 		.ascii	"kness began to swallow him. Hajime Nagumo\342\200\231"
+  24      73206265 
+  24      67616E20 
+  24      746F2073 
+  24      77616C6C 
+  25 0059 73206661 		.ascii	"s face twisted in terror as he stared at the vanish"
+  25      63652074 
+  25      77697374 
+  25      65642069 
+  25      6E207465 
+  26 008c 696E6720 		.ascii	"ing light above him. He desperately shot out his ha"
+  26      6C696768 
+  26      74206162 
+  26      6F766520 
+  26      68696D2E 
+  27 00bf 6E642C20 		.ascii	"nd, grasping at the light he knew he could never tr"
+  27      67726173 
+  27      70696E67 
+  27      20617420 
+  27      74686520 
+  28 00f2 756C7920 		.ascii	"uly grab hold of. He felt his nether regions tense "
+  28      67726162 
+  28      20686F6C 
+  28      64206F66 
+  28      2E204865 
+  29 0125 75702061 		.ascii	"up as he fell freely through the darkness.\012\012T"
+  29      73206865 
+  29      2066656C 
+  29      6C206672 
+  29      65656C79 
+  30 0152 68652063 		.ascii	"he chasm he\342\200\231d fallen into was so deep th"
+  30      6861736D 
+ARM GAS  /tmp/ccDYLIQf.s 			page 2
+
+
+  30      206865E2 
+  30      80996420 
+  30      66616C6C 
+  31 017c 61742069 		.ascii	"at it seemed almost as if he was falling down to th"
+  31      74207365 
+  31      656D6564 
+  31      20616C6D 
+  31      6F737420 
+  32 01af 65207069 		.ascii	"e pits of hell. And the light he was staring at was"
+  32      7473206F 
+  32      66206865 
+  32      6C6C2E20 
+  32      416E6420 
+  33 01e2 20746865 		.ascii	" the portal to the world of the living. He\342\200\231"
+  33      20706F72 
+  33      74616C20 
+  33      746F2074 
+  33      68652077 
+  34 020f 64206661 		.ascii	"d fallen down a massive tear in the earth while he\342"
+  34      6C6C656E 
+  34      20646F77 
+  34      6E206120 
+  34      6D617373 
+  35 0242 80996420 		.ascii	"\200\231d been exploring a dungeon. The hole was so"
+  35      6265656E 
+  35      20657870 
+  35      6C6F7269 
+  35      6E672061 
+  36 026f 20646565 		.ascii	" deep that he kept falling long after the tiny pinp"
+  36      70207468 
+  36      61742068 
+  36      65206B65 
+  36      70742066 
+  37 02a2 7269636B 		.ascii	"rick of light had shrunk to nothing. His entire lif"
+  37      206F6620 
+  37      6C696768 
+  37      74206861 
+  37      64207368 
+  38 02d5 6520666C 		.ascii	"e flashed before his eyes, with nothing but the sou"
+  38      61736865 
+  38      64206265 
+  38      666F7265 
+  38      20686973 
+  39 0308 6E64206F 		.ascii	"nd of wind rushing past accompanying his plunge to "
+  39      66207769 
+  39      6E642072 
+  39      75736869 
+  39      6E672070 
+  40 033b 74686520 		.ascii	"the hellish depths below.\012\012Let us turn back t"
+  40      68656C6C 
+  40      69736820 
+  40      64657074 
+  40      68732062 
+  41 0368 68652063 		.ascii	"he clock a bit and recount how a young Japanese boy"
+  41      6C6F636B 
+  41      20612062 
+  41      69742061 
+ARM GAS  /tmp/ccDYLIQf.s 			page 3
+
+
+  41      6E642072 
+  42 039b 20666F75 		.ascii	" found himself in a world that was far too cruel an"
+  42      6E642068 
+  42      696D7365 
+  42      6C662069 
+  42      6E206120 
+  43 03ce 64206865 		.ascii	"d heartless for the word \342\200\234fantasy\342\200"
+  43      6172746C 
+  43      65737320 
+  43      666F7220 
+  43      74686520 
+  44 03f3 9D20746F 		.ascii	"\235 to be an accurate descriptor. After all, the h"
+  44      20626520 
+  44      616E2061 
+  44      63637572 
+  44      61746520 
+  45 0423 61727368 		.ascii	"arsh and unfair events he\342\200\231d experienced,"
+  45      20616E64 
+  45      20756E66 
+  45      61697220 
+  45      6576656E 
+  46 044d 20616E64 		.ascii	" and was still experiencing, were a bit too bereft "
+  46      20776173 
+  46      20737469 
+  46      6C6C2065 
+  46      78706572 
+  47 0480 6F662074 		.ascii	"of the wonderful hopes and dreams one imagined when"
+  47      68652077 
+  47      6F6E6465 
+  47      7266756C 
+  47      20686F70 
+  48 04b3 20746865 		.ascii	" they heard that word.\012\012\012\012Monday. Quite"
+  48      79206865 
+  48      61726420 
+  48      74686174 
+  48      20776F72 
+  49 04da 20706F73 		.ascii	" possibly the most depressing day of the week. Most"
+  49      7369626C 
+  49      79207468 
+  49      65206D6F 
+  49      73742064 
+  50 050d 2070656F 		.ascii	" people were, without a doubt, sighing heavily as t"
+  50      706C6520 
+  50      77657265 
+  50      2C207769 
+  50      74686F75 
+  51 0540 68657920 		.ascii	"hey lamented the beginning of the week and the end "
+  51      6C616D65 
+  51      6E746564 
+  51      20746865 
+  51      20626567 
+  52 0573 6F662074 		.ascii	"of their glorious weekend. Hajime Nagumo was no exc"
+  52      68656972 
+  52      20676C6F 
+  52      72696F75 
+  52      73207765 
+  53 05a6 65707469 		.ascii	"eption. However, in his case, his depression was mu"
+ARM GAS  /tmp/ccDYLIQf.s 			page 4
+
+
+  53      6F6E2E20 
+  53      486F7765 
+  53      7665722C 
+  53      20696E20 
+  54 05d9 6C746970 		.ascii	"ltiplied by the fact that school was not just a pai"
+  54      6C696564 
+  54      20627920 
+  54      74686520 
+  54      66616374 
+  55 060c 6E2C2062 		.ascii	"n, but a veritable hell.\012\012As always, Hajime b"
+  55      75742061 
+  55      20766572 
+  55      69746162 
+  55      6C652068 
+  56 0639 6172656C 		.ascii	"arely managed to arrive just before the bell for fi"
+  56      79206D61 
+  56      6E616765 
+  56      6420746F 
+  56      20617272 
+  57 066c 72737420 		.ascii	"rst period rang. He somehow managed to steady his s"
+  57      70657269 
+  57      6F642072 
+  57      616E672E 
+  57      20486520 
+  58 069f 6C656570 		.ascii	"leep-deprived body and opened the door to his class"
+  58      2D646570 
+  58      72697665 
+  58      6420626F 
+  58      64792061 
+  59 06d2 726F6F6D 		.ascii	"room. He found himself on the receiving end of a mu"
+  59      2E204865 
+  59      20666F75 
+  59      6E642068 
+  59      696D7365 
+  60 0705 6C746974 		.ascii	"ltitude of scornful glares and annoyed tongue click"
+  60      75646520 
+  60      6F662073 
+  60      636F726E 
+  60      66756C20 
+  61 0738 73206672 		.ascii	"s from a majority of the male students as soon as h"
+  61      6F6D2061 
+  61      206D616A 
+  61      6F726974 
+  61      79206F66 
+  62 076b 65207365 		.ascii	"e set foot in the classroom. None of the female stu"
+  62      7420666F 
+  62      6F742069 
+  62      6E207468 
+  62      6520636C 
+  63 079e 64656E74 		.ascii	"dents seemed all too pleased to see him either. It"
+  63      73207365 
+  63      656D6564 
+  63      20616C6C 
+  63      20746F6F 
+  64 07d0 20776F75 		.ascii	" would have been fine were they simply ignoring him"
+  64      6C642068 
+  64      61766520 
+ARM GAS  /tmp/ccDYLIQf.s 			page 5
+
+
+  64      6265656E 
+  64      2066696E 
+  65 0803 2C206275 		.ascii	", but they too gave him stares of contempt.\012\012"
+  65      74207468 
+  65      65792074 
+  65      6F6F2067 
+  65      61766520 
+  66 0830 48616A69 		.ascii	"Hajime did his best to ignore his classmates and we"
+  66      6D652064 
+  66      69642068 
+  66      69732062 
+  66      65737420 
+  67 0863 6E742074 		.ascii	"nt to his seat. But as always, there were a few stu"
+  67      6F206869 
+  67      73207365 
+  67      61742E20 
+  67      42757420 
+  68 0896 64656E74 		.ascii	"dents who couldn\342\200\231t resist the opportunit"
+  68      73207768 
+  68      6F20636F 
+  68      756C646E 
+  68      E2809974 
+  69 08c0 7920746F 		.ascii	"y to needle him.\012\012\342\200\234Sup, you gross "
+  69      206E6565 
+  69      646C6520 
+  69      68696D2E 
+  69      0A0AE280 
+  70 08e4 6F74616B 		.ascii	"otaku! Stay up all night playing video games again?"
+  70      75212053 
+  70      74617920 
+  70      75702061 
+  70      6C6C206E 
+  71 0917 20492062 		.ascii	" I bet you were playing porn games the whole time!\342"
+  71      65742079 
+  71      6F752077 
+  71      65726520 
+  71      706C6179 
+  72 094a 809D0A0A 		.ascii	"\200\235\012\012\342\200\234Wow what a creep. What "
+  72      E2809C57 
+  72      6F772077 
+  72      68617420 
+  72      61206372 
+  73 0968 6B696E64 		.ascii	"kind of disgusting pervert stays up all night playi"
+  73      206F6620 
+  73      64697367 
+  73      75737469 
+  73      6E672070 
+  74 099b 6E672070 		.ascii	"ng porn games?\342\200\235\012\012The boys all laug"
+  74      6F726E20 
+  74      67616D65 
+  74      733FE280 
+  74      9D0A0A54 
+  75 09bf 6865642C 		.ascii	"hed, as if they found that statement somehow hilari"
+  75      20617320 
+  75      69662074 
+  75      68657920 
+  75      666F756E 
+ARM GAS  /tmp/ccDYLIQf.s 			page 6
+
+
+  76 09f2 6F75732E 		.ascii	"ous. The student who\342\200\231d first called out "
+  76      20546865 
+  76      20737475 
+  76      64656E74 
+  76      2077686F 
+  77 0a1c 746F2048 		.ascii	"to Hajime was Daisuke Hiyama, the ringleader of Haj"
+  77      616A696D 
+  77      65207761 
+  77      73204461 
+  77      6973756B 
+  78 0a4f 696D65E2 		.ascii	"ime\342\200\231s tormentors. Daisuke never seemed t"
+  78      80997320 
+  78      746F726D 
+  78      656E746F 
+  78      72732E20 
+  79 0a79 6F207469 		.ascii	"o tire of teasing Hajime, as he went up to him on a"
+  79      7265206F 
+  79      66207465 
+  79      6173696E 
+  79      67204861 
+  80 0aac 20646169 		.ascii	" daily basis. The ones who were laughing wickedly n"
+  80      6C792062 
+  80      61736973 
+  80      2E205468 
+  80      65206F6E 
+  81 0adf 65787420 		.ascii	"ext to him were Yoshiki Saitou, Reichi Kondou, and "
+  81      746F2068 
+  81      696D2077 
+  81      65726520 
+  81      596F7368 
+  82 0b12 5368696E 		.ascii	"Shinji Nakano. It was those four who\342\200\231d a"
+  82      6A69204E 
+  82      616B616E 
+  82      6F2E2049 
+  82      74207761 
+  83 0b3c 6C776179 		.ascii	"lways made Hajime\342\200\231s life miserable.\012\012"
+  83      73206D61 
+  83      64652048 
+  83      616A696D 
+  83      65E28099 
+  84 0b63 41732048 		.ascii	"As Hiyama had stated earlier, Hajime was indeed an "
+  84      6979616D 
+  84      61206861 
+  84      64207374 
+  84      61746564 
+  85 0b96 6F74616B 		.ascii	"otaku. But he wasn\342\200\231t particularly ugly o"
+  85      752E2042 
+  85      75742068 
+  85      65207761 
+  85      736EE280 
+  86 0bc0 72206F62 		.ascii	"r obnoxious, so the moniker gross otaku hardly did "
+  86      6E6F7869 
+  86      6F75732C 
+  86      20736F20 
+  86      74686520 
+  87 0bf3 68696D20 		.ascii	"him justice. His hair was cropped short and kept ti"
+  87      6A757374 
+ARM GAS  /tmp/ccDYLIQf.s 			page 7
+
+
+  87      6963652E 
+  87      20486973 
+  87      20686169 
+  88 0c26 64792E20 		.ascii	"dy. Plus, it wasn\342\200\231t as if he had a commu"
+  88      506C7573 
+  88      2C206974 
+  88      20776173 
+  88      6EE28099 
+  89 0c50 6E696361 		.ascii	"nication problem of any sort either. Sure, he wasn\342"
+  89      74696F6E 
+  89      2070726F 
+  89      626C656D 
+  89      206F6620 
+  90 0c83 80997420 		.ascii	"\200\231t the most talkative guy around, but he had"
+  90      74686520 
+  90      6D6F7374 
+  90      2074616C 
+  90      6B617469 
+  91 0cb0 206E6F20 		.ascii	" no problem responding to people who talked to him."
+  91      70726F62 
+  91      6C656D20 
+  91      72657370 
+  91      6F6E6469 
+  92 0ce3 20486520 		.ascii	" He was a quiet person overall, but not to the poin"
+  92      77617320 
+  92      61207175 
+  92      69657420 
+  92      70657273 
+  93 0d16 74207768 		.ascii	"t where it could be considered gloomy. He just happ"
+  93      65726520 
+  93      69742063 
+  93      6F756C64 
+  93      20626520 
+  94 0d49 656E6564 		.ascii	"ened to have an interest in a very specific set of "
+  94      20746F20 
+  94      68617665 
+  94      20616E20 
+  94      696E7465 
+  95 0d7c 6D656469 		.ascii	"media\342\200\224namely manga, novels, video games,"
+  95      61E28094 
+  95      6E616D65 
+  95      6C79206D 
+  95      616E6761 
+  96 0da6 20616E64 		.ascii	" and movies.\012\012While it was true that public o"
+  96      206D6F76 
+  96      6965732E 
+  96      0A0A5768 
+  96      696C6520 
+  97 0dd3 70696E69 		.ascii	"pinion of otakus hadn\342\200\231t been very positi"
+  97      6F6E206F 
+  97      66206F74 
+  97      616B7573 
+  97      20686164 
+  98 0dfd 76652061 		.ascii	"ve as of late, at most being an otaku usually earne"
+  98      73206F66 
+  98      206C6174 
+  98      652C2061 
+ARM GAS  /tmp/ccDYLIQf.s 			page 8
+
+
+  98      74206D6F 
+  99 0e30 6420796F 		.ascii	"d you a few looks, not that kind of targeted bullyi"
+  99      75206120 
+  99      66657720 
+  99      6C6F6F6B 
+  99      732C206E 
+ 100 0e63 6E672E20 		.ascii	"ng. So why did all the male students hate Hajime so"
+ 100      536F2077 
+ 100      68792064 
+ 100      69642061 
+ 100      6C6C2074 
+ 101 0e96 3F0A0A54 		.ascii	"?\012\012The answer was simple.\012\012\342\200\234"
+ 101      68652061 
+ 101      6E737765 
+ 101      72207761 
+ 101      73207369 
+ 102 0eb4 476F6F64 		.ascii	"Good morning, Nagumo-kun! You barely made it on tim"
+ 102      206D6F72 
+ 102      6E696E67 
+ 102      2C204E61 
+ 102      67756D6F 
+ 103 0ee7 6520746F 		.ascii	"e today too. I think you should at least make an ef"
+ 103      64617920 
+ 103      746F6F2E 
+ 103      20492074 
+ 103      68696E6B 
+ 104 0f1a 666F7274 		.ascii	"fort to come earlier.\342\200\235 One of the girls "
+ 104      20746F20 
+ 104      636F6D65 
+ 104      20656172 
+ 104      6C696572 
+ 105 0f44 736D696C 		.ascii	"smiled softly as she walked up to Hajime. She was o"
+ 105      65642073 
+ 105      6F66746C 
+ 105      79206173 
+ 105      20736865 
+ 106 0f77 6E65206F 		.ascii	"ne of the few people in the whole school "
+ 106      66207468 
+ 106      65206665 
+ 106      77207065 
+ 106      6F706C65 
+ 107 0fa0 77686F20 		.ascii	"who treated him kindly, and also the reason everyon"
+ 107      74726561 
+ 107      74656420 
+ 107      68696D20 
+ 107      6B696E64 
+ 108 0fd3 65206861 		.ascii	"e hated him.\012\012Kaori Shirasaki, one of the mos"
+ 108      74656420 
+ 108      68696D2E 
+ 108      0A0A4B61 
+ 108      6F726920 
+ 109 1000 7420706F 		.ascii	"t popular girls in school, and beautiful enough to "
+ 109      70756C61 
+ 109      72206769 
+ 109      726C7320 
+ 109      696E2073 
+ 110 1033 62652063 		.ascii	"be considered a goddess by many. She had sleek, bla"
+ARM GAS  /tmp/ccDYLIQf.s 			page 9
+
+
+ 110      6F6E7369 
+ 110      64657265 
+ 110      64206120 
+ 110      676F6464 
+ 111 1066 636B2068 		.ascii	"ck hair that went all the way down to her waist, an"
+ 111      61697220 
+ 111      74686174 
+ 111      2077656E 
+ 111      7420616C 
+ 112 1099 64206C61 		.ascii	"d large alluring eyes filled with kindness. Her sma"
+ 112      72676520 
+ 112      616C6C75 
+ 112      72696E67 
+ 112      20657965 
+ 113 10cc 6C6C206E 		.ascii	"ll nose sat perfectly upon her face, and her pink l"
+ 113      6F736520 
+ 113      73617420 
+ 113      70657266 
+ 113      6563746C 
+ 114 10ff 69707320 		.ascii	"ips were the epitome of perfection.\012\012She alwa"
+ 114      77657265 
+ 114      20746865 
+ 114      20657069 
+ 114      746F6D65 
+ 115 112c 79732073 		.ascii	"ys seemed to have a smile on her face, and her knac"
+ 115      65656D65 
+ 115      6420746F 
+ 115      20686176 
+ 115      65206120 
+ 116 115f 6B20666F 		.ascii	"k for looking after others combined with her strong"
+ 116      72206C6F 
+ 116      6F6B696E 
+ 116      67206166 
+ 116      74657220 
+ 117 1192 2073656E 		.ascii	" sense of responsibility made her one of the most r"
+ 117      7365206F 
+ 117      66207265 
+ 117      73706F6E 
+ 117      73696269 
+ 118 11c5 65737065 		.ascii	"espected students at Hajime\342\200\231s school. Mo"
+ 118      63746564 
+ 118      20737475 
+ 118      64656E74 
+ 118      73206174 
+ 119 11ef 72656F76 		.ascii	"reover, she was tolerant and understanding to a fau"
+ 119      65722C20 
+ 119      73686520 
+ 119      77617320 
+ 119      746F6C65 
+ 120 1222 6C742C20 		.ascii	"lt, to the point where no one had ever even seen he"
+ 120      746F2074 
+ 120      68652070 
+ 120      6F696E74 
+ 120      20776865 
+ 121 1255 72206C6F 		.ascii	"r look unhappy before.\012\012And, for whatever rea"
+ 121      6F6B2075 
+ 121      6E686170 
+ARM GAS  /tmp/ccDYLIQf.s 			page 10
+
+
+ 121      70792062 
+ 121      65666F72 
+ 122 1282 736F6E2C 		.ascii	"son, Kaori had taken an interest in Hajime. Most pe"
+ 122      204B616F 
+ 122      72692068 
+ 122      61642074 
+ 122      616B656E 
+ 123 12b5 6F706C65 		.ascii	"ople assumed Hajime was a terrible student because "
+ 123      20617373 
+ 123      756D6564 
+ 123      2048616A 
+ 123      696D6520 
+ 124 12e8 68652061 		.ascii	"he always slept in class due to his frequent all-ni"
+ 124      6C776179 
+ 124      7320736C 
+ 124      65707420 
+ 124      696E2063 
+ 125 131b 67687465 		.ascii	"ghters (in truth, he had pretty average grades). An"
+ 125      72732028 
+ 125      696E2074 
+ 125      72757468 
+ 125      2C206865 
+ 126 134e 642C2073 		.ascii	"d, since Kaori was always looking after other stude"
+ 126      696E6365 
+ 126      204B616F 
+ 126      72692077 
+ 126      61732061 
+ 127 1381 6E74732C 		.ascii	"nts, they believed that was the reason she talked t"
+ 127      20746865 
+ 127      79206265 
+ 127      6C696576 
+ 127      65642074 
+ 128 13b4 6F206869 		.ascii	"o him.\012\012Had her overtures convinced Hajime to"
+ 128      6D2E0A0A 
+ 128      48616420 
+ 128      68657220 
+ 128      6F766572 
+ 129 13e1 20626563 		.ascii	" become a better student, or had he naturally been "
+ 129      6F6D6520 
+ 129      61206265 
+ 129      74746572 
+ 129      20737475 
+ 130 1414 61206265 		.ascii	"a better looking guy, the other kids might not have"
+ 130      74746572 
+ 130      206C6F6F 
+ 130      6B696E67 
+ 130      20677579 
+ 131 1447 206D696E 		.ascii	" minded Kaori\342\200\231s interest in him as much."
+ 131      64656420 
+ 131      4B616F72 
+ 131      69E28099 
+ 131      7320696E 
+ 132 1471 20417320 		.ascii	" As it was, though, he was sadly as average looking"
+ 132      69742077 
+ 132      61732C20 
+ 132      74686F75 
+ 132      67682C20 
+ARM GAS  /tmp/ccDYLIQf.s 			page 11
+
+
+ 133 14a4 20617320 		.ascii	" as one could get, and his favorite motto was \342\200"
+ 133      6F6E6520 
+ 133      636F756C 
+ 133      64206765 
+ 133      742C2061 
+ 134 14d4 9C686F62 		.ascii	"\234hobbies over real life,\342\200\235 so obviousl"
+ 134      62696573 
+ 134      206F7665 
+ 134      72207265 
+ 134      616C206C 
+ 135 14fb 79206869 		.ascii	"y his attitude toward school had shown no signs of "
+ 135      73206174 
+ 135      74697475 
+ 135      64652074 
+ 135      6F776172 
+ 136 152e 696D7072 		.ascii	"improvement either. As it was, the other average lo"
+ 136      6F76656D 
+ 136      656E7420 
+ 136      65697468 
+ 136      65722E20 
+ 137 1561 6F6B696E 		.ascii	"oking male students of his class couldn\342\200\231"
+ 137      67206D61 
+ 137      6C652073 
+ 137      74756465 
+ 137      6E747320 
+ 138 158b 74207374 		.ascii	"t stand the fact that Hajime was so close to Kaori."
+ 138      616E6420 
+ 138      74686520 
+ 138      66616374 
+ 138      20746861 
+ 139 15be 20E2809C 		.ascii	" \342\200\234Why him and not us!?\342\200\235 they "
+ 139      57687920 
+ 139      68696D20 
+ 139      616E6420 
+ 139      6E6F7420 
+ 140 15df 74686F75 		.ascii	"thought. Meanwhile, the other girls simply thought "
+ 140      6768742E 
+ 140      204D6561 
+ 140      6E776869 
+ 140      6C652C20 
+ 141 1612 68652077 		.ascii	"he was being rude to Kaori. They were unhappy that "
+ 141      61732062 
+ 141      65696E67 
+ 141      20727564 
+ 141      6520746F 
+ 142 1645 68652077 		.ascii	"he wasn\342\200\231t even attempting to reform his "
+ 142      61736EE2 
+ 142      80997420 
+ 142      6576656E 
+ 142      20617474 
+ 143 166f 68616269 		.ascii	"habits.\012\012\342\200\234A-Ah, good morning, Shir"
+ 143      74732E0A 
+ 143      0AE2809C 
+ 143      412D4168 
+ 143      2C20676F 
+ 144 1693 6173616B 		.ascii	"asaki-san.\342\200\235 Hajime\342\200\231s face sti"
+ 144      692D7361 
+ARM GAS  /tmp/ccDYLIQf.s 			page 12
+
+
+ 144      6E2EE280 
+ 144      9D204861 
+ 144      6A696D65 
+ 145 16b4 6666656E 		.ascii	"ffened up as he felt the bloodthirsty glares of his"
+ 145      65642075 
+ 145      70206173 
+ 145      20686520 
+ 145      66656C74 
+ 146 16e7 2066656C 		.ascii	" fellow classmates, and he awkwardly returned Kaori"
+ 146      6C6F7720 
+ 146      636C6173 
+ 146      736D6174 
+ 146      65732C20 
+ 147 171a E2809973 		.ascii	"\342\200\231s greeting.\012\012In contrast, Kaori s"
+ 147      20677265 
+ 147      6574696E 
+ 147      672E0A0A 
+ 147      496E2063 
+ 148 173e 6D696C65 		.ascii	"miled happily as she looked at him. Why do you alw"
+ 148      64206861 
+ 148      7070696C 
+ 148      79206173 
+ 148      20736865 
+ 149 1770 61797320 		.ascii	"ays look at me like that!? Hajime despaired as he f"
+ 149      6C6F6F6B 
+ 149      20617420 
+ 149      6D65206C 
+ 149      696B6520 
+ 150 17a3 656C7420 		.ascii	"elt the gazes of his classmates burn into him.\012\012"
+ 150      74686520 
+ 150      67617A65 
+ 150      73206F66 
+ 150      20686973 
+ 151 17d3 48616A69 		.ascii	"Hajime was honestly bewildered. He didn\342\200\231"
+ 151      6D652077 
+ 151      61732068 
+ 151      6F6E6573 
+ 151      746C7920 
+ 152 17fd 7420756E 		.ascii	"t understand why the most beautiful girl in school "
+ 152      64657273 
+ 152      74616E64 
+ 152      20776879 
+ 152      20746865 
+ 153 1830 63617265 		.ascii	"cared about a guy like him. To him, it seemed like "
+ 153      64206162 
+ 153      6F757420 
+ 153      61206775 
+ 153      79206C69 
+ 154 1863 74686572 		.ascii	"there had to have been something more than just her"
+ 154      65206861 
+ 154      6420746F 
+ 154      20686176 
+ 154      65206265 
+ 155 1896 206E6174 		.ascii	" natural disposition to help others.\012\012Of cour"
+ 155      7572616C 
+ 155      20646973 
+ 155      706F7369 
+ARM GAS  /tmp/ccDYLIQf.s 			page 13
+
+
+ 155      74696F6E 
+ 156 18c3 73652C20 		.ascii	"se, he wasn\342\200\231t so conceited as to believe"
+ 156      68652077 
+ 156      61736EE2 
+ 156      80997420 
+ 156      736F2063 
+ 157 18ed 20736865 		.ascii	" she might possibly have any romantic interest in h"
+ 157      206D6967 
+ 157      68742070 
+ 157      6F737369 
+ 157      626C7920 
+ 158 1920 696D2E20 		.ascii	"im. Hajime was well aware of the fact that he\342\200"
+ 158      48616A69 
+ 158      6D652077 
+ 158      61732077 
+ 158      656C6C20 
+ 159 194f 99642067 		.ascii	"\231d given up a great deal of things to live a lif"
+ 159      6976656E 
+ 159      20757020 
+ 159      61206772 
+ 159      65617420 
+ 160 197f 65206675 		.ascii	"e fully devoted to his hobbies. He knew his appeara"
+ 160      6C6C7920 
+ 160      6465766F 
+ 160      74656420 
+ 160      746F2068 
+ 161 19b2 6E63652C 		.ascii	"nce, grades, and athletic ability were all utterly "
+ 161      20677261 
+ 161      6465732C 
+ 161      20616E64 
+ 161      20617468 
+ 162 19e5 61766572 		.ascii	"average. There were a whole host of guys better tha"
+ 162      6167652E 
+ 162      20546865 
+ 162      72652077 
+ 162      65726520 
+ 163 1a18 6E206869 		.ascii	"n him who were far more suited to be her partner, e"
+ 163      6D207768 
+ 163      6F207765 
+ 163      72652066 
+ 163      6172206D 
+ 164 1a4b 76656E20 		.ascii	"ven just among her acquaintances. Which was why he "
+ 164      6A757374 
+ 164      20616D6F 
+ 164      6E672068 
+ 164      65722061 
+ 165 1a7e 666F756E 		.ascii	"found her behavior so puzzling.\012\012Honestly, I "
+ 165      64206865 
+ 165      72206265 
+ 165      68617669 
+ 165      6F722073 
+ 166 1aab 6A757374 		.ascii	"just wish you\342\200\231d realize you\342\200\231r"
+ 166      20776973 
+ 166      6820796F 
+ 166      75E28099 
+ 166      64207265 
+ 167 1acc 65207468 		.ascii	"e the reason everyone hates me right now! Hajime sc"
+ARM GAS  /tmp/ccDYLIQf.s 			page 14
+
+
+ 167      65207265 
+ 167      61736F6E 
+ 167      20657665 
+ 167      72796F6E 
+ 168 1aff 7265616D 		.ascii	"reamed inside his head. However, he didn\342\200\231"
+ 168      65642069 
+ 168      6E736964 
+ 168      65206869 
+ 168      73206865 
+ 169 1b2a 74206769 		.ascii	"t give voice to his thoughts. He knew that some of "
+ 169      76652076 
+ 169      6F696365 
+ 169      20746F20 
+ 169      68697320 
+ 170 1b5d 68697320 		.ascii	"his classmates would no doubt drag him out behind t"
+ 170      636C6173 
+ 170      736D6174 
+ 170      65732077 
+ 170      6F756C64 
+ 171 1b90 68652067 		.ascii	"he gym once classes were over if he ever dared to d"
+ 171      796D206F 
+ 171      6E636520 
+ 171      636C6173 
+ 171      73657320 
+ 172 1bc3 6F20736F 		.ascii	"o so... The moment Hajime finished his conversation"
+ 172      2E2E2E20 
+ 172      54686520 
+ 172      6D6F6D65 
+ 172      6E742048 
+ 173 1bf6 20776974 		.ascii	" with Kaori, three new people walked up to them. Th"
+ 173      68204B61 
+ 173      6F72692C 
+ 173      20746872 
+ 173      6565206E 
+ 174 1c29 6579E280 		.ascii	"ey\342\200\231d been watching the two of them like "
+ 174      99642062 
+ 174      65656E20 
+ 174      77617463 
+ 174      68696E67 
+ 175 1c53 76756C74 		.ascii	"vultures, waiting for him to finish talking. Among "
+ 175      75726573 
+ 175      2C207761 
+ 175      6974696E 
+ 175      6720666F 
+ 176 1c86 74686973 		.ascii	"this new group was of course one of the \342\200\234"
+ 176      206E6577 
+ 176      2067726F 
+ 176      75702077 
+ 176      6173206F 
+ 177 1cb1 62657474 		.ascii	"better guys\342\200\235 who\342\200\231d been menti"
+ 177      65722067 
+ 177      757973E2 
+ 177      809D2077 
+ 177      686FE280 
+ 178 1cd2 6F6E6564 		.ascii	"oned previously.\012\012\342\200\234Good morning, N"
+ 178      20707265 
+ 178      76696F75 
+ARM GAS  /tmp/ccDYLIQf.s 			page 15
+
+
+ 178      736C792E 
+ 178      0A0AE280 
+ 179 1cf6 6167756D 		.ascii	"agumo-kun. Must be rough staying up that late every"
+ 179      6F2D6B75 
+ 179      6E2E204D 
+ 179      75737420 
+ 179      62652072 
+ 180 1d29 20646179 		.ascii	" day.\342\200\235\012\012\342\200\234Looking after "
+ 180      2EE2809D 
+ 180      0A0AE280 
+ 180      9C4C6F6F 
+ 180      6B696E67 
+ 181 1d44 68696D20 		.ascii	"him again, Kaori? You\342\200\231re really too nice"
+ 181      61676169 
+ 181      6E2C204B 
+ 181      616F7269 
+ 181      3F20596F 
+ 182 1d6e 20666F72 		.ascii	" for your own good.\342\200\235\012\012\342\200\234"
+ 182      20796F75 
+ 182      72206F77 
+ 182      6E20676F 
+ 182      6F642EE2 
+ 183 1d89 53657269 		.ascii	"Seriously. Talking to a failure like him\342\200\231"
+ 183      6F75736C 
+ 183      792E2054 
+ 183      616C6B69 
+ 183      6E672074 
+ 184 1db4 73206120 		.ascii	"s a total waste of time.\342\200\235\012\012The onl"
+ 184      746F7461 
+ 184      6C207761 
+ 184      73746520 
+ 184      6F662074 
+ 185 1dd8 79207065 		.ascii	"y person who\342\200\231d greeted Hajime out of the"
+ 185      72736F6E 
+ 185      2077686F 
+ 185      E2809964 
+ 185      20677265 
+ 186 1e02 20746872 		.ascii	" three was Shizuku Yaegashi, Kaori\342\200\231s bes"
+ 186      65652077 
+ 186      61732053 
+ 186      68697A75 
+ 186      6B752059 
+ 187 1e2c 74206672 		.ascii	"t friend. Shizuku\342\200\231s black hair was tied "
+ 187      69656E64 
+ 187      2E205368 
+ 187      697A756B 
+ 187      75E28099 
+ 188 1e56 6261636B 		.ascii	"back in her trademark ponytail. Her almond-shaped e"
+ 188      20696E20 
+ 188      68657220 
+ 188      74726164 
+ 188      656D6172 
+ 189 1e89 79657320 		.ascii	"yes give her a rather sharp look, but deep within h"
+ 189      67697665 
+ 189      20686572 
+ 189      20612072 
+ 189      61746865 
+ARM GAS  /tmp/ccDYLIQf.s 			page 16
+
+
+ 190 1ebc 65722067 		.ascii	"er gaze dwelled a kindness that made her seem cool "
+ 190      617A6520 
+ 190      6477656C 
+ 190      6C656420 
+ 190      61206B69 
+ 191 1eef 72617468 		.ascii	"rather than cold.\012\012Standing 172 centimeters t"
+ 191      65722074 
+ 191      68616E20 
+ 191      636F6C64 
+ 191      2E0A0A53 
+ 192 1f1c 616C6C2C 		.ascii	"all, she was a good deal taller than"
+ 192      20736865 
+ 192      20776173 
+ 192      20612067 
+ 192      6F6F6420 
+ 193 1f40 206D6F73 		.ascii	" most of the other girls in his class.\000"
+ 193      74206F66 
+ 193      20746865 
+ 193      206F7468 
+ 193      65722067 
+ 194              		.text
+ 195              	.Letext0:
+ 196              		.file 1 "Display/Text_Mode/example.c"
+ARM GAS  /tmp/ccDYLIQf.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 example.c
+     /tmp/ccDYLIQf.s:22     .rodata.text:0000000000000000 text
+     /tmp/ccDYLIQf.s:19     .rodata.text:0000000000000000 $d
+
+NO UNDEFINED SYMBOLS

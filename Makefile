@@ -71,6 +71,8 @@ Display/Fonts/font20.c \
 Display/Fonts/font24.c \
 Display/GUI/GUI_Paint.c \
 Display/Menu/menu.c \
+Display/Text_Mode/example.c \
+Display/Text_Mode/text.c \
 Display/display.c \
 Src/keyboard.c
 
@@ -139,6 +141,7 @@ C_INCLUDES =  \
 -IDisplay/Fonts \
 -IDisplay/GUI \
 -IDisplay/Menu \
+-IDisplay/Text_Mode \
 -IDisplay
 
 

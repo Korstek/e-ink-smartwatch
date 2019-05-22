@@ -17,6 +17,7 @@
   #include <stdlib.h>
 
   #include "keyboard.h"
+  #include "text.h"
   #include "menu.h"
 
   //Image cache
