@@ -19,9 +19,12 @@
   #include "keyboard.h"
   #include "example.h"
 
-  void Text_Init(void);
-  void Text_Processing(void);
+  int text_pointer;
+  int previous_text_pointer;
 
   extern const char text[];
+
+  void Text_Init(void);
+  void Text_Processing(void);
 
   #endif /* __TEXT_H */

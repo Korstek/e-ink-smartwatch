@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccKIwJUs.s 			page 1
+ARM GAS  /tmp/ccDHi8dQ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccKIwJUs.s 			page 1
   29:Display/Config/DEV_Config.c **** #
   30:Display/Config/DEV_Config.c **** ******************************************************************************/
   31:Display/Config/DEV_Config.c **** #include "DEV_Config.h"
-ARM GAS  /tmp/ccKIwJUs.s 			page 2
+ARM GAS  /tmp/ccDHi8dQ.s 			page 2
 
 
   32:Display/Config/DEV_Config.c **** #include "stm32l4xx_hal_spi.h"
@@ -102,54 +102,60 @@ ARM GAS  /tmp/ccKIwJUs.s 			page 1
   59              		.cfi_endproc
   60              	.LFE123:
   62              		.comm	click,4,4
-  63              		.comm	menu_current_position,4,4
-  64              		.comm	action,4,4
-  65              		.comm	previous_operation_mode,4,4
-  66              		.comm	operation_mode,4,4
-  67              		.comm	BlackImage,4,4
-  68              		.comm	menu_text_usage,12,4
-  69              		.text
-  70              	.Letext0:
-  71              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
-  72              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
-  73              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
-  74              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
-  75              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
-  76              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
-  77              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
-  78              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
-ARM GAS  /tmp/ccKIwJUs.s 			page 3
+  63              		.comm	text_current_position,4,4
+  64              		.comm	menu_current_position,4,4
+  65              		.comm	action,4,4
+  66              		.comm	previous_operation_mode,4,4
+  67              		.comm	operation_mode,4,4
+  68              		.comm	BlackImage,4,4
+  69              		.comm	menu_text_usage,12,4
+  70              		.comm	previous_text_pointer,4,4
+  71              		.comm	text_pointer,4,4
+  72              		.text
+  73              	.Letext0:
+  74              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+  75              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+  76              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+  77              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+  78              		.file 6 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l476xx.h"
+ARM GAS  /tmp/ccDHi8dQ.s 			page 3
 
 
-  79              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
-  80              		.file 11 "Display/e-Paper/EPD_2in9.h"
-  81              		.file 12 "Display/GUI/../Fonts/fonts.h"
-  82              		.file 13 "Display/GUI/GUI_Paint.h"
-  83              		.file 14 "Display/e-Paper/ImageData.h"
-  84              		.file 15 "/usr/arm-none-eabi/include/sys/lock.h"
-  85              		.file 16 "/usr/arm-none-eabi/include/sys/_types.h"
-  86              		.file 17 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
-  87              		.file 18 "/usr/arm-none-eabi/include/sys/reent.h"
-  88              		.file 19 "/usr/arm-none-eabi/include/stdlib.h"
-  89              		.file 20 "Display/Text_Mode/text.h"
-  90              		.file 21 "Display/Menu_Mode/menu.h"
-  91              		.file 22 "Display/Modes/modes.h"
-  92              		.file 23 "Inc/keyboard.h"
-ARM GAS  /tmp/ccKIwJUs.s 			page 4
+  79              		.file 7 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_def.h"
+  80              		.file 8 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_dma.h"
+  81              		.file 9 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi.h"
+  82              		.file 10 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+  83              		.file 11 "Display/e-Paper/EPD_2in9.h"
+  84              		.file 12 "Display/GUI/../Fonts/fonts.h"
+  85              		.file 13 "Display/GUI/GUI_Paint.h"
+  86              		.file 14 "Display/e-Paper/ImageData.h"
+  87              		.file 15 "/usr/arm-none-eabi/include/sys/lock.h"
+  88              		.file 16 "/usr/arm-none-eabi/include/sys/_types.h"
+  89              		.file 17 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+  90              		.file 18 "/usr/arm-none-eabi/include/sys/reent.h"
+  91              		.file 19 "/usr/arm-none-eabi/include/stdlib.h"
+  92              		.file 20 "Display/Text_Mode/text.h"
+  93              		.file 21 "Display/Menu_Mode/menu.h"
+  94              		.file 22 "Display/Modes/modes.h"
+  95              		.file 23 "Inc/keyboard.h"
+ARM GAS  /tmp/ccDHi8dQ.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 DEV_Config.c
-     /tmp/ccKIwJUs.s:18     .text.DEV_SPI_WriteByte:0000000000000000 $t
-     /tmp/ccKIwJUs.s:25     .text.DEV_SPI_WriteByte:0000000000000000 DEV_SPI_WriteByte
-     /tmp/ccKIwJUs.s:58     .text.DEV_SPI_WriteByte:000000000000001c $d
+     /tmp/ccDHi8dQ.s:18     .text.DEV_SPI_WriteByte:0000000000000000 $t
+     /tmp/ccDHi8dQ.s:25     .text.DEV_SPI_WriteByte:0000000000000000 DEV_SPI_WriteByte
+     /tmp/ccDHi8dQ.s:58     .text.DEV_SPI_WriteByte:000000000000001c $d
                             *COM*:0000000000000004 click
+                            *COM*:0000000000000004 text_current_position
                             *COM*:0000000000000004 menu_current_position
                             *COM*:0000000000000004 action
                             *COM*:0000000000000004 previous_operation_mode
                             *COM*:0000000000000004 operation_mode
                             *COM*:0000000000000004 BlackImage
                             *COM*:000000000000000c menu_text_usage
+                            *COM*:0000000000000004 previous_text_pointer
+                            *COM*:0000000000000004 text_pointer
 
 UNDEFINED SYMBOLS
 HAL_SPI_Transmit

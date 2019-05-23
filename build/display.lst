@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccPdnIQU.s 			page 1
+ARM GAS  /tmp/ccil0P43.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccPdnIQU.s 			page 1
   42 0006 FFF7FEFF 		bl	EPD_Init
   43              	.LVL0:
   15:Display/display.c ****   EPD_Clear();
-ARM GAS  /tmp/ccPdnIQU.s 			page 2
+ARM GAS  /tmp/ccil0P43.s 			page 2
 
 
   44              		.loc 1 15 0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccPdnIQU.s 			page 1
   39:Display/display.c **** 
   40:Display/display.c ****   Modes_Init();
   75              		.loc 1 40 0
-ARM GAS  /tmp/ccPdnIQU.s 			page 3
+ARM GAS  /tmp/ccil0P43.s 			page 3
 
 
   76 0044 FFF7FEFF 		bl	Modes_Init
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccPdnIQU.s 			page 1
  122 000e 044B     		ldr	r3, .L10+4
  123 0010 0022     		movs	r2, #0
  124 0012 1A60     		str	r2, [r3]
-ARM GAS  /tmp/ccPdnIQU.s 			page 4
+ARM GAS  /tmp/ccil0P43.s 			page 4
 
 
   51:Display/display.c **** }
@@ -198,50 +198,56 @@ ARM GAS  /tmp/ccPdnIQU.s 			page 1
  137              		.cfi_endproc
  138              	.LFE124:
  140              		.comm	click,4,4
- 141              		.comm	menu_current_position,4,4
- 142              		.comm	action,4,4
- 143              		.comm	previous_operation_mode,4,4
- 144              		.comm	operation_mode,4,4
- 145              		.comm	BlackImage,4,4
- 146              		.comm	menu_text_usage,12,4
- 147              		.text
- 148              	.Letext0:
- 149              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 150              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 151              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 152              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 153              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 154              		.file 7 "Display/GUI/../Fonts/fonts.h"
- 155              		.file 8 "Display/GUI/GUI_Paint.h"
- 156              		.file 9 "Display/e-Paper/ImageData.h"
- 157              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
- 158              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
- 159              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 160              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
- 161              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
- 162              		.file 15 "Display/Text_Mode/text.h"
- 163              		.file 16 "Display/Menu_Mode/menu.h"
- 164              		.file 17 "Display/Modes/modes.h"
- 165              		.file 18 "Inc/keyboard.h"
- 166              		.file 19 "Display/e-Paper/EPD_2in9.h"
-ARM GAS  /tmp/ccPdnIQU.s 			page 5
+ 141              		.comm	text_current_position,4,4
+ 142              		.comm	menu_current_position,4,4
+ 143              		.comm	action,4,4
+ 144              		.comm	previous_operation_mode,4,4
+ 145              		.comm	operation_mode,4,4
+ 146              		.comm	BlackImage,4,4
+ 147              		.comm	menu_text_usage,12,4
+ 148              		.comm	previous_text_pointer,4,4
+ 149              		.comm	text_pointer,4,4
+ 150              		.text
+ 151              	.Letext0:
+ 152              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 153              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 154              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 155              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 156              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 157              		.file 7 "Display/GUI/../Fonts/fonts.h"
+ 158              		.file 8 "Display/GUI/GUI_Paint.h"
+ 159              		.file 9 "Display/e-Paper/ImageData.h"
+ 160              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
+ 161              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
+ 162              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 163              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
+ 164              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
+ 165              		.file 15 "Display/Text_Mode/text.h"
+ 166              		.file 16 "Display/Menu_Mode/menu.h"
+ 167              		.file 17 "Display/Modes/modes.h"
+ 168              		.file 18 "Inc/keyboard.h"
+ 169              		.file 19 "Display/e-Paper/EPD_2in9.h"
+ARM GAS  /tmp/ccil0P43.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 display.c
-     /tmp/ccPdnIQU.s:18     .text.Display_Init:0000000000000000 $t
-     /tmp/ccPdnIQU.s:25     .text.Display_Init:0000000000000000 Display_Init
-     /tmp/ccPdnIQU.s:88     .text.Display_Init:000000000000004c $d
+     /tmp/ccil0P43.s:18     .text.Display_Init:0000000000000000 $t
+     /tmp/ccil0P43.s:25     .text.Display_Init:0000000000000000 Display_Init
+     /tmp/ccil0P43.s:88     .text.Display_Init:000000000000004c $d
                             *COM*:0000000000000004 BlackImage
-     /tmp/ccPdnIQU.s:94     .text.Display:0000000000000000 $t
-     /tmp/ccPdnIQU.s:101    .text.Display:0000000000000000 Display
-     /tmp/ccPdnIQU.s:135    .text.Display:000000000000001c $d
+     /tmp/ccil0P43.s:94     .text.Display:0000000000000000 $t
+     /tmp/ccil0P43.s:101    .text.Display:0000000000000000 Display
+     /tmp/ccil0P43.s:135    .text.Display:000000000000001c $d
                             *COM*:0000000000000004 click
                             *COM*:0000000000000004 action
+                            *COM*:0000000000000004 text_current_position
                             *COM*:0000000000000004 menu_current_position
                             *COM*:0000000000000004 previous_operation_mode
                             *COM*:0000000000000004 operation_mode
                             *COM*:000000000000000c menu_text_usage
+                            *COM*:0000000000000004 previous_text_pointer
+                            *COM*:0000000000000004 text_pointer
 
 UNDEFINED SYMBOLS
 EPD_Init

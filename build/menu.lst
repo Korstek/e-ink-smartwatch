@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccfC5GwK.s 			page 1
+ARM GAS  /tmp/ccqLD2BX.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
   29:Display/Menu_Mode/menu.c ****         Display_Draw_Menu_Box(i,0,1);
   30:Display/Menu_Mode/menu.c ****         menu_text_usage[i]=1;
   31:Display/Menu_Mode/menu.c ****       }
-ARM GAS  /tmp/ccfC5GwK.s 			page 2
+ARM GAS  /tmp/ccqLD2BX.s 			page 2
 
 
   32:Display/Menu_Mode/menu.c ****       else
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
   40 0002 84B0     		sub	sp, sp, #16
   41              	.LCFI1:
   42              		.cfi_def_cfa_offset 32
-ARM GAS  /tmp/ccfC5GwK.s 			page 3
+ARM GAS  /tmp/ccqLD2BX.s 			page 3
 
 
   43 0004 0446     		mov	r4, r0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
   86              		@ sp needed
   87 004c 70BD     		pop	{r4, r5, r6, pc}
   88              	.LVL6:
-ARM GAS  /tmp/ccfC5GwK.s 			page 4
+ARM GAS  /tmp/ccqLD2BX.s 			page 4
 
 
   89              	.L5:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
  143              	.LFB124:
   22:Display/Menu_Mode/menu.c ****     EPD_Init(lut_partial_update);
  144              		.loc 1 22 0
-ARM GAS  /tmp/ccfC5GwK.s 			page 5
+ARM GAS  /tmp/ccqLD2BX.s 			page 5
 
 
  145              		.cfi_startproc
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
  190              		.loc 1 34 0
  191 0032 0022     		movs	r2, #0
  192 0034 1146     		mov	r1, r2
-ARM GAS  /tmp/ccfC5GwK.s 			page 6
+ARM GAS  /tmp/ccqLD2BX.s 			page 6
 
 
  193 0036 2046     		mov	r0, r4
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
  244 0008 054B     		ldr	r3, .L20
  245 000a 1860     		str	r0, [r3]
   14:Display/Menu_Mode/menu.c ****     *(menu_text+1) = "Connect";
-ARM GAS  /tmp/ccfC5GwK.s 			page 7
+ARM GAS  /tmp/ccqLD2BX.s 			page 7
 
 
  246              		.loc 1 14 0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
  284              	.LVL22:
  285 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
  286              	.LCFI6:
-ARM GAS  /tmp/ccfC5GwK.s 			page 8
+ARM GAS  /tmp/ccqLD2BX.s 			page 8
 
 
  287              		.cfi_def_cfa_offset 24
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
  332 004a 2946     		mov	r1, r5
  333 004c FFF7FEFF 		bl	Paint_DrawRectangle
  334              	.LVL28:
-ARM GAS  /tmp/ccfC5GwK.s 			page 9
+ARM GAS  /tmp/ccqLD2BX.s 			page 9
 
 
  108:Display/Menu_Mode/menu.c ****       Paint_DrawString_EN(3, 3+22*position, *(menu_text+position), &Font20, BLACK, WHITE);
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
  384              	.L28:
  385 00a6 00BF     		.align	2
  386              	.L27:
-ARM GAS  /tmp/ccfC5GwK.s 			page 10
+ARM GAS  /tmp/ccqLD2BX.s 			page 10
 
 
  387 00a8 00000000 		.word	.LANCHOR0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
  437              		.loc 1 55 0
  438 0024 0D4B     		ldr	r3, .L40
  439 0026 0022     		movs	r2, #0
-ARM GAS  /tmp/ccfC5GwK.s 			page 11
+ARM GAS  /tmp/ccqLD2BX.s 			page 11
 
 
  440 0028 43F82420 		str	r2, [r3, r4, lsl #2]
@@ -654,81 +654,87 @@ ARM GAS  /tmp/ccfC5GwK.s 			page 1
  483              	.LFE125:
  485              		.comm	menu_text_usage,12,4
  486              		.comm	click,4,4
- 487              		.comm	menu_current_position,4,4
- 488              		.comm	action,4,4
- 489              		.comm	previous_operation_mode,4,4
- 490              		.comm	operation_mode,4,4
-ARM GAS  /tmp/ccfC5GwK.s 			page 12
+ 487              		.comm	text_current_position,4,4
+ 488              		.comm	menu_current_position,4,4
+ 489              		.comm	action,4,4
+ 490              		.comm	previous_operation_mode,4,4
+ARM GAS  /tmp/ccqLD2BX.s 			page 12
 
 
- 491              		.comm	BlackImage,4,4
- 492              		.section	.bss.menu_text,"aw",%nobits
- 493              		.align	2
- 494              		.set	.LANCHOR0,. + 0
- 497              	menu_text:
- 498 0000 00000000 		.space	4
- 499              		.section	.rodata.Menu_Init.str1.4,"aMS",%progbits,1
- 500              		.align	2
- 501              	.LC0:
- 502 0000 4F70656E 		.ascii	"Open\000"
- 502      00
- 503 0005 000000   		.space	3
- 504              	.LC1:
- 505 0008 436F6E6E 		.ascii	"Connect\000"
- 505      65637400 
- 506              	.LC2:
- 507 0010 4F707469 		.ascii	"Options\000"
- 507      6F6E7300 
- 508              		.text
- 509              	.Letext0:
- 510              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 511              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 512              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 513              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 514              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 515              		.file 7 "Display/GUI/../Fonts/fonts.h"
- 516              		.file 8 "Display/GUI/GUI_Paint.h"
- 517              		.file 9 "Display/e-Paper/ImageData.h"
- 518              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
- 519              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
- 520              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 521              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
- 522              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
- 523              		.file 15 "Display/Text_Mode/text.h"
- 524              		.file 16 "Display/Modes/modes.h"
- 525              		.file 17 "Inc/keyboard.h"
- 526              		.file 18 "Display/e-Paper/EPD_2in9.h"
- 527              		.file 19 "Display/Menu_Mode/menu.h"
-ARM GAS  /tmp/ccfC5GwK.s 			page 13
+ 491              		.comm	operation_mode,4,4
+ 492              		.comm	BlackImage,4,4
+ 493              		.comm	previous_text_pointer,4,4
+ 494              		.comm	text_pointer,4,4
+ 495              		.section	.bss.menu_text,"aw",%nobits
+ 496              		.align	2
+ 497              		.set	.LANCHOR0,. + 0
+ 500              	menu_text:
+ 501 0000 00000000 		.space	4
+ 502              		.section	.rodata.Menu_Init.str1.4,"aMS",%progbits,1
+ 503              		.align	2
+ 504              	.LC0:
+ 505 0000 4F70656E 		.ascii	"Open\000"
+ 505      00
+ 506 0005 000000   		.space	3
+ 507              	.LC1:
+ 508 0008 436F6E6E 		.ascii	"Connect\000"
+ 508      65637400 
+ 509              	.LC2:
+ 510 0010 4F707469 		.ascii	"Options\000"
+ 510      6F6E7300 
+ 511              		.text
+ 512              	.Letext0:
+ 513              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 514              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 515              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 516              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 517              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 518              		.file 7 "Display/GUI/../Fonts/fonts.h"
+ 519              		.file 8 "Display/GUI/GUI_Paint.h"
+ 520              		.file 9 "Display/e-Paper/ImageData.h"
+ 521              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
+ 522              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
+ 523              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 524              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
+ 525              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
+ 526              		.file 15 "Display/Text_Mode/text.h"
+ 527              		.file 16 "Display/Modes/modes.h"
+ 528              		.file 17 "Inc/keyboard.h"
+ 529              		.file 18 "Display/e-Paper/EPD_2in9.h"
+ 530              		.file 19 "Display/Menu_Mode/menu.h"
+ARM GAS  /tmp/ccqLD2BX.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 menu.c
-     /tmp/ccfC5GwK.s:18     .text.Display_Draw_Menu_Box:0000000000000000 $t
-     /tmp/ccfC5GwK.s:25     .text.Display_Draw_Menu_Box:0000000000000000 Display_Draw_Menu_Box
-     /tmp/ccfC5GwK.s:129    .text.Display_Draw_Menu_Box:0000000000000090 $d
-     /tmp/ccfC5GwK.s:135    .text.Menu_Reinit:0000000000000000 $t
-     /tmp/ccfC5GwK.s:142    .text.Menu_Reinit:0000000000000000 Menu_Reinit
-     /tmp/ccfC5GwK.s:214    .text.Menu_Reinit:0000000000000050 $d
+     /tmp/ccqLD2BX.s:18     .text.Display_Draw_Menu_Box:0000000000000000 $t
+     /tmp/ccqLD2BX.s:25     .text.Display_Draw_Menu_Box:0000000000000000 Display_Draw_Menu_Box
+     /tmp/ccqLD2BX.s:129    .text.Display_Draw_Menu_Box:0000000000000090 $d
+     /tmp/ccqLD2BX.s:135    .text.Menu_Reinit:0000000000000000 $t
+     /tmp/ccqLD2BX.s:142    .text.Menu_Reinit:0000000000000000 Menu_Reinit
+     /tmp/ccqLD2BX.s:214    .text.Menu_Reinit:0000000000000050 $d
                             *COM*:000000000000000c menu_text_usage
                             *COM*:0000000000000004 menu_current_position
                             *COM*:0000000000000004 BlackImage
-     /tmp/ccfC5GwK.s:222    .text.Menu_Init:0000000000000000 $t
-     /tmp/ccfC5GwK.s:229    .text.Menu_Init:0000000000000000 Menu_Init
-     /tmp/ccfC5GwK.s:263    .text.Menu_Init:0000000000000020 $d
-     /tmp/ccfC5GwK.s:271    .text.Partial_Display_Draw_Menu_Box:0000000000000000 $t
-     /tmp/ccfC5GwK.s:278    .text.Partial_Display_Draw_Menu_Box:0000000000000000 Partial_Display_Draw_Menu_Box
-     /tmp/ccfC5GwK.s:387    .text.Partial_Display_Draw_Menu_Box:00000000000000a8 $d
-     /tmp/ccfC5GwK.s:393    .text.Update_Menu:0000000000000000 $t
-     /tmp/ccfC5GwK.s:400    .text.Update_Menu:0000000000000000 Update_Menu
-     /tmp/ccfC5GwK.s:479    .text.Update_Menu:000000000000005c $d
+     /tmp/ccqLD2BX.s:222    .text.Menu_Init:0000000000000000 $t
+     /tmp/ccqLD2BX.s:229    .text.Menu_Init:0000000000000000 Menu_Init
+     /tmp/ccqLD2BX.s:263    .text.Menu_Init:0000000000000020 $d
+     /tmp/ccqLD2BX.s:271    .text.Partial_Display_Draw_Menu_Box:0000000000000000 $t
+     /tmp/ccqLD2BX.s:278    .text.Partial_Display_Draw_Menu_Box:0000000000000000 Partial_Display_Draw_Menu_Box
+     /tmp/ccqLD2BX.s:387    .text.Partial_Display_Draw_Menu_Box:00000000000000a8 $d
+     /tmp/ccqLD2BX.s:393    .text.Update_Menu:0000000000000000 $t
+     /tmp/ccqLD2BX.s:400    .text.Update_Menu:0000000000000000 Update_Menu
+     /tmp/ccqLD2BX.s:479    .text.Update_Menu:000000000000005c $d
                             *COM*:0000000000000004 click
+                            *COM*:0000000000000004 text_current_position
                             *COM*:0000000000000004 action
                             *COM*:0000000000000004 previous_operation_mode
                             *COM*:0000000000000004 operation_mode
-     /tmp/ccfC5GwK.s:493    .bss.menu_text:0000000000000000 $d
-     /tmp/ccfC5GwK.s:497    .bss.menu_text:0000000000000000 menu_text
-     /tmp/ccfC5GwK.s:500    .rodata.Menu_Init.str1.4:0000000000000000 $d
+                            *COM*:0000000000000004 previous_text_pointer
+                            *COM*:0000000000000004 text_pointer
+     /tmp/ccqLD2BX.s:496    .bss.menu_text:0000000000000000 $d
+     /tmp/ccqLD2BX.s:500    .bss.menu_text:0000000000000000 menu_text
+     /tmp/ccqLD2BX.s:503    .rodata.Menu_Init.str1.4:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 Paint_DrawRectangle

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccfXne8V.s 			page 1
+ARM GAS  /tmp/cc5V7Efa.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccfXne8V.s 			page 1
   10:Display/Modes/modes.c **** }
   47              		.loc 1 10 0
   48 0010 08BD     		pop	{r3, pc}
-ARM GAS  /tmp/ccfXne8V.s 			page 2
+ARM GAS  /tmp/cc5V7Efa.s 			page 2
 
 
   49              	.L4:
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccfXne8V.s 			page 1
   36:Display/Modes/modes.c **** }
   80              		.loc 1 36 0
   81 000c 7047     		bx	lr
-ARM GAS  /tmp/ccfXne8V.s 			page 3
+ARM GAS  /tmp/cc5V7Efa.s 			page 3
 
 
   82              	.L10:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccfXne8V.s 			page 1
  131              		.loc 1 16 0
  132 0016 FFF7FEFF 		bl	Click_Handler_Menu
  133              	.LVL1:
-ARM GAS  /tmp/ccfXne8V.s 			page 4
+ARM GAS  /tmp/cc5V7Efa.s 			page 4
 
 
   17:Display/Modes/modes.c ****     case TEXT_MODE:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccfXne8V.s 			page 1
  183              	.L22:
   41:Display/Modes/modes.c ****     case MENU_MODE:
   42:Display/Modes/modes.c ****         if(previous_operation_mode==MENU_MODE)
-ARM GAS  /tmp/ccfXne8V.s 			page 5
+ARM GAS  /tmp/cc5V7Efa.s 			page 5
 
 
  184              		.loc 1 42 0
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccfXne8V.s 			page 1
   65:Display/Modes/modes.c ****         Menu_Reinit();
  214              		.loc 1 65 0
  215 003c FFF7FEFF 		bl	Menu_Reinit
-ARM GAS  /tmp/ccfXne8V.s 			page 6
+ARM GAS  /tmp/cc5V7Efa.s 			page 6
 
 
  216              	.LVL6:
@@ -330,55 +330,61 @@ ARM GAS  /tmp/ccfXne8V.s 			page 1
  238              		.comm	operation_mode,4,4
  239              		.comm	BlackImage,4,4
  240              		.comm	menu_text_usage,12,4
- 241              		.comm	click,4,4
- 242              		.comm	menu_current_position,4,4
- 243              		.comm	action,4,4
- 244              		.text
- 245              	.Letext0:
- 246              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 247              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 248              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
- 249              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
- 250              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
- 251              		.file 7 "Display/GUI/../Fonts/fonts.h"
- 252              		.file 8 "Display/GUI/GUI_Paint.h"
- 253              		.file 9 "Display/e-Paper/ImageData.h"
- 254              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
- 255              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
- 256              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 257              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
- 258              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
- 259              		.file 15 "Inc/keyboard.h"
- 260              		.file 16 "Display/Text_Mode/text.h"
- 261              		.file 17 "Display/Menu_Mode/menu.h"
- 262              		.file 18 "Display/display.h"
- 263              		.file 19 "Display/e-Paper/EPD_2in9.h"
- 264              		.file 20 "Display/Modes/modes.h"
-ARM GAS  /tmp/ccfXne8V.s 			page 7
+ 241              		.comm	previous_text_pointer,4,4
+ 242              		.comm	text_pointer,4,4
+ 243              		.comm	click,4,4
+ 244              		.comm	text_current_position,4,4
+ 245              		.comm	menu_current_position,4,4
+ 246              		.comm	action,4,4
+ 247              		.text
+ 248              	.Letext0:
+ 249              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 250              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 251              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 252              		.file 5 "Drivers/CMSIS/Device/ST/STM32L4xx/Include/system_stm32l4xx.h"
+ 253              		.file 6 "Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h"
+ 254              		.file 7 "Display/GUI/../Fonts/fonts.h"
+ 255              		.file 8 "Display/GUI/GUI_Paint.h"
+ 256              		.file 9 "Display/e-Paper/ImageData.h"
+ 257              		.file 10 "/usr/arm-none-eabi/include/sys/lock.h"
+ 258              		.file 11 "/usr/arm-none-eabi/include/sys/_types.h"
+ 259              		.file 12 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 260              		.file 13 "/usr/arm-none-eabi/include/sys/reent.h"
+ 261              		.file 14 "/usr/arm-none-eabi/include/stdlib.h"
+ 262              		.file 15 "Inc/keyboard.h"
+ 263              		.file 16 "Display/Text_Mode/text.h"
+ 264              		.file 17 "Display/Menu_Mode/menu.h"
+ 265              		.file 18 "Display/display.h"
+ 266              		.file 19 "Display/e-Paper/EPD_2in9.h"
+ 267              		.file 20 "Display/Modes/modes.h"
+ARM GAS  /tmp/cc5V7Efa.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 modes.c
-     /tmp/ccfXne8V.s:18     .text.Modes_Init:0000000000000000 $t
-     /tmp/ccfXne8V.s:25     .text.Modes_Init:0000000000000000 Modes_Init
-     /tmp/ccfXne8V.s:52     .text.Modes_Init:0000000000000014 $d
+     /tmp/cc5V7Efa.s:18     .text.Modes_Init:0000000000000000 $t
+     /tmp/cc5V7Efa.s:25     .text.Modes_Init:0000000000000000 Modes_Init
+     /tmp/cc5V7Efa.s:52     .text.Modes_Init:0000000000000014 $d
                             *COM*:0000000000000004 operation_mode
                             *COM*:0000000000000004 previous_operation_mode
-     /tmp/ccfXne8V.s:58     .text.Click_Handler_Menu:0000000000000000 $t
-     /tmp/ccfXne8V.s:65     .text.Click_Handler_Menu:0000000000000000 Click_Handler_Menu
-     /tmp/ccfXne8V.s:92     .text.Click_Handler_Menu:0000000000000018 $d
+     /tmp/cc5V7Efa.s:58     .text.Click_Handler_Menu:0000000000000000 $t
+     /tmp/cc5V7Efa.s:65     .text.Click_Handler_Menu:0000000000000000 Click_Handler_Menu
+     /tmp/cc5V7Efa.s:92     .text.Click_Handler_Menu:0000000000000018 $d
                             *COM*:0000000000000004 menu_current_position
-     /tmp/ccfXne8V.s:98     .text.Click_Handler:0000000000000000 $t
-     /tmp/ccfXne8V.s:105    .text.Click_Handler:0000000000000000 Click_Handler
-     /tmp/ccfXne8V.s:146    .text.Click_Handler:0000000000000024 $d
+     /tmp/cc5V7Efa.s:98     .text.Click_Handler:0000000000000000 $t
+     /tmp/cc5V7Efa.s:105    .text.Click_Handler:0000000000000000 Click_Handler
+     /tmp/cc5V7Efa.s:146    .text.Click_Handler:0000000000000024 $d
                             *COM*:0000000000000004 click
-     /tmp/ccfXne8V.s:152    .text.Mode_Handler:0000000000000000 $t
-     /tmp/ccfXne8V.s:159    .text.Mode_Handler:0000000000000000 Mode_Handler
-     /tmp/ccfXne8V.s:178    .text.Mode_Handler:0000000000000010 $d
-     /tmp/ccfXne8V.s:182    .text.Mode_Handler:0000000000000014 $t
-     /tmp/ccfXne8V.s:232    .text.Mode_Handler:0000000000000050 $d
+     /tmp/cc5V7Efa.s:152    .text.Mode_Handler:0000000000000000 $t
+     /tmp/cc5V7Efa.s:159    .text.Mode_Handler:0000000000000000 Mode_Handler
+     /tmp/cc5V7Efa.s:178    .text.Mode_Handler:0000000000000010 $d
+     /tmp/cc5V7Efa.s:182    .text.Mode_Handler:0000000000000014 $t
+     /tmp/cc5V7Efa.s:232    .text.Mode_Handler:0000000000000050 $d
                             *COM*:0000000000000004 BlackImage
                             *COM*:000000000000000c menu_text_usage
+                            *COM*:0000000000000004 previous_text_pointer
+                            *COM*:0000000000000004 text_pointer
+                            *COM*:0000000000000004 text_current_position
                             *COM*:0000000000000004 action
 
 UNDEFINED SYMBOLS

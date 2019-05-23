@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccUeffNa.s 			page 1
+ARM GAS  /tmp/ccSoAb05.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -21,915 +21,2092 @@ ARM GAS  /tmp/ccUeffNa.s 			page 1
   18              		.section	.rodata.text,"a",%progbits
   19              		.align	2
   22              	text:
-  23 0000 50726F6C 		.ascii	"Prologue\012\012Light rapidly faded away as the dar"
-  23      6F677565 
-  23      0A0A4C69 
-  23      67687420 
-  23      72617069 
-  24 002d 6B6E6573 		.ascii	"kness began to swallow him. Hajime Nagumo\342\200\231"
-  24      73206265 
-  24      67616E20 
-  24      746F2073 
-  24      77616C6C 
-  25 0059 73206661 		.ascii	"s face twisted in terror as he stared at the vanish"
-  25      63652074 
-  25      77697374 
-  25      65642069 
-  25      6E207465 
-  26 008c 696E6720 		.ascii	"ing light above him. He desperately shot out his ha"
-  26      6C696768 
-  26      74206162 
-  26      6F766520 
-  26      68696D2E 
-  27 00bf 6E642C20 		.ascii	"nd, grasping at the light he knew he could never tr"
-  27      67726173 
-  27      70696E67 
-  27      20617420 
-  27      74686520 
-  28 00f2 756C7920 		.ascii	"uly grab hold of. He felt his nether regions tense "
-  28      67726162 
-  28      20686F6C 
-  28      64206F66 
-  28      2E204865 
-  29 0125 75702061 		.ascii	"up as he fell freely through the darkness.\012\012T"
-  29      73206865 
-  29      2066656C 
-  29      6C206672 
-  29      65656C79 
-  30 0152 68652063 		.ascii	"he chasm he\342\200\231d fallen into was so deep th"
-  30      6861736D 
-ARM GAS  /tmp/ccUeffNa.s 			page 2
+  23 0000 41206C6F 		.ascii	"A lone man stood dazed in an empty room. Signs of f"
+  23      6E65206D 
+  23      616E2073 
+  23      746F6F64 
+  23      2064617A 
+  24 0033 61746967 		.ascii	"atigue could be seen on his face and gray streaks c"
+  24      75652063 
+  24      6F756C64 
+  24      20626520 
+  24      7365656E 
+  25 0066 6F756C64 		.ascii	"ould be seen on his hair; he was most likely in his"
+  25      20626520 
+  25      7365656E 
+  25      206F6E20 
+  25      68697320 
+  26 0099 206C6174 		.ascii	" latter 40s, though his figure seemed to deny that."
+  26      74657220 
+  26      3430732C 
+  26      2074686F 
+  26      75676820 
+  27 00cc 0A0A5468 		.ascii	"\012\012The man was dressed for sleep, wearing only"
+  27      65206D61 
+  27      6E207761 
+  27      73206472 
+  27      65737365 
+  28 00f9 20612073 		.ascii	" a simple shirt and a pair of shorts, making it eas"
+  28      696D706C 
+  28      65207368 
+  28      69727420 
+  28      616E6420 
+  29 012c 7920746F 		.ascii	"y to see his figure. Contrary to his aged look, his"
+  29      20736565 
+  29      20686973 
+  29      20666967 
+  29      7572652E 
+  30 015f 20626F64 		.ascii	" body was tempered, overflowing with muscles and vi"
+  30      79207761 
+ARM GAS  /tmp/ccSoAb05.s 			page 2
 
 
-  30      206865E2 
-  30      80996420 
-  30      66616C6C 
-  31 017c 61742069 		.ascii	"at it seemed almost as if he was falling down to th"
-  31      74207365 
-  31      656D6564 
-  31      20616C6D 
-  31      6F737420 
-  32 01af 65207069 		.ascii	"e pits of hell. And the light he was staring at was"
-  32      7473206F 
-  32      66206865 
-  32      6C6C2E20 
-  32      416E6420 
-  33 01e2 20746865 		.ascii	" the portal to the world of the living. He\342\200\231"
-  33      20706F72 
-  33      74616C20 
-  33      746F2074 
-  33      68652077 
-  34 020f 64206661 		.ascii	"d fallen down a massive tear in the earth while he\342"
-  34      6C6C656E 
-  34      20646F77 
-  34      6E206120 
-  34      6D617373 
-  35 0242 80996420 		.ascii	"\200\231d been exploring a dungeon. The hole was so"
-  35      6265656E 
-  35      20657870 
-  35      6C6F7269 
-  35      6E672061 
-  36 026f 20646565 		.ascii	" deep that he kept falling long after the tiny pinp"
-  36      70207468 
-  36      61742068 
-  36      65206B65 
-  36      70742066 
-  37 02a2 7269636B 		.ascii	"rick of light had shrunk to nothing. His entire lif"
+  30      73207465 
+  30      6D706572 
+  30      65642C20 
+  31 0192 676F722E 		.ascii	"gor.\012\012\"Huh...? Where is this?\" [???]\012\012"
+  31      0A0A2248 
+  31      75682E2E 
+  31      2E3F2057 
+  31      68657265 
+  32 01b8 5768656E 		.ascii	"When the man uttered those words, three people appe"
+  32      20746865 
+  32      206D616E 
+  32      20757474 
+  32      65726564 
+  33 01eb 61726564 		.ascii	"ared before him.\012\012\"Have you come to?\" [Old "
+  33      20626566 
+  33      6F726520 
+  33      68696D2E 
+  33      0A0A2248 
+  34 0216 4D616E5D 		.ascii	"Man]\012\"Is your mind clear now?\" [Boy]\012\"You "
+  34      0A224973 
+  34      20796F75 
+  34      72206D69 
+  34      6E642063 
+  35 0240 6B6E6F77 		.ascii	"know it would be nice if you said something.\" [Wom"
+  35      20697420 
+  35      776F756C 
+  35      64206265 
+  35      206E6963 
+  36 0272 616E5D0A 		.ascii	"an]\012\"Umm... Yes. I'm alright now. You suddenly "
+  36      22556D6D 
+  36      2E2E2E20 
+  36      5965732E 
+  36      2049276D 
+  37 02a1 63616D65 		.ascii	"came out of nowhere, so I was taken back a bit. My "
+  37      206F7574 
   37      206F6620 
-  37      6C696768 
-  37      74206861 
-  37      64207368 
-  38 02d5 6520666C 		.ascii	"e flashed before his eyes, with nothing but the sou"
-  38      61736865 
-  38      64206265 
-  38      666F7265 
-  38      20686973 
-  39 0308 6E64206F 		.ascii	"nd of wind rushing past accompanying his plunge to "
-  39      66207769 
-  39      6E642072 
-  39      75736869 
-  39      6E672070 
-  40 033b 74686520 		.ascii	"the hellish depths below.\012\012Let us turn back t"
-  40      68656C6C 
-  40      69736820 
-  40      64657074 
-  40      68732062 
-  41 0368 68652063 		.ascii	"he clock a bit and recount how a young Japanese boy"
-  41      6C6F636B 
-  41      20612062 
-  41      69742061 
-ARM GAS  /tmp/ccUeffNa.s 			page 3
+  37      6E6F7768 
+  37      6572652C 
+  38 02d4 61706F6C 		.ascii	"apologies. Let me introduce myself. I am Ryouma Tak"
+  38      6F676965 
+  38      732E204C 
+  38      6574206D 
+  38      6520696E 
+  39 0307 65626179 		.ascii	"ebayashi.\"\012\"There's no need to be so formal. L"
+  39      61736869 
+  39      2E220A22 
+  39      54686572 
+  39      65277320 
+  40 0335 65742773 		.ascii	"et's talk over tea.\" [Old Man]\012\012The old man "
+  40      2074616C 
+  40      6B206F76 
+  40      65722074 
+  40      65612E22 
+  41 0361 77617665 		.ascii	"waved his hand, and all of the sudden, a tea table "
+  41      64206869 
+  41      73206861 
+  41      6E642C20 
+ARM GAS  /tmp/ccSoAb05.s 			page 3
 
 
-  41      6E642072 
-  42 039b 20666F75 		.ascii	" found himself in a world that was far too cruel an"
-  42      6E642068 
-  42      696D7365 
-  42      6C662069 
-  42      6E206120 
-  43 03ce 64206865 		.ascii	"d heartless for the word \342\200\234fantasy\342\200"
-  43      6172746C 
-  43      65737320 
-  43      666F7220 
-  43      74686520 
-  44 03f3 9D20746F 		.ascii	"\235 to be an accurate descriptor. After all, the h"
-  44      20626520 
-  44      616E2061 
-  44      63637572 
-  44      61746520 
-  45 0423 61727368 		.ascii	"arsh and unfair events he\342\200\231d experienced,"
-  45      20616E64 
-  45      20756E66 
-  45      61697220 
-  45      6576656E 
-  46 044d 20616E64 		.ascii	" and was still experiencing, were a bit too bereft "
-  46      20776173 
-  46      20737469 
-  46      6C6C2065 
-  46      78706572 
-  47 0480 6F662074 		.ascii	"of the wonderful hopes and dreams one imagined when"
-  47      68652077 
-  47      6F6E6465 
-  47      7266756C 
-  47      20686F70 
-  48 04b3 20746865 		.ascii	" they heard that word.\012\012\012\012Monday. Quite"
-  48      79206865 
-  48      61726420 
-  48      74686174 
-  48      20776F72 
-  49 04da 20706F73 		.ascii	" possibly the most depressing day of the week. Most"
-  49      7369626C 
-  49      79207468 
-  49      65206D6F 
-  49      73742064 
-  50 050d 2070656F 		.ascii	" people were, without a doubt, sighing heavily as t"
-  50      706C6520 
-  50      77657265 
-  50      2C207769 
-  50      74686F75 
-  51 0540 68657920 		.ascii	"hey lamented the beginning of the week and the end "
-  51      6C616D65 
-  51      6E746564 
-  51      20746865 
-  51      20626567 
-  52 0573 6F662074 		.ascii	"of their glorious weekend. Hajime Nagumo was no exc"
-  52      68656972 
-  52      20676C6F 
-  52      72696F75 
-  52      73207765 
-  53 05a6 65707469 		.ascii	"eption. However, in his case, his depression was mu"
-ARM GAS  /tmp/ccUeffNa.s 			page 4
+  41      616E6420 
+  42 0394 61707065 		.ascii	"appeared, atop which were cups filled with tea and "
+  42      61726564 
+  42      2C206174 
+  42      6F702077 
+  42      68696368 
+  43 03c7 70696C6C 		.ascii	"pillows to sit on along the sides.\012\012\"Come, t"
+  43      6F777320 
+  43      746F2073 
+  43      6974206F 
+  43      6E20616C 
+  44 03f3 616B6520 		.ascii	"ake a seat.\" [Woman]\012\"Thank you.\" [Ryouma]\012"
+  44      61207365 
+  44      61742E22 
+  44      205B576F 
+  44      6D616E5D 
+  45 041e 0A546865 		.ascii	"\012The young woman smiled and implored Ryouma to t"
+  45      20796F75 
+  45      6E672077 
+  45      6F6D616E 
+  45      20736D69 
+  46 044e 616B6520 		.ascii	"ake a seat, which Ryouma promptly took. The others "
+  46      61207365 
+  46      61742C20 
+  46      77686963 
+  46      68205279 
+  47 0481 746F6F6B 		.ascii	"took their seats as well; the woman sat on the righ"
+  47      20746865 
+  47      69722073 
+  47      65617473 
+  47      20617320 
+  48 04b4 742C2077 		.ascii	"t, while the boy sat on the left, and the old man s"
+  48      68696C65 
+  48      20746865 
+  48      20626F79 
+  48      20736174 
+  49 04e7 6174206F 		.ascii	"at opposite Ryouma.\012\012When they had all taken "
+  49      70706F73 
+  49      69746520 
+  49      52796F75 
+  49      6D612E0A 
+  50 0514 74686569 		.ascii	"their seats, everyone, including Ryouma, took a sip"
+  50      72207365 
+  50      6174732C 
+  50      20657665 
+  50      72796F6E 
+  51 0547 206F6620 		.ascii	" of their tea.\012\012\"I hope you won't mind if I "
+  51      74686569 
+  51      72207465 
+  51      612E0A0A 
+  51      22492068 
+  52 0573 61736B20 		.ascii	"ask some questions.\" [Ryouma]\012\"Of course not. "
+  52      736F6D65 
+  52      20717565 
+  52      7374696F 
+  52      6E732E22 
+  53 05a1 54686174 		.ascii	"That's exactly what we're here for. But I already h"
+ARM GAS  /tmp/ccSoAb05.s 			page 4
 
 
-  53      6F6E2E20 
-  53      486F7765 
-  53      7665722C 
-  53      20696E20 
-  54 05d9 6C746970 		.ascii	"ltiplied by the fact that school was not just a pai"
-  54      6C696564 
-  54      20627920 
-  54      74686520 
-  54      66616374 
-  55 060c 6E2C2062 		.ascii	"n, but a veritable hell.\012\012As always, Hajime b"
-  55      75742061 
-  55      20766572 
-  55      69746162 
-  55      6C652068 
-  56 0639 6172656C 		.ascii	"arely managed to arrive just before the bell for fi"
-  56      79206D61 
-  56      6E616765 
-  56      6420746F 
-  56      20617272 
-  57 066c 72737420 		.ascii	"rst period rang. He somehow managed to steady his s"
-  57      70657269 
-  57      6F642072 
-  57      616E672E 
-  57      20486520 
-  58 069f 6C656570 		.ascii	"leep-deprived body and opened the door to his class"
-  58      2D646570 
-  58      72697665 
-  58      6420626F 
-  58      64792061 
-  59 06d2 726F6F6D 		.ascii	"room. He found himself on the receiving end of a mu"
-  59      2E204865 
-  59      20666F75 
-  59      6E642068 
-  59      696D7365 
-  60 0705 6C746974 		.ascii	"ltitude of scornful glares and annoyed tongue click"
-  60      75646520 
-  60      6F662073 
-  60      636F726E 
-  60      66756C20 
-  61 0738 73206672 		.ascii	"s from a majority of the male students as soon as h"
-  61      6F6D2061 
-  61      206D616A 
-  61      6F726974 
-  61      79206F66 
-  62 076b 65207365 		.ascii	"e set foot in the classroom. None of the female stu"
-  62      7420666F 
-  62      6F742069 
-  62      6E207468 
-  62      6520636C 
-  63 079e 64656E74 		.ascii	"dents seemed all too pleased to see him either. It"
-  63      73207365 
-  63      656D6564 
-  63      20616C6C 
-  63      20746F6F 
-  64 07d0 20776F75 		.ascii	" would have been fine were they simply ignoring him"
-  64      6C642068 
-  64      61766520 
-ARM GAS  /tmp/ccUeffNa.s 			page 5
+  53      27732065 
+  53      78616374 
+  53      6C792077 
+  53      68617420 
+  54 05d4 61766520 		.ascii	"ave an idea what is you want to ask, so how about l"
+  54      616E2069 
+  54      64656120 
+  54      77686174 
+  54      20697320 
+  55 0607 69737465 		.ascii	"istening to our story first?\" [Old Man]\012\"Well,"
+  55      6E696E67 
+  55      20746F20 
+  55      6F757220 
+  55      73746F72 
+  56 0635 20616C72 		.ascii	" alright.\" [Ryouma]\012\012After Ryouma nodded to "
+  56      69676874 
+  56      2E22205B 
+  56      52796F75 
+  56      6D615D0A 
+  57 0661 73686F77 		.ascii	"show his agreement, the old man began.\012\012\"We "
+  57      20686973 
+  57      20616772 
+  57      65656D65 
+  57      6E742C20 
+  58 068d 61726520 		.ascii	"are what you would call 'gods'. I am Gayn, the God "
+  58      77686174 
+  58      20796F75 
+  58      20776F75 
+  58      6C642063 
+  59 06c0 6F662043 		.ascii	"of Creation. The woman to your right is Rurutia, th"
+  59      72656174 
+  59      696F6E2E 
+  59      20546865 
+  59      20776F6D 
+  60 06f3 6520476F 		.ascii	"e Goddess of Love, and the boy to your left is the "
+  60      64646573 
+  60      73206F66 
+  60      204C6F76 
+  60      652C2061 
+  61 0726 476F6420 		.ascii	"God of Life, Kufo. We are gods of a different world"
+  61      6F66204C 
+  61      6966652C 
+  61      204B7566 
+  61      6F2E2057 
+  62 0759 2E0A0A59 		.ascii	".\012\012You might not know this, but last night, y"
+  62      6F75206D 
+  62      69676874 
+  62      206E6F74 
+  62      206B6E6F 
+  63 0786 6F752064 		.ascii	"ou died. When your soul left your body, we took it "
+  63      6965642E 
+  63      20576865 
+  63      6E20796F 
+  63      75722073 
+  64 07b9 616E6420 		.ascii	"and brought it here to "
+  64      62726F75 
+  64      67687420 
+ARM GAS  /tmp/ccSoAb05.s 			page 5
 
 
-  64      6265656E 
-  64      2066696E 
-  65 0803 2C206275 		.ascii	", but they too gave him stares of contempt.\012\012"
-  65      74207468 
-  65      65792074 
-  65      6F6F2067 
-  65      61766520 
-  66 0830 48616A69 		.ascii	"Hajime did his best to ignore his classmates and we"
-  66      6D652064 
-  66      69642068 
-  66      69732062 
-  66      65737420 
-  67 0863 6E742074 		.ascii	"nt to his seat. But as always, there were a few stu"
-  67      6F206869 
-  67      73207365 
-  67      61742E20 
-  67      42757420 
-  68 0896 64656E74 		.ascii	"dents who couldn\342\200\231t resist the opportunit"
-  68      73207768 
-  68      6F20636F 
-  68      756C646E 
-  68      E2809974 
-  69 08c0 7920746F 		.ascii	"y to needle him.\012\012\342\200\234Sup, you gross "
-  69      206E6565 
-  69      646C6520 
-  69      68696D2E 
-  69      0A0AE280 
-  70 08e4 6F74616B 		.ascii	"otaku! Stay up all night playing video games again?"
-  70      75212053 
-  70      74617920 
-  70      75702061 
-  70      6C6C206E 
-  71 0917 20492062 		.ascii	" I bet you were playing porn games the whole time!\342"
-  71      65742079 
-  71      6F752077 
-  71      65726520 
-  71      706C6179 
-  72 094a 809D0A0A 		.ascii	"\200\235\012\012\342\200\234Wow what a creep. What "
-  72      E2809C57 
-  72      6F772077 
-  72      68617420 
-  72      61206372 
-  73 0968 6B696E64 		.ascii	"kind of disgusting pervert stays up all night playi"
-  73      206F6620 
-  73      64697367 
-  73      75737469 
-  73      6E672070 
-  74 099b 6E672070 		.ascii	"ng porn games?\342\200\235\012\012The boys all laug"
-  74      6F726E20 
-  74      67616D65 
-  74      733FE280 
-  74      9D0A0A54 
-  75 09bf 6865642C 		.ascii	"hed, as if they found that statement somehow hilari"
-  75      20617320 
-  75      69662074 
-  75      68657920 
-  75      666F756E 
-ARM GAS  /tmp/ccUeffNa.s 			page 6
+  64      69742068 
+  64      65726520 
+  65 07d0 74686520 		.ascii	"the divine realm.\" [Gayn]\012\"I see. So that's wh"
+  65      64697669 
+  65      6E652072 
+  65      65616C6D 
+  65      2E22205B 
+  66 07fe 61742068 		.ascii	"at happened.\" [Ryouma]\012\012Ryouma matter-of-fac"
+  66      61707065 
+  66      6E65642E 
+  66      22205B52 
+  66      796F756D 
+  67 082a 746C7920 		.ascii	"tly accepted Gayn's explanation as he sipped his te"
+  67      61636365 
+  67      70746564 
+  67      20476179 
+  67      6E277320 
+  68 085d 612E2054 		.ascii	"a. The three gods were bewildered at his reaction, "
+  68      68652074 
+  68      68726565 
+  68      20676F64 
+  68      73207765 
+  69 0890 65737065 		.ascii	"especially the youngest-looking of them all, Kufo.\012"
+  69      6369616C 
+  69      6C792074 
+  69      68652079 
+  69      6F756E67 
+  70 08c3 0A22556D 		.ascii	"\012\"Umm, wait, is that it!? Shouldn't you be pani"
+  70      6D2C2077 
+  70      6169742C 
+  70      20697320 
+  70      74686174 
+  71 08f2 636B696E 		.ascii	"cking a bit more and going 'No way!' 'That can't be"
+  71      67206120 
+  71      62697420 
+  71      6D6F7265 
+  71      20616E64 
+  72 0925 21272027 		.ascii	"!' 'Why did I die?' or something?\" [Kufo]\012\"You"
+  72      57687920 
+  72      64696420 
+  72      49206469 
+  72      653F2720 
+  73 0953 206B6E6F 		.ascii	" know... the others before you were all flustered w"
+  73      772E2E2E 
+  73      20746865 
+  73      206F7468 
+  73      65727320 
+  74 0986 68656E20 		.ascii	"hen we talked to them.\" [Gayn]\012\"Oh, don't get "
+  74      77652074 
+  74      616C6B65 
+  74      6420746F 
+  74      20746865 
+  75 09b4 6D652077 		.ascii	"me wrong, I am surprised, though I do admit that no"
+  75      726F6E67 
+  75      2C204920 
+  75      616D2073 
+  75      75727072 
+ARM GAS  /tmp/ccSoAb05.s 			page 6
 
 
-  76 09f2 6F75732E 		.ascii	"ous. The student who\342\200\231d first called out "
-  76      20546865 
-  76      20737475 
-  76      64656E74 
-  76      2077686F 
-  77 0a1c 746F2048 		.ascii	"to Hajime was Daisuke Hiyama, the ringleader of Haj"
-  77      616A696D 
-  77      65207761 
-  77      73204461 
-  77      6973756B 
-  78 0a4f 696D65E2 		.ascii	"ime\342\200\231s tormentors. Daisuke never seemed t"
-  78      80997320 
-  78      746F726D 
-  78      656E746F 
-  78      72732E20 
-  79 0a79 6F207469 		.ascii	"o tire of teasing Hajime, as he went up to him on a"
-  79      7265206F 
-  79      66207465 
-  79      6173696E 
-  79      67204861 
-  80 0aac 20646169 		.ascii	" daily basis. The ones who were laughing wickedly n"
-  80      6C792062 
-  80      61736973 
-  80      2E205468 
-  80      65206F6E 
-  81 0adf 65787420 		.ascii	"ext to him were Yoshiki Saitou, Reichi Kondou, and "
-  81      746F2068 
-  81      696D2077 
-  81      65726520 
-  81      596F7368 
-  82 0b12 5368696E 		.ascii	"Shinji Nakano. It was those four who\342\200\231d a"
-  82      6A69204E 
-  82      616B616E 
-  82      6F2E2049 
-  82      74207761 
-  83 0b3c 6C776179 		.ascii	"lways made Hajime\342\200\231s life miserable.\012\012"
-  83      73206D61 
-  83      64652048 
-  83      616A696D 
-  83      65E28099 
-  84 0b63 41732048 		.ascii	"As Hiyama had stated earlier, Hajime was indeed an "
-  84      6979616D 
-  84      61206861 
-  84      64207374 
-  84      61746564 
-  85 0b96 6F74616B 		.ascii	"otaku. But he wasn\342\200\231t particularly ugly o"
-  85      752E2042 
-  85      75742068 
-  85      65207761 
-  85      736EE280 
-  86 0bc0 72206F62 		.ascii	"r obnoxious, so the moniker gross otaku hardly did "
-  86      6E6F7869 
-  86      6F75732C 
-  86      20736F20 
-  86      74686520 
-  87 0bf3 68696D20 		.ascii	"him justice. His hair was cropped short and kept ti"
-  87      6A757374 
-ARM GAS  /tmp/ccUeffNa.s 			page 7
+  76 09e7 6E65206F 		.ascii	"ne of this feels real to me right now. Besides, if "
+  76      66207468 
+  76      69732066 
+  76      65656C73 
+  76      20726561 
+  77 0a1a 616C6C20 		.ascii	"all this is nothing more than a dream, then I would"
+  77      74686973 
+  77      20697320 
+  77      6E6F7468 
+  77      696E6720 
+  78 0a4d 20657665 		.ascii	" eventually wake up, but even if it's not, well... "
+  78      6E747561 
+  78      6C6C7920 
+  78      77616B65 
+  78      2075702C 
+  79 0a80 65766572 		.ascii	"everyone will pass away anyway.\012\012And I've alr"
+  79      796F6E65 
+  79      2077696C 
+  79      6C207061 
+  79      73732061 
+  80 0aad 65616479 		.ascii	"eady expected this to some extent. My work, you see"
+  80      20657870 
+  80      65637465 
+  80      64207468 
+  80      69732074 
+  81 0ae0 2C206973 		.ascii	", is really taxing. So taxing that many of my cowor"
+  81      20726561 
+  81      6C6C7920 
+  81      74617869 
+  81      6E672E20 
+  82 0b13 6B657273 		.ascii	"kers have had to retire early because their body br"
+  82      20686176 
+  82      65206861 
+  82      6420746F 
+  82      20726574 
+  83 0b46 6F6B6520 		.ascii	"oke down. Because of that I've always believed I wo"
+  83      646F776E 
+  83      2E204265 
+  83      63617573 
+  83      65206F66 
+  84 0b79 756C6420 		.ascii	"uld die an early death. Being able to live up to 39"
+  84      64696520 
+  84      616E2065 
+  84      61726C79 
+  84      20646561 
+  85 0bac 206F7220 		.ascii	" or 40, depending which way you count, is more than"
+  85      34302C20 
+  85      64657065 
+  85      6E64696E 
+  85      67207768 
+  86 0bdf 20706C65 		.ascii	" plenty, all things considered.\012\012Not to menti"
+  86      6E74792C 
+  86      20616C6C 
+  86      20746869 
+  86      6E677320 
+  87 0c0c 6F6E2C20 		.ascii	"on, as embarrassing as it is to admit considering m"
+  87      61732065 
+ARM GAS  /tmp/ccSoAb05.s 			page 7
 
 
-  87      6963652E 
-  87      20486973 
-  87      20686169 
-  88 0c26 64792E20 		.ascii	"dy. Plus, it wasn\342\200\231t as if he had a commu"
-  88      506C7573 
-  88      2C206974 
-  88      20776173 
-  88      6EE28099 
-  89 0c50 6E696361 		.ascii	"nication problem of any sort either. Sure, he wasn\342"
-  89      74696F6E 
-  89      2070726F 
-  89      626C656D 
-  89      206F6620 
-  90 0c83 80997420 		.ascii	"\200\231t the most talkative guy around, but he had"
-  90      74686520 
-  90      6D6F7374 
-  90      2074616C 
-  90      6B617469 
-  91 0cb0 206E6F20 		.ascii	" no problem responding to people who talked to him."
-  91      70726F62 
-  91      6C656D20 
-  91      72657370 
-  91      6F6E6469 
-  92 0ce3 20486520 		.ascii	" He was a quiet person overall, but not to the poin"
+  87      6D626172 
+  87      72617373 
+  87      696E6720 
+  88 0c3f 79206167 		.ascii	"y age, I'm a huge otaku of games and manga, so I'm "
+  88      652C2049 
+  88      276D2061 
+  88      20687567 
+  88      65206F74 
+  89 0c72 71756974 		.ascii	"quite fond of stories like this. I don't have any f"
+  89      6520666F 
+  89      6E64206F 
+  89      66207374 
+  89      6F726965 
+  90 0ca5 616D696C 		.ascii	"amily or relatives anyway, so this turn of events i"
+  90      79206F72 
+  90      2072656C 
+  90      61746976 
+  90      65732061 
+  91 0cd8 73206120 		.ascii	"s a lot better than just burning away.\" [Ryouma]\012"
+  91      6C6F7420 
+  91      62657474 
+  91      65722074 
+  91      68616E20 
+  92 0d09 0A52796F 		.ascii	"\012Ryouma was truly satisfied from the bottom of h"
+  92      756D6120 
   92      77617320 
-  92      61207175 
-  92      69657420 
-  92      70657273 
-  93 0d16 74207768 		.ascii	"t where it could be considered gloomy. He just happ"
-  93      65726520 
-  93      69742063 
-  93      6F756C64 
-  93      20626520 
-  94 0d49 656E6564 		.ascii	"ened to have an interest in a very specific set of "
-  94      20746F20 
-  94      68617665 
-  94      20616E20 
-  94      696E7465 
-  95 0d7c 6D656469 		.ascii	"media\342\200\224namely manga, novels, video games,"
-  95      61E28094 
-  95      6E616D65 
-  95      6C79206D 
-  95      616E6761 
-  96 0da6 20616E64 		.ascii	" and movies.\012\012While it was true that public o"
-  96      206D6F76 
-  96      6965732E 
-  96      0A0A5768 
-  96      696C6520 
-  97 0dd3 70696E69 		.ascii	"pinion of otakus hadn\342\200\231t been very positi"
-  97      6F6E206F 
-  97      66206F74 
-  97      616B7573 
-  97      20686164 
-  98 0dfd 76652061 		.ascii	"ve as of late, at most being an otaku usually earne"
-  98      73206F66 
-  98      206C6174 
-  98      652C2061 
-ARM GAS  /tmp/ccUeffNa.s 			page 8
+  92      7472756C 
+  92      79207361 
+  93 0d39 69732068 		.ascii	"is heart, but that only caused the gods even more c"
+  93      65617274 
+  93      2C206275 
+  93      74207468 
+  93      6174206F 
+  94 0d6c 6F6E6675 		.ascii	"onfusion.\012\012\"R-Really? Do humans really think"
+  94      73696F6E 
+  94      2E0A0A22 
+  94      522D5265 
+  94      616C6C79 
+  95 0d98 206C696B 		.ascii	" like that? Hasn't anyone ever told you your way of"
+  95      65207468 
+  95      61743F20 
+  95      4861736E 
+  95      27742061 
+  96 0dcb 20746869 		.ascii	" thinking is odd?\" [Kufo]\012\"I don't think it's "
+  96      6E6B696E 
+  96      67206973 
+  96      206F6464 
+  96      3F22205B 
+  97 0df9 676F7420 		.ascii	"got anything to do with your hobbies either. There "
+  97      616E7974 
+  97      68696E67 
+  97      20746F20 
+  97      646F2077 
+  98 0e2c 77657265 		.ascii	"were plenty of people with similar hobbies as you, "
+  98      20706C65 
+  98      6E747920 
+  98      6F662070 
+ARM GAS  /tmp/ccSoAb05.s 			page 8
 
 
-  98      74206D6F 
-  99 0e30 6420796F 		.ascii	"d you a few looks, not that kind of targeted bullyi"
-  99      75206120 
-  99      66657720 
-  99      6C6F6F6B 
-  99      732C206E 
- 100 0e63 6E672E20 		.ascii	"ng. So why did all the male students hate Hajime so"
- 100      536F2077 
- 100      68792064 
- 100      69642061 
- 100      6C6C2074 
- 101 0e96 3F0A0A54 		.ascii	"?\012\012The answer was simple.\012\012\342\200\234"
- 101      68652061 
- 101      6E737765 
- 101      72207761 
- 101      73207369 
- 102 0eb4 476F6F64 		.ascii	"Good morning, Nagumo-kun! You barely made it on tim"
- 102      206D6F72 
- 102      6E696E67 
- 102      2C204E61 
- 102      67756D6F 
- 103 0ee7 6520746F 		.ascii	"e today too. I think you should at least make an ef"
- 103      64617920 
- 103      746F6F2E 
- 103      20492074 
- 103      68696E6B 
- 104 0f1a 666F7274 		.ascii	"fort to come earlier.\342\200\235 One of the girls "
- 104      20746F20 
- 104      636F6D65 
- 104      20656172 
- 104      6C696572 
- 105 0f44 736D696C 		.ascii	"smiled softly as she walked up to Hajime. She was o"
- 105      65642073 
- 105      6F66746C 
- 105      79206173 
- 105      20736865 
- 106 0f77 6E65206F 		.ascii	"ne of the few people in the whole school "
- 106      66207468 
- 106      65206665 
- 106      77207065 
- 106      6F706C65 
- 107 0fa0 77686F20 		.ascii	"who treated him kindly, and also the reason everyon"
- 107      74726561 
- 107      74656420 
- 107      68696D20 
- 107      6B696E64 
- 108 0fd3 65206861 		.ascii	"e hated him.\012\012Kaori Shirasaki, one of the mos"
- 108      74656420 
- 108      68696D2E 
- 108      0A0A4B61 
- 108      6F726920 
- 109 1000 7420706F 		.ascii	"t popular girls in school, and beautiful enough to "
- 109      70756C61 
- 109      72206769 
- 109      726C7320 
- 109      696E2073 
- 110 1033 62652063 		.ascii	"be considered a goddess by many. She had sleek, bla"
-ARM GAS  /tmp/ccUeffNa.s 			page 9
+  98      656F706C 
+  99 0e5f 616E6420 		.ascii	"and they were all really flustered. So flustered, i"
+  99      74686579 
+  99      20776572 
+  99      6520616C 
+  99      6C207265 
+ 100 0e92 6E206661 		.ascii	"n fact, that some of them wouldn't even listen. Jus"
+ 100      63742C20 
+ 100      74686174 
+ 100      20736F6D 
+ 100      65206F66 
+ 101 0ec5 74206D65 		.ascii	"t meeting someone who wasn't gloomy was a feat in a"
+ 101      6574696E 
+ 101      6720736F 
+ 101      6D656F6E 
+ 101      65207768 
+ 102 0ef8 6E64206F 		.ascii	"nd of itself.\" [Rurutia]\012\"Well, in any case, t"
+ 102      66206974 
+ 102      73656C66 
+ 102      2E22205B 
+ 102      52757275 
+ 103 0f26 68697320 		.ascii	"his makes things easier for us. Though this also le"
+ 103      6D616B65 
+ 103      73207468 
+ 103      696E6773 
+ 103      20656173 
+ 104 0f59 61766573 		.ascii	"aves us with too much time on hand. Is there anythi"
+ 104      20757320 
+ 104      77697468 
+ 104      20746F6F 
+ 104      206D7563 
+ 105 0f8c 6E672065 		.ascii	"ng else you want to "
+ 105      6C736520 
+ 105      796F7520 
+ 105      77616E74 
+ 105      20746F20 
+ 106 0fa0 6B6E6F77 		.ascii	"know?\" [Gayn]\012\012Ryouma became thoughtful for "
+ 106      3F22205B 
+ 106      4761796E 
+ 106      5D0A0A52 
+ 106      796F756D 
+ 107 0fcc 61206D6F 		.ascii	"a moment before speaking.\012\012\"How did I die?\""
+ 107      6D656E74 
+ 107      20626566 
+ 107      6F726520 
+ 107      73706561 
+ 108 0ff7 205B5279 		.ascii	" [Ryouma]\012\"Hmm? You're starting there?\" [Gayn]"
+ 108      6F756D61 
+ 108      5D0A2248 
+ 108      6D6D3F20 
+ 108      596F7527 
+ 109 1025 0A225965 		.ascii	"\012\"Yes. I don't think there's anything odd about"
+ 109      732E2049 
+ 109      20646F6E 
+ 109      27742074 
+ 109      68696E6B 
+ 110 1054 206D7920 		.ascii	" my question though. After all, I don't have any me"
+ARM GAS  /tmp/ccSoAb05.s 			page 9
 
 
- 110      6F6E7369 
- 110      64657265 
- 110      64206120 
- 110      676F6464 
- 111 1066 636B2068 		.ascii	"ck hair that went all the way down to her waist, an"
- 111      61697220 
- 111      74686174 
- 111      2077656E 
- 111      7420616C 
- 112 1099 64206C61 		.ascii	"d large alluring eyes filled with kindness. Her sma"
- 112      72676520 
- 112      616C6C75 
- 112      72696E67 
- 112      20657965 
- 113 10cc 6C6C206E 		.ascii	"ll nose sat perfectly upon her face, and her pink l"
- 113      6F736520 
- 113      73617420 
- 113      70657266 
- 113      6563746C 
- 114 10ff 69707320 		.ascii	"ips were the epitome of perfection.\012\012She alwa"
- 114      77657265 
- 114      20746865 
- 114      20657069 
- 114      746F6D65 
- 115 112c 79732073 		.ascii	"ys seemed to have a smile on her face, and her knac"
- 115      65656D65 
- 115      6420746F 
- 115      20686176 
- 115      65206120 
- 116 115f 6B20666F 		.ascii	"k for looking after others combined with her strong"
- 116      72206C6F 
- 116      6F6B696E 
- 116      67206166 
- 116      74657220 
- 117 1192 2073656E 		.ascii	" sense of responsibility made her one of the most r"
- 117      7365206F 
- 117      66207265 
- 117      73706F6E 
- 117      73696269 
- 118 11c5 65737065 		.ascii	"espected students at Hajime\342\200\231s school. Mo"
- 118      63746564 
- 118      20737475 
- 118      64656E74 
- 118      73206174 
- 119 11ef 72656F76 		.ascii	"reover, she was tolerant and understanding to a fau"
- 119      65722C20 
- 119      73686520 
- 119      77617320 
- 119      746F6C65 
- 120 1222 6C742C20 		.ascii	"lt, to the point where no one had ever even seen he"
- 120      746F2074 
- 120      68652070 
- 120      6F696E74 
- 120      20776865 
- 121 1255 72206C6F 		.ascii	"r look unhappy before.\012\012And, for whatever rea"
- 121      6F6B2075 
- 121      6E686170 
-ARM GAS  /tmp/ccUeffNa.s 			page 10
+ 110      71756573 
+ 110      74696F6E 
+ 110      2074686F 
+ 110      7567682E 
+ 111 1087 6D6F7279 		.ascii	"mory of dying.\" [Ryouma]\012\"Well, you did die li"
+ 111      206F6620 
+ 111      6479696E 
+ 111      672E2220 
+ 111      5B52796F 
+ 112 10b5 6B652074 		.ascii	"ke that, so of course you don't remember.\" [Ruruti"
+ 112      6861742C 
+ 112      20736F20 
+ 112      6F662063 
+ 112      6F757273 
+ 113 10e7 615D0A22 		.ascii	"a]\012\"You died from brain hemorrhage after hittin"
+ 113      596F7520 
+ 113      64696564 
+ 113      2066726F 
+ 113      6D206272 
+ 114 1116 6720796F 		.ascii	"g your head.\" [Kufo]\012\"Huh!? Wasn't I just slee"
+ 114      75722068 
+ 114      6561642E 
+ 114      22205B4B 
+ 114      75666F5D 
+ 115 1144 70696E67 		.ascii	"ping in my room?\" [Ryouma]\012\"Yep, you sure were"
+ 115      20696E20 
+ 115      6D792072 
+ 115      6F6F6D3F 
+ 115      22205B52 
+ 116 1172 2E204275 		.ascii	". But then you sneezed while you were sleeping... A"
+ 116      74207468 
+ 116      656E2079 
+ 116      6F752073 
+ 116      6E65657A 
+ 117 11a5 206C6F74 		.ascii	" lot, in fact.\" [Rurutia]\012\"You sneezed four ti"
+ 117      2C20696E 
+ 117      20666163 
+ 117      742E2220 
+ 117      5B527572 
+ 118 11d3 6D65732E 		.ascii	"mes. Each time your pillow slipped and your head sl"
+ 118      20456163 
+ 118      68207469 
+ 118      6D652079 
+ 118      6F757220 
+ 119 1206 616D6D65 		.ascii	"ammed into the ground. Unfortunately, your futon wa"
+ 119      6420696E 
+ 119      746F2074 
+ 119      68652067 
+ 119      726F756E 
+ 120 1239 73207468 		.ascii	"s the cheap sort, so it was too thin to cushion you"
+ 120      65206368 
+ 120      65617020 
+ 120      736F7274 
+ 120      2C20736F 
+ 121 126c 72206865 		.ascii	"r head.\" [Gayn]\012\"The impact wasn't enough to w"
+ 121      61642E22 
+ 121      205B4761 
+ARM GAS  /tmp/ccSoAb05.s 			page 10
 
 
- 121      70792062 
- 121      65666F72 
- 122 1282 736F6E2C 		.ascii	"son, Kaori had taken an interest in Hajime. Most pe"
- 122      204B616F 
- 122      72692068 
- 122      61642074 
- 122      616B656E 
- 123 12b5 6F706C65 		.ascii	"ople assumed Hajime was a terrible student because "
- 123      20617373 
- 123      756D6564 
- 123      2048616A 
- 123      696D6520 
- 124 12e8 68652061 		.ascii	"he always slept in class due to his frequent all-ni"
- 124      6C776179 
- 124      7320736C 
- 124      65707420 
- 124      696E2063 
- 125 131b 67687465 		.ascii	"ghters (in truth, he had pretty average grades). An"
- 125      72732028 
- 125      696E2074 
- 125      72757468 
- 125      2C206865 
- 126 134e 642C2073 		.ascii	"d, since Kaori was always looking after other stude"
- 126      696E6365 
- 126      204B616F 
- 126      72692077 
- 126      61732061 
- 127 1381 6E74732C 		.ascii	"nts, they believed that was the reason she talked t"
- 127      20746865 
- 127      79206265 
- 127      6C696576 
- 127      65642074 
- 128 13b4 6F206869 		.ascii	"o him.\012\012Had her overtures convinced Hajime to"
- 128      6D2E0A0A 
- 128      48616420 
- 128      68657220 
- 128      6F766572 
- 129 13e1 20626563 		.ascii	" become a better student, or had he naturally been "
- 129      6F6D6520 
- 129      61206265 
- 129      74746572 
- 129      20737475 
- 130 1414 61206265 		.ascii	"a better looking guy, the other kids might not have"
- 130      74746572 
- 130      206C6F6F 
- 130      6B696E67 
- 130      20677579 
- 131 1447 206D696E 		.ascii	" minded Kaori\342\200\231s interest in him as much."
- 131      64656420 
- 131      4B616F72 
- 131      69E28099 
- 131      7320696E 
- 132 1471 20417320 		.ascii	" As it was, though, he was sadly as average looking"
- 132      69742077 
- 132      61732C20 
- 132      74686F75 
- 132      67682C20 
-ARM GAS  /tmp/ccUeffNa.s 			page 11
+ 121      796E5D0A 
+ 121      22546865 
+ 122 129a 616B6520 		.ascii	"ake you up though, so the internal bleeding just ke"
+ 122      796F7520 
+ 122      75702074 
+ 122      686F7567 
+ 122      682C2073 
+ 123 12cd 7074206F 		.ascii	"pt on going, and when dawn came, you passed.\" [Kuf"
+ 123      6E20676F 
+ 123      696E672C 
+ 123      20616E64 
+ 123      20776865 
+ 124 12ff 6F5D0A0A 		.ascii	"o]\012\012When he heard that, Ryouma's eyes fell to"
+ 124      5768656E 
+ 124      20686520 
+ 124      68656172 
+ 124      64207468 
+ 125 132c 20746865 		.ascii	" the ground and he mumbled to himself, then suddenl"
+ 125      2067726F 
+ 125      756E6420 
+ 125      616E6420 
+ 125      6865206D 
+ 126 135f 792C2068 		.ascii	"y, he bitterly cried out.\012\012\"I can't accept i"
+ 126      65206269 
+ 126      74746572 
+ 126      6C792063 
+ 126      72696564 
+ 127 138b 742E2E2E 		.ascii	"t... Why? Why of all thing did I die from a sneeze!"
+ 127      20576879 
+ 127      3F205768 
+ 127      79206F66 
+ 127      20616C6C 
+ 128 13be 3F22205B 		.ascii	"?\" [Ryouma]\012\"Huh?\" [Kufo, Gayn, Rurutia]\012\""
+ 128      52796F75 
+ 128      6D615D0A 
+ 128      22487568 
+ 128      3F22205B 
+ 129 13e8 49277665 		.ascii	"I've survived the beer bottles of my boss, the iron"
+ 129      20737572 
+ 129      76697665 
+ 129      64207468 
+ 129      65206265 
+ 130 141b 20706970 		.ascii	" pipes of middle-aged men, and even the countless a"
+ 130      6573206F 
+ 130      66206D69 
+ 130      64646C65 
+ 130      2D616765 
+ 131 144e 62757365 		.ascii	"buse under my dad, and yet after all that, the one "
+ 131      20756E64 
+ 131      6572206D 
+ 131      79206461 
+ 131      642C2061 
+ 132 1481 7468696E 		.ascii	"thing to actually take my life is a sneeze!?\" [Ryo"
+ 132      6720746F 
+ 132      20616374 
+ 132      75616C6C 
+ 132      79207461 
+ARM GAS  /tmp/ccSoAb05.s 			page 11
 
 
- 133 14a4 20617320 		.ascii	" as one could get, and his favorite motto was \342\200"
- 133      6F6E6520 
- 133      636F756C 
- 133      64206765 
- 133      742C2061 
- 134 14d4 9C686F62 		.ascii	"\234hobbies over real life,\342\200\235 so obviousl"
- 134      62696573 
- 134      206F7665 
- 134      72207265 
- 134      616C206C 
- 135 14fb 79206869 		.ascii	"y his attitude toward school had shown no signs of "
- 135      73206174 
- 135      74697475 
- 135      64652074 
- 135      6F776172 
- 136 152e 696D7072 		.ascii	"improvement either. As it was, the other average lo"
- 136      6F76656D 
- 136      656E7420 
- 136      65697468 
- 136      65722E20 
- 137 1561 6F6B696E 		.ascii	"oking male students of his class couldn\342\200\231"
- 137      67206D61 
- 137      6C652073 
- 137      74756465 
- 137      6E747320 
- 138 158b 74207374 		.ascii	"t stand the fact that Hajime was so close to Kaori."
- 138      616E6420 
- 138      74686520 
- 138      66616374 
- 138      20746861 
- 139 15be 20E2809C 		.ascii	" \342\200\234Why him and not us!?\342\200\235 they "
- 139      57687920 
- 139      68696D20 
- 139      616E6420 
- 139      6E6F7420 
- 140 15df 74686F75 		.ascii	"thought. Meanwhile, the other girls simply thought "
- 140      6768742E 
- 140      204D6561 
- 140      6E776869 
- 140      6C652C20 
- 141 1612 68652077 		.ascii	"he was being rude to Kaori. They were unhappy that "
- 141      61732062 
- 141      65696E67 
- 141      20727564 
- 141      6520746F 
- 142 1645 68652077 		.ascii	"he wasn\342\200\231t even attempting to reform his "
- 142      61736EE2 
- 142      80997420 
- 142      6576656E 
- 142      20617474 
- 143 166f 68616269 		.ascii	"habits.\012\012\342\200\234A-Ah, good morning, Shir"
- 143      74732E0A 
- 143      0AE2809C 
- 143      412D4168 
- 143      2C20676F 
- 144 1693 6173616B 		.ascii	"asaki-san.\342\200\235 Hajime\342\200\231s face sti"
- 144      692D7361 
-ARM GAS  /tmp/ccUeffNa.s 			page 12
+ 133 14b3 756D615D 		.ascii	"uma]\012\012Filled with grief, Ryouma lost sight of"
+ 133      0A0A4669 
+ 133      6C6C6564 
+ 133      20776974 
+ 133      68206772 
+ 134 14e0 20686973 		.ascii	" his surroundings as mumbled to himself.\012\012\"A"
+ 134      20737572 
+ 134      726F756E 
+ 134      64696E67 
+ 134      73206173 
+ 135 150c 682C2068 		.ascii	"h, he's depressed.\" [Kufo]\012\"Even though he was"
+ 135      65277320 
+ 135      64657072 
+ 135      65737365 
+ 135      642E2220 
+ 136 153a 20706572 		.ascii	" perfectly fine after being told he was dead, what "
+ 136      66656374 
+ 136      6C792066 
+ 136      696E6520 
+ 136      61667465 
+ 137 156d 616E206F 		.ascii	"an odd kid.\" [Rurutia]\012\"It seems he's quite pr"
+ 137      6464206B 
+ 137      69642E22 
+ 137      205B5275 
+ 137      72757469 
+ 138 159b 6F756420 		.ascii	"oud of his body. Well, he was forcefully trained by"
+ 138      6F662068 
+ 138      69732062 
+ 138      6F64792E 
+ 138      2057656C 
+ 139 15ce 20686973 		.ascii	" his father from a young age and driven right at th"
+ 139      20666174 
+ 139      68657220 
+ 139      66726F6D 
+ 139      20612079 
+ 140 1601 65206564 		.ascii	"e edge of death day after day. Hmm... Kufo, Rurutia"
+ 140      6765206F 
+ 140      66206465 
+ 140      61746820 
+ 140      64617920 
+ 141 1634 2E22205B 		.ascii	".\" [Gayn]\012\"What?\" [Rurutia]\012\"Is something"
+ 141      4761796E 
+ 141      5D0A2257 
+ 141      6861743F 
+ 141      22205B52 
+ 142 165d 20746865 		.ascii	" the matter?\" [Kufo]\012\"There's something about "
+ 142      206D6174 
+ 142      7465723F 
+ 142      22205B4B 
+ 142      75666F5D 
+ 143 168b 74686973 		.ascii	"this kid bothering me. Come help me out while we wa"
+ 143      206B6964 
+ 143      20626F74 
+ 143      68657269 
+ 143      6E67206D 
+ 144 16be 69742066 		.ascii	"it for him to calm down.\" [Gayn]\012\012Gayn's exp"
+ 144      6F722068 
+ARM GAS  /tmp/ccSoAb05.s 			page 12
 
 
- 144      6E2EE280 
- 144      9D204861 
- 144      6A696D65 
- 145 16b4 6666656E 		.ascii	"ffened up as he felt the bloodthirsty glares of his"
- 145      65642075 
- 145      70206173 
- 145      20686520 
- 145      66656C74 
- 146 16e7 2066656C 		.ascii	" fellow classmates, and he awkwardly returned Kaori"
- 146      6C6F7720 
- 146      636C6173 
- 146      736D6174 
- 146      65732C20 
- 147 171a E2809973 		.ascii	"\342\200\231s greeting.\012\012In contrast, Kaori s"
- 147      20677265 
- 147      6574696E 
- 147      672E0A0A 
- 147      496E2063 
- 148 173e 6D696C65 		.ascii	"miled happily as she looked at him. Why do you alw"
- 148      64206861 
- 148      7070696C 
- 148      79206173 
- 148      20736865 
- 149 1770 61797320 		.ascii	"ays look at me like that!? Hajime despaired as he f"
- 149      6C6F6F6B 
- 149      20617420 
- 149      6D65206C 
- 149      696B6520 
- 150 17a3 656C7420 		.ascii	"elt the gazes of his classmates burn into him.\012\012"
- 150      74686520 
- 150      67617A65 
- 150      73206F66 
- 150      20686973 
- 151 17d3 48616A69 		.ascii	"Hajime was honestly bewildered. He didn\342\200\231"
- 151      6D652077 
- 151      61732068 
- 151      6F6E6573 
- 151      746C7920 
- 152 17fd 7420756E 		.ascii	"t understand why the most beautiful girl in school "
- 152      64657273 
- 152      74616E64 
- 152      20776879 
- 152      20746865 
- 153 1830 63617265 		.ascii	"cared about a guy like him. To him, it seemed like "
- 153      64206162 
- 153      6F757420 
- 153      61206775 
- 153      79206C69 
- 154 1863 74686572 		.ascii	"there had to have been something more than just her"
- 154      65206861 
- 154      6420746F 
- 154      20686176 
- 154      65206265 
- 155 1896 206E6174 		.ascii	" natural disposition to help others.\012\012Of cour"
- 155      7572616C 
- 155      20646973 
- 155      706F7369 
-ARM GAS  /tmp/ccUeffNa.s 			page 13
+ 144      696D2074 
+ 144      6F206361 
+ 144      6C6D2064 
+ 145 16ea 72657373 		.ascii	"ression quickly turned solemn as he spoke, while th"
+ 145      696F6E20 
+ 145      71756963 
+ 145      6B6C7920 
+ 145      7475726E 
+ 146 171d 65206F74 		.ascii	"e other two gods, sensing that something was amiss,"
+ 146      68657220 
+ 146      74776F20 
+ 146      676F6473 
+ 146      2C207365 
+ 147 1750 20616E73 		.ascii	" answered back in words that cou"
+ 147      77657265 
+ 147      64206261 
+ 147      636B2069 
+ 147      6E20776F 
+ 148 1770 6C646E27 		.ascii	"ldn't be heard by a human. Perhaps their efforts we"
+ 148      74206265 
+ 148      20686561 
+ 148      72642062 
+ 148      79206120 
+ 149 17a3 72652077 		.ascii	"re wasted, however, as Ryouma was so depressed he c"
+ 149      61737465 
+ 149      642C2068 
+ 149      6F776576 
+ 149      65722C20 
+ 150 17d6 6F756C64 		.ascii	"ouldn't hear anything.\012\012 \012 \012 \012 \012 "
+ 150      6E277420 
+ 150      68656172 
+ 150      20616E79 
+ 150      7468696E 
+ 151 17f7 0A200A0A 		.ascii	"\012 \012\012\"Ah, sorry... I lost myself for a mom"
+ 151      2241682C 
+ 151      20736F72 
+ 151      72792E2E 
+ 151      2E204920 
+ 152 1820 656E7420 		.ascii	"ent there.\" [Ryouma]\012\012When Ryouma recovered "
+ 152      74686572 
+ 152      652E2220 
+ 152      5B52796F 
+ 152      756D615D 
+ 153 184c 68696D73 		.ascii	"himself and lifted up his face, the gods were still"
+ 153      656C6620 
+ 153      616E6420 
+ 153      6C696674 
+ 153      65642075 
+ 154 187f 20746865 		.ascii	" there drinking tea as calm as ever.\012\012\"It's "
+ 154      72652064 
+ 154      72696E6B 
+ 154      696E6720 
+ 154      74656120 
+ 155 18ab 66696E65 		.ascii	"fine. We're usually free, and we properly scheduled"
+ 155      2E205765 
+ 155      27726520 
+ 155      75737561 
+ARM GAS  /tmp/ccSoAb05.s 			page 13
 
 
- 155      74696F6E 
- 156 18c3 73652C20 		.ascii	"se, he wasn\342\200\231t so conceited as to believe"
- 156      68652077 
- 156      61736EE2 
- 156      80997420 
- 156      736F2063 
- 157 18ed 20736865 		.ascii	" she might possibly have any romantic interest in h"
- 157      206D6967 
- 157      68742070 
- 157      6F737369 
- 157      626C7920 
- 158 1920 696D2E20 		.ascii	"im. Hajime was well aware of the fact that he\342\200"
- 158      48616A69 
- 158      6D652077 
- 158      61732077 
- 158      656C6C20 
- 159 194f 99642067 		.ascii	"\231d given up a great deal of things to live a lif"
- 159      6976656E 
- 159      20757020 
- 159      61206772 
- 159      65617420 
- 160 197f 65206675 		.ascii	"e fully devoted to his hobbies. He knew his appeara"
- 160      6C6C7920 
- 160      6465766F 
- 160      74656420 
- 160      746F2068 
- 161 19b2 6E63652C 		.ascii	"nce, grades, and athletic ability were all utterly "
- 161      20677261 
- 161      6465732C 
- 161      20616E64 
- 161      20617468 
- 162 19e5 61766572 		.ascii	"average. There were a whole host of guys better tha"
- 162      6167652E 
- 162      20546865 
- 162      72652077 
- 162      65726520 
- 163 1a18 6E206869 		.ascii	"n him who were far more suited to be her partner, e"
- 163      6D207768 
- 163      6F207765 
- 163      72652066 
- 163      6172206D 
- 164 1a4b 76656E20 		.ascii	"ven just among her acquaintances. Which was why he "
- 164      6A757374 
- 164      20616D6F 
- 164      6E672068 
- 164      65722061 
- 165 1a7e 666F756E 		.ascii	"found her behavior so puzzling.\012\012Honestly, I "
- 165      64206865 
- 165      72206265 
- 165      68617669 
- 165      6F722073 
- 166 1aab 6A757374 		.ascii	"just wish you\342\200\231d realize you\342\200\231r"
- 166      20776973 
- 166      6820796F 
- 166      75E28099 
- 166      64207265 
- 167 1acc 65207468 		.ascii	"e the reason everyone hates me right now! Hajime sc"
-ARM GAS  /tmp/ccUeffNa.s 			page 14
+ 155      6C6C7920 
+ 156 18de 206F7572 		.ascii	" our time with you, so there's no rush. Moreover, w"
+ 156      2074696D 
+ 156      65207769 
+ 156      74682079 
+ 156      6F752C20 
+ 157 1911 65277265 		.ascii	"e're already used to people losing their minds afte"
+ 157      20616C72 
+ 157      65616479 
+ 157      20757365 
+ 157      6420746F 
+ 158 1944 72206479 		.ascii	"r dying.\012\012After all, human souls are connecte"
+ 158      696E672E 
+ 158      0A0A4166 
+ 158      74657220 
+ 158      616C6C2C 
+ 159 1971 6420746F 		.ascii	"d to their bodies, so when you cut that connection "
+ 159      20746865 
+ 159      69722062 
+ 159      6F646965 
+ 159      732C2073 
+ 160 19a4 6F66662C 		.ascii	"off, a little bit of instability is to be expected."
+ 160      2061206C 
+ 160      6974746C 
+ 160      65206269 
+ 160      74206F66 
+ 161 19d7 20546861 		.ascii	" That instability usually results in one's emotions"
+ 161      7420696E 
+ 161      73746162 
+ 161      696C6974 
+ 161      79207573 
+ 162 1a0a 20676F69 		.ascii	" going wild.\012\012Anyway, the point is we really "
+ 162      6E672077 
+ 162      696C642E 
+ 162      0A0A416E 
+ 162      79776179 
+ 163 1a37 646F6E27 		.ascii	"don't mind, so don't sweat it.\" [Gayn]\012\"Time f"
+ 163      74206D69 
+ 163      6E642C20 
+ 163      736F2064 
+ 163      6F6E2774 
+ 164 1a65 6C6F7773 		.ascii	"lows differently here in the divine realm and souls"
+ 164      20646966 
+ 164      66657265 
+ 164      6E746C79 
+ 164      20686572 
+ 165 1a98 20646F6E 		.ascii	" don't starve. Having to wait four years before a h"
+ 165      27742073 
+ 165      74617276 
+ 165      652E2048 
+ 165      6176696E 
+ 166 1acb 756D616E 		.ascii	"uman regains his sanity is pretty normal.\" [Kufo]\012"
+ 166      20726567 
+ 166      61696E73 
+ 166      20686973 
+ 166      2073616E 
+ 167 1afd 22342079 		.ascii	"\"4 years!?\" [Ryouma]\012\012Ryouma was shocked.\012"
+ARM GAS  /tmp/ccSoAb05.s 			page 14
 
 
- 167      65207265 
- 167      61736F6E 
- 167      20657665 
- 167      72796F6E 
- 168 1aff 7265616D 		.ascii	"reamed inside his head. However, he didn\342\200\231"
- 168      65642069 
- 168      6E736964 
- 168      65206869 
- 168      73206865 
- 169 1b2a 74206769 		.ascii	"t give voice to his thoughts. He knew that some of "
- 169      76652076 
- 169      6F696365 
- 169      20746F20 
- 169      68697320 
- 170 1b5d 68697320 		.ascii	"his classmates would no doubt drag him out behind t"
- 170      636C6173 
- 170      736D6174 
- 170      65732077 
- 170      6F756C64 
- 171 1b90 68652067 		.ascii	"he gym once classes were over if he ever dared to d"
- 171      796D206F 
- 171      6E636520 
- 171      636C6173 
- 171      73657320 
- 172 1bc3 6F20736F 		.ascii	"o so... The moment Hajime finished his conversation"
- 172      2E2E2E20 
- 172      54686520 
- 172      6D6F6D65 
- 172      6E742048 
- 173 1bf6 20776974 		.ascii	" with Kaori, three new people walked up to them. Th"
- 173      68204B61 
- 173      6F72692C 
- 173      20746872 
- 173      6565206E 
- 174 1c29 6579E280 		.ascii	"ey\342\200\231d been watching the two of them like "
- 174      99642062 
- 174      65656E20 
- 174      77617463 
- 174      68696E67 
- 175 1c53 76756C74 		.ascii	"vultures, waiting for him to finish talking. Among "
- 175      75726573 
- 175      2C207761 
- 175      6974696E 
- 175      6720666F 
- 176 1c86 74686973 		.ascii	"this new group was of course one of the \342\200\234"
- 176      206E6577 
- 176      2067726F 
- 176      75702077 
- 176      6173206F 
- 177 1cb1 62657474 		.ascii	"better guys\342\200\235 who\342\200\231d been menti"
- 177      65722067 
- 177      757973E2 
- 177      809D2077 
- 177      686FE280 
- 178 1cd2 6F6E6564 		.ascii	"oned previously.\012\012\342\200\234Good morning, N"
- 178      20707265 
- 178      76696F75 
-ARM GAS  /tmp/ccUeffNa.s 			page 15
+ 167      65617273 
+ 167      213F2220 
+ 167      5B52796F 
+ 167      756D615D 
+ 168 1b27 0A225765 		.ascii	"\012\"We can't interfere carelessly when humans are"
+ 168      2063616E 
+ 168      27742069 
+ 168      6E746572 
+ 168      66657265 
+ 169 1b56 2070616E 		.ascii	" panicking, or they might just needlessly put their"
+ 169      69636B69 
+ 169      6E672C20 
+ 169      6F722074 
+ 169      68657920 
+ 170 1b89 20677561 		.ascii	" guards up. Some humans also go crazy while we're t"
+ 170      72647320 
+ 170      75702E20 
+ 170      536F6D65 
+ 170      2068756D 
+ 171 1bbc 616C6B69 		.ascii	"alking, but regardless, we usually just wait until "
+ 171      6E672C20 
+ 171      62757420 
+ 171      72656761 
+ 171      72646C65 
+ 172 1bef 74686579 		.ascii	"they're able to calm themselves down. Waiting up to"
+ 172      27726520 
+ 172      61626C65 
+ 172      20746F20 
+ 172      63616C6D 
+ 173 1c22 20666F75 		.ascii	" four years is normal, so you're still alright, Ryo"
+ 173      72207965 
+ 173      61727320 
+ 173      6973206E 
+ 173      6F726D61 
+ 174 1c55 756D612D 		.ascii	"uma-kun.\012\012Anyway, since you're back, I hope y"
+ 174      6B756E2E 
+ 174      0A0A416E 
+ 174      79776179 
+ 174      2C207369 
+ 175 1c82 6F752077 		.ascii	"ou won't mind if we continue.\" [Gayn]\012\"Of cour"
+ 175      6F6E2774 
+ 175      206D696E 
+ 175      64206966 
+ 175      20776520 
+ 176 1cb0 73652E22 		.ascii	"se.\" [Ryouma]\012\012Gayn nodded.\012\012\"Right, "
+ 176      205B5279 
+ 176      6F756D61 
+ 176      5D0A0A47 
+ 176      61796E20 
+ 177 1cd5 77656C6C 		.ascii	"well let me explain why we called your soul. If I w"
+ 177      206C6574 
+ 177      206D6520 
+ 177      6578706C 
+ 177      61696E20 
+ 178 1d08 65726520 		.ascii	"ere to sum up the reason in one word, it would be: "
+ 178      746F2073 
+ 178      756D2075 
+ARM GAS  /tmp/ccSoAb05.s 			page 15
 
 
- 178      736C792E 
- 178      0A0AE280 
- 179 1cf6 6167756D 		.ascii	"agumo-kun. Must be rough staying up that late every"
- 179      6F2D6B75 
- 179      6E2E204D 
- 179      75737420 
- 179      62652072 
- 180 1d29 20646179 		.ascii	" day.\342\200\235\012\012\342\200\234Looking after "
- 180      2EE2809D 
- 180      0A0AE280 
- 180      9C4C6F6F 
- 180      6B696E67 
- 181 1d44 68696D20 		.ascii	"him again, Kaori? You\342\200\231re really too nice"
- 181      61676169 
- 181      6E2C204B 
- 181      616F7269 
- 181      3F20596F 
- 182 1d6e 20666F72 		.ascii	" for your own good.\342\200\235\012\012\342\200\234"
- 182      20796F75 
- 182      72206F77 
- 182      6E20676F 
- 182      6F642EE2 
- 183 1d89 53657269 		.ascii	"Seriously. Talking to a failure like him\342\200\231"
- 183      6F75736C 
- 183      792E2054 
- 183      616C6B69 
- 183      6E672074 
- 184 1db4 73206120 		.ascii	"s a total waste of time.\342\200\235\012\012The onl"
- 184      746F7461 
- 184      6C207761 
- 184      73746520 
- 184      6F662074 
- 185 1dd8 79207065 		.ascii	"y person who\342\200\231d greeted Hajime out of the"
- 185      72736F6E 
- 185      2077686F 
- 185      E2809964 
- 185      20677265 
- 186 1e02 20746872 		.ascii	" three was Shizuku Yaegashi, Kaori\342\200\231s bes"
- 186      65652077 
- 186      61732053 
- 186      68697A75 
- 186      6B752059 
- 187 1e2c 74206672 		.ascii	"t friend. Shizuku\342\200\231s black hair was tied "
- 187      69656E64 
- 187      2E205368 
- 187      697A756B 
- 187      75E28099 
- 188 1e56 6261636B 		.ascii	"back in her trademark ponytail. Her almond-shaped e"
- 188      20696E20 
- 188      68657220 
- 188      74726164 
- 188      656D6172 
- 189 1e89 79657320 		.ascii	"yes give her a rather sharp look, but deep within h"
- 189      67697665 
- 189      20686572 
- 189      20612072 
- 189      61746865 
-ARM GAS  /tmp/ccUeffNa.s 			page 16
+ 178      70207468 
+ 178      65207265 
+ 179 1d3b 436C6963 		.ascii	"Cliche. Do you understand?\" [Gayn]\012\"Cliche? Ah"
+ 179      68652E20 
+ 179      446F2079 
+ 179      6F752075 
+ 179      6E646572 
+ 180 1d69 2E2E2E20 		.ascii	"... I believe I do. You wish for me to live in anot"
+ 180      49206265 
+ 180      6C696576 
+ 180      65204920 
+ 180      646F2E20 
+ 181 1d9c 68657220 		.ascii	"her world, yes? If so, will I be reincarnated or me"
+ 181      776F726C 
+ 181      642C2079 
+ 181      65733F20 
+ 181      49662073 
+ 182 1dcf 72656C79 		.ascii	"rely transmigrated?\"\012\"You really are quick to "
+ 182      20747261 
+ 182      6E736D69 
+ 182      67726174 
+ 182      65643F22 
+ 183 1dfd 7069636B 		.ascii	"pick up.\" [Rurutia]\012\012Rurutia was shocked to "
+ 183      2075702E 
+ 183      22205B52 
+ 183      75727574 
+ 183      69615D0A 
+ 184 1e29 73656520 		.ascii	"see Ryouma so easily understand what was going on, "
+ 184      52796F75 
+ 184      6D612073 
+ 184      6F206561 
+ 184      73696C79 
+ 185 1e5c 62757420 		.ascii	"but Gayn ignored her and continued.\012\012\"You'll"
+ 185      4761796E 
+ 185      2069676E 
+ 185      6F726564 
+ 185      20686572 
+ 186 1e88 20626520 		.ascii	" be transmigrated, in a sense. I will be creating a"
+ 186      7472616E 
+ 186      736D6967 
+ 186      72617465 
+ 186      642C2069 
+ 187 1ebb 206E6577 		.ascii	" new body for you to inhabit in our world, so you w"
+ 187      20626F64 
+ 187      7920666F 
+ 187      7220796F 
+ 187      7520746F 
+ 188 1eee 6F6E2774 		.ascii	"on't have any parents.\" [Gayn]\012\"Your new body "
+ 188      20686176 
+ 188      6520616E 
+ 188      79207061 
+ 188      72656E74 
+ 189 1f1c 77696C6C 		.ascii	"will be much younger, so you could s"
+ 189      20626520 
+ 189      6D756368 
+ 189      20796F75 
+ 189      6E676572 
+ARM GAS  /tmp/ccSoAb05.s 			page 16
 
 
- 190 1ebc 65722067 		.ascii	"er gaze dwelled a kindness that made her seem cool "
- 190      617A6520 
- 190      6477656C 
- 190      6C656420 
- 190      61206B69 
- 191 1eef 72617468 		.ascii	"rather than cold.\012\012Standing 172 centimeters t"
- 191      65722074 
- 191      68616E20 
- 191      636F6C64 
- 191      2E0A0A53 
- 192 1f1c 616C6C2C 		.ascii	"all, she was a good deal taller than"
- 192      20736865 
- 192      20776173 
- 192      20612067 
- 192      6F6F6420 
- 193 1f40 206D6F73 		.ascii	" most of the other girls in his class.\000"
- 193      74206F66 
- 193      20746865 
- 193      206F7468 
- 193      65722067 
- 194              		.text
- 195              	.Letext0:
- 196              		.file 1 "Display/Text_Mode/example.c"
-ARM GAS  /tmp/ccUeffNa.s 			page 17
+ 190 1f40 61792069 		.ascii	"ay it's like being reincarnated. If you have any re"
+ 190      74277320 
+ 190      6C696B65 
+ 190      20626569 
+ 190      6E672072 
+ 191 1f73 71756573 		.ascii	"quests, I could alter your body as you please.\" [K"
+ 191      74732C20 
+ 191      4920636F 
+ 191      756C6420 
+ 191      616C7465 
+ 192 1fa5 75666F5D 		.ascii	"ufo]\012\"Exactly what age will my new body be?\" ["
+ 192      0A224578 
+ 192      6163746C 
+ 192      79207768 
+ 192      61742061 
+ 193 1fd3 52796F75 		.ascii	"Ryouma]\012\"You'll be less than 10 years old. At t"
+ 193      6D615D0A 
+ 193      22596F75 
+ 193      276C6C20 
+ 193      6265206C 
+ 194 2002 68617420 		.ascii	"hat age, you should be fine even if you get lost in"
+ 194      6167652C 
+ 194      20796F75 
+ 194      2073686F 
+ 194      756C6420 
+ 195 2035 20612066 		.ascii	" a forest. You'll look like a child to others, so t"
+ 195      6F726573 
+ 195      742E2059 
+ 195      6F75276C 
+ 195      6C206C6F 
+ 196 2068 68657920 		.ascii	"hey won't be as suspicious and you'll be able to sa"
+ 196      776F6E27 
+ 196      74206265 
+ 196      20617320 
+ 196      73757370 
+ 197 209b 66656C79 		.ascii	"fely go into a city. Of course, we'll have some ins"
+ 197      20676F20 
+ 197      696E746F 
+ 197      20612063 
+ 197      6974792E 
+ 198 20ce 7572616E 		.ascii	"urance too to ensure everything goes well.\012\012S"
+ 198      63652074 
+ 198      6F6F2074 
+ 198      6F20656E 
+ 198      73757265 
+ 199 20fb 696E6365 		.ascii	"ince you're going to be an orphan in the otherworld"
+ 199      20796F75 
+ 199      27726520 
+ 199      676F696E 
+ 199      6720746F 
+ 200 212e 2C207765 		.ascii	", we'll be sending you to a country that's relative"
+ 200      276C6C20 
+ 200      62652073 
+ 200      656E6469 
+ 200      6E672079 
+ 201 2161 6C792074 		.ascii	"ly tolerant of social statuses. With that there sho"
+ 201      6F6C6572 
+ARM GAS  /tmp/ccSoAb05.s 			page 17
+
+
+ 201      616E7420 
+ 201      6F662073 
+ 201      6F636961 
+ 202 2194 756C646E 		.ascii	"uldn't be any issues for you to live a normal life."
+ 202      27742062 
+ 202      6520616E 
+ 202      79206973 
+ 202      73756573 
+ 203 21c7 22205B47 		.ascii	"\" [Gayn]\012\"Thank you. For my appearance, just d"
+ 203      61796E5D 
+ 203      0A225468 
+ 203      616E6B20 
+ 203      796F752E 
+ 204 21f5 6F6E2774 		.ascii	"on't make it weird. Is there anything in particular"
+ 204      206D616B 
+ 204      65206974 
+ 204      20776569 
+ 204      72642E20 
+ 205 2228 2049206E 		.ascii	" I need to do in your world? A mission of some sort"
+ 205      65656420 
+ 205      746F2064 
+ 205      6F20696E 
+ 205      20796F75 
+ 206 225b 3F22205B 		.ascii	"?\" [Ryouma]\012\"Nope. If there's any, well, you'v"
+ 206      52796F75 
+ 206      6D615D0A 
+ 206      224E6F70 
+ 206      652E2049 
+ 207 2289 65207072 		.ascii	"e pretty much accomplished it the moment you're tra"
+ 207      65747479 
+ 207      206D7563 
+ 207      68206163 
+ 207      636F6D70 
+ 208 22bc 6E736D69 		.ascii	"nsmigrated, so there's technically none. You going "
+ 208      67726174 
+ 208      65642C20 
+ 208      736F2074 
+ 208      68657265 
+ 209 22ef 746F2074 		.ascii	"to the otherworld is your only mission.\" [Rurutia]"
+ 209      6865206F 
+ 209      74686572 
+ 209      776F726C 
+ 209      64206973 
+ 210 2321 0A224F75 		.ascii	"\012\"Our goal is to transfer mana from your world "
+ 210      7220676F 
+ 210      616C2069 
+ 210      7320746F 
+ 210      20747261 
+ 211 2350 696E746F 		.ascii	"into our world, which is currently very low on mana"
+ 211      206F7572 
+ 211      20776F72 
+ 211      6C642C20 
+ 211      77686963 
+ 212 2383 2E22205B 		.ascii	".\" [Kufo]\012\012Ryouma nodded upon understanding,"
+ 212      4B75666F 
+ 212      5D0A0A52 
+ 212      796F756D 
+ARM GAS  /tmp/ccSoAb05.s 			page 18
+
+
+ 212      61206E6F 
+ 213 23af 20627574 		.ascii	" but then it occurred to him.\012\012\"Can't you ju"
+ 213      20746865 
+ 213      6E206974 
+ 213      206F6363 
+ 213      75727265 
+ 214 23db 73742074 		.ascii	"st transfer mana by itself?\" [Ryouma]\012\"No. Put"
+ 214      72616E73 
+ 214      66657220 
+ 214      6D616E61 
+ 214      20627920 
+ 215 2409 74696E67 		.ascii	"ting it simply, there are walls between different w"
+ 215      20697420 
+ 215      73696D70 
+ 215      6C792C20 
+ 215      74686572 
+ 216 243c 6F726C64 		.ascii	"orlds. Normally, mana can't go past these 'walls', "
+ 216      732E204E 
+ 216      6F726D61 
+ 216      6C6C792C 
+ 216      206D616E 
+ 217 246f 736F2077 		.ascii	"so we have to create a hole first. The problem is t"
+ 217      65206861 
+ 217      76652074 
+ 217      6F206372 
+ 217      65617465 
+ 218 24a2 68617420 		.ascii	"hat opening the hole and maintaining it both requir"
+ 218      6F70656E 
+ 218      696E6720 
+ 218      74686520 
+ 218      686F6C65 
+ 219 24d5 6520656E 		.ascii	"e energy, so if just do it normally, we'll run out "
+ 219      65726779 
+ 219      2C20736F 
+ 219      20696620 
+ 219      6A757374 
+ 220 2508 6F662073 		.ascii	"of strength.\012\012Fortunately, we have you! You'l"
+ 220      7472656E 
+ 220      6774682E 
+ 220      0A0A466F 
+ 220      7274756E 
+ 221 2535 6C206265 		.ascii	"l be unconscious during the process, but by stuffin"
+ 221      20756E63 
+ 221      6F6E7363 
+ 221      696F7573 
+ 221      20647572 
+ 222 2568 6720796F 		.ascii	"g your soul \342\200\223 reinforced by our power \342"
+ 222      75722073 
+ 222      6F756C20 
+ 222      E2809320 
+ 222      7265696E 
+ 223 2591 80932069 		.ascii	"\200\223 in between the hole, we can keep it from c"
+ 223      6E206265 
+ 223      74776565 
+ 223      6E207468 
+ 223      6520686F 
+ 224 25be 6C6F7369 		.ascii	"losing while we transfer mana from earth to our wor"
+ARM GAS  /tmp/ccSoAb05.s 			page 19
+
+
+ 224      6E672077 
+ 224      68696C65 
+ 224      20776520 
+ 224      7472616E 
+ 225 25f1 6C642E22 		.ascii	"ld.\" [Kufo]\012\"Our world relies on magic. If man"
+ 225      205B4B75 
+ 225      666F5D0A 
+ 225      224F7572 
+ 225      20776F72 
+ 226 261f 61206472 		.ascii	"a dries up, the daily life of the people will be af"
+ 226      69657320 
+ 226      75702C20 
+ 226      74686520 
+ 226      6461696C 
+ 227 2652 66656374 		.ascii	"fected, the monsters who feed on magic will die out"
+ 227      65642C20 
+ 227      74686520 
+ 227      6D6F6E73 
+ 227      74657273 
+ 228 2685 2C20616E 		.ascii	", and the ecosystem will be destroyed.\012\012Earth"
+ 228      64207468 
+ 228      65206563 
+ 228      6F737973 
+ 228      74656D20 
+ 229 26b2 2C206F6E 		.ascii	", on the other hand, does not use magic. They don't"
+ 229      20746865 
+ 229      206F7468 
+ 229      65722068 
+ 229      616E642C 
+ 230 26e5 20686176 		.ascii	" have monsters either. Since they're not us"
+ 230      65206D6F 
+ 230      6E737465 
+ 230      72732065 
+ 230      69746865 
+ 231 2710 696E6720 		.ascii	"ing it, we figured we'd take some of it.\" [Rurutia"
+ 231      69742C20 
+ 231      77652066 
+ 231      69677572 
+ 231      65642077 
+ 232 2742 5D0A0A22 		.ascii	"]\012\012\"If there's no particular reason for mana"
+ 232      49662074 
+ 232      68657265 
+ 232      2773206E 
+ 232      6F207061 
+ 233 276e 20746F20 		.ascii	" to dry out, then could it be that the rate product"
+ 233      64727920 
+ 233      6F75742C 
+ 233      20746865 
+ 233      6E20636F 
+ 234 27a1 696F6E20 		.ascii	"ion of mana can't keep up with its usage?\" [Ryouma"
+ 234      6F66206D 
+ 234      616E6120 
+ 234      63616E27 
+ 234      74206B65 
+ 235 27d3 5D0A0A22 		.ascii	"]\012\012\"Yes, exactly. There are a lot of reasons"
+ 235      5965732C 
+ 235      20657861 
+ARM GAS  /tmp/ccSoAb05.s 			page 20
+
+
+ 235      63746C79 
+ 235      2E205468 
+ 236 27ff 20666F72 		.ascii	" for it, but humans, in particular, find it very co"
+ 236      2069742C 
+ 236      20627574 
+ 236      2068756D 
+ 236      616E732C 
+ 237 2832 6E76656E 		.ascii	"nvenient to rely on magic. Because of that magic ha"
+ 237      69656E74 
+ 237      20746F20 
+ 237      72656C79 
+ 237      206F6E20 
+ 238 2865 73206578 		.ascii	"s experienced a lot of development, and gradually, "
+ 238      70657269 
+ 238      656E6365 
+ 238      64206120 
+ 238      6C6F7420 
+ 239 2898 74686520 		.ascii	"the consumption of mana is getting bigger and bigge"
+ 239      636F6E73 
+ 239      756D7074 
+ 239      696F6E20 
+ 239      6F66206D 
+ 240 28cb 722E2220 		.ascii	"r.\" [Kufo]\012\012\"It's not easy to reduce the co"
+ 240      5B4B7566 
+ 240      6F5D0A0A 
+ 240      22497427 
+ 240      73206E6F 
+ 241 28f6 6E73756D 		.ascii	"nsumption of mana. Moreover, if you use too much in"
+ 241      7074696F 
+ 241      6E206F66 
+ 241      206D616E 
+ 241      612E204D 
+ 242 2929 7465726E 		.ascii	"ternal mana, your body will fall apart. So in the e"
+ 242      616C206D 
+ 242      616E612C 
+ 242      20796F75 
+ 242      7220626F 
+ 243 295c 6E642069 		.ascii	"nd it's a lot easier to use mana from your surround"
+ 243      74277320 
+ 243      61206C6F 
+ 243      74206561 
+ 243      73696572 
+ 244 298f 696E6773 		.ascii	"ings. It's truly a sad thing.\" [Gayn]\012\012As th"
+ 244      2E204974 
+ 244      27732074 
+ 244      72756C79 
+ 244      20612073 
+ 245 29bb 6520676F 		.ascii	"e gods grumbled about the humans, Ryouma alone beca"
+ 245      64732067 
+ 245      72756D62 
+ 245      6C656420 
+ 245      61626F75 
+ 246 29ee 6D652065 		.ascii	"me excited.\012\012\"Umm... Can I also use magic?\""
+ 246      78636974 
+ 246      65642E0A 
+ 246      0A22556D 
+ 246      6D2E2E2E 
+ARM GAS  /tmp/ccSoAb05.s 			page 21
+
+
+ 247 2a19 205B5279 		.ascii	" [Ryouma]\012\"Of course.\" [Gayn]\012\"You bet.\" "
+ 247      6F756D61 
+ 247      5D0A224F 
+ 247      6620636F 
+ 247      75727365 
+ 248 2a42 5B4B7566 		.ascii	"[Kufo]\012\"You can.\" [Rurutia]\012\"Really! Ah, s"
+ 248      6F5D0A22 
+ 248      596F7520 
+ 248      63616E2E 
+ 248      22205B52 
+ 249 2a6c 6F727279 		.ascii	"orry.\" [Ryouma]\012\"It's fine, it's fine. When yo"
+ 249      2E22205B 
+ 249      52796F75 
+ 249      6D615D0A 
+ 249      22497427 
+ 250 2a9a 75277265 		.ascii	"u're transmigrated, you will have the same body as "
+ 250      20747261 
+ 250      6E736D69 
+ 250      67726174 
+ 250      65642C20 
+ 251 2acd 74686520 		.ascii	"the native humans, so you'll also be able to use ma"
+ 251      6E617469 
+ 251      76652068 
+ 251      756D616E 
+ 251      732C2073 
+ 252 2b00 6769632E 		.ascii	"gic. Of course, everything will depend on your trai"
+ 252      204F6620 
+ 252      636F7572 
+ 252      73652C20 
+ 252      65766572 
+ 253 2b33 6E696E67 		.ascii	"ning.\" [Gayn]\012\"Also, as I mentioned awhile ago"
+ 253      2E22205B 
+ 253      4761796E 
+ 253      5D0A2241 
+ 253      6C736F2C 
+ 254 2b61 2C207765 		.ascii	", we'll be reinforcing your soul to keep the hole o"
+ 254      276C6C20 
+ 254      62652072 
+ 254      65696E66 
+ 254      6F726369 
+ 255 2b94 70656E2C 		.ascii	"pen, so as a result, some of that power will become"
+ 255      20736F20 
+ 255      61732061 
+ 255      20726573 
+ 255      756C742C 
+ 256 2bc7 20612070 		.ascii	" a part of you. Even without any talent, you'll be "
+ 256      61727420 
+ 256      6F662079 
+ 256      6F752E20 
+ 256      4576656E 
+ 257 2bfa 61626C65 		.ascii	"able to use magic. I'm not sure about becoming the "
+ 257      20746F20 
+ 257      75736520 
+ 257      6D616769 
+ 257      632E2049 
+ 258 2c2d 62657374 		.ascii	"best mage in the world though.\" [Kufo]\012\012Ryou"
+ 258      206D6167 
+ARM GAS  /tmp/ccSoAb05.s 			page 22
+
+
+ 258      6520696E 
+ 258      20746865 
+ 258      20776F72 
+ 259 2c59 6D612066 		.ascii	"ma felt his face grow hot as the gods looked at him"
+ 259      656C7420 
+ 259      68697320 
+ 259      66616365 
+ 259      2067726F 
+ 260 2c8c 20776974 		.ascii	" with amused expressions, but regardless, he was ha"
+ 260      6820616D 
+ 260      75736564 
+ 260      20657870 
+ 260      72657373 
+ 261 2cbf 70707920 		.ascii	"ppy to find that he would be able to use magic.\012"
+ 261      746F2066 
+ 261      696E6420 
+ 261      74686174 
+ 261      20686520 
+ 262 2cef 0A224173 		.ascii	"\012\"As for what magic you'll be able to use... Le"
+ 262      20666F72 
+ 262      20776861 
+ 262      74206D61 
+ 262      67696320 
+ 263 2d1e 74277320 		.ascii	"t's give you access to all the elemental magic.\" ["
+ 263      67697665 
+ 263      20796F75 
+ 263      20616363 
+ 263      65737320 
+ 264 2d50 4761796E 		.ascii	"Gayn]\012\"Umm... Wouldn't that be a bit too conspi"
+ 264      5D0A2255 
+ 264      6D6D2E2E 
+ 264      2E20576F 
+ 264      756C646E 
+ 265 2d7f 63756F75 		.ascii	"cuous?\" [Ryouma]\012\012The three gods laughed whe"
+ 265      733F2220 
+ 265      5B52796F 
+ 265      756D615D 
+ 265      0A0A5468 
+ 266 2dab 6E206865 		.ascii	"n he said that.\012\012\"Heh, the humans who come h"
+ 266      20736169 
+ 266      64207468 
+ 266      61742E0A 
+ 266      0A224865 
+ 267 2dd7 65726520 		.ascii	"ere say that a lot. Especially, the ones who read a"
+ 267      73617920 
+ 267      74686174 
+ 267      2061206C 
+ 267      6F742E20 
+ 268 2e0a 206C6F74 		.ascii	" lot of light novels.\" [Kufo]\012\"But the thing i"
+ 268      206F6620 
+ 268      6C696768 
+ 268      74206E6F 
+ 268      76656C73 
+ 269 2e38 732C2077 		.ascii	"s, while it's not that common, it's also not that a"
+ 269      68696C65 
+ 269      20697427 
+ 269      73206E6F 
+ARM GAS  /tmp/ccSoAb05.s 			page 23
+
+
+ 269      74207468 
+ 270 2e6b 6D617A69 		.ascii	"mazing.\" [Rurutia]\012\"Really?\" [Ryouma]\012\"Ye"
+ 270      6E672E22 
+ 270      205B5275 
+ 270      72757469 
+ 270      615D0A22 
+ 271 2e94 732E2054 		.ascii	"s. The people born with the talent aren't few, and "
+ 271      68652070 
+ 271      656F706C 
+ 271      6520626F 
+ 271      726E2077 
+ 272 2ec7 77697468 		.ascii	"with enough effort, anyon"
+ 272      20656E6F 
+ 272      75676820 
+ 272      6566666F 
+ 272      72742C20 
+ 273 2ee0 65206361 		.ascii	"e can become proficient in all elements. In fact, t"
+ 273      6E206265 
+ 273      636F6D65 
+ 273      2070726F 
+ 273      66696369 
+ 274 2f13 68657265 		.ascii	"here are about 10 to 20 people in any country's kni"
+ 274      20617265 
+ 274      2061626F 
+ 274      75742031 
+ 274      3020746F 
+ 275 2f46 67687420 		.ascii	"ght order born with the skill.\012\012There's also "
+ 275      6F726465 
+ 275      7220626F 
+ 275      726E2077 
+ 275      69746820 
+ 276 2f73 74686520 		.ascii	"the fact that while you might have a lot of element"
+ 276      66616374 
+ 276      20746861 
+ 276      74207768 
+ 276      696C6520 
+ 277 2fa6 73207468 		.ascii	"s that you can use, unless you train them all, you'"
+ 277      61742079 
+ 277      6F752063 
+ 277      616E2075 
+ 277      73652C20 
+ 278 2fd9 7265206E 		.ascii	"re not going to get good at them. If you do train t"
+ 278      6F742067 
+ 278      6F696E67 
+ 278      20746F20 
+ 278      67657420 
+ 279 300c 68656D20 		.ascii	"hem all, the progress is pretty slow. Between someo"
+ 279      616C6C2C 
+ 279      20746865 
+ 279      2070726F 
+ 279      67726573 
+ 280 303f 6E652077 		.ascii	"ne who can cast elementary spells of all elements a"
+ 280      686F2063 
+ 280      616E2063 
+ 280      61737420 
+ 280      656C656D 
+ 281 3072 6E642073 		.ascii	"nd someone who can cast advanced spells of a single"
+ARM GAS  /tmp/ccSoAb05.s 			page 24
+
+
+ 281      6F6D656F 
+ 281      6E652077 
+ 281      686F2063 
+ 281      616E2063 
+ 282 30a5 20656C65 		.ascii	" element, which one do you think is more valued? Th"
+ 282      6D656E74 
+ 282      2C207768 
+ 282      69636820 
+ 282      6F6E6520 
+ 283 30d8 65206C61 		.ascii	"e latter.\" [Gayn]\012\"In other words, a jack of a"
+ 283      74746572 
+ 283      2E22205B 
+ 283      4761796E 
+ 283      5D0A2249 
+ 284 3106 6C6C2074 		.ascii	"ll trades and a master of none.\" [Ryouma]\012\"Pre"
+ 284      72616465 
+ 284      7320616E 
+ 284      64206120 
+ 284      6D617374 
+ 285 3134 63697365 		.ascii	"cisely.\" [Gayn]\012\"Since there are no downsides "
+ 285      6C792E22 
+ 285      205B4761 
+ 285      796E5D0A 
+ 285      2253696E 
+ 286 3162 746F2069 		.ascii	"to it, don't you think it's a perfect fit for you w"
+ 286      742C2064 
+ 286      6F6E2774 
+ 286      20796F75 
+ 286      20746869 
+ 287 3195 686F2077 		.ascii	"ho wants to play with magic?\" [Rurutia]\012\"Then "
+ 287      616E7473 
+ 287      20746F20 
+ 287      706C6179 
+ 287      20776974 
+ 288 31c3 696E2074 		.ascii	"in that case, I'll take it.\" [Ryouma]\012\012After"
+ 288      68617420 
+ 288      63617365 
+ 288      2C204927 
+ 288      6C6C2074 
+ 289 31ef 20746861 		.ascii	" that Ryouma and the gods continued discussing abou"
+ 289      74205279 
+ 289      6F756D61 
+ 289      20616E64 
+ 289      20746865 
+ 290 3222 74206869 		.ascii	"t his would-be abilities.\012\012\"\342\200\224Good"
+ 290      7320776F 
+ 290      756C642D 
+ 290      62652061 
+ 290      62696C69 
+ 291 3245 2C207769 		.ascii	", with this we're done. But are you really sure you"
+ 291      74682074 
+ 291      68697320 
+ 291      77652772 
+ 291      6520646F 
+ 292 3278 27726520 		.ascii	"'re alright with all your bonuses being magic-relat"
+ 292      616C7269 
+ 292      67687420 
+ARM GAS  /tmp/ccSoAb05.s 			page 25
+
+
+ 292      77697468 
+ 292      20616C6C 
+ 293 32ab 65643F20 		.ascii	"ed? We can also give you some close-combat skills i"
+ 293      57652063 
+ 293      616E2061 
+ 293      6C736F20 
+ 293      67697665 
+ 294 32de 6620796F 		.ascii	"f you want. Being able to use a lot of magic is nic"
+ 294      75207761 
+ 294      6E742E20 
+ 294      4265696E 
+ 294      67206162 
+ 295 3311 6520616E 		.ascii	"e and all, but consequently, you won't be able to u"
+ 295      6420616C 
+ 295      6C2C2062 
+ 295      75742063 
+ 295      6F6E7365 
+ 296 3344 73652073 		.ascii	"se strong magic right off the bat.\" [Gayn]\012\"As"
+ 296      74726F6E 
+ 296      67206D61 
+ 296      67696320 
+ 296      72696768 
+ 297 3372 206C6F6E 		.ascii	" long as I won't have any problems living, I'm perf"
+ 297      67206173 
+ 297      20492077 
+ 297      6F6E2774 
+ 297      20686176 
+ 298 33a5 6563746C 		.ascii	"ectly happy with what we've discussed.\" [Ryouma]\012"
+ 298      79206861 
+ 298      70707920 
+ 298      77697468 
+ 298      20776861 
+ 299 33d6 22416C72 		.ascii	"\"Alright. The most important thing is that you're "
+ 299      69676874 
+ 299      2E205468 
+ 299      65206D6F 
+ 299      73742069 
+ 300 3408 73617469 		.ascii	"satisfied. Let's move on to the last part.\" [Gayn]"
+ 300      73666965 
+ 300      642E204C 
+ 300      65742773 
+ 300      206D6F76 
+ 301 343a 0A0A5365 		.ascii	"\012\012Sensing Ryouma's resolve, Gayn took out a w"
+ 301      6E73696E 
+ 301      67205279 
+ 301      6F756D61 
+ 301      27732072 
+ 302 3467 6F6F6465 		.ascii	"ooden plank on top of which were a sheet of paper a"
+ 302      6E20706C 
+ 302      616E6B20 
+ 302      6F6E2074 
+ 302      6F70206F 
+ 303 349a 6E642061 		.ascii	"nd a feather pen and handed it to Ryouma. On the sh"
+ 303      20666561 
+ 303      74686572 
+ 303      2070656E 
+ 303      20616E64 
+ARM GAS  /tmp/ccSoAb05.s 			page 26
+
+
+ 304 34cd 65657420 		.ascii	"eet of paper were everything they've discussed, and"
+ 304      6F662070 
+ 304      61706572 
+ 304      20776572 
+ 304      65206576 
+ 305 3500 206F6E20 		.ascii	" on the bottom-right was a blank space for Ryouma's"
+ 305      74686520 
+ 305      626F7474 
+ 305      6F6D2D72 
+ 305      69676874 
+ 306 3533 206E616D 		.ascii	" name.\012\012\"Signing a contract after you die is"
+ 306      652E0A0A 
+ 306      22536967 
+ 306      6E696E67 
+ 306      20612063 
+ 307 355f 20612062 		.ascii	" a bit...\" [Ryouma]\012\"Oh, you don't like it?\" "
+ 307      69742E2E 
+ 307      2E22205B 
+ 307      52796F75 
+ 307      6D615D0A 
+ 308 358c 5B527572 		.ascii	"[Rurutia]\012\"Not that I don't like it. It just fe"
+ 308      75746961 
+ 308      5D0A224E 
+ 308      6F742074 
+ 308      68617420 
+ 309 35bb 656C7320 		.ascii	"els a bit... odd.\" [Ryouma]\012\"Well, we can just"
+ 309      61206269 
+ 309      742E2E2E 
+ 309      206F6464 
+ 309      2E22205B 
+ 310 35e9 20646F20 		.ascii	" do away with the contract if you want.\" [Kufo]\012"
+ 310      61776179 
+ 310      20776974 
+ 310      68207468 
+ 310      6520636F 
+ 311 3619 22487568 		.ascii	"\"Huh?\" [Ryouma]\012\012Ryouma's hand paused when "
+ 311      3F22205B 
+ 311      52796F75 
+ 311      6D615D0A 
+ 311      0A52796F 
+ 312 3644 68652068 		.ascii	"he heard Rurutia and Kufo's remarks.\012\012\"Actua"
+ 312      65617264 
+ 312      20527572 
+ 312      75746961 
+ 312      20616E64 
+ 313 3670 6C6C792C 		.ascii	"lly, we're just making sure that you're fine with e"
+ 313      20776527 
+ 313      7265206A 
+ 313      75737420 
+ 313      6D616B69 
+ 314 36a3 76657279 		.ascii	"verything we'"
+ 314      7468696E 
+ 314      67207765 
+ 314      27
+ 315 36b0 76652064 		.ascii	"ve discussed and that you understand everything per"
+ 315      69736375 
+ 315      73736564 
+ARM GAS  /tmp/ccSoAb05.s 			page 27
+
+
+ 315      20616E64 
+ 315      20746861 
+ 316 36e3 66656374 		.ascii	"fectly clear. The sign is just one method. If you d"
+ 316      6C792063 
+ 316      6C656172 
+ 316      2E205468 
+ 316      65207369 
+ 317 3716 6F6E2774 		.ascii	"on't want to sign, we can just do it orally.\" [Gay"
+ 317      2077616E 
+ 317      7420746F 
+ 317      20736967 
+ 317      6E2C2077 
+ 318 3748 6E5D0A22 		.ascii	"n]\012\"Really?\" [Ryouma]\012\"We adjust our metho"
+ 318      5265616C 
+ 318      6C793F22 
+ 318      205B5279 
+ 318      6F756D61 
+ 319 3772 64732064 		.ascii	"ds depending on the person. Oral is usually for lit"
+ 319      6570656E 
+ 319      64696E67 
+ 319      206F6E20 
+ 319      74686520 
+ 320 37a5 746C6520 		.ascii	"tle kids, as it's easier.\" [Rurutia]\012\012After "
+ 320      6B696473 
+ 320      2C206173 
+ 320      20697427 
+ 320      73206561 
+ 321 37d1 6265696E 		.ascii	"being told that, Ryouma read the contract carefully"
+ 321      6720746F 
+ 321      6C642074 
+ 321      6861742C 
+ 321      2052796F 
+ 322 3804 2C20616E 		.ascii	", and when he was sure everything was ok, he signed"
+ 322      64207768 
+ 322      656E2068 
+ 322      65207761 
+ 322      73207375 
+ 323 3837 2E0A0AE2 		.ascii	".\012\012\342\200\224The moment he did, a faint lig"
+ 323      80945468 
+ 323      65206D6F 
+ 323      6D656E74 
+ 323      20686520 
+ 324 385b 68742073 		.ascii	"ht suddenly wrapped around him.\012\012\"!?\" [Ryou"
+ 324      75646465 
+ 324      6E6C7920 
+ 324      77726170 
+ 324      70656420 
+ 325 3886 6D615D0A 		.ascii	"ma]\012\"Calm down. That's just a sign that it's st"
+ 325      2243616C 
+ 325      6D20646F 
+ 325      776E2E20 
+ 325      54686174 
+ 326 38b5 61727469 		.ascii	"arting. You won't get hurt.\" [Rurutia]\012\"Unfort"
+ 326      6E672E20 
+ 326      596F7520 
+ 326      776F6E27 
+ 326      74206765 
+ARM GAS  /tmp/ccSoAb05.s 			page 28
+
+
+ 327 38e3 756E6174 		.ascii	"unately, these are the rules. After everything's be"
+ 327      656C792C 
+ 327      20746865 
+ 327      73652061 
+ 327      72652074 
+ 328 3916 656E2064 		.ascii	"en decided, you won't be able to stay long here.\" "
+ 328      65636964 
+ 328      65642C20 
+ 328      796F7520 
+ 328      776F6E27 
+ 329 3948 5B4B7566 		.ascii	"[Kufo]\012\"Sigh... I wonder why the annoying ones "
+ 329      6F5D0A22 
+ 329      53696768 
+ 329      2E2E2E20 
+ 329      4920776F 
+ 330 3977 73746963 		.ascii	"stick around so long, but the nice ones always leav"
+ 330      6B206172 
+ 330      6F756E64 
+ 330      20736F20 
+ 330      6C6F6E67 
+ 331 39aa 6520736F 		.ascii	"e so quick.\" [Gayn]\012\012Hearing that, Ryouma un"
+ 331      20717569 
+ 331      636B2E22 
+ 331      205B4761 
+ 331      796E5D0A 
+ 332 39d6 64657273 		.ascii	"derstood that the time for farewells had come.\012\012"
+ 332      746F6F64 
+ 332      20746861 
+ 332      74207468 
+ 332      65207469 
+ 333 3a06 22492073 		.ascii	"\"I see... That's unfortunate. But regardless, I wo"
+ 333      65652E2E 
+ 333      2E205468 
+ 333      61742773 
+ 333      20756E66 
+ 334 3a38 6E277420 		.ascii	"n't forget this act of kindness for the rest of my "
+ 334      666F7267 
+ 334      65742074 
+ 334      68697320 
+ 334      61637420 
+ 335 3a6b 6C696665 		.ascii	"life.\" [Ryouma]\012\"Don't sweat it. It's your lif"
+ 335      2E22205B 
+ 335      52796F75 
+ 335      6D615D0A 
+ 335      22446F6E 
+ 336 3a99 652C2073 		.ascii	"e, so just live as you please. We'll do our best to"
+ 336      6F206A75 
+ 336      7374206C 
+ 336      69766520 
+ 336      61732079 
+ 337 3acc 2073656E 		.ascii	" send you to a safe forest, so rest assured.\" [Gay"
+ 337      6420796F 
+ 337      7520746F 
+ 337      20612073 
+ 337      61666520 
+ 338 3afe 6E5D0A22 		.ascii	"n]\012\"We'll always be watching over you. And you "
+ 338      5765276C 
+ARM GAS  /tmp/ccSoAb05.s 			page 29
+
+
+ 338      6C20616C 
+ 338      77617973 
+ 338      20626520 
+ 339 3b2d 6B6E6F77 		.ascii	"know... This is the last time, so you can be a bit "
+ 339      2E2E2E20 
+ 339      54686973 
+ 339      20697320 
+ 339      74686520 
+ 340 3b60 6D6F7265 		.ascii	"more selfish. We won't mind.\" [Rurutia]\012\"You r"
+ 340      2073656C 
+ 340      66697368 
+ 340      2E205765 
+ 340      20776F6E 
+ 341 3b8e 65616C6C 		.ascii	"eally don't have to be so formal with your speech.\""
+ 341      7920646F 
+ 341      6E277420 
+ 341      68617665 
+ 341      20746F20 
+ 342 3bc1 205B4B75 		.ascii	" [Kufo]\012\"Won't you show us your real self?\" [G"
+ 342      666F5D0A 
+ 342      22576F6E 
+ 342      27742079 
+ 342      6F752073 
+ 343 3bef 61796E5D 		.ascii	"ayn]\012\"...Right. Thanks for everything. I guess "
+ 343      0A222E2E 
+ 343      2E526967 
+ 343      68742E20 
+ 343      5468616E 
+ 344 3c1e 69742072 		.ascii	"it really wasn't hard to see through someone when h"
+ 344      65616C6C 
+ 344      79207761 
+ 344      736E2774 
+ 344      20686172 
+ 345 3c51 65277320 		.ascii	"e's only going through the form.\" [Ryouma]\012\"We"
+ 345      6F6E6C79 
+ 345      20676F69 
+ 345      6E672074 
+ 345      68726F75 
+ 346 3c7f 20617265 		.ascii	" are gods. Of course, we'd notice. And there were t"
+ 346      20676F64 
+ 346      732E204F 
+ 346      6620636F 
+ 346      75727365 
+ 347 3cb2 696D6573 		.ascii	"imes when you stumbled on your speech.\" [Gayn]\012"
+ 347      20776865 
+ 347      6E20796F 
+ 347      75207374 
+ 347      756D626C 
+ 348 3ce1 22596F75 		.ascii	"\"You could have just spoken informally from the st"
+ 348      20636F75 
+ 348      6C642068 
+ 348      61766520 
+ 348      6A757374 
+ 349 3d13 6172742E 		.ascii	"art.\" [Rurutia]\012\"I didn't think it would be po"
+ 349      22205B52 
+ 349      75727574 
+ 349      69615D0A 
+ARM GAS  /tmp/ccSoAb05.s 			page 30
+
+
+ 349      22492064 
+ 350 3d41 6C697465 		.ascii	"lite to speak causally to gods.\" [Ryouma]\012\"Of "
+ 350      20746F20 
+ 350      73706561 
+ 350      6B206361 
+ 350      7573616C 
+ 351 3d6f 636F7572 		.ascii	"course, too much is bad, but you're alright. Beside"
+ 351      73652C20 
+ 351      746F6F20 
+ 351      6D756368 
+ 351      20697320 
+ 352 3da2 732C206D 		.ascii	"s, my heart is big. I'm a goddess, after all.\" [Ru"
+ 352      79206865 
+ 352      61727420 
+ 352      69732062 
+ 352      69672E20 
+ 353 3dd4 72757469 		.ascii	"rutia]\012\"Right.\" [Ryouma]\012\"Any plans once y"
+ 353      615D0A22 
+ 353      52696768 
+ 353      742E2220 
+ 353      5B52796F 
+ 354 3dfe 6F752061 		.ascii	"ou arrive at our world?\" [Gayn]\012\"If there's an"
+ 354      72726976 
+ 354      65206174 
+ 354      206F7572 
+ 354      20776F72 
+ 355 3e2c 79746869 		.ascii	"ything worrying you, just say it.\" [Rurutia]\012\""
+ 355      6E672077 
+ 355      6F727279 
+ 355      696E6720 
+ 355      796F752C 
+ 356 3e5a 5765276C 		.ascii	"We'll listen.\" [Kufo]\012\012Ryouma appeared"
+ 356      6C206C69 
+ 356      7374656E 
+ 356      2E22205B 
+ 356      4B75666F 
+ 357 3e80 2074686F 		.ascii	" thoughtful for a moment, but not a lot of time pas"
+ 357      75676874 
+ 357      66756C20 
+ 357      666F7220 
+ 357      61206D6F 
+ 358 3eb3 73656420 		.ascii	"sed before he naturally said.\012\012\"Actually... "
+ 358      6265666F 
+ 358      72652068 
+ 358      65206E61 
+ 358      74757261 
+ 359 3edf 49276D20 		.ascii	"I'm not good with people. I lived for 39 years, but"
+ 359      6E6F7420 
+ 359      676F6F64 
+ 359      20776974 
+ 359      68207065 
+ 360 3f12 2049206E 		.ascii	" I never got along well with others. Even if I go t"
+ 360      65766572 
+ 360      20676F74 
+ 360      20616C6F 
+ 360      6E672077 
+ 361 3f45 6F207468 		.ascii	"o the other world, I'll still be me. I don't really"
+ARM GAS  /tmp/ccSoAb05.s 			page 31
+
+
+ 361      65206F74 
+ 361      68657220 
+ 361      776F726C 
+ 361      642C2049 
+ 362 3f78 20746869 		.ascii	" think that part of me would change after going to "
+ 362      6E6B2074 
+ 362      68617420 
+ 362      70617274 
+ 362      206F6620 
+ 363 3fab 616E6F74 		.ascii	"another world. Honestly, I find human relations are"
+ 363      68657220 
+ 363      776F726C 
+ 363      642E2048 
+ 363      6F6E6573 
+ 364 3fde 20657868 		.ascii	" exhausting. Maybe I'll just live alone by myself.\""
+ 364      61757374 
+ 364      696E672E 
+ 364      204D6179 
+ 364      62652049 
+ 365 4011 205B5279 		.ascii	" [Ryouma]\012\"You can do that too if you want. Tha"
+ 365      6F756D61 
+ 365      5D0A2259 
+ 365      6F752063 
+ 365      616E2064 
+ 366 4040 74277320 		.ascii	"t's life.\" [Gayn]\012\"I also think it would be a "
+ 366      6C696665 
+ 366      2E22205B 
+ 366      4761796E 
+ 366      5D0A2249 
+ 367 406e 77617374 		.ascii	"waste though. I mean it is an otherworld. It would "
+ 367      65207468 
+ 367      6F756768 
+ 367      2E204920 
+ 367      6D65616E 
+ 368 40a1 61207069 		.ascii	"a pity not to travel.\" [Ryouma]\012\"Then why don'"
+ 368      7479206E 
+ 368      6F742074 
+ 368      6F207472 
+ 368      6176656C 
+ 369 40cf 7420796F 		.ascii	"t you live alone for a while, and then when you fee"
+ 369      75206C69 
+ 369      76652061 
+ 369      6C6F6E65 
+ 369      20666F72 
+ 370 4102 6C206C69 		.ascii	"l like it, travel?\" [Kufo]\012\012Ryouma asked if "
+ 370      6B652069 
+ 370      742C2074 
+ 370      72617665 
+ 370      6C3F2220 
+ 371 412e 74686174 		.ascii	"that was really alright.\012\012\"No matter what, t"
+ 371      20776173 
+ 371      20726561 
+ 371      6C6C7920 
+ 371      616C7269 
+ 372 415a 68652066 		.ascii	"he first place you'll arrive in is a forest. If we "
+ 372      69727374 
+ 372      20706C61 
+ARM GAS  /tmp/ccSoAb05.s 			page 32
+
+
+ 372      63652079 
+ 372      6F75276C 
+ 373 418d 6A757374 		.ascii	"just summoned you in the middle of a city, it would"
+ 373      2073756D 
+ 373      6D6F6E65 
+ 373      6420796F 
+ 373      7520696E 
+ 374 41c0 20636175 		.ascii	" cause a huge commotion. So what you can do is to f"
+ 374      73652061 
+ 374      20687567 
+ 374      6520636F 
+ 374      6D6D6F74 
+ 375 41f3 69727374 		.ascii	"irst live in the forest, and then afterwards go to "
+ 375      206C6976 
+ 375      6520696E 
+ 375      20746865 
+ 375      20666F72 
+ 376 4226 74686520 		.ascii	"the city. Besides, I'm sure you want to mess around"
+ 376      63697479 
+ 376      2E204265 
+ 376      73696465 
+ 376      732C2049 
+ 377 4259 20776974 		.ascii	" with your magic, right?\" [Kufo]\012\"Ah, now that"
+ 377      6820796F 
+ 377      7572206D 
+ 377      61676963 
+ 377      2C207269 
+ 378 4287 20796F75 		.ascii	" you mention it.\" [Ryouma]\012\"Just take it slow."
+ 378      206D656E 
+ 378      74696F6E 
+ 378      2069742E 
+ 378      22205B52 
+ 379 42b5 20596F75 		.ascii	" You look like the type to diligently go through al"
+ 379      206C6F6F 
+ 379      6B206C69 
+ 379      6B652074 
+ 379      68652074 
+ 380 42e8 6C207468 		.ascii	"l the paths laid out before you, but this time, try"
+ 380      65207061 
+ 380      74687320 
+ 380      6C616964 
+ 380      206F7574 
+ 381 431b 20676F69 		.ascii	" going through them one at a time. And if in the en"
+ 381      6E672074 
+ 381      68726F75 
+ 381      67682074 
+ 381      68656D20 
+ 382 434e 642C2079 		.ascii	"d, you don't go through them all, that's fine.\" [R"
+ 382      6F752064 
+ 382      6F6E2774 
+ 382      20676F20 
+ 382      7468726F 
+ 383 4380 75727574 		.ascii	"urutia]\012\012You've already died once, so in one "
+ 383      69615D0A 
+ 383      0A596F75 
+ 383      27766520 
+ 383      616C7265 
+ARM GAS  /tmp/ccSoAb05.s 			page 33
+
+
+ 384 43ad 73656E73 		.ascii	"sense, you can really be reborn. You can live a lif"
+ 384      652C2079 
+ 384      6F752063 
+ 384      616E2072 
+ 384      65616C6C 
+ 385 43e0 65206469 		.ascii	"e different from the life you lived on Earth. Espec"
+ 385      66666572 
+ 385      656E7420 
+ 385      66726F6D 
+ 385      20746865 
+ 386 4413 69616C6C 		.ascii	"ially since you'll be a child in our world. Aside f"
+ 386      79207369 
+ 386      6E636520 
+ 386      796F7527 
+ 386      6C6C2062 
+ 387 4446 726F6D20 		.ascii	"rom things you need to do to protect yourself, you "
+ 387      7468696E 
+ 387      67732079 
+ 387      6F75206E 
+ 387      65656420 
+ 388 4479 63616E20 		.ascii	"can just play and have fun.\" [Rurutia]\012\"Oh, an"
+ 388      6A757374 
+ 388      20706C61 
+ 388      7920616E 
+ 388      64206861 
+ 389 44a7 64206C65 		.ascii	"d let's not forget that you'll most likely be fine "
+ 389      74277320 
+ 389      6E6F7420 
+ 389      666F7267 
+ 389      65742074 
+ 390 44da 6576656E 		.ascii	"even if you come across some bandits with your skil"
+ 390      20696620 
+ 390      796F7520 
+ 390      636F6D65 
+ 390      20616372 
+ 391 450d 6C732E22 		.ascii	"ls.\" [Gayn]\012\"Just live as I please and go on m"
+ 391      205B4761 
+ 391      796E5D0A 
+ 391      224A7573 
+ 391      74206C69 
+ 392 453b 79206F77 		.ascii	"y own pace, huh. Then in that case, I guess I'll st"
+ 392      6E207061 
+ 392      63652C20 
+ 392      6875682E 
+ 392      20546865 
+ 393 456e 61792069 		.ascii	"ay in the forest for a while, and when I'm feeling "
+ 393      6E207468 
+ 393      6520666F 
+ 393      72657374 
+ 393      20666F72 
+ 394 45a1 6C696B65 		.ascii	"like it, go out. Thanks.\" [Ryouma]\012\"If you do "
+ 394      2069742C 
+ 394      20676F20 
+ 394      6F75742E 
+ 394      20546861 
+ 395 45cf 676F2074 		.ascii	"go to a city, make sure to visit the church. We won"
+ 395      6F206120 
+ARM GAS  /tmp/ccSoAb05.s 			page 34
+
+
+ 395      63697479 
+ 395      2C206D61 
+ 395      6B652073 
+ 396 4602 27742062 		.ascii	"'t be able to meet, but if you get the Oracle skill"
+ 396      65206162 
+ 396      6C652074 
+ 396      6F206D65 
+ 396      65742C20 
+ 397 4635 2C207765 		.ascii	", we'll at least be able to"
+ 397      276C6C20 
+ 397      6174206C 
+ 397      65617374 
+ 397      20626520 
+ 398 4650 2074616C 		.ascii	" talk for a short while. The higher the level, the "
+ 398      6B20666F 
+ 398      72206120 
+ 398      73686F72 
+ 398      74207768 
+ 399 4683 6C6F6E67 		.ascii	"longer and more frequent.\" [kufo]\012\"Got it. I'l"
+ 399      65722061 
+ 399      6E64206D 
+ 399      6F726520 
+ 399      66726571 
+ 400 46b1 6C206465 		.ascii	"l definitely drop by when I go to town. I don't kno"
+ 400      66696E69 
+ 400      74656C79 
+ 400      2064726F 
+ 400      70206279 
+ 401 46e4 77207768 		.ascii	"w when, but I promise it.\" [Ryouma]\012\"Good, we'"
+ 401      656E2C20 
+ 401      62757420 
+ 401      49207072 
+ 401      6F6D6973 
+ 402 4712 6C6C2062 		.ascii	"ll be waiting. When you drop by, we'll talk lots.\""
+ 402      65207761 
+ 402      6974696E 
+ 402      672E2057 
+ 402      68656E20 
+ 403 4744 205B5275 		.ascii	" [Rurutia]\012\"We have a lot of free time, after a"
+ 403      72757469 
+ 403      615D0A22 
+ 403      57652068 
+ 403      61766520 
+ 404 4773 6C6C2E20 		.ascii	"ll. Ho Ho ho!\" [Gayn]\012\012When Gayn laughed the"
+ 404      486F2048 
+ 404      6F20686F 
+ 404      2122205B 
+ 404      4761796E 
+ 405 479f 206C6967 		.ascii	" light on Ryouma began expanding.\012\012\"...It's "
+ 405      6874206F 
+ 405      6E205279 
+ 405      6F756D61 
+ 405      20626567 
+ 406 47cb 74696D65 		.ascii	"time.\" [Kufo]\012\012The light gradually grew stro"
+ 406      2E22205B 
+ 406      4B75666F 
+ 406      5D0A0A54 
+ARM GAS  /tmp/ccSoAb05.s 			page 35
+
+
+ 406      6865206C 
+ 407 47f7 6E676572 		.ascii	"nger until it covered Ryouma's vision.\012\012\"..."
+ 407      20756E74 
+ 407      696C2069 
+ 407      7420636F 
+ 407      76657265 
+ 408 4823 45766572 		.ascii	"Everything's ready, it seems.\" [Gayn]\012\"Farewel"
+ 408      79746869 
+ 408      6E672773 
+ 408      20726561 
+ 408      64792C20 
+ 409 4851 6C20616E 		.ascii	"l and live happily, alright?\" [Rurutia]\012\"I wil"
+ 409      64206C69 
+ 409      76652068 
+ 409      61707069 
+ 409      6C792C20 
+ 410 487f 6C2E2E2E 		.ascii	"l... Thank you... Thank you so much!!\" [Ryouma]\012"
+ 410      20546861 
+ 410      6E6B2079 
+ 410      6F752E2E 
+ 410      2E205468 
+ 411 48af 224E6F77 		.ascii	"\"Now go! We can't keep the door open forever!\" [G"
+ 411      20676F21 
+ 411      20576520 
+ 411      63616E27 
+ 411      74206B65 
+ 412 48e0 61796E5D 		.ascii	"ayn]\012\"Our blessings are with you.\" [Rurutia]\012"
+ 412      0A224F75 
+ 412      7220626C 
+ 412      65737369 
+ 412      6E677320 
+ 413 490d 224D6179 		.ascii	"\"May light illuminate your path!\" [Kufo]\012\"Enj"
+ 413      206C6967 
+ 413      68742069 
+ 413      6C6C756D 
+ 413      696E6174 
+ 414 493a 6F792079 		.ascii	"oy your new life!\" [Gayn, Kufo, Rurutia]\012\012Af"
+ 414      6F757220 
+ 414      6E657720 
+ 414      6C696665 
+ 414      2122205B 
+ 415 4966 74657220 		.ascii	"ter that the light swallowed Ryouma.\012\012When th"
+ 415      74686174 
+ 415      20746865 
+ 415      206C6967 
+ 415      68742073 
+ 416 4993 65206C69 		.ascii	"e light vanished, Ryouma was gone, and so were the "
+ 416      67687420 
+ 416      76616E69 
+ 416      73686564 
+ 416      2C205279 
+ 417 49c6 676F6473 		.ascii	"gods.\000"
+ 417      2E00
+ 418              		.text
+ 419              	.Letext0:
+ 420              		.file 1 "Display/Text_Mode/example.h"
+ 421              		.file 2 "Display/Text_Mode/example.c"
+ARM GAS  /tmp/ccSoAb05.s 			page 36
+
+
+ARM GAS  /tmp/ccSoAb05.s 			page 37
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 example.c
-     /tmp/ccUeffNa.s:22     .rodata.text:0000000000000000 text
-     /tmp/ccUeffNa.s:19     .rodata.text:0000000000000000 $d
+     /tmp/ccSoAb05.s:22     .rodata.text:0000000000000000 text
+     /tmp/ccSoAb05.s:19     .rodata.text:0000000000000000 $d
 
 NO UNDEFINED SYMBOLS
